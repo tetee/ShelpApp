@@ -4,15 +4,21 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 
 import de.fh_muenster.shelpapp.R;
 
 public class search_activity extends ActionBarActivity {
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_activity);
+
+        addItemsOnSpinner();
     }
 
 
@@ -36,5 +42,27 @@ public class search_activity extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void addItemsOnSpinner(){
+        Spinner spinnerCity = (Spinner) findViewById(R.id.citySpinner);
+        Spinner spinnerCapacity = (Spinner) findViewById(R.id.capacitySpinner);
+        Spinner spinnerRange = (Spinner) findViewById(R.id.rangeSpinner);
+        // Create an ArrayAdapter using the string array and a default spinner layout
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                R.array.citySpinner, android.R.layout.simple_spinner_item);
+
+        ArrayAdapter<CharSequence> adapter2 = ArrayAdapter.createFromResource(this,
+                R.array.capacitySpinner, android.R.layout.simple_spinner_item);
+
+        ArrayAdapter<CharSequence> adapter3 = ArrayAdapter.createFromResource(this,
+                R.array.rangeSpinner, android.R.layout.simple_spinner_item);
+
+        // Specify the layout to use when the list of choices appears
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        // Apply the adapter to the spinner
+        spinnerCity.setAdapter(adapter);
+        spinnerCapacity.setAdapter(adapter2);
+        spinnerRange.setAdapter(adapter3);
     }
 }
