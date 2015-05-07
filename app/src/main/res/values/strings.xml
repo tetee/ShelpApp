@@ -33,10 +33,12 @@
     <string name="capacity">Kapazität</string>
     <string name="paymentTerms">Zahlungsbedingungen</string>
     <string name="deliveryTerms">Lieferbedingungen</string>
-    <string name="date">Datum</string>
+    <string name="date">Zeitpunkt</string>
     <string name="range">Reichweite</string>
     <string name="enabling">Freigabe</string>
     <string name="sonstiges">Das wollte ich noch loswerden...</string>
+    <string name="city_2">Wo?</string>
+
 
     <string-array name="citySpinner">
         <item>Münster</item>
@@ -63,5 +65,6 @@
         <item>5 Kilometer</item>
         <item>10 Kilometer</item>
     </string-array>
+
 
 </resources>
