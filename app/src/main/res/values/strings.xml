@@ -29,5 +29,39 @@
     <string name="regConfirm">Registrieren</string>
     <string name="passwordRegConfirm">Passwort wiederholen:</string>
     <string name="userRegConfirm">Benutzername:</string>
+    <string name="city">Ort</string>
+    <string name="capacity">Kapazität</string>
+    <string name="paymentTerms">Zahlungsbedingungen</string>
+    <string name="deliveryTerms">Lieferbedingungen</string>
+    <string name="date">Datum</string>
+    <string name="range">Reichweite</string>
+    <string name="enabling">Freigabe</string>
+    <string name="sonstiges">Das wollte ich noch loswerden...</string>
+
+    <string-array name="citySpinner">
+        <item>Münster</item>
+        <item>Rheine</item>
+        <item>Steinfurt</item>
+    </string-array>
+
+    <string-array name="capacitySpinner">
+        <item>Kofferraum</item>
+        <item>Mittelbank</item>
+        <item>Beifahrersitz</item>
+        <item>Fahrradkorb</item>
+    </string-array>
+
+    <string-array name="enablingSpinner">
+        <item>Freunde</item>
+        <item>Öffentlich</item>
+    </string-array>
+
+
+    <string-array name="rangeSpinner">
+        <item>500 Meter</item>
+        <item>2 Kilometer</item>
+        <item>5 Kilometer</item>
+        <item>10 Kilometer</item>
+    </string-array>
 
 </resources>
