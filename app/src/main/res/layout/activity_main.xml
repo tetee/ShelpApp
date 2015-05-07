@@ -66,4 +66,18 @@
         android:layout_alignParentEnd="true"
         android:onClick="registration"/>
 
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/reg"
+        android:id="@+id/reg123"
+        android:layout_marginBottom="41dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:onClick="registration"/>
+
+
+
 </RelativeLayout>
