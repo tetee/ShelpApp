@@ -1,0 +1,33 @@
+<resources>
+    <string name="app_name">ShelpApp</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="username">Benutzername / E-Mail:</string>
+    <string name="password">Passwort:</string>
+    <string name="login">Login</string>
+    <string name="reg">Registrierung</string>
+    <string name="pref_user_title">Benutzerdaten:</string>
+    <string name="usernameSummary">Benutzername:</string>
+    <string name="passwordSummary">Passwort:</string>
+    <string name="title_activity_prefs">PrefsActivity</string>
+    <string name="title_activity_shelp_activity">shelp_activity</string>
+    <string name="title_activity_create_activity">create_activity</string>
+    <string name="title_activity_search_activity">search_activity</string>
+    <string name="title_activity_whishlist_activity">whishlist_activity</string>
+    <string name="title_activity_tour_activity">tour_activity</string>
+    <string name="title_activity_friends_activity">friends_activity</string>
+    <string name="title_activity_rating_activity">rating_activity</string>
+    <string name="title_activity_show_rating_activity">show_rating_activity</string>
+    <string name="title_activity_search_friends_activity">search_friends_activity</string>
+    <string name="title_activity_shelp_app_application">ShelpAppApplication</string>
+    <string name="title_activity_own_request_activity">own_request_activity</string>
+    <string name="title_activity_your_request_activity">your_request_activity</string>
+    <string name="title_activity_registration_activity">registration_activity</string>
+    <string name="usernameReg">E-Mail:</string>
+    <string name="passwordReg">Passwort:</string>
+    <string name="regConfirm">Registrieren</string>
+    <string name="passwordRegConfirm">Passwort wiederholen:</string>
+    <string name="userRegConfirm">Benutzername:</string>
+
+</resources>
