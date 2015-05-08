@@ -28,9 +28,10 @@
         android:layout_height="wrap_content"
         android:text="@string/searchFriend"
         android:id="@+id/searchFriend"
-        android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
+        android:layout_below="@+id/actual"
         android:onClick="searchFriend"/>
+
 
 </RelativeLayout>

@@ -45,6 +45,7 @@
     <string name="requestFriend">Anfragen</string>
     <string name="actualFriends">Deine Freunde</string>
     <string name="username_email">Name/E-Mail</string>
+    <string name="add">Hinzufügen</string>
 
     <string-array name="citySpinner">
         <item>Münster</item>
