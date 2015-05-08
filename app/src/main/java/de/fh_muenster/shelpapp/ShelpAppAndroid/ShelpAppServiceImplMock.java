@@ -15,6 +15,7 @@ public class ShelpAppServiceImplMock implements ShelpAppService {
 
     @Override
     public User login(String username, String password) throws InvalidLoginException {
+        //Testuser anlegen
         user = new User("busch.roman20@gmail.com", "test123");
         return this.user;
     }

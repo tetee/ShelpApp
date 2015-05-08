@@ -42,25 +42,30 @@ public class shelp_activity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    //Wechsel zur create_activity
     public void create(View view) {
         Intent i = new Intent(this, create_activity.class);
         startActivity(i);
     }
 
+    //Wechsel zur search_activity
     public void search(View view) {
         Intent i = new Intent(this, search_activity.class);
         startActivity(i);}
 
+    //Wechsel zur own_request_activity
     public void request(View view) {
         Intent i = new Intent(this, own_request_activity.class);
         startActivity(i);
     }
 
+    //Wechsel zur tour_activity
     public void ownTours(View view) {
         Intent i = new Intent(this, tour_activity.class);
         startActivity(i);
     }
 
+    //Wechsel zur friends_activity
     public void friends(View view) {
         Intent i = new Intent(this, friends_activity.class);
         startActivity(i);

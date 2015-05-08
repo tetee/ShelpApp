@@ -18,16 +18,19 @@ public class create_activity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_activity);
 
+        //Aufruf der addItemsOnSpinner Methode
         addItemsOnSpinner();
     }
 
 
     public void addItemsOnSpinner(){
+
+        //Daten anhand der Spinner ID holen und in Variable speichern
         Spinner spinnerCity = (Spinner) findViewById(R.id.citySpinner);
         Spinner spinnerCapacity = (Spinner) findViewById(R.id.capacitySpinner);
         Spinner spinnerEnabling = (Spinner) findViewById(R.id.enablingSpinner);
         Spinner spinnerRange = (Spinner) findViewById(R.id.rangeSpinner);
-        // Create an ArrayAdapter using the string array and a default spinner layout
+        //Erstellen eines ArrayAdapters/ String Array und standard Layout des Spinners wird genutzt
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.citySpinner, android.R.layout.simple_spinner_item);
 
@@ -40,9 +43,9 @@ public class create_activity extends ActionBarActivity {
         ArrayAdapter<CharSequence> adapter4 = ArrayAdapter.createFromResource(this,
                 R.array.rangeSpinner, android.R.layout.simple_spinner_item);
 
-        // Specify the layout to use when the list of choices appears
+        //Anzeigewert für das Dropdown Feld definieren
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        // Apply the adapter to the spinner
+        //Werte in das Dropdown laden
         spinnerCity.setAdapter(adapter);
         spinnerCapacity.setAdapter(adapter2);
         spinnerEnabling.setAdapter(adapter3);

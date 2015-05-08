@@ -25,11 +25,16 @@ public class MainActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //E-Mail und Passwort aus den SharedPreferences laden
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        //Benutzer/E-Mail als String in Variable speichern
         String username = prefs.getString("username", "");
+        //Passwort als String in Variable speichern
         String password = prefs.getString("password", "");
+        //Textfeld anhand der ID suchen und Benutzerdaten setzen
         EditText un = (EditText) findViewById(R.id.editUsername);
         un.setText(username);
+        //Textfeld anhand der ID suchen und Passwort setzen
         EditText pw = (EditText) findViewById(R.id.editTextPassword);
         pw.setText(password);
     }
@@ -37,20 +42,18 @@ public class MainActivity extends ActionBarActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
+        //Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
         //Wenn "Settings" gedrückt wurde, rufen wir die PrefsActivity auf
         if (id == R.id.action_settings) {
+            //neues Intent erstellen und zur PrefsActivity wechseln
             Intent i = new Intent(this, PrefsActivity.class);
             startActivity(i);
             return true;
@@ -60,18 +63,29 @@ public class MainActivity extends ActionBarActivity {
     }
 
     public void registration(View view) {
+        //neues Intent erstellen und zur registration_activity wechseln
         Intent i = new Intent(this, registration_activity.class);
         startActivity(i);
     }
 
     public void login(View loginView) {
 
+        //E-Mail und Passwort aus den SharedPreferences laden
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(loginView.getContext());
+        //Benutzer/E-Mail als String in Variable speichern
         String username = prefs.getString("username", "");
+        //Passwort als String in Variable speichern
         String password = prefs.getString("password", "");
 
+        /**Prüfung ob E-Mail und Passwort mit den Daten aus dem Mockobjekt
+         * mit den SharedPreferences übereinstimmen. Wenn die Daten passen, wird
+         * der LoginTask ausgeführt. Falls die Daten nicht übereinstimmen, wird eine
+         * Fehlermeldung ausgegeben und als Popup angezeigt.
+         */
         if(!"".equals(username) && !"".equals(password)) {
+            //LoginTask erstellen
             LoginTask loginTask = new LoginTask(loginView.getContext());
+            //LoginTask ausführen
             loginTask.execute(username, password);
         }
         else
