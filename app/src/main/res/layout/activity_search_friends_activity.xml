@@ -6,7 +6,29 @@
     android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context="de.fh_muenster.shelpapp.ShelpAppAndroid.search_friends_activity">
 
-    <TextView android:text="@string/hello_world" android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+    <TextView android:text="@string/username_email"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/requestFriend"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/searchFriendByName"
+        android:layout_below="@+id/requestFriend"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/searchButton"
+        android:id="@+id/searchFriendButton"
+        android:layout_below="@+id/searchFriendByName"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"  />
 
 </RelativeLayout>

@@ -1,9 +1,11 @@
 package de.fh_muenster.shelpapp.ShelpAppAndroid;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import de.fh_muenster.shelpapp.R;
 
@@ -36,5 +38,11 @@ public class friends_activity extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+
+    public void searchFriend(View view) {
+        Intent i = new Intent(this, search_friends_activity.class);
+        startActivity(i);
     }
 }
