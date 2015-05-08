@@ -12,5 +12,4 @@ public interface ShelpAppService {
 
     public void logout() throws NoSessionException;
 
-    public User register() throws NoSessionException;
 }

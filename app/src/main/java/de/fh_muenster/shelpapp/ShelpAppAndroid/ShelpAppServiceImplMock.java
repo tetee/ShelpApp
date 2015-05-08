@@ -23,6 +23,4 @@ public class ShelpAppServiceImplMock implements ShelpAppService {
     @Override
     public void logout() { this.user = null; }
 
-    @Override
-    public User register() { return null; }
 }
