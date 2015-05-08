@@ -96,7 +96,7 @@
         android:id="@+id/range"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/date" />
+        android:layout_below="@+id/dateCreate" />
 
     <Spinner
         android:id="@+id/rangeSpinner"
@@ -152,6 +152,16 @@
         android:layout_below="@+id/sonstigesText"
         android:onClick="createTour"/>
 
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="date"
+            android:ems="10"
+            android:id="@+id/dateCreate"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@id/date"/>
 
-</RelativeLayout>
+
+    </RelativeLayout>
     </ScrollView>
