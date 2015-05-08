@@ -23,7 +23,8 @@
         android:hint="Bitte E-Mail angeben"
         android:layout_below="@+id/textViewUserReg"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:inputType="textEmailAddress"/>
 
     <TextView
         android:layout_width="match_parent"

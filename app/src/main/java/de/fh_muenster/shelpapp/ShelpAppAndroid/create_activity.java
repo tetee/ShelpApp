@@ -74,9 +74,6 @@ public class create_activity extends ActionBarActivity {
 
 
 
-
-
-
     public void createTour(View view) {
         Intent i = new Intent(this, shelp_activity.class);
         startActivity(i);

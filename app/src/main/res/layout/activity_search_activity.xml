@@ -1,11 +1,4 @@
-
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/ScrollView01"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent">
-
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+ <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
         android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
         android:paddingRight="@dimen/activity_horizontal_margin"
@@ -62,7 +55,7 @@
             android:id="@+id/range"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_below="@+id/date" />
+            android:layout_below="@+id/dateView" />
 
         <Spinner
             android:id="@+id/rangeSpinner"
@@ -72,5 +65,48 @@
             android:layout_alignParentStart="true"
             android:layout_below="@+id/range" />
 
-    </RelativeLayout>
-</ScrollView>
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="date"
+            android:ems="10"
+            android:id="@+id/dateView"
+            android:layout_below="@+id/date"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/searchButton"
+            android:id="@+id/searchButton"
+            android:layout_below="@+id/rangeSpinner"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:onClick="search"/>
+
+     <Button
+         style="?android:attr/buttonStyleSmall"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:text="@string/detailsButton"
+         android:id="@+id/detailsButton"
+         android:layout_below="@+id/searchButton"
+         android:layout_alignParentRight="true"
+         android:layout_alignParentEnd="true"
+         android:onClick="details"/>
+
+     <Button
+         style="?android:attr/buttonStyleSmall"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:text="@string/ratingButton"
+         android:id="@+id/ratingButton"
+         android:layout_below="@+id/detailsButton"
+         android:layout_alignParentRight="true"
+         android:layout_alignParentEnd="true"
+         android:onClick="rating"/>
+
+
+ </RelativeLayout>

@@ -1,10 +1,13 @@
 package de.fh_muenster.shelpapp.ShelpAppAndroid;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Spinner;
 
 import de.fh_muenster.shelpapp.R;
@@ -17,6 +20,11 @@ public class search_activity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_activity);
+
+        Button detailsButton = (Button) findViewById(R.id.detailsButton);
+        Button ratingButton = (Button) findViewById(R.id.ratingButton);
+        detailsButton.setVisibility(View.INVISIBLE);
+        ratingButton.setVisibility(View.INVISIBLE);
 
         addItemsOnSpinner();
     }
@@ -42,6 +50,23 @@ public class search_activity extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void search(View view){
+        Button detailsButton = (Button) findViewById(R.id.detailsButton);
+        Button ratingButton = (Button) findViewById(R.id.ratingButton);
+        detailsButton.setVisibility(View.VISIBLE);
+        ratingButton.setVisibility(View.VISIBLE);
+    }
+
+    public void details(View view){
+        Intent i = new Intent(this, create_activity.class);
+        startActivity(i);
+    }
+
+    public void rating(View view) {
+        Intent i = new Intent(this, show_rating_activity.class);
+        startActivity(i);
     }
 
     public void addItemsOnSpinner(){
