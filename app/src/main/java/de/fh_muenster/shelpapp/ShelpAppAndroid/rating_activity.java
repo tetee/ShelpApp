@@ -1,9 +1,11 @@
 package de.fh_muenster.shelpapp.ShelpAppAndroid;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import de.fh_muenster.shelpapp.R;
 
@@ -36,5 +38,11 @@ public class rating_activity extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    //Aufruf der own_request_activity
+    public void sendRating(View view) {
+        Intent i = new Intent(this, own_request_activity.class);
+        startActivity(i);
     }
 }

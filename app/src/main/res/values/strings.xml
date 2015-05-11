@@ -46,6 +46,9 @@
     <string name="actualFriends">Deine Freunde</string>
     <string name="username_email">Name/E-Mail</string>
     <string name="add">Hinzufügen</string>
+    <string name="rating">Bewertung</string>
+    <string name="ratingText">Text:</string>
+    <string name="sendRating">abschicken</string>
 
     <string-array name="citySpinner">
         <item>Münster</item>
