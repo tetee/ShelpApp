@@ -2,10 +2,20 @@ package de.fh_muenster.shelpapp.ShelpAppAndroid;
 
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.GridLayout;
+import android.widget.LinearLayout;
+import android.widget.TableRow;
+import android.widget.TextView;
 
 import de.fh_muenster.shelpapp.R;
+
+import static android.widget.GridLayout.*;
 
 public class whishlist_activity extends ActionBarActivity {
 
@@ -36,5 +46,9 @@ public class whishlist_activity extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void addTextView(View view) {
+
     }
 }

@@ -49,6 +49,9 @@
     <string name="rating">Bewertung</string>
     <string name="ratingText">Text:</string>
     <string name="sendRating">abschicken</string>
+    <string name="wish">Kurztext</string>
+    <string name="productWish">Produkt</string>
+    <string name="newTextView">weiter +</string>
 
     <string-array name="citySpinner">
         <item>Münster</item>
