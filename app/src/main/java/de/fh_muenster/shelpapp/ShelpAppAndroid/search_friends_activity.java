@@ -1,9 +1,12 @@
 package de.fh_muenster.shelpapp.ShelpAppAndroid;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 
 import de.fh_muenster.shelpapp.R;
 
@@ -36,5 +39,20 @@ public class search_friends_activity extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    //Durch betätigen des Suchen Button erscheinen gesuchte Freunde(TODO)
+    //und der Hinzufügen Button erscheint
+    public void search(View view){
+        //Button suchen
+        Button addButton = (Button) findViewById(R.id.addButton);
+        //Button sichtbar machen
+        addButton.setVisibility(View.VISIBLE);
+    }
+
+    //Mit Klick auf Hinzufügen wird der Freund angefragt und Rückkehr zur Shelp Activity
+    public void add(View view) {
+        Intent i = new Intent(this, shelp_activity.class);
+        startActivity(i);
     }
 }
