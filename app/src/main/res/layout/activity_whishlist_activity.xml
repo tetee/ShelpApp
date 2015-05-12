@@ -47,11 +47,32 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/newTextView"
-        android:id="@+id/button"
+        android:id="@+id/buttonNext"
         android:layout_alignTop="@+id/productWish"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:onClick="addTextView"/>
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/requestWishList"
+        android:id="@+id/buttonRequest"
+        android:layout_alignTop="@+id/productWish"
+        android:layout_toLeftOf="@+id/buttonNext"
+        android:layout_toStartOf="@+id/buttonNext"
+        android:onClick="requestWishList" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="+ Wunsch"
+        android:id="@+id/editTextWishList"
+        android:layout_below="@+id/buttonRequest"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:onClick="requestWishList"/>
 
 
 </RelativeLayout>

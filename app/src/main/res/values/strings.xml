@@ -52,6 +52,8 @@
     <string name="wish">Kurztext</string>
     <string name="productWish">Produkt</string>
     <string name="newTextView">weitere +</string>
+    <string name="requestWishList">Anfragen</string>
+
 
     <string-array name="citySpinner">
         <item>Münster</item>
