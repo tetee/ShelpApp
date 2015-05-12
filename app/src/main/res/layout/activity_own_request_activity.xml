@@ -36,9 +36,10 @@
         android:layout_toEndOf="@+id/editButton"
         android:onClick="delete"/>
 
-    <Button
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="@string/status"
         android:id="@+id/statusButton"
         android:layout_alignBottom="@+id/deleteButton"
@@ -54,4 +55,5 @@
         android:layout_toRightOf="@+id/statusButton"
         android:layout_toEndOf="@+id/statusButton"
         android:onClick="rate"/>
+
 </RelativeLayout>

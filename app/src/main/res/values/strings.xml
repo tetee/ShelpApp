@@ -36,7 +36,7 @@
     <string name="date">Zeitpunkt</string>
     <string name="range">Reichweite</string>
     <string name="enabling">Freigabe</string>
-    <string name="sonstiges">Das wollte ich noch loswerden...</string>
+    <string name="sonstiges">weitere Infos...</string>
     <string name="city_2">Wo?</string>
     <string name="searchButton">Suchen</string>
     <string name="ratingButton">Bewertung</string>
@@ -56,6 +56,9 @@
     <string name="editButton">Bearbeiten</string>
     <string name="deleteButton">Löschen</string>
     <string name="status">Status</string>
+    <string name="tour">Fahrt</string>
+    <string name="yourTour">Deine Fahrten</string>
+    <string name="createTour">Erstelle deine Fahrt..</string>
 
     <string-array name="citySpinner">
         <item>Münster</item>

@@ -1,9 +1,11 @@
 package de.fh_muenster.shelpapp.ShelpAppAndroid;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import de.fh_muenster.shelpapp.R;
 
@@ -36,5 +38,17 @@ public class tour_activity extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    //Aufruf der create_activity
+    public void edit(View view) {
+        Intent i = new Intent(this, create_activity.class);
+        startActivity(i);
+    }
+
+    //Aufruf der your_request_activity
+    public void yourRequest(View view) {
+        Intent i = new Intent(this, your_request_activity.class);
+        startActivity(i);
     }
 }
