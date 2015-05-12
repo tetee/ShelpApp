@@ -80,10 +80,11 @@ public class create_activity extends ActionBarActivity {
 
     public void createTour(View view) {
         /**Toast.makeText();
-        CharSequence text = "Tour erfolgreich erstellt";
+        CharSequence text = "Fahrt erfolgreich erstellt";
         int duration = Toast.LENGTH_SHORT;
         Toast toast = Toast.makeText(context, text, duration);
         toast.show();*/
+        Toast.makeText(getApplicationContext(), "Fahrt erfolgreich erstellt!", Toast.LENGTH_SHORT).show();
 
         //nach erfolgreicher Erstellung der Tour zurück zur shelp_activity
         Intent i = new Intent(this, shelp_activity.class);
