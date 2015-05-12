@@ -8,6 +8,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 import de.fh_muenster.shelpapp.R;
+import de.fh_muenster.shelpapp.ShelpAppAndroid.tasks.LogoutTask;
 
 public class shelp_activity extends ActionBarActivity {
 
@@ -55,7 +56,7 @@ public class shelp_activity extends ActionBarActivity {
 
     //Wechsel zur own_request_activity
     public void request(View view) {
-        Intent i = new Intent(this, whishlist_activity.class);
+        Intent i = new Intent(this, own_request_activity.class);
         startActivity(i);
     }
 
@@ -70,4 +71,12 @@ public class shelp_activity extends ActionBarActivity {
         Intent i = new Intent(this, friends_activity.class);
         startActivity(i);
     }
-}
+
+
+        public void logout(View ausloeser) {
+            //Logout asynchron ausfuehren:
+            LogoutTask logoutTask = new LogoutTask(ausloeser.getContext(),(ShelpAppApplication) getApplication());
+            logoutTask.execute();
+        }
+    }
+
