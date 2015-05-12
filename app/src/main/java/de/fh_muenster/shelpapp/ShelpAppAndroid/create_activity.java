@@ -8,6 +8,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Spinner;
 import android.widget.ArrayAdapter;
+import android.widget.Toast;
 
 import de.fh_muenster.shelpapp.R;
 
@@ -43,7 +44,7 @@ public class create_activity extends ActionBarActivity {
         ArrayAdapter<CharSequence> adapter4 = ArrayAdapter.createFromResource(this,
                 R.array.rangeSpinner, android.R.layout.simple_spinner_item);
 
-        //Anzeigewert für das Dropdown Feld definieren
+        //Anzeigewert fï¿½r das Dropdown Feld definieren
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         //Werte in das Dropdown laden
         spinnerCity.setAdapter(adapter);
@@ -78,6 +79,13 @@ public class create_activity extends ActionBarActivity {
 
 
     public void createTour(View view) {
+        /**Toast.makeText();
+        CharSequence text = "Tour erfolgreich erstellt";
+        int duration = Toast.LENGTH_SHORT;
+        Toast toast = Toast.makeText(context, text, duration);
+        toast.show();*/
+
+        //nach erfolgreicher Erstellung der Tour zurÃ¼ck zur shelp_activity
         Intent i = new Intent(this, shelp_activity.class);
         startActivity(i);
     }

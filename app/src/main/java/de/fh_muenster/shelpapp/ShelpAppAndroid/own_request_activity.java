@@ -1,9 +1,11 @@
 package de.fh_muenster.shelpapp.ShelpAppAndroid;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import de.fh_muenster.shelpapp.R;
 
@@ -13,6 +15,8 @@ public class own_request_activity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_own_request_activity);
+        //TODO
+        //if status == "Erledigt" ermögliche Bewertung
     }
 
 
@@ -36,5 +40,23 @@ public class own_request_activity extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    //Aufruf der wishlist_activitiy (bei bestimmtem STatus nicht mehr klickbar)
+    public void editWishlist(View view) {
+        Intent i = new Intent(this, whishlist_activity.class);
+        startActivity(i);
+    }
+
+    //TODO
+    //angefragte Fahrt wieder löschen
+    //public void delete(){
+
+    //}
+
+    //Aufruf der rating_activitiy (bei bestimmtem Status sichtbar)
+    public void rate(View view) {
+        Intent i = new Intent(this, rating_activity.class);
+        startActivity(i);
     }
 }

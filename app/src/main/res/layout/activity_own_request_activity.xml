@@ -6,7 +6,54 @@
     android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context="de.fh_muenster.shelpapp.ShelpAppAndroid.own_request_activity">
 
-    <TextView android:text="@string/hello_world" android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/own_request"
+        android:id="@+id/ownRequest"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/editButton"
+        android:id="@+id/editButton"
+        android:layout_below="@+id/ownRequest"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:onClick="editWishlist"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/deleteButton"
+        android:id="@+id/deleteButton"
+        android:layout_alignBottom="@+id/editButton"
+        android:layout_toRightOf="@+id/editButton"
+        android:layout_toEndOf="@+id/editButton"
+        android:onClick="delete"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/status"
+        android:id="@+id/statusButton"
+        android:layout_alignBottom="@+id/deleteButton"
+        android:layout_toRightOf="@+id/deleteButton"
+        android:layout_toEndOf="@+id/deleteButton" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/rating"
+        android:id="@+id/rateButton"
+        android:layout_alignBottom="@+id/statusButton"
+        android:layout_toRightOf="@+id/statusButton"
+        android:layout_toEndOf="@+id/statusButton"
+        android:onClick="rate"/>
 
 </RelativeLayout>

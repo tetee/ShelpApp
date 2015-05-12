@@ -36,7 +36,7 @@
     <string name="date">Zeitpunkt</string>
     <string name="range">Reichweite</string>
     <string name="enabling">Freigabe</string>
-    <string name="sonstiges">Das wollte ich noch loswerden...</string>
+    <string name="sonstiges">weitere Infos...</string>
     <string name="city_2">Wo?</string>
     <string name="searchButton">Suchen</string>
     <string name="ratingButton">Bewertung</string>
@@ -51,9 +51,20 @@
     <string name="sendRating">abschicken</string>
     <string name="wish">Kurztext</string>
     <string name="productWish">Produkt</string>
+<<<<<<< HEAD
     <string name="newTextView">weitere +</string>
     <string name="requestWishList">Anfragen</string>
 
+=======
+    <string name="newTextView">weiter +</string>
+    <string name="own_request">Deine angefragten Fahrten</string>
+    <string name="editButton">Bearbeiten</string>
+    <string name="deleteButton">Löschen</string>
+    <string name="status">Status</string>
+    <string name="tour">Fahrt</string>
+    <string name="yourTour">Deine Fahrten</string>
+    <string name="createTour">Erstelle deine Fahrt..</string>
+>>>>>>> 1cf06a2b7d69cbcb487e43a6fa5957f05552f77d
 
     <string-array name="citySpinner">
         <item>Münster</item>
