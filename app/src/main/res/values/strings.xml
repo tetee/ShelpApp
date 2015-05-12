@@ -52,6 +52,10 @@
     <string name="wish">Kurztext</string>
     <string name="productWish">Produkt</string>
     <string name="newTextView">weiter +</string>
+    <string name="own_request">Deine angefragten Fahrten</string>
+    <string name="editButton">Bearbeiten</string>
+    <string name="deleteButton">Löschen</string>
+    <string name="status">Status</string>
 
     <string-array name="citySpinner">
         <item>Münster</item>
