@@ -55,7 +55,7 @@ public class shelp_activity extends ActionBarActivity {
 
     //Wechsel zur own_request_activity
     public void request(View view) {
-        Intent i = new Intent(this, own_request_activity.class);
+        Intent i = new Intent(this, whishlist_activity.class);
         startActivity(i);
     }
 

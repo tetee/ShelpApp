@@ -1,17 +1,20 @@
 package de.fh_muenster.shelpapp.ShelpAppAndroid;
 
+import android.graphics.Color;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.GridLayout;
+import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.TableRow;
+import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
+
 
 import de.fh_muenster.shelpapp.R;
 
@@ -49,6 +52,15 @@ public class whishlist_activity extends ActionBarActivity {
     }
 
     public void addTextView(View view) {
+        RelativeLayout ll = (RelativeLayout) findViewById(R.id.relativeLayout);
+
+        RelativeLayout.LayoutParams relativeParams = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.FILL_PARENT);
+        relativeParams.addRule(RelativeLayout.BELOW, R.id.button);
+        EditText et = new EditText(this);
+        et.setHint("+ Wunsch");
+        ll.addView(et, relativeParams);
 
     }
 }
+
+
