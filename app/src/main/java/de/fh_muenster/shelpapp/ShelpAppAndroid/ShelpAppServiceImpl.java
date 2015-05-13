@@ -45,6 +45,7 @@ public class ShelpAppServiceImpl implements ShelpAppService {
      */
     private int sessionId;
 
+    //Methoden Klasse User
     @Override
     public User login(String username, String password) throws InvalidLoginException {
         User result = null;
@@ -78,6 +79,9 @@ public class ShelpAppServiceImpl implements ShelpAppService {
             throw new NoSessionException(e.getMessage());
         }
     }
+
+
+    //Methoden Klasse Tour
 
 
     /**

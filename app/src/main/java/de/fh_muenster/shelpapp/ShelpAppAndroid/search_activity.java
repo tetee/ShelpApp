@@ -66,7 +66,7 @@ public class search_activity extends ActionBarActivity {
 
     //Wechsel in die create_activity
     public void details(View view){
-        Intent i = new Intent(this, create_activity.class);
+        Intent i = new Intent(this, show_tour_activity.class);
         startActivity(i);
     }
 
@@ -91,7 +91,7 @@ public class search_activity extends ActionBarActivity {
         ArrayAdapter<CharSequence> adapter3 = ArrayAdapter.createFromResource(this,
                 R.array.rangeSpinner, android.R.layout.simple_spinner_item);
 
-        //Anzeigewert für das Dropdown Feld definieren
+        //Anzeigewert fï¿½r das Dropdown Feld definieren
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         //Werte in das Dropdown laden
         spinnerCity.setAdapter(adapter);
