@@ -7,6 +7,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import de.fh_muenster.shelpapp.R;
 
@@ -52,6 +53,14 @@ public class search_friends_activity extends ActionBarActivity {
 
     //Mit Klick auf Hinzufügen wird der Freund angefragt und Rückkehr zur Shelp Activity
     public void add(View view) {
+        /**Toast.makeText();
+         CharSequence text = "Freund erfolgreich hinzugefügt!";
+         int duration = Toast.LENGTH_SHORT;
+         Toast toast = Toast.makeText(context, text, duration);
+         toast.show();*/
+
+        //Toast ob das hinzufügen eines neuen Freundes erfolgreich war
+        Toast.makeText(getApplicationContext(), "Freund erfolgreich hinzugefügt!", Toast.LENGTH_SHORT).show();
         Intent i = new Intent(this, shelp_activity.class);
         startActivity(i);
     }

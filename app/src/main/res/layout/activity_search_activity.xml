@@ -84,7 +84,8 @@
             android:layout_below="@+id/rangeSpinner"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:onClick="search"/>
+            android:onClick="search"
+            android:background="@drawable/button"/>
 
      <Button
          style="?android:attr/buttonStyleSmall"
@@ -95,7 +96,8 @@
          android:layout_below="@+id/searchButton"
          android:layout_alignParentRight="true"
          android:layout_alignParentEnd="true"
-         android:onClick="details"/>
+         android:onClick="details"
+         android:background="@drawable/button"/>
 
      <Button
          style="?android:attr/buttonStyleSmall"
@@ -106,7 +108,8 @@
          android:layout_below="@+id/detailsButton"
          android:layout_alignParentRight="true"
          android:layout_alignParentEnd="true"
-         android:onClick="rating"/>
+         android:onClick="rating"
+         android:background="@drawable/button"/>
 
 
  </RelativeLayout>

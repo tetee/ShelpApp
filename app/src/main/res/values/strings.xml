@@ -51,6 +51,7 @@
     <string name="sendRating">abschicken</string>
     <string name="wish">Kurztext</string>
     <string name="productWish">Produkt</string>
+    <string name="requestWishList">Anfragen</string>
     <string name="newTextView">weiter +</string>
     <string name="own_request">Deine angefragten Fahrten</string>
     <string name="editButton">Bearbeiten</string>
@@ -59,6 +60,7 @@
     <string name="tour">Fahrt</string>
     <string name="yourTour">Deine Fahrten</string>
     <string name="createTour">Erstelle deine Fahrt..</string>
+    <string name="logoutButton">Logout</string>
 
     <string-array name="citySpinner">
         <item>Münster</item>
