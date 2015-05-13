@@ -51,7 +51,8 @@
         android:layout_alignTop="@+id/productWish"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:onClick="addTextView"/>
+        android:onClick="addTextView"
+        android:background="@drawable/button"/>
 
     <Button
         style="?android:attr/buttonStyleSmall"
@@ -62,7 +63,8 @@
         android:layout_alignTop="@+id/productWish"
         android:layout_toLeftOf="@+id/buttonNext"
         android:layout_toStartOf="@+id/buttonNext"
-        android:onClick="requestWishList" />
+        android:onClick="requestWishList"
+        android:background="@drawable/button"/>
 
     <EditText
         android:layout_width="match_parent"
