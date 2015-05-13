@@ -75,6 +75,10 @@
             android:name=".ShelpAppAndroid.registration_activity"
             android:label="@string/title_activity_registration_activity" >
         </activity>
+        <activity
+            android:name=".ShelpAppAndroid.show_tour_activity"
+            android:label="@string/title_activity_show_tour_activity" >
+        </activity>
     </application>
 
 </manifest>
