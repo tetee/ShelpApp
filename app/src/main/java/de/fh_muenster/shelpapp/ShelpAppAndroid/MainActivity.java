@@ -116,35 +116,33 @@ public class MainActivity extends ActionBarActivity {
             toast.show();
         }
     }*/
+
     public void login(View loginView) {
         EditText un = (EditText) findViewById(R.id.editUsername);
         EditText pw = (EditText) findViewById(R.id.editTextPassword);
         usern = un.getText().toString();
         userp = pw.getText().toString();
+        //Passwort in Hash Wert ändern/ Aufruf der computeMD5Hash Methode
         computeMD5Hash(userp);
 
-        if ((usern != null && usern.equals("")) || (userp != null && userp.equals("")) {
-            if (result.equals("d41d8cd98f00b204e9800998ecf8427e")) {
+        //Prüfung ob Benutzer und Passwort ausgefüllt sind/ Passwort wird anhand des Hash-Wertes verglichen
+        if ((usern != null && userp != null && this.result.equals("cc03e747a6afbbcbf8be7668acfebee5"))) {
                 //LoginTask erstellen
                 LoginTask loginTask = new LoginTask(loginView.getContext());
                 //LoginTask ausführen
-                loginTask.execute(usern, userp);
+                loginTask.execute(usern, this.result);
             } else {
                 //Toast anzeigen
-                CharSequence text = "Fehlende Logindaten bitte in den Einstellungen eintragen!";
+                CharSequence text = "Fehlende Logindaten bitte eintragen!" ;
                 int duration = Toast.LENGTH_SHORT;
                 Toast toast = Toast.makeText(loginView.getContext(), text, duration);
                 toast.show();
             }
-        } else {
-            Toast.makeText(getApplicationContext(), "Enter your credentials..", Toast.LENGTH_LONG).show();
         }
-    }
-
 
     public void computeMD5Hash(String password) {
         try {
-            // Create MD5 Hash d41d8cd98f00b204e9800998ecf8427e
+            // Create MD5 Hash cc03e747a6afbbcbf8be7668acfebee5
             MessageDigest digest = java.security.MessageDigest.getInstance("MD5");
             digest.update(password.getBytes());
             byte messageDigest[] = digest.digest();
@@ -156,13 +154,11 @@ public class MainActivity extends ActionBarActivity {
                     h = "0" + h;
                 MD5Hash.append(h);
             }
-            result = MD5Hash.toString();
+            this.result = MD5Hash.toString();
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
         }
-
     }
-
 
     private class LoginTask extends AsyncTask<String, Integer, User> {
         private Context context;
@@ -178,10 +174,10 @@ public class MainActivity extends ActionBarActivity {
             if (params.length != 2)
                 return null;
             String username = params[0];
-            String password = params[1];
+            String hash = params[1];
             ShelpAppApplication myApp = (ShelpAppApplication) getApplication();
             try {
-                User myUser = myApp.getShelpAppService().login(username, password);
+                User myUser = myApp.getShelpAppService().login(username, hash);
                 return myUser;
             } catch (InvalidLoginException e) {
                 e.printStackTrace();
@@ -217,3 +213,4 @@ public class MainActivity extends ActionBarActivity {
         }
     }
 }
+

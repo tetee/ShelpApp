@@ -12,7 +12,7 @@ import de.fh_muenster.shelpapp.ShelpApp.Exceptions.NoSessionException;
 public interface ShelpAppService {
 
     //Methoden User Klasse
-    public User login(String userName, String password) throws InvalidLoginException;
+    public User login(String userName, String hash) throws InvalidLoginException;
 
     public void logout() throws NoSessionException;
 /**
