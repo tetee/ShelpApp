@@ -29,6 +29,7 @@
         android:maxLines="10"
         android:layout_height="wrap_content"
         android:layout_width="fill_parent"
+        android:layout_marginBottom="5dp"
         android:scrollbars="vertical"
         android:layout_below="@id/wishText"
         android:background="@drawable/styles"
@@ -63,6 +64,7 @@
         android:layout_alignTop="@+id/productWish"
         android:layout_toLeftOf="@+id/buttonNext"
         android:layout_toStartOf="@+id/buttonNext"
+        android:layout_marginRight="5dp"
         android:onClick="requestWishList"
         android:background="@drawable/button"/>
 

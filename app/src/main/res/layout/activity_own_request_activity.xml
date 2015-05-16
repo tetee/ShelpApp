@@ -14,7 +14,8 @@
         android:id="@+id/ownRequest"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="10dp"/>
 
     <Button
         android:layout_width="wrap_content"
@@ -22,6 +23,7 @@
         android:text="@string/editButton"
         android:id="@+id/editButton"
         android:layout_below="@+id/ownRequest"
+        android:layout_marginRight="5dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:onClick="editWishlist"
@@ -33,6 +35,7 @@
         android:text="@string/deleteButton"
         android:id="@+id/deleteButton"
         android:layout_alignBottom="@+id/editButton"
+        android:layout_marginRight="5dp"
         android:layout_toRightOf="@+id/editButton"
         android:layout_toEndOf="@+id/editButton"
         android:onClick="delete"
@@ -44,6 +47,7 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="@string/status"
         android:id="@+id/statusButton"
+        android:layout_marginRight="5dp"
         android:layout_alignBottom="@+id/deleteButton"
         android:layout_toRightOf="@+id/deleteButton"
         android:layout_toEndOf="@+id/deleteButton" />

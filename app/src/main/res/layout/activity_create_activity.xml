@@ -13,15 +13,6 @@
     tools:context="de.fh_muenster.shelpapp.ShelpAppAndroid.create_activity">
 
 
-        <TextView android:text="Erstelle deine Fahrt"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/createTour"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
-
-
     <TextView android:text="@string/city"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:layout_width="match_parent"
@@ -29,7 +20,7 @@
         android:id="@+id/city"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/createTour" />
+        android:layout_marginBottom="10dp"/>
 
     <Spinner
         android:id="@+id/citySpinner"
@@ -37,7 +28,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/city" />
+        android:layout_below="@+id/city"
+        android:layout_marginBottom="10dp"/>
 
     <TextView android:text="@string/capacity"
         android:textAppearance="?android:attr/textAppearanceLarge"
@@ -46,7 +38,8 @@
         android:id="@+id/capacity"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/citySpinner"/>
+        android:layout_below="@+id/citySpinner"
+        android:layout_marginBottom="10dp"/>
 
     <Spinner
         android:id="@+id/capacitySpinner"
@@ -54,7 +47,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/capacity" />
+        android:layout_below="@+id/capacity"
+        android:layout_marginBottom="10dp"/>
 
     <TextView android:text="@string/paymentTerms"
         android:textAppearance="?android:attr/textAppearanceLarge"
@@ -63,7 +57,8 @@
         android:id="@+id/paymentTerms"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/capacitySpinner"/>
+        android:layout_below="@+id/capacitySpinner"
+        android:layout_marginBottom="10dp"/>
 
     <EditText
         android:id="@+id/paymentText"
@@ -71,7 +66,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/paymentTerms"/>
+        android:layout_below="@+id/paymentTerms"
+        android:layout_marginBottom="10dp"/>
 
     <TextView android:text="@string/deliveryTerms"
         android:textAppearance="?android:attr/textAppearanceLarge"
@@ -80,7 +76,8 @@
         android:id="@+id/deliveryTerms"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/paymentText"/>
+        android:layout_below="@+id/paymentText"
+        android:layout_marginBottom="10dp"/>
 
     <EditText
         android:id="@+id/deliveryText"
@@ -88,7 +85,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/deliveryTerms"/>
+        android:layout_below="@+id/deliveryTerms"
+        android:layout_marginBottom="10dp"/>
 
     <TextView android:text="@string/date"
         android:textAppearance="?android:attr/textAppearanceLarge"
@@ -97,7 +95,8 @@
         android:id="@+id/date"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/deliveryText"/>
+        android:layout_below="@+id/deliveryText"
+        android:layout_marginBottom="10dp"/>
 
     <TextView android:text="@string/range"
         android:textAppearance="?android:attr/textAppearanceLarge"
@@ -106,7 +105,8 @@
         android:id="@+id/range"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/dateCreate" />
+        android:layout_below="@+id/dateCreate"
+        android:layout_marginBottom="10dp"/>
 
     <Spinner
         android:id="@+id/rangeSpinner"
@@ -114,7 +114,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/range" />
+        android:layout_below="@+id/range"
+        android:layout_marginBottom="10dp"/>
 
     <TextView android:text="@string/enabling"
         android:textAppearance="?android:attr/textAppearanceLarge"
@@ -123,7 +124,8 @@
         android:id="@+id/enabling"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/rangeSpinner"/>
+        android:layout_below="@+id/rangeSpinner"
+        android:layout_marginBottom="10dp"/>
 
     <Spinner
         android:id="@+id/enablingSpinner"
@@ -131,7 +133,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/enabling" />
+        android:layout_below="@+id/enabling"
+        android:layout_marginBottom="10dp"/>
 
     <TextView android:text="@string/sonstiges"
         android:textAppearance="?android:attr/textAppearanceLarge"
@@ -140,7 +143,8 @@
         android:id="@+id/sonstiges"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/enablingSpinner"/>
+        android:layout_below="@+id/enablingSpinner"
+        android:layout_marginBottom="10dp"/>
 
     <EditText
         android:id="@+id/sonstigesText"
@@ -148,7 +152,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/sonstiges"/>
+        android:layout_below="@+id/sonstiges"
+        android:layout_marginBottom="10dp"/>
 
 
     <Button
@@ -171,7 +176,8 @@
             android:id="@+id/dateCreate"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_below="@id/date"/>
+            android:layout_below="@id/date"
+            android:layout_marginBottom="10dp"/>
 
 
     </RelativeLayout>

@@ -41,6 +41,7 @@
         android:layout_width="fill_parent"
         android:scrollbars="vertical"
         android:layout_below="@id/ratingTextField"
+        android:layout_marginBottom="5dp"
         android:background="@drawable/styles"
         android:id="@+id/editText" />
 
