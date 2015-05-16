@@ -87,6 +87,7 @@
         <item>5 Kilometer</item>
         <item>10 Kilometer</item>
     </string-array>
+    <string name="title_activity_show_tour_activity">show_tour_activity</string>
 
 
 </resources>

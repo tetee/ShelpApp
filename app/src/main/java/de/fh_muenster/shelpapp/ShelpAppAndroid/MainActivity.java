@@ -1,5 +1,6 @@
 package de.fh_muenster.shelpapp.ShelpAppAndroid;
 
+import android.app.ActionBar;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -36,6 +37,8 @@ public class MainActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
 
         //E-Mail und Passwort aus den SharedPreferences laden
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);

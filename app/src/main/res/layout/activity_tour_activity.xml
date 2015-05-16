@@ -24,7 +24,8 @@
         android:layout_below="@+id/tour"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:onClick="yourRequest"/>
+        android:onClick="yourRequest"
+        android:background="@drawable/button"/>
 
     <Button
         android:layout_width="wrap_content"
@@ -34,7 +35,8 @@
         android:layout_alignBottom="@+id/viewTourButton"
         android:layout_toRightOf="@+id/viewTourButton"
         android:layout_toEndOf="@+id/viewTourButton"
-        android:onClick="edit"/>
+        android:onClick="edit"
+        android:background="@drawable/button"/>
 
     <TextView
         android:layout_width="wrap_content"

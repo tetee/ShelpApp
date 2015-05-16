@@ -160,7 +160,8 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/sonstigesText"
-        android:onClick="createTour"/>
+        android:onClick="createTour"
+        android:background="@drawable/button"/>
 
         <EditText
             android:layout_width="match_parent"
