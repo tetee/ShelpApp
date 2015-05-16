@@ -17,6 +17,20 @@ public class Tour {
     private Calendar updatedOn;
     private TourStatus status;
 
+    public Tour(long id, User owner, ApprovalStatus approval, Location location,Capacity capacity, PaymentCondition payCondition, DeliveryCondition delCondition, Calendar date){
+        this.id = id;
+        this.approvalStatus=approval;
+        this.location = location;
+        this.capacity=capacity;
+        this.paymentConditions=payCondition;
+        this.deliveryConditions=delCondition;
+        this.time=date;
+        this.owner=owner;
+    }
+    public Tour(){
+
+    }
+
     public long getId() {
         return id;
     }

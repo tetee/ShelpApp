@@ -10,7 +10,17 @@ import android.widget.Spinner;
 import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
+import java.util.Calendar;
+
 import de.fh_muenster.shelpapp.R;
+import de.fh_muenster.shelpapp.ShelpApp.ApprovalStatus;
+import de.fh_muenster.shelpapp.ShelpApp.Capacity;
+import de.fh_muenster.shelpapp.ShelpApp.DeliveryCondition;
+import de.fh_muenster.shelpapp.ShelpApp.Location;
+import de.fh_muenster.shelpapp.ShelpApp.PaymentCondition;
+import de.fh_muenster.shelpapp.ShelpApp.Tour;
+import de.fh_muenster.shelpapp.ShelpApp.TourStatus;
+import de.fh_muenster.shelpapp.ShelpApp.User;
 
 public class create_activity extends ActionBarActivity {
 
@@ -90,4 +100,10 @@ public class create_activity extends ActionBarActivity {
         Intent i = new Intent(this, shelp_activity.class);
         startActivity(i);
     }
+
+
+    public Tour newTour(long id, User owner, TourStatus status, ApprovalStatus approval, Location location,Capacity capacity, PaymentCondition payCondition, DeliveryCondition delCondition, Calendar date){
+        return new Tour();
+    }
+
 }

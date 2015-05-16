@@ -31,9 +31,9 @@ public class ShelpAppServiceImpl implements ShelpAppService {
      * element in a WSDL. Unless the web service is also hosted on the Android device, the hostname 
      * should not be specified as localhost, because the application runs on the Android device while 
      * the web service is hosted on the localhost server. Specify hostname as the IP address of the 
-     * server hosting the web service (or "10.0.2.2 instead of 'localhost' when running in the emulator). 
+     * server hosting the web service (or "10.0.2.15 instead of 'localhost' when running in the emulator).
      */
-    private static final String URL = "http://10.0.2.2:8080/shelp/UserIntegration";
+    private static final String URL = "http://10.0.2.15:8080/shelp/UserIntegration";
 
     /**
      * TAG contains the class name and is used for logging.
