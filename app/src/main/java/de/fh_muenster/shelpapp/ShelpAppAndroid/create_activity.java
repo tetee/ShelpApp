@@ -1,6 +1,10 @@
 package de.fh_muenster.shelpapp.ShelpAppAndroid;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.os.AsyncTask;
+import android.preference.PreferenceManager;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -16,6 +20,9 @@ import de.fh_muenster.shelpapp.R;
 import de.fh_muenster.shelpapp.ShelpApp.ApprovalStatus;
 import de.fh_muenster.shelpapp.ShelpApp.Capacity;
 import de.fh_muenster.shelpapp.ShelpApp.DeliveryCondition;
+import de.fh_muenster.shelpapp.ShelpApp.Exceptions.InvalidLoginException;
+import de.fh_muenster.shelpapp.ShelpApp.Exceptions.InvalidTourException;
+import de.fh_muenster.shelpapp.ShelpApp.Exceptions.NoSessionException;
 import de.fh_muenster.shelpapp.ShelpApp.Location;
 import de.fh_muenster.shelpapp.ShelpApp.PaymentCondition;
 import de.fh_muenster.shelpapp.ShelpApp.Tour;
@@ -89,21 +96,88 @@ public class create_activity extends ActionBarActivity {
 
 
     public void createTour(View view) {
+            //CreateTask erstellen
+            CreateTask createTask = new CreateTask(view.getContext());
+            //CreateTask ausführen
+            createTask.execute(id,owner,approval,location,capacity,payCondition,delCondition,date);
+
         /**Toast.makeText();
-        CharSequence text = "Fahrt erfolgreich erstellt";
-        int duration = Toast.LENGTH_SHORT;
-        Toast toast = Toast.makeText(context, text, duration);
-        toast.show();*/
+         CharSequence text = "Fahrt erfolgreich erstellt";
+         int duration = Toast.LENGTH_SHORT;
+         Toast toast = Toast.makeText(context, text, duration);
+         toast.show();*/
         Toast.makeText(getApplicationContext(), "Fahrt erfolgreich erstellt!", Toast.LENGTH_SHORT).show();
 
         //nach erfolgreicher Erstellung der Tour zurück zur shelp_activity
         Intent i = new Intent(this, shelp_activity.class);
         startActivity(i);
+
     }
 
 
-    public Tour newTour(long id, User owner, TourStatus status, ApprovalStatus approval, Location location,Capacity capacity, PaymentCondition payCondition, DeliveryCondition delCondition, Calendar date){
-        return new Tour();
+    private class CreateTask extends AsyncTask<String, Integer, Tour>
+    {
+        private Context context;
+
+        //Dem Konstruktor der Klasse wird der aktuelle Kontext der Activity übergeben
+        //damit auf die UI-Elemente zugegriffen werden kann und Intents gestartet werden können, usw.
+        public CreateTask(Context context)
+        {
+            this.context = context;
+        }
+
+        @Override
+        protected Tour doInBackground(String... params){
+            if(params.length != 8)
+                return null;
+            long id = params[0];
+            User owner = params[1];
+            ApprovalStatus approval = params[2];
+            Location location = params[3];
+            Capacity capacity = params[4];
+            PaymentCondition payCondition = params[5];
+            DeliveryCondition delCondition = params[6];
+            Calendar date = params[7];
+            ShelpAppApplication myApp = (ShelpAppApplication) getApplication();
+            try {
+                Tour newTour = myApp.getShelpAppService().newTour(id,owner,approval,location,capacity,payCondition,delCondition,date);
+                return newTour;
+            } catch (InvalidLoginException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+        protected void onProgessUpdate(Integer... values)
+        { }
+
+        protected void onPostExecute(Tour result)
+        {
+            if(result != null)
+            {
+                //erfolgreich eingeloggt
+                ShelpAppApplication myApp = (ShelpAppApplication) getApplication();
+                myApp.newTour(result);
+
+                //Toast anzeigen
+                CharSequence text = "Tour erfolgreich erstellt" ;
+                int duration = Toast.LENGTH_SHORT;
+                Toast toast = Toast.makeText(context, text, duration);
+                toast.show();
+
+                //Nächste Activity anzeigen
+                Intent i = new Intent(context, shelp_activity.class);
+                startActivity(i);
+            }
+            else
+            {
+                //Toast anzeigen
+                CharSequence text = "Tour konnte nicht erstellt werden";
+                int duration = Toast.LENGTH_SHORT;
+                Toast toast = Toast.makeText(context, text, duration);
+                toast.show();
+            }
+        }
     }
 
 }

@@ -1,7 +1,17 @@
 package de.fh_muenster.shelpapp.ShelpAppAndroid;
 
+import java.util.Calendar;
+
+import de.fh_muenster.shelpapp.ShelpApp.ApprovalStatus;
+import de.fh_muenster.shelpapp.ShelpApp.Capacity;
+import de.fh_muenster.shelpapp.ShelpApp.DeliveryCondition;
 import de.fh_muenster.shelpapp.ShelpApp.Exceptions.InvalidLoginException;
+import de.fh_muenster.shelpapp.ShelpApp.Exceptions.InvalidTourException;
+import de.fh_muenster.shelpapp.ShelpApp.Location;
+import de.fh_muenster.shelpapp.ShelpApp.PaymentCondition;
 import de.fh_muenster.shelpapp.ShelpApp.ShelpAppService;
+import de.fh_muenster.shelpapp.ShelpApp.Tour;
+import de.fh_muenster.shelpapp.ShelpApp.TourStatus;
 import de.fh_muenster.shelpapp.ShelpApp.User;
 
 /**
@@ -22,5 +32,11 @@ public class ShelpAppServiceImplMock implements ShelpAppService {
 
     @Override
     public void logout() { this.user = null; }
+
+    @Override
+    public Tour newTour(long id, User owner,ApprovalStatus approval, Location location,Capacity capacity, PaymentCondition payCondition, DeliveryCondition delCondition, Calendar date) throws InvalidTourException{
+        return null;
+    }
+
 
 }

@@ -4,6 +4,7 @@ import java.util.Calendar;
 import java.util.List;
 
 import de.fh_muenster.shelpapp.ShelpApp.Exceptions.InvalidLoginException;
+import de.fh_muenster.shelpapp.ShelpApp.Exceptions.InvalidTourException;
 import de.fh_muenster.shelpapp.ShelpApp.Exceptions.NoSessionException;
 
 /**
@@ -16,7 +17,7 @@ public interface ShelpAppService {
 
     public void logout() throws NoSessionException;
 
-    public Tour newTour(long id, User owner, TourStatus status, ApprovalStatus approval, Location location,Capacity capacity, PaymentCondition payCondition, DeliveryCondition delCondition, Calendar date);
+    public Tour newTour(long id, User owner, ApprovalStatus approval, Location location,Capacity capacity, PaymentCondition payCondition, DeliveryCondition delCondition, Calendar date) throws InvalidTourException;
 
 
 }
