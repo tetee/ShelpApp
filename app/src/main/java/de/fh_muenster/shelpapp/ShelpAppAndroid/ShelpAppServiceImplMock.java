@@ -6,6 +6,7 @@ import de.fh_muenster.shelpapp.ShelpApp.ApprovalStatus;
 import de.fh_muenster.shelpapp.ShelpApp.Capacity;
 import de.fh_muenster.shelpapp.ShelpApp.DeliveryCondition;
 import de.fh_muenster.shelpapp.ShelpApp.Exceptions.InvalidLoginException;
+import de.fh_muenster.shelpapp.ShelpApp.Exceptions.InvalidRegistrationException;
 import de.fh_muenster.shelpapp.ShelpApp.Exceptions.InvalidTourException;
 import de.fh_muenster.shelpapp.ShelpApp.Location;
 import de.fh_muenster.shelpapp.ShelpApp.PaymentCondition;
@@ -42,5 +43,8 @@ public class ShelpAppServiceImplMock implements ShelpAppService {
 
     }
 
-
+    public User registration(String eMail, String hash) throws InvalidRegistrationException {
+        user = new User("busch.roman20@gmail.com", "cc03e747a6afbbcbf8be7668acfebee5");
+        return this.user;
+    }
 }

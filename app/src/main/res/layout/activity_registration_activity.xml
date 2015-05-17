@@ -66,34 +66,13 @@
         android:layout_alignParentStart="true"
         android:inputType="textPassword"/>
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/userRegConfirm"
-        android:id="@+id/userRegConfirm"
-        android:layout_below="@+id/editPasswordRegConfirm"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:textSize="20dp"/>
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/editUserRegConfirm"
-        android:hint="Bitte Benutzernamen angeben"
-        android:layout_below="@+id/userRegConfirm"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"/>
-
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/regConfirm"
-        android:id="@+id/regConfirm"
-        android:layout_marginBottom="41dp"
+        android:text="@string/reg"
+        android:id="@+id/button"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
+        android:layout_centerHorizontal="true"
         android:onClick="registration"
         android:background="@drawable/button"/>
 

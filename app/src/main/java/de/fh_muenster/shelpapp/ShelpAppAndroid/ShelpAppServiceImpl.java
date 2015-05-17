@@ -16,6 +16,7 @@ import de.fh_muenster.shelpapp.ShelpApp.ApprovalStatus;
 import de.fh_muenster.shelpapp.ShelpApp.Capacity;
 import de.fh_muenster.shelpapp.ShelpApp.DeliveryCondition;
 import de.fh_muenster.shelpapp.ShelpApp.Exceptions.InvalidLoginException;
+import de.fh_muenster.shelpapp.ShelpApp.Exceptions.InvalidRegistrationException;
 import de.fh_muenster.shelpapp.ShelpApp.Exceptions.InvalidTourException;
 import de.fh_muenster.shelpapp.ShelpApp.Exceptions.NoSessionException;
 import de.fh_muenster.shelpapp.ShelpApp.Location;
@@ -75,6 +76,20 @@ public class ShelpAppServiceImpl implements ShelpAppService {
         } catch (SoapFault e) {
             throw new InvalidLoginException(e.getMessage());
         }
+    }
+
+    @Override
+    public User registration(String eMail, String hash) throws InvalidRegistrationException {
+        /*User result = null;
+        String METHOD_NAME = "registration";
+        SoapObject response = null;
+        try{
+
+        } catch (SoapFault e) {
+
+        }
+        */
+        return null;
     }
 
 

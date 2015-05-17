@@ -84,39 +84,6 @@ public class MainActivity extends ActionBarActivity {
         startActivity(i);
     }
 
-    /*public void login(View loginView) {
-
-        //E-Mail und Passwort aus den SharedPreferences laden
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(loginView.getContext());
-        //Benutzer/E-Mail als String in Variable speichern
-        String username = prefs.getString("username", "");
-        //Passwort als String in Variable speichern
-        String password = prefs.getString("password", "");
-
-        */
-
-    /**
-     * Prüfung ob E-Mail und Passwort mit den Daten aus dem Mockobjekt
-     * mit den SharedPreferences übereinstimmen. Wenn die Daten passen, wird
-     * der LoginTask ausgeführt. Falls die Daten nicht übereinstimmen, wird eine
-     * Fehlermeldung ausgegeben und als Popup angezeigt.
-     *//*
-        if(!"".equals(username) && !"".equals(password)) {
-            //LoginTask erstellen
-            LoginTask loginTask = new LoginTask(loginView.getContext());
-            //LoginTask ausführen
-            loginTask.execute(username, password);
-        }
-        else
-        {
-            //Toast anzeigen
-            CharSequence text = "Fehlende Logindaten bitte in den Einstellungen eintragen!";
-            int duration = Toast.LENGTH_SHORT;
-            Toast toast = Toast.makeText(loginView.getContext(), text, duration);
-            toast.show();
-        }
-    }*/
-
     public void login(View loginView) {
         EditText un = (EditText) findViewById(R.id.editUsername);
         EditText pw = (EditText) findViewById(R.id.editTextPassword);
