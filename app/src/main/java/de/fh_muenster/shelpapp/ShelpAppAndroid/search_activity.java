@@ -11,6 +11,10 @@ import android.widget.Button;
 import android.widget.Spinner;
 
 import de.fh_muenster.shelpapp.R;
+import de.fh_muenster.shelpapp.ShelpApp.ApprovalStatus;
+import de.fh_muenster.shelpapp.ShelpApp.Capacity;
+import de.fh_muenster.shelpapp.ShelpApp.DeliveryCondition;
+import de.fh_muenster.shelpapp.ShelpApp.PaymentCondition;
 
 public class search_activity extends ActionBarActivity {
 
@@ -77,25 +81,20 @@ public class search_activity extends ActionBarActivity {
     }
 
     public void addItemsOnSpinner(){
-        //Daten anhand der Spinner ID holen und in Variable speichern
+         //Daten anhand der Spinner ID holen und in Variable speichern
         Spinner spinnerCity = (Spinner) findViewById(R.id.citySpinner);
-        Spinner spinnerCapacity = (Spinner) findViewById(R.id.capacitySpinner);
-        Spinner spinnerRange = (Spinner) findViewById(R.id.rangeSpinner);
         //Erstellen eines ArrayAdapters/ String Array und standard Layout des Spinners wird genutzt
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.citySpinner, android.R.layout.simple_spinner_item);
-
-        ArrayAdapter<CharSequence> adapter2 = ArrayAdapter.createFromResource(this,
-                R.array.capacitySpinner, android.R.layout.simple_spinner_item);
-
-        ArrayAdapter<CharSequence> adapter3 = ArrayAdapter.createFromResource(this,
-                R.array.rangeSpinner, android.R.layout.simple_spinner_item);
 
         //Anzeigewert f�r das Dropdown Feld definieren
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         //Werte in das Dropdown laden
         spinnerCity.setAdapter(adapter);
-        spinnerCapacity.setAdapter(adapter2);
-        spinnerRange.setAdapter(adapter3);
+
+        //Daten der Spinner mit Enumeration Werten auffüllen
+        Spinner cap = (Spinner) findViewById(R.id.capacitySpinner);
+        cap.setAdapter(new ArrayAdapter<Capacity>(this, android.R.layout.simple_spinner_item, Capacity.values()));
+
     }
 }

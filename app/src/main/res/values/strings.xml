@@ -67,26 +67,6 @@
         <item>Rheine</item>
         <item>Steinfurt</item>
     </string-array>
-
-    <string-array name="capacitySpinner">
-        <item>Kofferraum</item>
-        <item>Mittelbank</item>
-        <item>Beifahrersitz</item>
-        <item>Fahrradkorb</item>
-    </string-array>
-
-    <string-array name="enablingSpinner">
-        <item>Freunde</item>
-        <item>Öffentlich</item>
-    </string-array>
-
-
-    <string-array name="rangeSpinner">
-        <item>500 Meter</item>
-        <item>2 Kilometer</item>
-        <item>5 Kilometer</item>
-        <item>10 Kilometer</item>
-    </string-array>
     <string name="title_activity_show_tour_activity">show_tour_activity</string>
 
 
