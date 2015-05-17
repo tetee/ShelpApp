@@ -7,6 +7,16 @@ public class Location {
     private String description;
     private String zipcode;
 
+    public Location(long id, String description, String zipcode){
+        this.id = id;
+        this.description= description;
+        this.zipcode=zipcode;
+    }
+
+    public Location(){
+
+    }
+
     public long getId() {
         return id;
     }

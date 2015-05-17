@@ -65,13 +65,13 @@
         android:layout_alignParentStart="true"
         android:layout_below="@+id/capacitySpinner"/>
 
-    <EditText
-        android:id="@+id/paymentText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/paymentTerms"/>
+        <Spinner
+            android:id="@+id/paySpinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/paymentTerms"/>
 
     <TextView android:text="@string/deliveryTerms"
         android:textAppearance="?android:attr/textAppearanceLarge"
@@ -80,15 +80,15 @@
         android:id="@+id/deliveryTerms"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/paymentText"/>
+        android:layout_below="@+id/paySpinner"/>
 
-    <EditText
-        android:id="@+id/deliveryText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/deliveryTerms"/>
+        <Spinner
+            android:id="@+id/delSpinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/deliveryTerms"/>
 
     <TextView android:text="@string/date"
         android:textAppearance="?android:attr/textAppearanceLarge"
@@ -97,24 +97,17 @@
         android:id="@+id/date"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/deliveryText"/>
+        android:layout_below="@+id/delSpinner"/>
 
-    <TextView android:text="@string/range"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/range"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/dateCreate" />
-
-    <Spinner
-        android:id="@+id/rangeSpinner"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/range" />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="date"
+            android:ems="10"
+            android:id="@+id/dateCreate"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@id/date"/>
 
     <TextView android:text="@string/enabling"
         android:textAppearance="?android:attr/textAppearanceLarge"
@@ -123,7 +116,7 @@
         android:id="@+id/enabling"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/rangeSpinner"/>
+        android:layout_below="@+id/dateCreate"/>
 
     <Spinner
         android:id="@+id/enablingSpinner"
@@ -162,17 +155,6 @@
         android:layout_below="@+id/sonstigesText"
         android:onClick="createTour"
         android:background="@drawable/button"/>
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="date"
-            android:ems="10"
-            android:id="@+id/dateCreate"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_below="@id/date"/>
-
 
     </RelativeLayout>
     </ScrollView>

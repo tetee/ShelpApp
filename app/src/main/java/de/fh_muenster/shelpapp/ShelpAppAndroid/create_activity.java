@@ -12,6 +12,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Spinner;
 import android.widget.ArrayAdapter;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.Calendar;
@@ -45,29 +46,27 @@ public class create_activity extends ActionBarActivity {
 
         //Daten anhand der Spinner ID holen und in Variable speichern
         Spinner spinnerCity = (Spinner) findViewById(R.id.citySpinner);
-        Spinner spinnerCapacity = (Spinner) findViewById(R.id.capacitySpinner);
-        Spinner spinnerEnabling = (Spinner) findViewById(R.id.enablingSpinner);
-        Spinner spinnerRange = (Spinner) findViewById(R.id.rangeSpinner);
         //Erstellen eines ArrayAdapters/ String Array und standard Layout des Spinners wird genutzt
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.citySpinner, android.R.layout.simple_spinner_item);
-
-        ArrayAdapter<CharSequence> adapter2 = ArrayAdapter.createFromResource(this,
-                R.array.capacitySpinner, android.R.layout.simple_spinner_item);
-
-        ArrayAdapter<CharSequence> adapter3 = ArrayAdapter.createFromResource(this,
-                R.array.enablingSpinner, android.R.layout.simple_spinner_item);
-
-        ArrayAdapter<CharSequence> adapter4 = ArrayAdapter.createFromResource(this,
-                R.array.rangeSpinner, android.R.layout.simple_spinner_item);
 
         //Anzeigewert f�r das Dropdown Feld definieren
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         //Werte in das Dropdown laden
         spinnerCity.setAdapter(adapter);
-        spinnerCapacity.setAdapter(adapter2);
-        spinnerEnabling.setAdapter(adapter3);
-        spinnerRange.setAdapter(adapter4);
+
+        //Daten der Spinner mit Enumeration Werten auffüllen
+        Spinner cap = (Spinner) findViewById(R.id.capacitySpinner);
+        cap.setAdapter(new ArrayAdapter<Capacity>(this, android.R.layout.simple_spinner_item, Capacity.values()));
+
+        Spinner enabling = (Spinner) findViewById(R.id.enablingSpinner);
+        enabling.setAdapter(new ArrayAdapter<ApprovalStatus>(this, android.R.layout.simple_spinner_item, ApprovalStatus.values()));
+
+        Spinner pay = (Spinner) findViewById(R.id.paySpinner);
+        pay.setAdapter(new ArrayAdapter<PaymentCondition>(this, android.R.layout.simple_spinner_item, PaymentCondition.values()));
+
+        Spinner del = (Spinner) findViewById(R.id.delSpinner);
+        del.setAdapter(new ArrayAdapter<DeliveryCondition>(this, android.R.layout.simple_spinner_item, DeliveryCondition.values()));
     }
 
 
@@ -95,11 +94,34 @@ public class create_activity extends ActionBarActivity {
 
 
 
-    public void createTour(View view) {
+    public void createTour(View createView) {
+        String id = "1123";
+        String owner = "Heinz";
+        //Inhalt der Spinner erhalten
+        Spinner loc = (Spinner)findViewById(R.id.citySpinner);
+        String location = loc.getSelectedItem().toString();
+
+        Spinner cap = (Spinner)findViewById(R.id.capacitySpinner);
+        String capacity = cap.getSelectedItem().toString();
+
+        Spinner pay = (Spinner)findViewById(R.id.paySpinner);
+        String payCondition = loc.getSelectedItem().toString();
+
+        Spinner del = (Spinner)findViewById(R.id.delSpinner);
+        String delCondition = loc.getSelectedItem().toString();
+
+        Spinner enab = (Spinner)findViewById(R.id.enablingSpinner);
+        String approval = loc.getSelectedItem().toString();
+
+        //Inhalt des Datums auslesen
+        TextView dateText = (TextView)findViewById(R.id.date);
+        String date = dateText.getText().toString();
+
             //CreateTask erstellen
-            CreateTask createTask = new CreateTask(view.getContext());
+            CreateTask createTask = new CreateTask(createView.getContext());
             //CreateTask ausführen
             createTask.execute(id,owner,approval,location,capacity,payCondition,delCondition,date);
+
 
         /**Toast.makeText();
          CharSequence text = "Fahrt erfolgreich erstellt";
@@ -115,10 +137,9 @@ public class create_activity extends ActionBarActivity {
     }
 
 
-    private class CreateTask extends AsyncTask<String, Integer, Tour>
+    private class CreateTask extends AsyncTask<Object, Integer, Tour>
     {
         private Context context;
-
         //Dem Konstruktor der Klasse wird der aktuelle Kontext der Activity übergeben
         //damit auf die UI-Elemente zugegriffen werden kann und Intents gestartet werden können, usw.
         public CreateTask(Context context)
@@ -127,22 +148,22 @@ public class create_activity extends ActionBarActivity {
         }
 
         @Override
-        protected Tour doInBackground(String... params){
+        protected Tour doInBackground(Object... params){
             if(params.length != 8)
                 return null;
-            long id = params[0];
-            User owner = params[1];
-            ApprovalStatus approval = params[2];
-            Location location = params[3];
-            Capacity capacity = params[4];
-            PaymentCondition payCondition = params[5];
-            DeliveryCondition delCondition = params[6];
-            Calendar date = params[7];
+            long id = (Long) params[0];
+            User owner = (User) params[1];
+            ApprovalStatus approval = (ApprovalStatus) params[2];
+            Location location = (Location) params[3];
+            Capacity capacity = (Capacity) params[4];
+            PaymentCondition payCondition = (PaymentCondition) params[5];
+            DeliveryCondition delCondition = (DeliveryCondition) params[6];
+            Calendar date = (Calendar) params[7];
             ShelpAppApplication myApp = (ShelpAppApplication) getApplication();
             try {
                 Tour newTour = myApp.getShelpAppService().newTour(id,owner,approval,location,capacity,payCondition,delCondition,date);
                 return newTour;
-            } catch (InvalidLoginException e) {
+            } catch (InvalidTourException e) {
                 e.printStackTrace();
             }
             return null;
@@ -157,7 +178,7 @@ public class create_activity extends ActionBarActivity {
             {
                 //erfolgreich eingeloggt
                 ShelpAppApplication myApp = (ShelpAppApplication) getApplication();
-                myApp.newTour(result);
+                myApp.setTour(result);
 
                 //Toast anzeigen
                 CharSequence text = "Tour erfolgreich erstellt" ;

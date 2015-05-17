@@ -23,7 +23,9 @@ public class ShelpAppApplication extends Application {
 
     public void setUser(User user) {this.user = user; }
 
-    //public Tour newTour() {return null;}
+    public Tour getTour() {return this.tour;}
+
+    public void setTour(Tour tour) {this.tour = tour;}
 
     public ShelpAppService getShelpAppService() {return this.shelpAppService; }
 

@@ -20,6 +20,7 @@ import de.fh_muenster.shelpapp.ShelpApp.User;
 public class ShelpAppServiceImplMock implements ShelpAppService {
 
     private User user;
+    private Tour tour;
 
     public ShelpAppServiceImplMock() {}
 
@@ -35,7 +36,10 @@ public class ShelpAppServiceImplMock implements ShelpAppService {
 
     @Override
     public Tour newTour(long id, User owner,ApprovalStatus approval, Location location,Capacity capacity, PaymentCondition payCondition, DeliveryCondition delCondition, Calendar date) throws InvalidTourException{
-        return null;
+        Location loc = new Location(12345, "Münster", "48149");
+        tour = new Tour(1234, this.user, ApprovalStatus.ALL, loc, Capacity.LARGE_TRUNK, PaymentCondition.BAR, DeliveryCondition.BRING, Calendar.getInstance());
+        return this.tour;
+
     }
 
 

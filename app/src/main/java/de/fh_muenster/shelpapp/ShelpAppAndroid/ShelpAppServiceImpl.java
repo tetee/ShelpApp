@@ -8,10 +8,20 @@ import org.ksoap2.SoapFault;
 import org.ksoap2.serialization.SoapObject;
 import org.ksoap2.serialization.SoapSerializationEnvelope;
 import org.ksoap2.transport.HttpTransportSE;
+
+import java.util.Calendar;
 import java.util.List;
+
+import de.fh_muenster.shelpapp.ShelpApp.ApprovalStatus;
+import de.fh_muenster.shelpapp.ShelpApp.Capacity;
+import de.fh_muenster.shelpapp.ShelpApp.DeliveryCondition;
 import de.fh_muenster.shelpapp.ShelpApp.Exceptions.InvalidLoginException;
+import de.fh_muenster.shelpapp.ShelpApp.Exceptions.InvalidTourException;
 import de.fh_muenster.shelpapp.ShelpApp.Exceptions.NoSessionException;
+import de.fh_muenster.shelpapp.ShelpApp.Location;
+import de.fh_muenster.shelpapp.ShelpApp.PaymentCondition;
 import de.fh_muenster.shelpapp.ShelpApp.ShelpAppService;
+import de.fh_muenster.shelpapp.ShelpApp.Tour;
 import de.fh_muenster.shelpapp.ShelpApp.User;
 
 
@@ -78,6 +88,12 @@ public class ShelpAppServiceImpl implements ShelpAppService {
         } catch (SoapFault e) {
             throw new NoSessionException(e.getMessage());
         }
+    }
+
+
+    @Override
+    public Tour newTour(long id, User owner,ApprovalStatus approval, Location location,Capacity capacity, PaymentCondition payCondition, DeliveryCondition delCondition, Calendar date) throws InvalidTourException {
+        return null;
     }
 
 
