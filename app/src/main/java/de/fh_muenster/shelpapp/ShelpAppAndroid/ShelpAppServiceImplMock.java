@@ -1,5 +1,8 @@
 package de.fh_muenster.shelpapp.ShelpAppAndroid;
 
+import android.content.Context;
+import android.widget.Toast;
+
 import java.util.Calendar;
 
 import de.fh_muenster.shelpapp.ShelpApp.ApprovalStatus;
@@ -25,10 +28,13 @@ public class ShelpAppServiceImplMock implements ShelpAppService {
 
     public ShelpAppServiceImplMock() {}
 
+
     @Override
     public User login(String username, String hash) throws InvalidLoginException {
         //Testuser anlegen
-        user = new User("busch.roman20@gmail.com", "cc03e747a6afbbcbf8be7668acfebee5");
+        if(hash.equals("cc03e747a6afbbcbf8be7668acfebee5")) {
+            user = new User("busch.roman20@gmail.com", "cc03e747a6afbbcbf8be7668acfebee5");
+        }
         return this.user;
     }
 

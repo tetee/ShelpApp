@@ -62,20 +62,20 @@ public class registration_activity extends ActionBarActivity {
         computeMD5Hash(password);
 
         if (password.equals(passwordConfirm)) {
-            if ((eMail != null && password != null && passwordConfirm != null && this.result.equals("cc03e747a6afbbcbf8be7668acfebee5"))) {
+            if ((eMail != null && password != null && passwordConfirm != null)) {
                 RegTask registrationTask = new RegTask(regView.getContext());
                 registrationTask.execute(eMail, this.result);
             }
         } else {
-            Toast.makeText(getApplicationContext(), "Passwörter stimmen nicht überein!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "PasswÃ¶rter stimmen nicht Ã¼berein!", Toast.LENGTH_SHORT).show();
         }
     }
 
     private class RegTask extends AsyncTask<String, Integer, User> {
         private Context context;
 
-        //Dem Konstruktor der Klasse wird der aktuelle Kontext der Activity übergeben
-        //damit auf die UI-Elemente zugegriffen werden kann und Intents gestartet werden können, usw.
+        //Dem Konstruktor der Klasse wird der aktuelle Kontext der Activity Ã¼bergeben
+        //damit auf die UI-Elemente zugegriffen werden kann und Intents gestartet werden kÃ¶nnen, usw.
         public RegTask(Context context) {
             this.context = context;
         }
@@ -111,7 +111,7 @@ public class registration_activity extends ActionBarActivity {
                 Toast toast = Toast.makeText(context, text, duration);
                 toast.show();
 
-                //Nächste Activity anzeigen
+                //NÃ¤chste Activity anzeigen
                 Intent i = new Intent(context, shelp_activity.class);
                 startActivity(i);
             } else {

@@ -93,7 +93,7 @@ public class MainActivity extends ActionBarActivity {
         computeMD5Hash(userp);
 
         //Prüfung ob Benutzer und Passwort ausgefüllt sind/ Passwort wird anhand des Hash-Wertes verglichen
-        if ((usern != null && userp != null && this.result.equals("cc03e747a6afbbcbf8be7668acfebee5"))) {
+        if ((usern != null && userp != null)) {
                 //LoginTask erstellen
                 LoginTask loginTask = new LoginTask(loginView.getContext());
                 //LoginTask ausführen
