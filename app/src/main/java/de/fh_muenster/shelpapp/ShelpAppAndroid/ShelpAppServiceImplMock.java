@@ -1,6 +1,7 @@
 package de.fh_muenster.shelpapp.ShelpAppAndroid;
 
 import java.util.Calendar;
+import java.util.List;
 
 import de.fh_muenster.shelpapp.ShelpApp.ApprovalStatus;
 import de.fh_muenster.shelpapp.ShelpApp.Capacity;
@@ -9,6 +10,7 @@ import de.fh_muenster.shelpapp.ShelpApp.Exceptions.InvalidLoginException;
 import de.fh_muenster.shelpapp.ShelpApp.Exceptions.InvalidTourException;
 import de.fh_muenster.shelpapp.ShelpApp.Location;
 import de.fh_muenster.shelpapp.ShelpApp.PaymentCondition;
+import de.fh_muenster.shelpapp.ShelpApp.Request;
 import de.fh_muenster.shelpapp.ShelpApp.ShelpAppService;
 import de.fh_muenster.shelpapp.ShelpApp.Tour;
 import de.fh_muenster.shelpapp.ShelpApp.TourStatus;
@@ -35,9 +37,9 @@ public class ShelpAppServiceImplMock implements ShelpAppService {
     public void logout() { this.user = null; }
 
     @Override
-    public Tour newTour(long id, User owner,ApprovalStatus approval, Location location,Capacity capacity, PaymentCondition payCondition, DeliveryCondition delCondition, Calendar date) throws InvalidTourException{
+    public Tour newTour(long id, ApprovalStatus approval, Location location,Capacity capacity, PaymentCondition payCondition, DeliveryCondition delCondition, Calendar date, List<Request> request, User owner,Calendar updatedOn, TourStatus status) throws InvalidTourException{
         Location loc = new Location(12345, "Münster", "48149");
-        tour = new Tour(1234, this.user, ApprovalStatus.ALL, loc, Capacity.LARGE_TRUNK, PaymentCondition.BAR, DeliveryCondition.BRING, Calendar.getInstance());
+        tour = new Tour(1234,ApprovalStatus.ALL, loc, Capacity.LARGE_TRUNK, PaymentCondition.BAR, DeliveryCondition.BRING, Calendar.getInstance(), null,  this.user, null, null);
         return this.tour;
 
     }

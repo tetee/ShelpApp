@@ -16,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.Calendar;
+import java.util.List;
 
 import de.fh_muenster.shelpapp.R;
 import de.fh_muenster.shelpapp.ShelpApp.ApprovalStatus;
@@ -26,6 +27,7 @@ import de.fh_muenster.shelpapp.ShelpApp.Exceptions.InvalidTourException;
 import de.fh_muenster.shelpapp.ShelpApp.Exceptions.NoSessionException;
 import de.fh_muenster.shelpapp.ShelpApp.Location;
 import de.fh_muenster.shelpapp.ShelpApp.PaymentCondition;
+import de.fh_muenster.shelpapp.ShelpApp.Request;
 import de.fh_muenster.shelpapp.ShelpApp.Tour;
 import de.fh_muenster.shelpapp.ShelpApp.TourStatus;
 import de.fh_muenster.shelpapp.ShelpApp.User;
@@ -95,10 +97,11 @@ public class create_activity extends ActionBarActivity {
 
 
     public void createTour(View createView) {
-        String id = "1123";
-        String owner = "Heinz";
+        Long id = 123L;
+        User owner = new User("Busch.Roman20@gmail.com", "test123");
         //Inhalt der Spinner erhalten
         Spinner loc = (Spinner)findViewById(R.id.citySpinner);
+        //Location location = (Location) loc.getSelectedItem();
         String location = loc.getSelectedItem().toString();
 
         Spinner cap = (Spinner)findViewById(R.id.capacitySpinner);
@@ -117,10 +120,11 @@ public class create_activity extends ActionBarActivity {
         TextView dateText = (TextView)findViewById(R.id.date);
         String date = dateText.getText().toString();
 
+
             //CreateTask erstellen
             CreateTask createTask = new CreateTask(createView.getContext());
             //CreateTask ausführen
-            createTask.execute(id,owner,approval,location,capacity,payCondition,delCondition,date);
+            createTask.execute(id,approval,location,capacity,payCondition,delCondition,date,null,owner,null,TourStatus.PLANED);
 
 
         /**Toast.makeText();
@@ -149,19 +153,22 @@ public class create_activity extends ActionBarActivity {
 
         @Override
         protected Tour doInBackground(Object... params){
-            if(params.length != 8)
+            if(params.length != 11)
                 return null;
             long id = (Long) params[0];
-            User owner = (User) params[1];
-            ApprovalStatus approval = (ApprovalStatus) params[2];
-            Location location = (Location) params[3];
-            Capacity capacity = (Capacity) params[4];
-            PaymentCondition payCondition = (PaymentCondition) params[5];
-            DeliveryCondition delCondition = (DeliveryCondition) params[6];
-            Calendar date = (Calendar) params[7];
+            ApprovalStatus approval = (ApprovalStatus) params[1];
+            Location location = (Location) params[2];
+            Capacity capacity = (Capacity) params[3];
+            PaymentCondition payCondition = (PaymentCondition) params[4];
+            DeliveryCondition delCondition = (DeliveryCondition) params[5];
+            Calendar date = (Calendar) params[6];
+            List<Request> request = (List<Request>) params[7];
+            User owner = (User) params[8];
+            Calendar updatedOn = (Calendar) params[9];
+            TourStatus status = (TourStatus) params[10];
             ShelpAppApplication myApp = (ShelpAppApplication) getApplication();
             try {
-                Tour newTour = myApp.getShelpAppService().newTour(id,owner,approval,location,capacity,payCondition,delCondition,date);
+                Tour newTour = myApp.getShelpAppService().newTour(id,approval,location,capacity,payCondition,delCondition,date,request,owner,updatedOn,status);
                 return newTour;
             } catch (InvalidTourException e) {
                 e.printStackTrace();

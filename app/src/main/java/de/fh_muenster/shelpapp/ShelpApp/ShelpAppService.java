@@ -17,7 +17,7 @@ public interface ShelpAppService {
 
     public void logout() throws NoSessionException;
 
-    public Tour newTour(long id, User owner, ApprovalStatus approval, Location location,Capacity capacity, PaymentCondition payCondition, DeliveryCondition delCondition, Calendar date) throws InvalidTourException;
+    public Tour newTour(long id, ApprovalStatus approval, Location location,Capacity capacity, PaymentCondition payCondition, DeliveryCondition delCondition, Calendar date, List<Request> request, User owner,Calendar updatedOn, TourStatus status) throws InvalidTourException;
 
 
 }

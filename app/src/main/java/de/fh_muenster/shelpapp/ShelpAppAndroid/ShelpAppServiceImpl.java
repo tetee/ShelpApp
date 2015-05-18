@@ -20,8 +20,10 @@ import de.fh_muenster.shelpapp.ShelpApp.Exceptions.InvalidTourException;
 import de.fh_muenster.shelpapp.ShelpApp.Exceptions.NoSessionException;
 import de.fh_muenster.shelpapp.ShelpApp.Location;
 import de.fh_muenster.shelpapp.ShelpApp.PaymentCondition;
+import de.fh_muenster.shelpapp.ShelpApp.Request;
 import de.fh_muenster.shelpapp.ShelpApp.ShelpAppService;
 import de.fh_muenster.shelpapp.ShelpApp.Tour;
+import de.fh_muenster.shelpapp.ShelpApp.TourStatus;
 import de.fh_muenster.shelpapp.ShelpApp.User;
 
 
@@ -92,7 +94,7 @@ public class ShelpAppServiceImpl implements ShelpAppService {
 
 
     @Override
-    public Tour newTour(long id, User owner,ApprovalStatus approval, Location location,Capacity capacity, PaymentCondition payCondition, DeliveryCondition delCondition, Calendar date) throws InvalidTourException {
+    public Tour newTour(long id, ApprovalStatus approval, Location location,Capacity capacity, PaymentCondition payCondition, DeliveryCondition delCondition, Calendar date, List<Request> request, User owner,Calendar updatedOn, TourStatus status) throws InvalidTourException {
         return null;
     }
 
