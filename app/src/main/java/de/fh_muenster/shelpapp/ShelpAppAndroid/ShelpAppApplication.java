@@ -17,7 +17,7 @@ public class ShelpAppApplication extends Application {
     private ShelpAppService shelpAppService;
     private Tour tour;
 
-    public ShelpAppApplication() {this.shelpAppService = new ShelpAppServiceImplMock();}
+    public ShelpAppApplication() {this.shelpAppService = new ShelpAppServiceImpl();}
 
     public User getUser() { return this.user; }
 

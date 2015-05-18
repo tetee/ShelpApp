@@ -82,16 +82,23 @@ public class ShelpAppServiceImpl implements ShelpAppService {
 
     @Override
     public User registration(String eMail, String hash) throws InvalidRegistrationException {
-        /*User result = null;
+        User result = null;
         String METHOD_NAME = "registration";
         SoapObject response = null;
-        try{
-
+        try {
+            response = executeSoapAction(METHOD_NAME, eMail, hash);
+            Log.d(TAG, response.toString());
+            this.sessionId = Integer.parseInt(response.getPrimitivePropertySafelyAsString("sessionId"));
+            if (sessionId != 0) {
+                result = new User(eMail, hash);
+                return result;
+            }
+            else {
+                throw new InvalidRegistrationException("Registration not successful!");
+            }
         } catch (SoapFault e) {
-
+            throw new InvalidRegistrationException(e.getMessage());
         }
-        */
-        return null;
     }
 
 
