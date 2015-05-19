@@ -46,7 +46,7 @@ public class ShelpAppServiceImpl implements ShelpAppService {
      * the web service is hosted on the localhost server. Specify hostname as the IP address of the 
      * server hosting the web service (or "10.0.2.15 instead of 'localhost' when running in the emulator).
      */
-    private static final String URL = "http://10.0.2.15:8080/shelp/UserIntegration";
+    private static final String URL = "http://10.70.19.247:8080/shelp/UserIntegration";
 
     /**
      * TAG contains the class name and is used for logging.
@@ -67,14 +67,16 @@ public class ShelpAppServiceImpl implements ShelpAppService {
         try {
             response = executeSoapAction(METHOD_NAME, username, password);
             Log.d(TAG, response.toString());
-            this.sessionId = Integer.parseInt(response.getPrimitivePropertySafelyAsString("sessionId"));
-            if (sessionId != 0) {
-                result = new User(username, password);
-                return result;
-            }
-            else {
-                throw new InvalidLoginException("Login not successful!");
-            }
+            String test = (response.getPrimitivePropertySafelyAsString("returnCode"));
+            System.out.println(test);
+            return null;
+         //   if (sessionId != 0) {
+         //       result = new User(username, password);
+           //     return result;
+           // }
+           // else {
+            //    throw new InvalidLoginException("Login not successful!");
+           // }
         } catch (SoapFault e) {
             throw new InvalidLoginException(e.getMessage());
         }
