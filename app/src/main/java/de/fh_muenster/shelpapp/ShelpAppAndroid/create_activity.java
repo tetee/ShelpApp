@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.DatePicker;
 import android.widget.Spinner;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
@@ -35,6 +36,12 @@ import de.fh_muenster.shelpapp.ShelpApp.User;
 
 public class create_activity extends ActionBarActivity {
 
+    private DatePicker datePicker;
+    private int year;
+    private int month;
+    private int day;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,6 +50,8 @@ public class create_activity extends ActionBarActivity {
         //Aufruf der addItemsOnSpinner Methode
         addItemsOnSpinner();
         //addItemsOnSpinnerDB();
+
+        setCurrentDate();
     }
 
 
@@ -84,6 +93,15 @@ public class create_activity extends ActionBarActivity {
         //Elemente zum Adapter hinzufügen
         cap.setAdapter(adapter);
     }*/
+
+    public void setCurrentDate(){
+        datePicker = (DatePicker) findViewById(R.id.dateCreate);
+        final Calendar calendar = Calendar.getInstance();
+        year = calendar.get(Calendar.YEAR);
+        month = calendar.get(Calendar.MONTH);
+        day = calendar.get(Calendar.DAY_OF_MONTH);
+        datePicker.init(year,month,day,null);
+    }
 
 
     @Override
