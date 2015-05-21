@@ -14,11 +14,11 @@ import de.fh_muenster.shelpapp.ShelpApp.Exceptions.NoSessionException;
 public interface ShelpAppService {
 
     //Methoden User Klasse
-    public User login(String userName, String hash) throws InvalidLoginException;
+    public ShelpSession login(String userName, String hash) throws InvalidLoginException;
 
     public void logout() throws NoSessionException;
 
-    public User registration(String eMail, String hash) throws InvalidRegistrationException;
+    public ShelpSession registration(String eMail, String hash) throws InvalidRegistrationException;
 
     public Tour newTour(long id, ApprovalStatus approval, Location location,Capacity capacity, PaymentCondition payCondition, DeliveryCondition delCondition, Calendar date, List<Request> request, User owner,Calendar updatedOn, TourStatus status) throws InvalidTourException;
 

@@ -17,6 +17,7 @@ import java.security.NoSuchAlgorithmException;
 import de.fh_muenster.shelpapp.R;
 import de.fh_muenster.shelpapp.ShelpApp.Exceptions.InvalidLoginException;
 import de.fh_muenster.shelpapp.ShelpApp.Exceptions.InvalidRegistrationException;
+import de.fh_muenster.shelpapp.ShelpApp.ShelpSession;
 import de.fh_muenster.shelpapp.ShelpApp.User;
 
 public class registration_activity extends ActionBarActivity {
@@ -88,8 +89,8 @@ public class registration_activity extends ActionBarActivity {
             String hash = params[1];
             ShelpAppApplication myApp = (ShelpAppApplication) getApplication();
             try {
-                User myUser = myApp.getShelpAppService().registration(eMail, hash);
-                return myUser;
+                myApp.getShelpAppService().registration(eMail, hash);
+                //return myUser;
             } catch (InvalidRegistrationException e) {
                 e.printStackTrace();
             }
@@ -99,14 +100,14 @@ public class registration_activity extends ActionBarActivity {
         protected void onProgessUpdate(Integer... values) {
         }
 
-        protected void onPostExecute(User result) {
+        protected void onPostExecute(ShelpSession result) {
             if (result != null) {
                 //erfolgreich eingeloggt
                 ShelpAppApplication myApp = (ShelpAppApplication) getApplication();
-                myApp.setUser(result);
+                myApp.setSession(result);
 
                 //Toast anzeigen
-                CharSequence text = "Registrierung erfolgreich! Angemeldeter Benutzername: " + result.getUserName();
+                CharSequence text = "Registrierung erfolgreich! Angemeldeter Benutzername: " + result.getUser();
                 int duration = Toast.LENGTH_SHORT;
                 Toast toast = Toast.makeText(context, text, duration);
                 toast.show();

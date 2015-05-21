@@ -16,6 +16,7 @@ import de.fh_muenster.shelpapp.ShelpApp.Location;
 import de.fh_muenster.shelpapp.ShelpApp.PaymentCondition;
 import de.fh_muenster.shelpapp.ShelpApp.Request;
 import de.fh_muenster.shelpapp.ShelpApp.ShelpAppService;
+import de.fh_muenster.shelpapp.ShelpApp.ShelpSession;
 import de.fh_muenster.shelpapp.ShelpApp.Tour;
 import de.fh_muenster.shelpapp.ShelpApp.TourStatus;
 import de.fh_muenster.shelpapp.ShelpApp.User;
@@ -32,12 +33,12 @@ public class ShelpAppServiceImplMock implements ShelpAppService {
 
 
     @Override
-    public User login(String username, String hash) throws InvalidLoginException {
+    public ShelpSession login(String username, String hash) throws InvalidLoginException {
         //Testuser anlegen
         if(hash.equals("cc03e747a6afbbcbf8be7668acfebee5")) {
-            user = new User("busch.roman20@gmail.com", "cc03e747a6afbbcbf8be7668acfebee5");
+            user = new User("busch.roman20@gmail.com");
         }
-        return this.user;
+        return null;
     }
 
     @Override
@@ -51,8 +52,8 @@ public class ShelpAppServiceImplMock implements ShelpAppService {
 
     }
 
-    public User registration(String eMail, String hash) throws InvalidRegistrationException {
-        user = new User("busch.roman20@gmail.com", "cc03e747a6afbbcbf8be7668acfebee5");
-        return this.user;
+    public ShelpSession registration(String eMail, String hash) throws InvalidRegistrationException {
+        user = new User("busch.roman20@gmail.com");
+        return null;
     }
 }
