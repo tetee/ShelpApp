@@ -71,8 +71,8 @@ public class ShelpAppServiceImpl implements ShelpAppService {
         try {
             response = executeSoapAction(METHOD_NAME, username, password);
             Log.d(TAG, response.toString());
-            String test = (response.getPrimitivePropertySafelyAsString("returnCode"));
-          if(test.equals(ReturnCode.ERROR.toString())) {
+            String login = (response.getPrimitivePropertySafelyAsString("returnCode"));
+          if(login.equals(ReturnCode.ERROR.toString())) {
                throw new InvalidLoginException("Login invalid!");
             }
             SoapObject regEntry = (SoapObject) response.getProperty(1);
@@ -88,25 +88,24 @@ public class ShelpAppServiceImpl implements ShelpAppService {
 
     @Override
     public ShelpSession registration(String eMail, String hash) throws InvalidRegistrationException {
-        User result = null;
+        User user = null;
+        ShelpSession session = null;
         String METHOD_NAME = "regUser";
         SoapObject response = null;
         try {
             response = executeSoapAction(METHOD_NAME, eMail, hash);
+            Log.d(TAG, response.toString());
             String reg = (response.getPrimitivePropertySafelyAsString("returnCode"));
-        if(reg.equals(ReturnCode.ERROR)) {
-            throw new InvalidRegistrationException("User already exist!");
-        }
-            SoapObject regEntry = (SoapObject) response.getProperty(0);
-            System.out.println(regEntry.getProperty("id"));
-         //   if (sessionId != 0) {
-        //        result = new User(eMail, hash);
-        //        return result;
-        //    }
-        //    else {
-        //        throw new InvalidRegistrationException("Registration not successful!");
-         //   }
-            return null;
+            System.out.println(reg+ReturnCode.ERROR.toString());
+            if(reg.equals(ReturnCode.ERROR.toString())) {
+                throw new InvalidRegistrationException("Registration invalid!");
+            }
+            SoapObject regEntry = (SoapObject) response.getProperty(1);
+            SoapObject userEntry = (SoapObject) regEntry.getProperty(2);
+            user = new User(userEntry.getProperty("email").toString());
+
+            session = new ShelpSession(Integer.parseInt(regEntry.getProperty("id").toString()), user);
+            return session;
         } catch (SoapFault e) {
             throw new InvalidRegistrationException(e.getMessage());
         }
