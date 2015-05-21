@@ -38,7 +38,7 @@ public class LogoutTask extends AsyncTask<Void, Integer, Boolean>  {
         if(result)
         {
             //erfolgreich ausgeloggt
-            myApp.setUser(null);
+            myApp.setSession(null);
 
             //Toast anzeigen
             CharSequence text = "Logout erfolgreich!";
@@ -46,7 +46,7 @@ public class LogoutTask extends AsyncTask<Void, Integer, Boolean>  {
             Toast toast = Toast.makeText(context, text, duration);
             toast.show();
 
-            //Nächste Activity anzeigen
+            //NÃ¤chste Activity anzeigen
             Intent i = new Intent(context, MainActivity.class);
             context.startActivity(i);
         }
@@ -58,7 +58,7 @@ public class LogoutTask extends AsyncTask<Void, Integer, Boolean>  {
             Toast toast = Toast.makeText(context, text, duration);
             toast.show();
 
-            //Nächste Activity anzeigen
+            //NÃ¤chste Activity anzeigen
             Intent i = new Intent(context, MainActivity.class);
             context.startActivity(i);
         }
