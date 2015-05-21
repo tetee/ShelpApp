@@ -46,7 +46,7 @@ public class ShelpAppServiceImpl implements ShelpAppService {
      * the web service is hosted on the localhost server. Specify hostname as the IP address of the 
      * server hosting the web service (or "10.0.2.15 instead of 'localhost' when running in the emulator).
      */
-    private static final String URL = "http://10.70.19.247:8080/shelp/UserIntegration";
+    private static final String URL = "http://10.70.50.172:8080/shelp/UserIntegration";
 
     /**
      * TAG contains the class name and is used for logging.
@@ -85,19 +85,21 @@ public class ShelpAppServiceImpl implements ShelpAppService {
     @Override
     public User registration(String eMail, String hash) throws InvalidRegistrationException {
         User result = null;
-        String METHOD_NAME = "registration";
+        String METHOD_NAME = "regUser";
         SoapObject response = null;
         try {
             response = executeSoapAction(METHOD_NAME, eMail, hash);
             Log.d(TAG, response.toString());
-            this.sessionId = Integer.parseInt(response.getPrimitivePropertySafelyAsString("sessionId"));
-            if (sessionId != 0) {
-                result = new User(eMail, hash);
-                return result;
-            }
-            else {
-                throw new InvalidRegistrationException("Registration not successful!");
-            }
+            String reg = (response.getPrimitivePropertySafelyAsString("returnCode"));
+            System.out.println(reg);
+            return null;
+         //   if (sessionId != 0) {
+        //        result = new User(eMail, hash);
+        //        return result;
+        //    }
+        //    else {
+        //        throw new InvalidRegistrationException("Registration not successful!");
+         //   }
         } catch (SoapFault e) {
             throw new InvalidRegistrationException(e.getMessage());
         }
