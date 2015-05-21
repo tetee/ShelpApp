@@ -130,7 +130,7 @@ public class create_activity extends ActionBarActivity {
 
     public void createTour(View createView) {
         Long id = 123L;
-        User owner = new User("Busch.Roman20@gmail.com", "test123");
+        User owner = new User("Busch.Roman20@gmail.com");
         //Inhalt der Spinner erhalten
         Spinner loc = (Spinner)findViewById(R.id.citySpinner);
         //Location location = (Location) loc.getSelectedItem();

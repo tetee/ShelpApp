@@ -5,11 +5,10 @@ package de.fh_muenster.shelpapp.ShelpApp;
  */
 public class User {
     private String userName;
-    private String password;
 
-    public User(String userName, String password) {
+    public User(String userName) {
         this.userName = userName;
-        this.password = password;
+
     }
 
     public String getUserName() { return this.userName; }

@@ -1,5 +1,6 @@
 package de.fh_muenster.shelpapp.ShelpAppAndroid;
 
+import android.content.pm.PackageInstaller;
 import android.util.Log;
 
 import org.ksoap2.HeaderProperty;
@@ -22,7 +23,9 @@ import de.fh_muenster.shelpapp.ShelpApp.Exceptions.NoSessionException;
 import de.fh_muenster.shelpapp.ShelpApp.Location;
 import de.fh_muenster.shelpapp.ShelpApp.PaymentCondition;
 import de.fh_muenster.shelpapp.ShelpApp.Request;
+import de.fh_muenster.shelpapp.ShelpApp.ReturnCode;
 import de.fh_muenster.shelpapp.ShelpApp.ShelpAppService;
+import de.fh_muenster.shelpapp.ShelpApp.ShelpSession;
 import de.fh_muenster.shelpapp.ShelpApp.Tour;
 import de.fh_muenster.shelpapp.ShelpApp.TourStatus;
 import de.fh_muenster.shelpapp.ShelpApp.User;
@@ -60,39 +63,42 @@ public class ShelpAppServiceImpl implements ShelpAppService {
 
     //Methoden Klasse User
     @Override
-    public User login(String username, String password) throws InvalidLoginException {
-        User result = null;
+    public ShelpSession login(String username, String password) throws InvalidLoginException {
+        User user = null;
+        ShelpSession session = null;
         String METHOD_NAME = "login";
         SoapObject response = null;
         try {
             response = executeSoapAction(METHOD_NAME, username, password);
             Log.d(TAG, response.toString());
             String test = (response.getPrimitivePropertySafelyAsString("returnCode"));
-            System.out.println(test);
-            return null;
-         //   if (sessionId != 0) {
-         //       result = new User(username, password);
-           //     return result;
-           // }
-           // else {
-            //    throw new InvalidLoginException("Login not successful!");
-           // }
+          if(test.equals(ReturnCode.ERROR.toString())) {
+               throw new InvalidLoginException("Login invalid!");
+            }
+            SoapObject regEntry = (SoapObject) response.getProperty(1);
+            SoapObject userEntry = (SoapObject) regEntry.getProperty(2);
+            user = new User(userEntry.getProperty("email").toString());
+
+            session = new ShelpSession(Integer.parseInt(regEntry.getProperty("id").toString()), user);
+            return session;
         } catch (SoapFault e) {
             throw new InvalidLoginException(e.getMessage());
         }
     }
 
     @Override
-    public User registration(String eMail, String hash) throws InvalidRegistrationException {
+    public ShelpSession registration(String eMail, String hash) throws InvalidRegistrationException {
         User result = null;
         String METHOD_NAME = "regUser";
         SoapObject response = null;
         try {
             response = executeSoapAction(METHOD_NAME, eMail, hash);
-            Log.d(TAG, response.toString());
             String reg = (response.getPrimitivePropertySafelyAsString("returnCode"));
-            System.out.println(reg);
-            return null;
+        if(reg.equals(ReturnCode.ERROR)) {
+            throw new InvalidRegistrationException("User already exist!");
+        }
+            SoapObject regEntry = (SoapObject) response.getProperty(0);
+            System.out.println(regEntry.getProperty("id"));
          //   if (sessionId != 0) {
         //        result = new User(eMail, hash);
         //        return result;
@@ -100,6 +106,7 @@ public class ShelpAppServiceImpl implements ShelpAppService {
         //    else {
         //        throw new InvalidRegistrationException("Registration not successful!");
          //   }
+            return null;
         } catch (SoapFault e) {
             throw new InvalidRegistrationException(e.getMessage());
         }
