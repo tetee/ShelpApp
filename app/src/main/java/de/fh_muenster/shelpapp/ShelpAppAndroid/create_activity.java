@@ -17,10 +17,13 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.ksoap2.SoapFault;
+
 import java.util.Calendar;
 import java.util.List;
 
 import de.fh_muenster.shelpapp.R;
+import de.fh_muenster.shelpapp.ShelpApp.AllLists;
 import de.fh_muenster.shelpapp.ShelpApp.ApprovalStatus;
 import de.fh_muenster.shelpapp.ShelpApp.Capacity;
 import de.fh_muenster.shelpapp.ShelpApp.DeliveryCondition;
@@ -36,22 +39,25 @@ import de.fh_muenster.shelpapp.ShelpApp.User;
 
 public class create_activity extends ActionBarActivity {
 
-    private DatePicker datePicker;
-    private int year;
-    private int month;
-    private int day;
-
+    private AllLists allLists;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_activity);
 
+        try {
+            ShelpAppApplicationState app = new ShelpAppApplicationState();
+           if(app.getShelpAppService().getLists() == null) {
+               app.setAllLists(app.getShelpAppService().getLists());
+           }
+            allLists = app.getAllLists();
+        } catch (SoapFault ex ){
+            //TODO errorhandling
+        }
         //Aufruf der addItemsOnSpinner Methode
         addItemsOnSpinner();
         //addItemsOnSpinnerDB();
-
-        setCurrentDate();
     }
 
 
@@ -70,7 +76,7 @@ public class create_activity extends ActionBarActivity {
 
         //Daten der Spinner mit Enumeration Werten auffüllen
         Spinner cap = (Spinner) findViewById(R.id.capacitySpinner);
-        cap.setAdapter(new ArrayAdapter<Capacity>(this, android.R.layout.simple_spinner_item, Capacity.values()));
+        cap.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, allLists.getCapacity()));
 
         Spinner enabling = (Spinner) findViewById(R.id.enablingSpinner);
         enabling.setAdapter(new ArrayAdapter<ApprovalStatus>(this, android.R.layout.simple_spinner_item, ApprovalStatus.values()));
@@ -94,14 +100,6 @@ public class create_activity extends ActionBarActivity {
         cap.setAdapter(adapter);
     }*/
 
-    public void setCurrentDate(){
-        datePicker = (DatePicker) findViewById(R.id.dateCreate);
-        final Calendar calendar = Calendar.getInstance();
-        year = calendar.get(Calendar.YEAR);
-        month = calendar.get(Calendar.MONTH);
-        day = calendar.get(Calendar.DAY_OF_MONTH);
-        datePicker.init(year,month,day,null);
-    }
 
 
     @Override
@@ -217,7 +215,7 @@ public class create_activity extends ActionBarActivity {
             {
                 //erfolgreich eingeloggt
                 ShelpAppApplication myApp = (ShelpAppApplication) getApplication();
-                myApp.setTour(result);
+                //myApp.setTour(result);
 
                 //Toast anzeigen
                 CharSequence text = "Tour erfolgreich erstellt" ;
