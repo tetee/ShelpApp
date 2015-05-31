@@ -131,9 +131,6 @@ public class ShelpAppServiceImpl implements ShelpAppService {
     }
 
 
-    //Methoden Klasse Tour
-
-
     /**
      * Diese Methode delegiert einen Methodenaufruf an den hinterlegten WebService.
      * @param methodName

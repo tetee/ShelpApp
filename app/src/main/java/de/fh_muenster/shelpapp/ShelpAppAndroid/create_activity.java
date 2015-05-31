@@ -3,6 +3,7 @@ package de.fh_muenster.shelpapp.ShelpAppAndroid;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.DatabaseErrorHandler;
 import android.os.AsyncTask;
 import android.preference.PreferenceManager;
 import android.support.v7.app.ActionBarActivity;
@@ -10,15 +11,19 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.DatePicker;
 import android.widget.Spinner;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.ksoap2.SoapFault;
+
 import java.util.Calendar;
 import java.util.List;
 
 import de.fh_muenster.shelpapp.R;
+import de.fh_muenster.shelpapp.ShelpApp.AllLists;
 import de.fh_muenster.shelpapp.ShelpApp.ApprovalStatus;
 import de.fh_muenster.shelpapp.ShelpApp.Capacity;
 import de.fh_muenster.shelpapp.ShelpApp.DeliveryCondition;
@@ -34,13 +39,25 @@ import de.fh_muenster.shelpapp.ShelpApp.User;
 
 public class create_activity extends ActionBarActivity {
 
+    private AllLists allLists;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_activity);
 
+        try {
+            ShelpAppApplicationState app = new ShelpAppApplicationState();
+           if(app.getShelpAppService().getLists() == null) {
+               app.setAllLists(app.getShelpAppService().getLists());
+           }
+            allLists = app.getAllLists();
+        } catch (SoapFault ex ){
+            //TODO errorhandling
+        }
         //Aufruf der addItemsOnSpinner Methode
         addItemsOnSpinner();
+        //addItemsOnSpinnerDB();
     }
 
 
@@ -59,7 +76,7 @@ public class create_activity extends ActionBarActivity {
 
         //Daten der Spinner mit Enumeration Werten auffüllen
         Spinner cap = (Spinner) findViewById(R.id.capacitySpinner);
-        cap.setAdapter(new ArrayAdapter<Capacity>(this, android.R.layout.simple_spinner_item, Capacity.values()));
+        cap.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, allLists.getCapacity()));
 
         Spinner enabling = (Spinner) findViewById(R.id.enablingSpinner);
         enabling.setAdapter(new ArrayAdapter<ApprovalStatus>(this, android.R.layout.simple_spinner_item, ApprovalStatus.values()));
@@ -70,6 +87,19 @@ public class create_activity extends ActionBarActivity {
         Spinner del = (Spinner) findViewById(R.id.delSpinner);
         del.setAdapter(new ArrayAdapter<DeliveryCondition>(this, android.R.layout.simple_spinner_item, DeliveryCondition.values()));
     }
+
+   /* public void addItemsOnSpinnerDB(){
+        Spinner cap = (Spinner) findViewById(R.id.capacitySpinner);
+        //database Handler
+        DatabaseHandler db = new DatabaseHandler(getApplicationContext());
+        //Spinner Drop Down Elemente
+        List<String> elements = db.getAllLabels();
+        //Adapter erstellen
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, elements);
+        //Elemente zum Adapter hinzufügen
+        cap.setAdapter(adapter);
+    }*/
+
 
 
     @Override
@@ -185,7 +215,7 @@ public class create_activity extends ActionBarActivity {
             {
                 //erfolgreich eingeloggt
                 ShelpAppApplication myApp = (ShelpAppApplication) getApplication();
-                myApp.setTour(result);
+                //myApp.setTour(result);
 
                 //Toast anzeigen
                 CharSequence text = "Tour erfolgreich erstellt" ;
