@@ -72,7 +72,7 @@ public class registration_activity extends ActionBarActivity {
         }
     }
 
-    private class RegTask extends AsyncTask<String, Integer, User> {
+    private class RegTask extends AsyncTask<String, Integer, ShelpSession> {
         private Context context;
 
         //Dem Konstruktor der Klasse wird der aktuelle Kontext der Activity übergeben
@@ -82,15 +82,14 @@ public class registration_activity extends ActionBarActivity {
         }
 
         @Override
-        protected User doInBackground(String... params) {
+        protected ShelpSession doInBackground(String... params) {
             if (params.length != 2)
                 return null;
             String eMail = params[0];
             String hash = params[1];
             ShelpAppApplication myApp = (ShelpAppApplication) getApplication();
             try {
-                myApp.getShelpAppService().registration(eMail, hash);
-                //return myUser;
+               return myApp.getShelpAppService().registration(eMail, hash);
             } catch (InvalidRegistrationException e) {
                 e.printStackTrace();
             }
