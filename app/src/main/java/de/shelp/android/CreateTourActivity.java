@@ -19,6 +19,7 @@ import java.util.Calendar;
 import java.util.List;
 
 import de.fh_muenster.shelpapp.R;
+import de.shelp.android.applications.SessionApplication;
 import de.shelp.ksoap2.entities.AllLists;
 import de.shelp.ksoap2.entities.ApprovalStatus;
 import de.shelp.ksoap2.entities.Capacity;
@@ -30,7 +31,7 @@ import de.shelp.ksoap2.entities.Request;
 import de.shelp.ksoap2.entities.Tour;
 import de.shelp.ksoap2.entities.TourStatus;
 import de.shelp.ksoap2.entities.User;
-import de.shelp.ksoap2.implementations.ShelpAppApplicationState;
+import de.shelp.android.applications.StateApplication;
 
 public class CreateTourActivity extends ActionBarActivity {
 
@@ -42,7 +43,7 @@ public class CreateTourActivity extends ActionBarActivity {
         setContentView(R.layout.activity_create_activity);
 
         try {
-            ShelpAppApplicationState app = new ShelpAppApplicationState();
+            StateApplication app = new StateApplication();
            if(app.getShelpAppService().getLists() == null) {
                app.setAllLists(app.getShelpAppService().getLists());
            }
@@ -191,9 +192,9 @@ public class CreateTourActivity extends ActionBarActivity {
             User owner = (User) params[8];
             Calendar updatedOn = (Calendar) params[9];
             TourStatus status = (TourStatus) params[10];
-            ShelpAppApplication myApp = (ShelpAppApplication) getApplication();
+            SessionApplication myApp = (SessionApplication) getApplication();
             try {
-                Tour newTour = myApp.getShelpAppService().newTour(id,approval,location,capacity,payCondition,delCondition,date,request,owner,updatedOn,status);
+                Tour newTour = myApp.getUserService().newTour(id,approval,location,capacity,payCondition,delCondition,date,request,owner,updatedOn,status);
                 return newTour;
             } catch (InvalidTourException e) {
                 e.printStackTrace();
@@ -209,7 +210,7 @@ public class CreateTourActivity extends ActionBarActivity {
             if(result != null)
             {
                 //erfolgreich eingeloggt
-                ShelpAppApplication myApp = (ShelpAppApplication) getApplication();
+                SessionApplication myApp = (SessionApplication) getApplication();
                 //myApp.setTour(result);
 
                 //Toast anzeigen

@@ -1,4 +1,4 @@
-package de.shelp.ksoap2.implementations;
+package de.shelp.ksoap2;
 
 import org.ksoap2.HeaderProperty;
 import org.ksoap2.SoapEnvelope;
@@ -7,20 +7,17 @@ import org.ksoap2.serialization.SoapObject;
 import org.ksoap2.serialization.SoapSerializationEnvelope;
 import org.ksoap2.transport.HttpTransportSE;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import de.shelp.ksoap2.entities.AllLists;
-
 /**
- * Created by user on 21.05.15.
+ * Created by Jos-Laptop on 31.05.2015.
  */
-public class ShelpAppServiceStateImpl {
+public class ServiceSupporter {
 
     /**
      * Namespace is the targetNamespace in the WSDL.
      */
-    private static final String NAMESPACE = "http://integration.shelp.de/";
+    public static final String NAMESPACE = "http://integration.shelp.de/";
 
     /**
      * The WSDL URL. Its value is the location attribute of the soap:address element for a port
@@ -29,38 +26,14 @@ public class ShelpAppServiceStateImpl {
      * the web service is hosted on the localhost server. Specify hostname as the IP address of the
      * server hosting the web service (or "10.0.2.15 instead of 'localhost' when running in the emulator).
      */
-    private static final String URL = "http://192.168.178.161:8080/shelp/StateIntegration";
-
-    /**
-     * TAG contains the class name and is used for logging.
-     */
-    private static final String TAG = ShelpAppServiceStateImpl.class.getName();
-
-    public AllLists getLists() throws SoapFault{
-        String METHOD_NAME = "getAllLists";
-        SoapObject response = null;
-
-            response = executeSoapAction(METHOD_NAME);
-            //Log.d(TAG, response.toString());
-            String test = (response.getPrimitivePropertySafelyAsString("returnCode"));
-            SoapObject listResponse = (SoapObject) response.getProperty(1);
-            SoapObject capacity = (SoapObject) listResponse.getProperty(0);
-        List<String> capList = new ArrayList<String>();
-        for(int i = 0; i <capacity.getPropertyCount(); i++){
-            capList.add(capacity.getProperty(i).toString());
-            System.out.print(capList.get(i));
-        }
-
-
-        return new AllLists(capList);
-    }
+    public static final String URL = "http://192.168.178.161:8080/shelp/";
 
     /**
      * Diese Methode delegiert einen Methodenaufruf an den hinterlegten WebService.
      * @param methodName
      * @return
      */
-    private SoapObject executeSoapAction(String methodName, Object... args) throws SoapFault {
+    public static SoapObject executeSoapAction(String methodName, Object... args) throws SoapFault {
 
         Object result = null;
 
@@ -116,4 +89,5 @@ public class ShelpAppServiceStateImpl {
 
         return (SoapObject) result;
     }
+
 }

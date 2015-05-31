@@ -8,6 +8,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 import de.fh_muenster.shelpapp.R;
+import de.shelp.android.applications.SessionApplication;
 import de.shelp.android.tasks.LogoutTask;
 
 public class ShelpActivity extends ActionBarActivity {
@@ -75,7 +76,7 @@ public class ShelpActivity extends ActionBarActivity {
 
         public void logout(View ausloeser) {
             //Logout asynchron ausfuehren:
-            LogoutTask logoutTask = new LogoutTask(ausloeser.getContext(),(ShelpAppApplication) getApplication());
+            LogoutTask logoutTask = new LogoutTask(ausloeser.getContext(),(SessionApplication) getApplication());
             logoutTask.execute();
         }
     }

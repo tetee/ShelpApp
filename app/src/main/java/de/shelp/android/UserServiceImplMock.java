@@ -12,7 +12,7 @@ import de.shelp.ksoap2.exceptions.InvalidTourException;
 import de.shelp.ksoap2.entities.Location;
 import de.shelp.ksoap2.entities.PaymentCondition;
 import de.shelp.ksoap2.entities.Request;
-import de.shelp.ksoap2.services.ShelpAppService;
+import de.shelp.ksoap2.services.UserService;
 import de.shelp.ksoap2.entities.ShelpSession;
 import de.shelp.ksoap2.entities.Tour;
 import de.shelp.ksoap2.entities.TourStatus;
@@ -21,12 +21,12 @@ import de.shelp.ksoap2.entities.User;
 /**
  * Created by user on 05.05.15.
  */
-public class ShelpAppServiceImplMock implements ShelpAppService {
+public class UserServiceImplMock implements UserService {
 
     private User user;
     private Tour tour;
 
-    public ShelpAppServiceImplMock() {}
+    public UserServiceImplMock() {}
 
 
     @Override

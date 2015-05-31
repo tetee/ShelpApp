@@ -3,6 +3,7 @@ package de.shelp.ksoap2.services;
 import java.util.Calendar;
 import java.util.List;
 
+import de.shelp.android.applications.SessionApplication;
 import de.shelp.ksoap2.entities.ApprovalStatus;
 import de.shelp.ksoap2.entities.Capacity;
 import de.shelp.ksoap2.entities.DeliveryCondition;
@@ -21,12 +22,12 @@ import de.shelp.ksoap2.exceptions.NoSessionException;
 /**
  * Created by user on 05.05.15.
  */
-public interface ShelpAppService {
+public interface UserService {
 
     //Methoden User Klasse
     public ShelpSession login(String userName, String hash) throws InvalidLoginException;
 
-    public void logout() throws NoSessionException;
+    public void logout(SessionApplication sessionApplication) throws NoSessionException;
 
     public ShelpSession registration(String eMail, String hash) throws InvalidRegistrationException;
 
