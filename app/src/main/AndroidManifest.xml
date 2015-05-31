@@ -5,13 +5,13 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-        android:name=".ShelpAppAndroid.ShelpAppApplication"
+        android:name="de.shelp.android.ShelpAppApplication"
         android:allowBackup="true"
         android:icon="@mipmap/logo"
         android:label="@string/app_name"
         android:theme="@style/CustomActionBarTheme" >
         <activity
-            android:name=".ShelpAppAndroid.MainActivity"
+            android:name="de.shelp.android.MainActivity"
             android:label="@string/app_name"
             android:icon="@mipmap/logo"
             >
@@ -22,63 +22,59 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ShelpAppAndroid.PrefsActivity"
+            android:name="de.shelp.android.PrefsActivity"
             android:label="@string/title_activity_prefs" >
         </activity>
         <activity
-            android:name=".ShelpAppAndroid.shelp_activity"
+            android:name="de.shelp.android.ShelpActivity"
             android:label="@string/title_activity_shelp_activity" >
         </activity>
         <activity
-            android:name=".ShelpAppAndroid.create_activity"
+            android:name="de.shelp.android.CreateTourActivity"
             android:label="@string/title_activity_create_activity" >
         </activity>
         <activity
-            android:name=".ShelpAppAndroid.search_activity"
+            android:name="de.shelp.android.SearchTourActivity"
             android:label="@string/title_activity_search_activity" >
         </activity>
         <activity
-            android:name=".ShelpAppAndroid.whishlist_activity"
+            android:name="de.shelp.android.WishlistActivity"
             android:label="@string/title_activity_whishlist_activity" >
         </activity>
         <activity
-            android:name=".ShelpAppAndroid.tour_activity"
+            android:name="de.shelp.android.ShowOwnTourActivity"
             android:label="@string/title_activity_tour_activity" >
         </activity>
         <activity
-            android:name=".ShelpAppAndroid.friends_activity"
+            android:name="de.shelp.android.FriendsActivity"
             android:label="@string/title_activity_friends_activity" >
         </activity>
         <activity
-            android:name=".ShelpAppAndroid.rating_activity"
+            android:name="de.shelp.android.RatingActivity"
             android:label="@string/title_activity_rating_activity" >
         </activity>
         <activity
-            android:name=".ShelpAppAndroid.show_rating_activity"
+            android:name="de.shelp.android.ShowRatingActivity"
             android:label="@string/title_activity_show_rating_activity" >
         </activity>
         <activity
-            android:name=".ShelpAppAndroid.search_friends_activity"
+            android:name="de.shelp.android.SearchFriendActivity"
             android:label="@string/title_activity_search_friends_activity" >
         </activity>
         <activity
-            android:name=".ShelpAppAndroid.ShelpAppApplication"
-            android:label="@string/title_activity_shelp_app_application" >
-        </activity>
-        <activity
-            android:name=".ShelpAppAndroid.own_request_activity"
+            android:name="de.shelp.android.ShowOwnRequestActivity"
             android:label="@string/title_activity_own_request_activity" >
         </activity>
         <activity
-            android:name=".ShelpAppAndroid.your_request_activity"
+            android:name="de.shelp.android.CreateRequestActivity"
             android:label="@string/title_activity_your_request_activity" >
         </activity>
         <activity
-            android:name=".ShelpAppAndroid.registration_activity"
+            android:name="de.shelp.android.RegActivity"
             android:label="@string/title_activity_registration_activity" >
         </activity>
         <activity
-            android:name=".ShelpAppAndroid.show_tour_activity"
+            android:name="de.shelp.android.ShowTourActivity"
             android:label="@string/title_activity_show_tour_activity" >
         </activity>
     </application>
