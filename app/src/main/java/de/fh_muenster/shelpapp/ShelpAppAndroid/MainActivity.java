@@ -111,7 +111,7 @@ public class MainActivity extends ActionBarActivity {
 
     public void computeMD5Hash(String password) {
         try {
-            // Create MD5 Hash cc03e747a6afbbcbf8be7668acfebee5
+            // Create MD5 Hash example: mcc03e747a6afbbcbf8be7668acfebee5
             MessageDigest digest = java.security.MessageDigest.getInstance("MD5");
             digest.update(password.getBytes());
             byte messageDigest[] = digest.digest();

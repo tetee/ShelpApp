@@ -15,10 +15,9 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 import de.fh_muenster.shelpapp.R;
-import de.fh_muenster.shelpapp.ShelpApp.Exceptions.InvalidLoginException;
 import de.fh_muenster.shelpapp.ShelpApp.Exceptions.InvalidRegistrationException;
 import de.fh_muenster.shelpapp.ShelpApp.ShelpSession;
-import de.fh_muenster.shelpapp.ShelpApp.User;
+
 
 public class registration_activity extends ActionBarActivity {
 
@@ -62,7 +61,9 @@ public class registration_activity extends ActionBarActivity {
         passwordConfirm = pwConfirm.getText().toString();
         computeMD5Hash(password);
 
-        if (password.equals(passwordConfirm)) {
+        if(password.length() < 6 && passwordConfirm.length() < 6){
+            Toast.makeText(getApplicationContext(), "Passwort muss mind. 6 Zeichen enthalten!", Toast.LENGTH_SHORT).show();
+        } else if (password.equals(passwordConfirm)) {
             if ((eMail != null && password != null && passwordConfirm != null)) {
                 RegTask registrationTask = new RegTask(regView.getContext());
                 registrationTask.execute(eMail, this.result);
