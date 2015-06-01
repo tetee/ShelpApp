@@ -44,7 +44,8 @@ public class CreateTourActivity extends ActionBarActivity {
 
         try {
             StateApplication app = new StateApplication();
-           if(app.getShelpAppService().getLists() == null) {
+           if(app.getAllLists() == null) {
+              AllLists list = app.getShelpAppService().getLists();
                app.setAllLists(app.getShelpAppService().getLists());
            }
             allLists = app.getAllLists();
@@ -72,16 +73,16 @@ public class CreateTourActivity extends ActionBarActivity {
 
         //Daten der Spinner mit Enumeration Werten auffüllen
         Spinner cap = (Spinner) findViewById(R.id.capacitySpinner);
-        cap.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, allLists.getCapacity()));
+        cap.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, allLists.getCapacities()));
 
         Spinner enabling = (Spinner) findViewById(R.id.enablingSpinner);
-        enabling.setAdapter(new ArrayAdapter<ApprovalStatus>(this, android.R.layout.simple_spinner_item, ApprovalStatus.values()));
+        enabling.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, allLists.getStates()));
 
         Spinner pay = (Spinner) findViewById(R.id.paySpinner);
-        pay.setAdapter(new ArrayAdapter<PaymentCondition>(this, android.R.layout.simple_spinner_item, PaymentCondition.values()));
+        pay.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, allLists.getPaymentConditions()));
 
         Spinner del = (Spinner) findViewById(R.id.delSpinner);
-        del.setAdapter(new ArrayAdapter<DeliveryCondition>(this, android.R.layout.simple_spinner_item, DeliveryCondition.values()));
+        del.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, allLists.getDeliveryConditions()));
     }
 
    /* public void addItemsOnSpinnerDB(){
