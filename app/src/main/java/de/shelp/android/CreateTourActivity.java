@@ -45,7 +45,6 @@ public class CreateTourActivity extends ActionBarActivity {
         try {
             StateApplication app = new StateApplication();
            if(app.getAllLists() == null) {
-              AllLists list = app.getShelpAppService().getLists();
                app.setAllLists(app.getShelpAppService().getLists());
            }
             allLists = app.getAllLists();

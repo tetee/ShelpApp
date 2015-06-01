@@ -26,7 +26,7 @@ public class ServiceUtils {
      * the web service is hosted on the localhost server. Specify hostname as the IP address of the
      * server hosting the web service (or "10.0.2.15 instead of 'localhost' when running in the emulator).
      */
-    public static final String URL = "http://10.70.50.172:8080/shelp/";
+    public static final String URL = "http://10.70.19.247:8080/shelp/";
 
     /**
      * Diese Methode delegiert einen Methodenaufruf an den hinterlegten WebService.
