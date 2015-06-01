@@ -2,19 +2,15 @@ package de.shelp.ksoap2.implementations;
 
 import android.util.Log;
 
-import org.ksoap2.HeaderProperty;
-import org.ksoap2.SoapEnvelope;
 import org.ksoap2.SoapFault;
 import org.ksoap2.serialization.SoapObject;
-import org.ksoap2.serialization.SoapSerializationEnvelope;
-import org.ksoap2.transport.HttpTransportSE;
 
 import java.util.Calendar;
 import java.util.List;
 
 import de.shelp.android.applications.SessionApplication;
-import de.shelp.ksoap2.ServiceSupporter;
-import de.shelp.ksoap2.SoapTransformer;
+import de.shelp.ksoap2.ServiceUtils;
+import de.shelp.ksoap2.SoapAssembler;
 import de.shelp.ksoap2.entities.ApprovalStatus;
 import de.shelp.ksoap2.entities.Capacity;
 import de.shelp.ksoap2.entities.DeliveryCondition;
@@ -39,7 +35,7 @@ import de.shelp.ksoap2.entities.User;
  */
 public class UserServiceImpl implements UserService {
 
-    private static final String URL = ServiceSupporter.URL + "/UserIntegration";
+    private static final String URL = ServiceUtils.URL + "/UserIntegration";
 
     /**
      * TAG contains the class name and is used for logging.
@@ -52,14 +48,14 @@ public class UserServiceImpl implements UserService {
         String METHOD_NAME = "login";
         SoapObject response = null;
         try {
-            response = ServiceSupporter.executeSoapAction(METHOD_NAME, username, password);
+            response = ServiceUtils.executeSoapAction(METHOD_NAME, URL, username, password);
             Log.d(TAG, response.toString());
             String login = (response.getPrimitivePropertySafelyAsString("returnCode"));
             if(login.equals(ReturnCode.ERROR.toString())) {
                throw new InvalidLoginException("Login invalid!");
             }
 
-            return SoapTransformer.getInstance().soapToSession(response);
+            return SoapAssembler.getInstance().soapToSession(response);
         } catch (SoapFault e) {
             throw new InvalidLoginException(e.getMessage());
         }
@@ -67,12 +63,10 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public ShelpSession registration(String eMail, String hash) throws InvalidRegistrationException {
-        User user = null;
-        ShelpSession session = null;
         String METHOD_NAME = "regUser";
         SoapObject response = null;
         try {
-            response = ServiceSupporter.executeSoapAction(METHOD_NAME, eMail, hash);
+            response = ServiceUtils.executeSoapAction(METHOD_NAME, URL, eMail, hash);
             Log.d(TAG, response.toString());
             String reg = (response.getPrimitivePropertySafelyAsString("returnCode"));
 
@@ -80,7 +74,7 @@ public class UserServiceImpl implements UserService {
                 throw new InvalidRegistrationException("Registration invalid!");
             }
 
-            return SoapTransformer.getInstance().soapToSession(response);
+            return SoapAssembler.getInstance().soapToSession(response);
         } catch (SoapFault e) {
             throw new InvalidRegistrationException(e.getMessage());
         }
@@ -93,7 +87,7 @@ public class UserServiceImpl implements UserService {
         String METHOD_NAME = "logout";
         try {
 
-            SoapObject response = ServiceSupporter.executeSoapAction(METHOD_NAME, sessionApplication.getSession().getId());
+            SoapObject response = ServiceUtils.executeSoapAction(METHOD_NAME, URL, sessionApplication.getSession().getId());
             Log.d(TAG, response.toString());
         } catch (SoapFault e) {
             throw new NoSessionException(e.getMessage());

@@ -1,16 +1,12 @@
 package de.shelp.ksoap2.implementations;
 
-import org.ksoap2.HeaderProperty;
-import org.ksoap2.SoapEnvelope;
 import org.ksoap2.SoapFault;
 import org.ksoap2.serialization.SoapObject;
-import org.ksoap2.serialization.SoapSerializationEnvelope;
-import org.ksoap2.transport.HttpTransportSE;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import de.shelp.ksoap2.ServiceSupporter;
+import de.shelp.ksoap2.ServiceUtils;
 import de.shelp.ksoap2.entities.AllLists;
 
 /**
@@ -19,7 +15,7 @@ import de.shelp.ksoap2.entities.AllLists;
 public class StateServiceImpl {
 
 
-    private static final String URL = ServiceSupporter.URL + "/StateIntegration";
+    private static final String URL = ServiceUtils.URL + "/StateIntegration";
 
     /**
      * TAG contains the class name and is used for logging.
@@ -30,7 +26,7 @@ public class StateServiceImpl {
         String METHOD_NAME = "getAllLists";
         SoapObject response = null;
 
-            response = ServiceSupporter.executeSoapAction(METHOD_NAME);
+            response = ServiceUtils.executeSoapAction(METHOD_NAME, URL);
             //Log.d(TAG, response.toString());
             String test = (response.getPrimitivePropertySafelyAsString("returnCode"));
             SoapObject listResponse = (SoapObject) response.getProperty(1);

@@ -8,17 +8,17 @@ import de.shelp.ksoap2.entities.User;
 /**
  * Created by Jos-Laptop on 31.05.2015.
  */
-public class SoapTransformer {
+public class SoapAssembler {
 
-    public static SoapTransformer instance;
+    public static SoapAssembler instance;
 
-    private SoapTransformer() {
+    private SoapAssembler() {
 
     }
 
-    public static SoapTransformer getInstance() {
+    public static SoapAssembler getInstance() {
         if (instance == null) {
-            instance = new SoapTransformer();
+            instance = new SoapAssembler();
         }
 
         return instance;
