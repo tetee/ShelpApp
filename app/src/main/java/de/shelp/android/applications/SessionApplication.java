@@ -13,9 +13,14 @@ public class SessionApplication extends Application {
 
     public SessionApplication() {this.userService = new UserServiceImpl();}
 
-    public ShelpSession getSession() { return this.session; }
+    public ShelpSession getSession() {
+       // System.out.println(session.getId());
+        return this.session; }
 
-    public void setSession(ShelpSession session) {this.session = session; }
+    public void setSession(ShelpSession session) {
+
+       // System.out.println(session.getId());
+        this.session = session; }
 
     public UserService getUserService() {return this.userService; }
 
