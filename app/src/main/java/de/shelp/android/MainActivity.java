@@ -17,7 +17,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 import de.fh_muenster.shelpapp.R;
-import de.shelp.android.applications.SessionApplication;
+import de.shelp.android.applications.ShelpApplication;
 import de.shelp.ksoap2.exceptions.InvalidLoginException;
 import de.shelp.ksoap2.entities.ShelpSession;
 
@@ -136,7 +136,7 @@ public class MainActivity extends ActionBarActivity {
                 return null;
             String username = params[0];
             String hash = params[1];
-            SessionApplication myApp = (SessionApplication) getApplication();
+            ShelpApplication myApp = (ShelpApplication) getApplication();
             try {
                return myApp.getUserService().login(username, hash);
             } catch (InvalidLoginException e) {
@@ -151,7 +151,7 @@ public class MainActivity extends ActionBarActivity {
         protected void onPostExecute(ShelpSession result) {
             if (result != null) {
                 //erfolgreich eingeloggt
-                SessionApplication myApp = (SessionApplication) getApplication();
+                ShelpApplication myApp = (ShelpApplication) getApplication();
                 myApp.setSession(result);
 
                 //Toast anzeigen

@@ -8,7 +8,7 @@ import org.ksoap2.serialization.SoapObject;
 import java.util.Calendar;
 import java.util.List;
 
-import de.shelp.android.applications.SessionApplication;
+import de.shelp.android.applications.ShelpApplication;
 import de.shelp.ksoap2.ServiceUtils;
 import de.shelp.ksoap2.SoapAssembler;
 import de.shelp.ksoap2.entities.ApprovalStatus;
@@ -35,7 +35,8 @@ import de.shelp.ksoap2.entities.User;
  */
 public class UserServiceImpl implements UserService {
 
-    private static final String URL = ServiceUtils.URL + "/UserIntegration";
+    private static final String URL = ServiceUtils.URL + "UserIntegration";
+    private static final String URL2 = ServiceUtils.URL + "StateIntegration";
 
     /**
      * TAG contains the class name and is used for logging.
@@ -49,6 +50,7 @@ public class UserServiceImpl implements UserService {
         SoapObject response = null;
         try {
             response = ServiceUtils.executeSoapAction(METHOD_NAME, URL, username, password);
+           // response = ServiceUtils.executeSoapAction("getAllLists", URL2);
             Log.d(TAG, response.toString());
             String login = (response.getPrimitivePropertySafelyAsString("returnCode"));
             if(login.equals(ReturnCode.ERROR.toString())) {
@@ -82,12 +84,12 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    public void logout(SessionApplication sessionApplication) throws NoSessionException {
+    public void logout(ShelpApplication shelpApplication) throws NoSessionException {
         Log.d(TAG, "logout called.");
         String METHOD_NAME = "logout";
         try {
 
-            SoapObject response = ServiceUtils.executeSoapAction(METHOD_NAME, URL, sessionApplication.getSession().getId());
+            SoapObject response = ServiceUtils.executeSoapAction(METHOD_NAME, URL, shelpApplication.getSession().getId());
             Log.d(TAG, response.toString());
         } catch (SoapFault e) {
             throw new NoSessionException(e.getMessage());

@@ -19,7 +19,7 @@ import de.shelp.ksoap2.entities.Location;
 public class StateServiceImpl {
 
 
-    private static final String URL = ServiceUtils.URL + "/StateIntegration";
+    private static final String URL = ServiceUtils.URL + "StateIntegration";
 
     /**
      * TAG contains the class name and is used for logging.

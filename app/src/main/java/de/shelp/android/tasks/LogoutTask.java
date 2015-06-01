@@ -7,7 +7,7 @@ import android.widget.Toast;
 
 import de.shelp.ksoap2.exceptions.NoSessionException;
 import de.shelp.android.MainActivity;
-import de.shelp.android.applications.SessionApplication;
+import de.shelp.android.applications.ShelpApplication;
 
 
 /**
@@ -16,9 +16,9 @@ import de.shelp.android.applications.SessionApplication;
 public class LogoutTask extends AsyncTask<Void, Integer, Boolean>  {
 
     private Context context;
-    private SessionApplication myApp;
+    private ShelpApplication myApp;
 
-    public LogoutTask(Context context, SessionApplication myApp) {
+    public LogoutTask(Context context, ShelpApplication myApp) {
         this.context = context;
         this.myApp = myApp;
     }

@@ -1,23 +1,30 @@
 package de.shelp.android;
 
+import android.content.Context;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import org.ksoap2.SoapFault;
+
 import de.fh_muenster.shelpapp.R;
-import de.shelp.android.applications.SessionApplication;
+import de.shelp.android.applications.ShelpApplication;
 import de.shelp.android.tasks.LogoutTask;
 
 public class ShelpActivity extends ActionBarActivity {
+
+    private ShelpActivity thisActivity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shelp_activity);
 
+        thisActivity = this;
 
     }
 
@@ -46,14 +53,15 @@ public class ShelpActivity extends ActionBarActivity {
 
     //Wechsel zur CreateTourActivity
     public void create(View view) {
-        Intent i = new Intent(this, CreateTourActivity.class);
-        startActivity(i);
+        CreateTask createTask = new CreateTask(view.getContext());
+        createTask.execute();
     }
 
     //Wechsel zur SearchTourActivity
     public void search(View view) {
         Intent i = new Intent(this, SearchTourActivity.class);
-        startActivity(i);}
+        startActivity(i);
+    }
 
     //Wechsel zur ShowOwnRequestActivity
     public void request(View view) {
@@ -74,10 +82,41 @@ public class ShelpActivity extends ActionBarActivity {
     }
 
 
-        public void logout(View ausloeser) {
-            //Logout asynchron ausfuehren:
-            LogoutTask logoutTask = new LogoutTask(ausloeser.getContext(),(SessionApplication) getApplication());
-            logoutTask.execute();
-        }
+    public void logout(View ausloeser) {
+        //Logout asynchron ausfuehren:
+        LogoutTask logoutTask = new LogoutTask(ausloeser.getContext(), (ShelpApplication) getApplication());
+        logoutTask.execute();
     }
 
+
+    private class CreateTask extends AsyncTask<Object, Object, Object> {
+        private Context context;
+
+        //Dem Konstruktor der Klasse wird der aktuelle Kontext der Activity übergeben
+        //damit auf die UI-Elemente zugegriffen werden kann und Intents gestartet werden können, usw.
+        public CreateTask(Context context) {
+            this.context = context;
+        }
+
+        @Override
+        protected Object doInBackground(Object... params) {
+            try {
+                ShelpApplication app = (ShelpApplication) getApplication();
+                if (app.getAllLists() == null) {
+                    app.setAllLists(app.getShelpAppService().getLists());
+                }
+            } catch (SoapFault ex) {
+                //TODO errorhandling
+            }
+            return null;
+        }
+
+        protected void onProgessUpdate(Object... values) {
+        }
+
+        protected void onPostExecute(Object result) {
+            Intent i = new Intent(thisActivity, CreateTourActivity.class);
+            startActivity(i);
+        }
+    }
+}

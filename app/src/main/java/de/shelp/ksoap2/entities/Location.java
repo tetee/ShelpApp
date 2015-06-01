@@ -41,4 +41,7 @@ public class Location {
         this.zipcode = zipcode;
     }
 
+    public String toString() {
+        return description;
+    }
 }

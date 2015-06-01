@@ -15,7 +15,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 import de.fh_muenster.shelpapp.R;
-import de.shelp.android.applications.SessionApplication;
+import de.shelp.android.applications.ShelpApplication;
 import de.shelp.ksoap2.exceptions.InvalidRegistrationException;
 import de.shelp.ksoap2.entities.ShelpSession;
 
@@ -89,7 +89,7 @@ public class RegActivity extends ActionBarActivity {
                 return null;
             String eMail = params[0];
             String hash = params[1];
-            SessionApplication myApp = (SessionApplication) getApplication();
+            ShelpApplication myApp = (ShelpApplication) getApplication();
             try {
                return myApp.getUserService().registration(eMail, hash);
             } catch (InvalidRegistrationException e) {
@@ -104,7 +104,7 @@ public class RegActivity extends ActionBarActivity {
         protected void onPostExecute(ShelpSession result) {
             if (result != null) {
                 //erfolgreich eingeloggt
-                SessionApplication myApp = (SessionApplication) getApplication();
+                ShelpApplication myApp = (ShelpApplication) getApplication();
                 myApp.setSession(result);
 
                 //Toast anzeigen

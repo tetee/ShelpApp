@@ -3,7 +3,7 @@ package de.shelp.ksoap2.services;
 import java.util.Calendar;
 import java.util.List;
 
-import de.shelp.android.applications.SessionApplication;
+import de.shelp.android.applications.ShelpApplication;
 import de.shelp.ksoap2.entities.ApprovalStatus;
 import de.shelp.ksoap2.entities.Capacity;
 import de.shelp.ksoap2.entities.DeliveryCondition;
@@ -27,7 +27,7 @@ public interface UserService {
     //Methoden User Klasse
     public ShelpSession login(String userName, String hash) throws InvalidLoginException;
 
-    public void logout(SessionApplication sessionApplication) throws NoSessionException;
+    public void logout(ShelpApplication shelpApplication) throws NoSessionException;
 
     public ShelpSession registration(String eMail, String hash) throws InvalidRegistrationException;
 
