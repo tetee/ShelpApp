@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * Created by Jos-Laptop on 31.05.2015.
  */
-public class ServiceSupporter {
+public class ServiceUtils {
 
     /**
      * Namespace is the targetNamespace in the WSDL.
@@ -26,14 +26,14 @@ public class ServiceSupporter {
      * the web service is hosted on the localhost server. Specify hostname as the IP address of the
      * server hosting the web service (or "10.0.2.15 instead of 'localhost' when running in the emulator).
      */
-    public static final String URL = "http://192.168.178.161:8080/shelp/";
+    public static final String URL = "http://10.70.50.172:8080/shelp/";
 
     /**
      * Diese Methode delegiert einen Methodenaufruf an den hinterlegten WebService.
      * @param methodName
      * @return
      */
-    public static SoapObject executeSoapAction(String methodName, Object... args) throws SoapFault {
+    public static SoapObject executeSoapAction(String methodName, String url, Object... args) throws SoapFault {
 
         Object result = null;
 
@@ -59,7 +59,7 @@ public class ServiceSupporter {
 	    /* Create a org.ksoap2.transport.HttpTransportSE object that represents a J2SE based HttpTransport layer. HttpTransportSE extends
 	     * the org.ksoap2.transport.Transport class, which encapsulates the serialization and deserialization of SOAP messages.
 	     */
-        HttpTransportSE androidHttpTransport = new HttpTransportSE(URL);
+        HttpTransportSE androidHttpTransport = new HttpTransportSE(url);
 
         try {
 	        /* Make the soap call using the SOAP_ACTION and the soap envelop. */

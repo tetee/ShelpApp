@@ -3,6 +3,7 @@ package de.shelp.android;
 import java.util.Calendar;
 import java.util.List;
 
+import de.shelp.android.applications.SessionApplication;
 import de.shelp.ksoap2.entities.ApprovalStatus;
 import de.shelp.ksoap2.entities.Capacity;
 import de.shelp.ksoap2.entities.DeliveryCondition;
@@ -39,7 +40,7 @@ public class UserServiceImplMock implements UserService {
     }
 
     @Override
-    public void logout() { this.user = null; }
+    public void logout(SessionApplication s) { this.user = null; }
 
     @Override
     public Tour newTour(long id, ApprovalStatus approval, Location location,Capacity capacity, PaymentCondition payCondition, DeliveryCondition delCondition, Calendar date, List<Request> request, User owner,Calendar updatedOn, TourStatus status) throws InvalidTourException{
