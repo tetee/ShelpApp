@@ -14,6 +14,7 @@ import de.fh_muenster.shelpapp.R;
 import de.shelp.android.applications.ShelpApplication;
 import de.shelp.ksoap2.entities.AllLists;
 import de.shelp.ksoap2.entities.Capacity;
+import de.shelp.ksoap2.entities.Location;
 
 public class SearchTourActivity extends ActionBarActivity {
 
@@ -84,15 +85,9 @@ public class SearchTourActivity extends ActionBarActivity {
 
     public void addItemsOnSpinner(){
          //Daten anhand der Spinner ID holen und in Variable speichern
+        //Daten der Spinner mit Enumeration Werten auffüllen
         Spinner spinnerCity = (Spinner) findViewById(R.id.citySpinner);
-        //Erstellen eines ArrayAdapters/ String Array und standard Layout des Spinners wird genutzt
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
-                R.array.citySpinner, android.R.layout.simple_spinner_item);
-
-        //Anzeigewert f�r das Dropdown Feld definieren
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        //Werte in das Dropdown laden
-        spinnerCity.setAdapter(adapter);
+        spinnerCity.setAdapter(new ArrayAdapter<Location>(this, android.R.layout.simple_spinner_item, allLists.getLocations()));
 
         //Daten der Spinner mit Enumeration Werten auffüllen
         Spinner cap = (Spinner) findViewById(R.id.capacitySpinner);

@@ -53,14 +53,14 @@ public class ShelpActivity extends ActionBarActivity {
 
     //Wechsel zur CreateTourActivity
     public void create(View view) {
-        CreateTask createTask = new CreateTask(view.getContext());
+        CreateTask createTask = new CreateTask(view.getContext(), CreateTourActivity.class);
         createTask.execute();
     }
 
     //Wechsel zur SearchTourActivity
     public void search(View view) {
-        Intent i = new Intent(this, SearchTourActivity.class);
-        startActivity(i);
+        CreateTask createTask = new CreateTask(view.getContext(), SearchTourActivity.class);
+        createTask.execute();
     }
 
     //Wechsel zur ShowOwnRequestActivity
@@ -91,9 +91,11 @@ public class ShelpActivity extends ActionBarActivity {
 
     private class CreateTask extends AsyncTask<Object, Object, Object> {
         private Context context;
+        private Class nextActivity;
 
-        public CreateTask(Context context) {
+        public CreateTask(Context context, Class nextActivity) {
             this.context = context;
+            this.nextActivity = nextActivity;
         }
 
         @Override
@@ -113,7 +115,7 @@ public class ShelpActivity extends ActionBarActivity {
         }
 
         protected void onPostExecute(Object result) {
-            Intent i = new Intent(thisActivity, CreateTourActivity.class);
+            Intent i = new Intent(thisActivity, nextActivity);
             startActivity(i);
         }
     }
