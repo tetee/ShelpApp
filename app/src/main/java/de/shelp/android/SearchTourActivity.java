@@ -10,14 +10,20 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import org.ksoap2.SoapFault;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import de.fh_muenster.shelpapp.R;
 import de.shelp.android.applications.ShelpApplication;
+import de.shelp.android.tasks.SearchTask;
 import de.shelp.ksoap2.entities.AllLists;
 import de.shelp.ksoap2.entities.ApprovalStatus;
 import de.shelp.ksoap2.entities.Capacity;
@@ -73,18 +79,39 @@ public class SearchTourActivity extends ActionBarActivity {
     }
 
     public void search(View view){
+        int approvalStatus = ((int)((Spinner) findViewById(R.id.enablingSpinner)).getSelectedItemId());
+        long location =((long)((Spinner) findViewById(R.id.citySpinner)).getSelectedItemId());
+        int capacity= ((int) ((Spinner) findViewById(R.id.capacitySpinner)).getSelectedItem());
 
-        Tour tour = new Tour();
-        tour.getLocation();
-            tour.setApprovalStatus((ApprovalStatus) ((Spinner) findViewById(R.id.enablingSpinner)).getSelectedItem());
-            tour.setCapacity((Capacity) ((Spinner) findViewById(R.id.capacitySpinner)).getSelectedItem());
-            tour.setDeliveryConditions((DeliveryCondition)((Spinner) findViewById(R.id.delSpinner)).getSelectedItem());
-            tour.setPaymentConditions((PaymentCondition)((Spinner) findViewById(R.id.paySpinner)).getSelectedItem());
-            tour.setTime(new Date());
+        boolean directSearch =((boolean) ((CheckBox) findViewById(R.id.checkBox)).isChecked());
+
+        EditText newDateStart = (EditText) findViewById(R.id.dateCreateStart);
+        EditText newTimeStart = (EditText) findViewById(R.id.timeCreateStart);
+        String txtDateStart = newDateStart.getText().toString();
+        String txtTimeStart = newTimeStart.getText().toString();
+
+        EditText newDateEnd = (EditText) findViewById(R.id.dateCreateEnd);
+        EditText newTimeEnd = (EditText) findViewById(R.id.timeCreateEnd);
+        String txtDateEnd = newDateEnd.getText().toString();
+        String txtTimeEnd = newTimeEnd.getText().toString();
+        try {
+            SimpleDateFormat output = new SimpleDateFormat("dd.MM.yyyy hh:mm");
+            //System.out.println(txtDate + " " + txtTime);
+            Date date = output.parse(txtDateStart + " " + txtTimeStart);
+
+        } catch (ParseException ex) {
+            ex.printStackTrace();
+            Toast.makeText(getApplicationContext(), "Falsches Format!", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        //TODO!
+        long timeStart = 123L;
+        long timeEnd = 456L;
 
             ShelpApplication application = (ShelpApplication) getApplication();
 
-            SearchTask searchTask = new SearchTask(view.getContext(), tour, application.getSession().getId());
+
+            SearchTask searchTask = new SearchTask(view.getContext(),approvalStatus, location, capacity, timeStart, timeEnd, directSearch, application.getSession().getId(), this);
             searchTask.execute();
 
         //Button suchen
@@ -114,46 +141,13 @@ public class SearchTourActivity extends ActionBarActivity {
         Spinner spinnerCity = (Spinner) findViewById(R.id.citySpinner);
         spinnerCity.setAdapter(new ArrayAdapter<Location>(this, android.R.layout.simple_spinner_item, allLists.getLocations()));
 
+        Spinner approvalStatus = (Spinner) findViewById(R.id.enablingSpinner);
+        approvalStatus.setAdapter(new ArrayAdapter<ApprovalStatus>(this, android.R.layout.simple_spinner_item, allLists.getStates()));
+
         //Daten der Spinner mit Enumeration Werten auffüllen
         Spinner cap = (Spinner) findViewById(R.id.capacitySpinner);
         cap.setAdapter(new ArrayAdapter<Capacity>(this, android.R.layout.simple_spinner_item, allLists.getCapacities()));
 
-    }
-
-    private class SearchTask extends AsyncTask<Object, Integer, String>
-    {
-        private Context context;
-        private Tour  tour;
-        private int sessionId;
-        //Dem Konstruktor der Klasse wird der aktuelle Kontext der Activity übergeben
-        //damit auf die UI-Elemente zugegriffen werden kann und Intents gestartet werden können, usw.
-        public SearchTask(Context context, Tour tour, int sessionId)
-        {
-            this.tour = tour;
-            this.sessionId = sessionId;
-            this.context = context;
-        }
-
-        @Override
-        protected String doInBackground(Object... params){
-            ShelpApplication myApp = (ShelpApplication) getApplication();
-            try {
-                return myApp.getTourService().searchTour(tour, sessionId);
-            } catch (SoapFault e) {
-                //TODO errorhandling
-                e.printStackTrace();
-            }
-            return "";
-        }
-
-        protected void onProgessUpdate(Integer... values)
-        { }
-
-        protected void onPostExecute(String result)
-        {
-            String r = result;
-            String t = result;
-        }
     }
 
 }
