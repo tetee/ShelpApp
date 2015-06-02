@@ -19,13 +19,12 @@ public class Tour implements KvmSerializable {
     private Capacity capacity;
     private PaymentCondition paymentConditions;
     private DeliveryCondition deliveryConditions;
-    private Long time;
+    private long time;
     private List<Request> request;
     private User owner;
-    private Date updatedOn;
     private TourStatus status;
 
-    public Tour(long id, ApprovalStatus approval, Location location,Capacity capacity, PaymentCondition payCondition, DeliveryCondition delCondition, Long date, List<Request> request, User owner,Date updatedOn, TourStatus status){
+    public Tour(long id, ApprovalStatus approval, Location location,Capacity capacity, PaymentCondition payCondition, DeliveryCondition delCondition, Long date, List<Request> request, User owner, TourStatus status){
         this.id = id;
         this.approvalStatus=approval;
         this.location = location;
@@ -35,7 +34,6 @@ public class Tour implements KvmSerializable {
         this.time=date;
         this.request= request;
         this.owner=owner;
-        this.updatedOn=updatedOn;
         this.status=status;
     }
     public Tour(){
@@ -106,14 +104,6 @@ public class Tour implements KvmSerializable {
         this.owner = owner;
     }
 
-    public Date getUpdatedOn() {
-        return updatedOn;
-    }
-
-    public void setUpdatedOn(Date updatedOn) {
-        this.updatedOn = updatedOn;
-    }
-
     public List<Request> getRequest() {
         return request;
     }
@@ -131,7 +121,7 @@ public class Tour implements KvmSerializable {
     }
 
     public boolean isValid() {
-        return approvalStatus != null && location != null && capacity != null && paymentConditions != null && deliveryConditions != null && time != null;
+        return approvalStatus != null && location != null && capacity != null && paymentConditions != null && deliveryConditions != null;
     }
 
     @Override
