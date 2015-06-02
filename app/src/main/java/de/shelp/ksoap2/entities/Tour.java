@@ -1,23 +1,30 @@
 package de.shelp.ksoap2.entities;
 
+import org.ksoap2.serialization.KvmSerializable;
+import org.ksoap2.serialization.PropertyInfo;
+
+import java.io.Serializable;
 import java.util.Calendar;
+import java.util.Hashtable;
 import java.util.List;
 
-public class Tour {
+public class Tour implements KvmSerializable {
+
+    private static final long serialVersionUID = 4333669660990735973L;
 
     private long id;
-    private ApprovalStatus approvalStatus;
+    private String approvalStatus;
     private Location location;
-    private Capacity capacity;
-    private PaymentCondition paymentConditions;
-    private DeliveryCondition deliveryConditions;
+    private String capacity;
+    private String paymentConditions;
+    private String deliveryConditions;
     private Calendar time;
     private List<Request> request;
     private User owner;
     private Calendar updatedOn;
     private TourStatus status;
 
-    public Tour(long id, ApprovalStatus approval, Location location,Capacity capacity, PaymentCondition payCondition, DeliveryCondition delCondition, Calendar date, List<Request> request, User owner,Calendar updatedOn, TourStatus status){
+    public Tour(long id, String approval, Location location,String capacity, String payCondition, String delCondition, Calendar date, List<Request> request, User owner,Calendar updatedOn, TourStatus status){
         this.id = id;
         this.approvalStatus=approval;
         this.location = location;
@@ -42,11 +49,11 @@ public class Tour {
         this.id = id;
     }
 
-    public ApprovalStatus getApprovalStatus() {
+    public String getApprovalStatus() {
         return approvalStatus;
     }
 
-    public void setApprovalStatus(ApprovalStatus approvalStatus) {
+    public void setApprovalStatus(String approvalStatus) {
         this.approvalStatus = approvalStatus;
     }
 
@@ -58,27 +65,27 @@ public class Tour {
         this.location = location;
     }
 
-    public Capacity getCapacity() {
+    public String getCapacity() {
         return capacity;
     }
 
-    public void setCapacity(Capacity capacity) {
+    public void setCapacity(String capacity) {
         this.capacity = capacity;
     }
 
-    public PaymentCondition getPaymentConditions() {
+    public String getPaymentConditions() {
         return paymentConditions;
     }
 
-    public void setPaymentConditions(PaymentCondition paymentConditions) {
+    public void setPaymentConditions(String paymentConditions) {
         this.paymentConditions = paymentConditions;
     }
 
-    public DeliveryCondition getDeliveryConditions() {
+    public String getDeliveryConditions() {
         return deliveryConditions;
     }
 
-    public void setDeliveryConditions(DeliveryCondition deliveryConditions) {
+    public void setDeliveryConditions(String deliveryConditions) {
         this.deliveryConditions = deliveryConditions;
     }
 
@@ -126,4 +133,38 @@ public class Tour {
         return approvalStatus != null && location != null && capacity != null && paymentConditions != null && deliveryConditions != null && time != null;
     }
 
+    @Override
+    public Object getProperty(int arg0) {
+        // TODO Auto-generated method stub
+        return this;
+    }
+
+    @Override
+    public int getPropertyCount() {
+        // TODO Auto-generated method stub
+        return 1;
+    }
+
+    @Override
+    public void getPropertyInfo(int arg0, Hashtable arg1, PropertyInfo arg2) {
+        // TODO Auto-generated method stub
+        arg2.name = "string";
+        arg2.type = PropertyInfo.STRING_CLASS;
+    }
+
+    @Override
+    public void setProperty(int arg0, Object arg1) {
+        // TODO Auto-generated method stub
+
+    }
+
+    @Override
+    public String getInnerText() {
+        return null;
+    }
+
+    @Override
+    public void setInnerText(String s) {
+
+    }
 }

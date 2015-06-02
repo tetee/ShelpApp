@@ -92,8 +92,6 @@ public class ShelpActivity extends ActionBarActivity {
     private class CreateTask extends AsyncTask<Object, Object, Object> {
         private Context context;
 
-        //Dem Konstruktor der Klasse wird der aktuelle Kontext der Activity übergeben
-        //damit auf die UI-Elemente zugegriffen werden kann und Intents gestartet werden können, usw.
         public CreateTask(Context context) {
             this.context = context;
         }

@@ -8,14 +8,14 @@ import java.util.List;
  */
 public class AllLists {
 
-    private List<String> capacities;
-    private List<String> deliveryConditions;
-    private List<String> paymentConditions;
-    private List<String> states;
+    private List<Capacity> capacities;
+    private List<DeliveryCondition> deliveryConditions;
+    private List<PaymentCondition> paymentConditions;
+    private List<ApprovalStatus> states;
     private List<Location> locations;
 
-    public AllLists(List<String> capacities, List<String> deliveryConditions,
-                    List<String> paymentConditions, List<String> states, List<Location> locations){
+    public AllLists(List<Capacity> capacities, List<DeliveryCondition> deliveryConditions,
+                    List<PaymentCondition> paymentConditions, List<ApprovalStatus> states, List<Location> locations){
         this.capacities = capacities;
         this.deliveryConditions = deliveryConditions;
         this.paymentConditions = paymentConditions;
@@ -23,11 +23,11 @@ public class AllLists {
         this.locations = locations;
     }
 
-    public List<String> getCapacities(){
+    public List<Capacity> getCapacities(){
         return this.capacities;
     }
 
-    public List<String> getStates() {
+    public List<ApprovalStatus> getStates() {
         return states;
     }
 
@@ -35,11 +35,11 @@ public class AllLists {
         return locations;
     }
 
-    public List<String> getPaymentConditions() {
+    public List<PaymentCondition> getPaymentConditions() {
         return paymentConditions;
     }
 
-    public List<String> getDeliveryConditions() {
+    public List<DeliveryCondition> getDeliveryConditions() {
         return deliveryConditions;
     }
 }

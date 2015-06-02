@@ -67,8 +67,8 @@ public class ServiceUtils {
 
             @SuppressWarnings({"unused", "unchecked"})
             //List<HeaderProperty> respHeaders = androidHttpTransport.call(NAMESPACE + methodName, envelope, reqHeaders);
-                    //fuehrt zu CXF-Fehler! neue Version ohne SOAP-Action funktioniert:
-                    List<HeaderProperty> respHeaders = androidHttpTransport.call("", envelope, reqHeaders);
+            //fuehrt zu CXF-Fehler! neue Version ohne SOAP-Action funktioniert:
+            List<HeaderProperty> respHeaders = androidHttpTransport.call("", envelope, reqHeaders);
 
 	        /* Get the web service response using the getResponse method of the SoapSerializationEnvelope object.
 	         * The result has to be cast to SoapPrimitive, the class used to encapsulate primitive types, or to SoapObject.

@@ -11,11 +11,13 @@ import android.widget.Button;
 import android.widget.Spinner;
 
 import de.fh_muenster.shelpapp.R;
+import de.shelp.android.applications.ShelpApplication;
+import de.shelp.ksoap2.entities.AllLists;
 import de.shelp.ksoap2.entities.Capacity;
 
 public class SearchTourActivity extends ActionBarActivity {
 
-
+    private AllLists allLists;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +30,9 @@ public class SearchTourActivity extends ActionBarActivity {
         //Button unsichtbar machen
         detailsButton.setVisibility(View.INVISIBLE);
         ratingButton.setVisibility(View.INVISIBLE);
+
+        ShelpApplication shelpApplication = (ShelpApplication) getApplication();
+        allLists = shelpApplication.getAllLists();
 
         //Aufruf der addItemsOnSpinner Methode
         addItemsOnSpinner();
@@ -91,7 +96,7 @@ public class SearchTourActivity extends ActionBarActivity {
 
         //Daten der Spinner mit Enumeration Werten auffüllen
         Spinner cap = (Spinner) findViewById(R.id.capacitySpinner);
-        cap.setAdapter(new ArrayAdapter<Capacity>(this, android.R.layout.simple_spinner_item, Capacity.values()));
+        cap.setAdapter(new ArrayAdapter<Capacity>(this, android.R.layout.simple_spinner_item, allLists.getCapacities()));
 
     }
 }

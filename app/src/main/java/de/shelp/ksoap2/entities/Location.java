@@ -1,7 +1,9 @@
 package de.shelp.ksoap2.entities;
 
 
-public class Location {
+import java.io.Serializable;
+
+public class Location implements Serializable{
 
     private long id;
     private String description;

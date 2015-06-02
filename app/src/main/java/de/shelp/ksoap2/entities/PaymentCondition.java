@@ -1,8 +1,38 @@
 package de.shelp.ksoap2.entities;
 
-/**
- * Created by user on 12.05.15.
- */
-public enum PaymentCondition {
-    BAR
+
+public class PaymentCondition {
+
+    private int id;
+    private String description;
+
+    public PaymentCondition() {
+    }
+
+    public PaymentCondition(int id, String description) {
+	    super();
+        this.id = id;
+	    this.description = description;
+    }
+
+    public int getId() {
+	return id;
+    }
+
+    public void setId(int id) {
+	this.id = id;
+    }
+
+    public String getDescription() {
+	return description;
+    }
+
+    public void setDescription(String description) {
+	this.description = description;
+    }
+
+    @Override
+    public String toString() {
+        return description;
+    }
 }

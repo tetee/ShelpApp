@@ -7,8 +7,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import de.shelp.ksoap2.entities.AllLists;
+import de.shelp.ksoap2.entities.ApprovalStatus;
+import de.shelp.ksoap2.entities.Capacity;
+import de.shelp.ksoap2.entities.DeliveryCondition;
 import de.shelp.ksoap2.entities.Location;
+import de.shelp.ksoap2.entities.PaymentCondition;
 import de.shelp.ksoap2.entities.ShelpSession;
+import de.shelp.ksoap2.entities.Tour;
 import de.shelp.ksoap2.entities.User;
 
 /**
@@ -41,23 +46,31 @@ public class SoapAssembler {
     }
 
     public AllLists soapToAllLists(SoapObject response) {
-        List<String> capacities = new ArrayList<String>();
-        List<String> deliveryConditions = new ArrayList<String>();
-        List<String> paymentConditions = new ArrayList<String>();
-        List<String> states = new ArrayList<String>();
+        List<Capacity> capacities = new ArrayList<Capacity>();
+        List<DeliveryCondition> deliveryConditions = new ArrayList<DeliveryCondition>();
+        List<PaymentCondition> paymentConditions = new ArrayList<PaymentCondition>();
+        List<ApprovalStatus> states = new ArrayList<ApprovalStatus>();
         List<Location> locations = new ArrayList<Location>();
 
         for (int i = 0; i < response.getPropertyCount(); i++) {
             PropertyInfo info = new PropertyInfo();
             response.getPropertyInfo(i, info);
             if("capacities".equals(info.getName())) {
-                capacities.add(response.getPropertyAsString(i));
+                SoapObject responseChild = (SoapObject) response.getProperty(i);
+                capacities.add(new Capacity(Integer.valueOf(responseChild.getPrimitivePropertyAsString("id")),
+                        responseChild.getPrimitivePropertyAsString("description")));
             } else if("deliveryConditions".equals(info.getName())) {
-                deliveryConditions.add(response.getPropertyAsString(i));
+                SoapObject responseChild = (SoapObject) response.getProperty(i);
+                deliveryConditions.add(new DeliveryCondition(Integer.valueOf(responseChild.getPrimitivePropertyAsString("id")),
+                        responseChild.getPrimitivePropertyAsString("description")));
             }else if("paymentConditions".equals(info.getName())) {
-                paymentConditions.add(response.getPropertyAsString(i));
+                SoapObject responseChild = (SoapObject) response.getProperty(i);
+                paymentConditions.add(new PaymentCondition(Integer.valueOf(responseChild.getPrimitivePropertyAsString("id")),
+                        responseChild.getPrimitivePropertyAsString("description")));
             }else if("states".equals(info.getName())) {
-                states.add(response.getPropertyAsString(i));
+                SoapObject responseChild = (SoapObject) response.getProperty(i);
+                states.add(new ApprovalStatus(Integer.valueOf(responseChild.getPrimitivePropertyAsString("id")),
+                        responseChild.getPrimitivePropertyAsString("description")));
             } else if("locations".equals(info.getName())) {
                 SoapObject responseChild = (SoapObject) response.getProperty(i);
                 locations.add(new Location(Integer.valueOf(responseChild.getPrimitivePropertyAsString("id")),
@@ -68,4 +81,5 @@ public class SoapAssembler {
 
         return new AllLists(capacities,deliveryConditions,paymentConditions,states,locations);
     }
+
 }
