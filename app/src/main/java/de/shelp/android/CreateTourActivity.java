@@ -13,6 +13,7 @@ import android.widget.ArrayAdapter;
 
 import org.ksoap2.SoapFault;
 
+import java.util.Date;
 import java.util.GregorianCalendar;
 
 import de.fh_muenster.shelpapp.R;
@@ -95,7 +96,7 @@ public class CreateTourActivity extends ActionBarActivity {
         tour.setCapacity((Capacity) ((Spinner) findViewById(R.id.capacitySpinner)).getSelectedItem());
         tour.setDeliveryConditions((DeliveryCondition)((Spinner) findViewById(R.id.delSpinner)).getSelectedItem());
         tour.setPaymentConditions((PaymentCondition)((Spinner) findViewById(R.id.paySpinner)).getSelectedItem());
-        tour.setTime(new GregorianCalendar());
+        tour.setTime(new Date());
 
         ShelpApplication application = (ShelpApplication) getApplication();
 

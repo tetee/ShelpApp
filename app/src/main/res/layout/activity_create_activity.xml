@@ -106,6 +106,25 @@
             android:layout_alignParentStart="true"
             android:layout_below="@id/date"/>
 
+        <TextView android:text="@string/time"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/time"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/dateCreate"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="time"
+            android:ems="10"
+            android:id="@+id/timeCreate"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@id/time"/>
+
     <TextView android:text="@string/enabling"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:layout_width="match_parent"
@@ -113,7 +132,7 @@
         android:id="@+id/enabling"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/dateCreate"/>
+        android:layout_below="@+id/timeCreate"/>
     <Spinner
         android:id="@+id/enablingSpinner"
         android:layout_width="match_parent"
@@ -121,7 +140,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/enabling"
-        android:layout_marginBottom="10dp"/>
+        android:layout_marginBottom="10dp" />
 
     <!--<TextView android:text="@string/sonstiges"
         android:textAppearance="?android:attr/textAppearanceLarge"

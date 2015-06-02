@@ -5,6 +5,7 @@ import org.ksoap2.serialization.PropertyInfo;
 
 import java.io.Serializable;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.Hashtable;
 import java.util.List;
 
@@ -18,13 +19,13 @@ public class Tour implements KvmSerializable {
     private Capacity capacity;
     private PaymentCondition paymentConditions;
     private DeliveryCondition deliveryConditions;
-    private Calendar time;
+    private Date time;
     private List<Request> request;
     private User owner;
-    private Calendar updatedOn;
+    private Date updatedOn;
     private TourStatus status;
 
-    public Tour(long id, ApprovalStatus approval, Location location,Capacity capacity, PaymentCondition payCondition, DeliveryCondition delCondition, Calendar date, List<Request> request, User owner,Calendar updatedOn, TourStatus status){
+    public Tour(long id, ApprovalStatus approval, Location location,Capacity capacity, PaymentCondition payCondition, DeliveryCondition delCondition, Date date, List<Request> request, User owner,Date updatedOn, TourStatus status){
         this.id = id;
         this.approvalStatus=approval;
         this.location = location;
@@ -89,11 +90,11 @@ public class Tour implements KvmSerializable {
         this.deliveryConditions = deliveryConditions;
     }
 
-    public Calendar getTime() {
+    public Date getTime() {
         return time;
     }
 
-    public void setTime(Calendar time) {
+    public void setTime(Date time) {
         this.time = time;
     }
 
@@ -105,11 +106,11 @@ public class Tour implements KvmSerializable {
         this.owner = owner;
     }
 
-    public Calendar getUpdatedOn() {
+    public Date getUpdatedOn() {
         return updatedOn;
     }
 
-    public void setUpdatedOn(Calendar updatedOn) {
+    public void setUpdatedOn(Date updatedOn) {
         this.updatedOn = updatedOn;
     }
 

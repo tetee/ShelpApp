@@ -33,7 +33,8 @@
     <string name="capacity">Kapazität</string>
     <string name="paymentTerms">Zahlungsbedingungen</string>
     <string name="deliveryTerms">Lieferbedingungen</string>
-    <string name="date">Zeitpunkt</string>
+    <string name="time">Uhrzeit</string>
+    <string name="date">Datum</string>
     <string name="range">Reichweite</string>
     <string name="enabling">Freigabe</string>
     <string name="sonstiges">weitere Infos...</string>
