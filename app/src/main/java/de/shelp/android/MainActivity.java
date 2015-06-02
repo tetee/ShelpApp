@@ -1,9 +1,7 @@
 package de.shelp.android;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.AsyncTask;
 import android.preference.PreferenceManager;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -17,9 +15,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 import de.fh_muenster.shelpapp.R;
-import de.shelp.android.applications.ShelpApplication;
-import de.shelp.ksoap2.exceptions.InvalidLoginException;
-import de.shelp.ksoap2.entities.ShelpSession;
+import de.shelp.android.tasks.LoginTask;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -89,7 +85,7 @@ public class MainActivity extends ActionBarActivity {
         //Prüfung ob Benutzer und Passwort ausgefüllt sind/ Passwort wird anhand des Hash-Wertes verglichen
         if ((usern != null && userp != null)) {
                 //LoginTask erstellen
-                LoginTask loginTask = new LoginTask(loginView.getContext());
+                LoginTask loginTask = new LoginTask(loginView.getContext(), this);
                 //LoginTask ausführen
                 loginTask.execute(usern, this.result);
             } else {
@@ -118,58 +114,6 @@ public class MainActivity extends ActionBarActivity {
             this.result = MD5Hash.toString();
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
-        }
-    }
-
-    private class LoginTask extends AsyncTask<String, Integer, ShelpSession> {
-        private Context context;
-
-        //Dem Konstruktor der Klasse wird der aktuelle Kontext der Activity übergeben
-        //damit auf die UI-Elemente zugegriffen werden kann und Intents gestartet werden können, usw.
-        public LoginTask(Context context) {
-            this.context = context;
-        }
-
-        @Override
-        protected ShelpSession doInBackground(String... params) {
-            if (params.length != 2)
-                return null;
-            String username = params[0];
-            String hash = params[1];
-            ShelpApplication myApp = (ShelpApplication) getApplication();
-            try {
-               return myApp.getUserService().login(username, hash);
-            } catch (InvalidLoginException e) {
-                e.printStackTrace();
-            }
-            return null;
-        }
-
-        protected void onProgessUpdate(Integer... values) {
-        }
-
-        protected void onPostExecute(ShelpSession result) {
-            if (result != null) {
-                //erfolgreich eingeloggt
-                ShelpApplication myApp = (ShelpApplication) getApplication();
-                myApp.setSession(result);
-
-                //Toast anzeigen
-                CharSequence text = "Login erfolgreich! Angemeldeter Benutzername: " + result.getUser();
-                int duration = Toast.LENGTH_SHORT;
-                Toast toast = Toast.makeText(context, text, duration);
-                toast.show();
-
-                //Nächste Activity anzeigen
-                Intent i = new Intent(context, ShelpActivity.class);
-                startActivity(i);
-            } else {
-                //Toast anzeigen
-                CharSequence text = "Login fehlgeschlagen!";
-                int duration = Toast.LENGTH_SHORT;
-                Toast toast = Toast.makeText(context, text, duration);
-                toast.show();
-            }
         }
     }
 }

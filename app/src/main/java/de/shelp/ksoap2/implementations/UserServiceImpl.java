@@ -53,9 +53,7 @@ public class UserServiceImpl implements UserService {
            // response = ServiceUtils.executeSoapAction("getAllLists", URL2);
             Log.d(TAG, response.toString());
             String login = (response.getPrimitivePropertySafelyAsString("returnCode"));
-            if(login.equals(ReturnCode.ERROR.toString())) {
-               throw new InvalidLoginException("Login invalid!");
-            }
+
 
             return SoapAssembler.getInstance().soapToSession(response);
         } catch (SoapFault e) {
