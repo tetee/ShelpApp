@@ -2,6 +2,7 @@ package de.shelp.ksoap2;
 
 import org.ksoap2.serialization.PropertyInfo;
 import org.ksoap2.serialization.SoapObject;
+import org.ksoap2.serialization.SoapPrimitive;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,8 +13,10 @@ import de.shelp.ksoap2.entities.Capacity;
 import de.shelp.ksoap2.entities.DeliveryCondition;
 import de.shelp.ksoap2.entities.Location;
 import de.shelp.ksoap2.entities.PaymentCondition;
+import de.shelp.ksoap2.entities.Request;
 import de.shelp.ksoap2.entities.ShelpSession;
 import de.shelp.ksoap2.entities.Tour;
+import de.shelp.ksoap2.entities.TourStatus;
 import de.shelp.ksoap2.entities.User;
 
 /**
@@ -43,6 +46,42 @@ public class SoapAssembler {
         ShelpSession session = new ShelpSession(Integer.parseInt(regEntry.getProperty("id").toString()), user);
 
         return session;
+    }
+
+    public Tour soapToTour(SoapObject response) {
+        //Annahme der Daten aus dem response SoapObject
+        //Freigabe
+        SoapObject approvalStatus = (SoapObject) response.getProperty("approvalStatus");
+        ApprovalStatus app = new ApprovalStatus(Integer.valueOf(approvalStatus.getPropertyAsString("id")),approvalStatus.getPropertyAsString("description"));
+        //Kapazität
+        SoapObject capacity =(SoapObject) response.getProperty("capacity");
+        Capacity cap = new Capacity(Integer.valueOf(capacity.getPropertyAsString("id")), capacity.getPropertyAsString("description"));
+        //Lieferbedingung
+        SoapObject deliveryCondition =(SoapObject) response.getProperty("deliveryCondition");
+        DeliveryCondition delCon = new DeliveryCondition(Integer.valueOf(deliveryCondition.getPropertyAsString("id")), deliveryCondition.getPropertyAsString("description"));
+        //ID
+        long id = Long.valueOf(response.getPropertyAsString("id"));
+        //Ort
+        SoapObject location =(SoapObject) response.getProperty("location");
+        Location loc = new Location(Integer.valueOf(location.getPropertyAsString("id")), location.getPropertyAsString("description"), location.getPrimitivePropertyAsString("zipcode"));
+        //Liste der Anfragen
+        //TODO SoapObject list
+        List<Request> list = null;
+        //Ersteller er Fahrt
+        SoapObject owner =(SoapObject) response.getProperty("owner");
+        User ownerTour = new User(owner.getPropertyAsString("email"));
+        //Zahlungsbedingungen
+        SoapObject paymentCondition =(SoapObject) response.getProperty("paymentCondition");
+        PaymentCondition payCon = new PaymentCondition(Integer.valueOf(paymentCondition.getPropertyAsString("id")), paymentCondition.getPropertyAsString("description"));
+        //Status der Tour
+        TourStatus status = TourStatus.valueOf(response.getPropertyAsString("status"));
+        //Datum der Tour
+        long time = Long.valueOf(response.getPropertyAsString("time"));
+
+
+        Tour tour = new Tour(id, app, loc, cap, payCon, delCon,time,list, ownerTour,  status);
+
+        return tour;
     }
 
     public AllLists soapToAllLists(SoapObject response) {

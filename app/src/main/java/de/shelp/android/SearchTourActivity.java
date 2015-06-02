@@ -24,6 +24,7 @@ import java.util.Date;
 import de.fh_muenster.shelpapp.R;
 import de.shelp.android.applications.ShelpApplication;
 import de.shelp.android.tasks.SearchTask;
+import de.shelp.ksoap2.ServiceUtils;
 import de.shelp.ksoap2.entities.AllLists;
 import de.shelp.ksoap2.entities.ApprovalStatus;
 import de.shelp.ksoap2.entities.Capacity;
@@ -79,9 +80,11 @@ public class SearchTourActivity extends ActionBarActivity {
     }
 
     public void search(View view){
-        int approvalStatus = ((int)((Spinner) findViewById(R.id.enablingSpinner)).getSelectedItemId());
-        long location =((long)((Spinner) findViewById(R.id.citySpinner)).getSelectedItemId());
-        int capacity= ((int) ((Spinner) findViewById(R.id.capacitySpinner)).getSelectedItem());
+        ApprovalStatus approvalStatus = ((ApprovalStatus)((Spinner) findViewById(R.id.enablingSpinner)).getSelectedItem());
+        Location location =((Location)((Spinner) findViewById(R.id.citySpinner)).getSelectedItem());
+        Capacity capacity= ((Capacity) ((Spinner) findViewById(R.id.capacitySpinner)).getSelectedItem());
+        long timeStart;
+        long timeEnd;
 
         boolean directSearch =((boolean) ((CheckBox) findViewById(R.id.checkBox)).isChecked());
 
@@ -95,23 +98,18 @@ public class SearchTourActivity extends ActionBarActivity {
         String txtDateEnd = newDateEnd.getText().toString();
         String txtTimeEnd = newTimeEnd.getText().toString();
         try {
-            SimpleDateFormat output = new SimpleDateFormat("dd.MM.yyyy hh:mm");
-            //System.out.println(txtDate + " " + txtTime);
-            Date date = output.parse(txtDateStart + " " + txtTimeStart);
-
+            timeStart =(ServiceUtils.formatInputToDate(txtDateStart + " " + txtTimeStart).getTime());
+            timeEnd =(ServiceUtils.formatInputToDate(txtDateEnd + " " + txtTimeEnd).getTime());
         } catch (ParseException ex) {
             ex.printStackTrace();
             Toast.makeText(getApplicationContext(), "Falsches Format!", Toast.LENGTH_SHORT).show();
             return;
         }
-        //TODO!
-        long timeStart = 123L;
-        long timeEnd = 456L;
 
             ShelpApplication application = (ShelpApplication) getApplication();
 
 
-            SearchTask searchTask = new SearchTask(view.getContext(),approvalStatus, location, capacity, timeStart, timeEnd, directSearch, application.getSession().getId(), this);
+            SearchTask searchTask = new SearchTask(view.getContext(),approvalStatus.getId(), location.getId(), capacity.getId(), timeStart, timeEnd, directSearch, application.getSession().getId(), this);
             searchTask.execute();
 
         //Button suchen

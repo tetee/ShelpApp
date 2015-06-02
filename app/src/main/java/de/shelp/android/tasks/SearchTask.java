@@ -2,11 +2,21 @@ package de.shelp.android.tasks;
 
 import android.content.Context;
 import android.os.AsyncTask;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import org.ksoap2.SoapFault;
 
+import java.util.List;
+
+import de.fh_muenster.shelpapp.R;
 import de.shelp.android.SearchTourActivity;
 import de.shelp.android.applications.ShelpApplication;
+import de.shelp.ksoap2.entities.ReturnCode;
 import de.shelp.ksoap2.entities.Tour;
 
 /**
@@ -14,7 +24,7 @@ import de.shelp.ksoap2.entities.Tour;
  */
 
 
-public class SearchTask extends AsyncTask<Object, Integer, String>
+public class SearchTask extends AsyncTask<Object, Integer, List<Tour>>
 {
     private Context context;
     private int approvalStatus;
@@ -25,6 +35,10 @@ public class SearchTask extends AsyncTask<Object, Integer, String>
     boolean directSearch;
     private int sessionId;
     private static SearchTourActivity activity;
+
+
+    private int lastEditText = R.id.ratingButton;
+    private int idEditText = 1;
     //Dem Konstruktor der Klasse wird der aktuelle Kontext der Activity übergeben
     //damit auf die UI-Elemente zugegriffen werden kann und Intents gestartet werden können, usw.
     public SearchTask(Context context,int approvalStatus, long location, int capacity, long timeStart, long timeEnd,boolean directSearch, int sessionId, SearchTourActivity activity)
@@ -41,23 +55,41 @@ public class SearchTask extends AsyncTask<Object, Integer, String>
     }
 
     @Override
-    protected String doInBackground(Object... params){
+    protected List<Tour> doInBackground(Object... params){
         ShelpApplication myApp = (ShelpApplication) activity.getApplication();
         try {
             return myApp.getTourService().searchTour(approvalStatus, location, capacity, timeStart, timeEnd, directSearch, sessionId);
         } catch (SoapFault e) {
-            //TODO errorhandling
-            e.printStackTrace();
+            Toast.makeText(activity.getApplicationContext(), "Serververbindung konnte nicht erfolgreich aufgebaut werden!", Toast.LENGTH_SHORT).show();
+
         }
-        return "";
+        return null;
     }
+
+
 
     protected void onProgessUpdate(Integer... values)
     { }
 
-    protected void onPostExecute(String result)
+    protected void onPostExecute(List<Tour> result)
     {
-        String r = result;
-        String t = result;
+        if(result ==null) {
+            Toast.makeText(activity.getApplicationContext(), "ERROR: Fahrt konnte nicht gefunden werden!", Toast.LENGTH_SHORT).show();
+        } else {
+            for(int i = 0; i<=result.size()-1;i++){
+                //result.get(i);
+                RelativeLayout ll = (RelativeLayout) activity.findViewById(R.id.relativeLayoutSearch);
+
+                RelativeLayout.LayoutParams relativeParams = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.FILL_PARENT);
+                relativeParams.addRule(RelativeLayout.BELOW, lastEditText);
+                this.idEditText++;
+                TextView et = new TextView(context);
+                et.setId(idEditText);
+                String owner = result.get(i).getOwner().toString();
+                et.setText(owner);
+                this.lastEditText = et.getId();
+                ll.addView(et, relativeParams);
+            }
+        }
     }
 }
