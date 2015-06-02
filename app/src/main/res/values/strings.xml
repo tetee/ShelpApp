@@ -35,6 +35,8 @@
     <string name="deliveryTerms">Lieferbedingungen</string>
     <string name="time">Uhrzeit</string>
     <string name="date">Datum</string>
+    <string name="timeEnd">bis Uhrzeit</string>
+    <string name="dateEnd">bis Datum</string>
     <string name="range">Reichweite</string>
     <string name="enabling">Freigabe</string>
     <string name="sonstiges">weitere Infos...</string>
@@ -62,13 +64,7 @@
     <string name="yourTour">Deine Fahrten</string>
     <string name="createTour">Erstelle deine Fahrt..</string>
     <string name="logoutButton">Logout</string>
-
-    <string-array name="citySpinner">
-        <item>Münster</item>
-        <item>Rheine</item>
-        <item>Steinfurt</item>
-    </string-array>
+    <string name="directSearch">in der Nähe suchen?</string>
     <string name="title_activity_show_tour_activity">show_tour_activity</string>
-
 
 </resources>
