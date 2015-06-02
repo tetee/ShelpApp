@@ -22,13 +22,16 @@ import java.util.GregorianCalendar;
 
 import de.fh_muenster.shelpapp.R;
 import de.shelp.android.applications.ShelpApplication;
+import de.shelp.android.tasks.CreateTask;
 import de.shelp.android.tasks.LogoutTask;
+import de.shelp.ksoap2.ServiceUtils;
 import de.shelp.ksoap2.entities.AllLists;
 import de.shelp.ksoap2.entities.ApprovalStatus;
 import de.shelp.ksoap2.entities.Capacity;
 import de.shelp.ksoap2.entities.DeliveryCondition;
 import de.shelp.ksoap2.entities.Location;
 import de.shelp.ksoap2.entities.PaymentCondition;
+import de.shelp.ksoap2.entities.ReturnCode;
 import de.shelp.ksoap2.entities.Tour;
 import de.shelp.ksoap2.exceptions.InvalidLoginException;
 
@@ -106,11 +109,7 @@ public class CreateTourActivity extends ActionBarActivity {
         String txtDate = newDate.getText().toString();
         String txtTime = newTime.getText().toString();
         try {
-            SimpleDateFormat output = new SimpleDateFormat("dd.MM.yyyy hh:mm");
-            //System.out.println(txtDate + " " + txtTime);
-            Date date = output.parse(txtDate + " " + txtTime);
-
-            tour.setTime(date.getTime());
+            tour.setTime(ServiceUtils.formatInputToDate(txtDate + " " + txtTime).getTime());
         } catch (ParseException ex) {
             ex.printStackTrace();
             Toast.makeText(getApplicationContext(), "Falsches Format!", Toast.LENGTH_SHORT).show();
@@ -120,47 +119,10 @@ public class CreateTourActivity extends ActionBarActivity {
 
         ShelpApplication application = (ShelpApplication) getApplication();
 
-        CreateTask createTask = new CreateTask(view.getContext(), tour, application.getSession().getId());
+        CreateTask createTask = new CreateTask(view.getContext(), tour, application.getSession().getId(), this);
         createTask.execute();
 
         Intent i = new Intent(this, ShelpActivity.class);
         startActivity(i);
     }
-
-    private class CreateTask extends AsyncTask<Object, Integer, String>
-    {
-        private Context context;
-        private Tour  tour;
-        private int sessionId;
-        //Dem Konstruktor der Klasse wird der aktuelle Kontext der Activity übergeben
-        //damit auf die UI-Elemente zugegriffen werden kann und Intents gestartet werden können, usw.
-        public CreateTask(Context context, Tour tour, int sessionId)
-        {
-            this.tour = tour;
-            this.sessionId = sessionId;
-            this.context = context;
-        }
-
-        @Override
-        protected String doInBackground(Object... params){
-            ShelpApplication myApp = (ShelpApplication) getApplication();
-            try {
-                return myApp.getTourService().createTour(tour, sessionId);
-            } catch (SoapFault e) {
-                //TODO errorhandling
-                e.printStackTrace();
-            }
-            return "";
-        }
-
-        protected void onProgessUpdate(Integer... values)
-        { }
-
-        protected void onPostExecute(String result)
-        {
-            String r = result;
-            String t = result;
-        }
-    }
-
 }

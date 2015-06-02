@@ -7,6 +7,9 @@ import org.ksoap2.serialization.SoapObject;
 import org.ksoap2.serialization.SoapSerializationEnvelope;
 import org.ksoap2.transport.HttpTransportSE;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -29,6 +32,10 @@ public class ServiceUtils {
     //public static final String URL = "http://10.60.70.4:8080/shelp/";
     public static final String URL = "http://10.70.50.172:8080/shelp/";
 
+    public static final Date formatInputToDate(String date) throws ParseException {
+        SimpleDateFormat output = new SimpleDateFormat("dd.MM.yyyy hh:mm");
+        return output.parse(date);
+    }
     /**
      * Diese Methode delegiert einen Methodenaufruf an den hinterlegten WebService.
      * @param methodName
