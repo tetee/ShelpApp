@@ -8,11 +8,15 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.ArrayAdapter;
+import android.widget.Toast;
 
 import org.ksoap2.SoapFault;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
@@ -94,9 +98,25 @@ public class CreateTourActivity extends ActionBarActivity {
         tour.setLocation((Location) ((Spinner) findViewById(R.id.citySpinner)).getSelectedItem());
         tour.setApprovalStatus((ApprovalStatus) ((Spinner) findViewById(R.id.enablingSpinner)).getSelectedItem());
         tour.setCapacity((Capacity) ((Spinner) findViewById(R.id.capacitySpinner)).getSelectedItem());
-        tour.setDeliveryConditions((DeliveryCondition)((Spinner) findViewById(R.id.delSpinner)).getSelectedItem());
-        tour.setPaymentConditions((PaymentCondition)((Spinner) findViewById(R.id.paySpinner)).getSelectedItem());
-        tour.setTime(new Date());
+        tour.setDeliveryConditions((DeliveryCondition) ((Spinner) findViewById(R.id.delSpinner)).getSelectedItem());
+        tour.setPaymentConditions((PaymentCondition) ((Spinner) findViewById(R.id.paySpinner)).getSelectedItem());
+
+        EditText newDate = (EditText) findViewById(R.id.dateCreate);
+        EditText newTime = (EditText) findViewById(R.id.timeCreate);
+        String txtDate = newDate.getText().toString();
+        String txtTime = newTime.getText().toString();
+        try {
+            SimpleDateFormat output = new SimpleDateFormat("dd.MM.yyyy hh:mm");
+            //System.out.println(txtDate + " " + txtTime);
+            Date date = output.parse(txtDate + " " + txtTime);
+
+            tour.setTime(date.getTime());
+        } catch (ParseException ex) {
+            ex.printStackTrace();
+            Toast.makeText(getApplicationContext(), "Falsches Format!", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
 
         ShelpApplication application = (ShelpApplication) getApplication();
 

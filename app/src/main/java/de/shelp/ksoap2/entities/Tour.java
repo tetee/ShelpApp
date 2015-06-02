@@ -19,13 +19,13 @@ public class Tour implements KvmSerializable {
     private Capacity capacity;
     private PaymentCondition paymentConditions;
     private DeliveryCondition deliveryConditions;
-    private Date time;
+    private Long time;
     private List<Request> request;
     private User owner;
     private Date updatedOn;
     private TourStatus status;
 
-    public Tour(long id, ApprovalStatus approval, Location location,Capacity capacity, PaymentCondition payCondition, DeliveryCondition delCondition, Date date, List<Request> request, User owner,Date updatedOn, TourStatus status){
+    public Tour(long id, ApprovalStatus approval, Location location,Capacity capacity, PaymentCondition payCondition, DeliveryCondition delCondition, Long date, List<Request> request, User owner,Date updatedOn, TourStatus status){
         this.id = id;
         this.approvalStatus=approval;
         this.location = location;
@@ -90,11 +90,11 @@ public class Tour implements KvmSerializable {
         this.deliveryConditions = deliveryConditions;
     }
 
-    public Date getTime() {
+    public Long getTime() {
         return time;
     }
 
-    public void setTime(Date time) {
+    public void setTime(Long time) {
         this.time = time;
     }
 
