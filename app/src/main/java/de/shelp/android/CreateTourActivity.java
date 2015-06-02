@@ -24,6 +24,7 @@ import de.fh_muenster.shelpapp.R;
 import de.shelp.android.applications.ShelpApplication;
 import de.shelp.android.tasks.CreateTask;
 import de.shelp.android.tasks.LogoutTask;
+import de.shelp.ksoap2.ServiceUtils;
 import de.shelp.ksoap2.entities.AllLists;
 import de.shelp.ksoap2.entities.ApprovalStatus;
 import de.shelp.ksoap2.entities.Capacity;
@@ -108,11 +109,7 @@ public class CreateTourActivity extends ActionBarActivity {
         String txtDate = newDate.getText().toString();
         String txtTime = newTime.getText().toString();
         try {
-            SimpleDateFormat output = new SimpleDateFormat("dd.MM.yyyy hh:mm");
-            //System.out.println(txtDate + " " + txtTime);
-            Date date = output.parse(txtDate + " " + txtTime);
-
-            tour.setTime(date.getTime());
+            tour.setTime(ServiceUtils.formatInputToDate(txtDate + " " + txtTime).getTime());
         } catch (ParseException ex) {
             ex.printStackTrace();
             Toast.makeText(getApplicationContext(), "Falsches Format!", Toast.LENGTH_SHORT).show();
