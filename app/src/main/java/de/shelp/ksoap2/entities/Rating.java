@@ -31,7 +31,7 @@ public class Rating {
     public void setTargetUser(User targetUser) {
         this.targetUser = targetUser;
     }
-    public int getRating() {
+    public Integer getRating() {
         return rating;
     }
     public void setRating(int rating) {
