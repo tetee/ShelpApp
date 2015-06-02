@@ -30,4 +30,15 @@ public class TourServiceImpl {
 
         return response.getPrimitivePropertyAsString("returnCode");
     }
+
+
+    public String searchTour(Tour tour, int sessionId) throws SoapFault{
+        String METHOD_NAME = "searchTours";
+        SoapObject response = null;
+
+        response = ServiceUtils.executeSoapAction(METHOD_NAME, URL, tour.getApprovalStatus().getId(), tour.getLocation().getId(), tour.getCapacity().getId(), tour.getPaymentConditions().getId(),
+                tour.getDeliveryConditions().getId(), tour.getTime(), sessionId);
+
+        return response.getPrimitivePropertyAsString("returnCode");
+    }
 }
