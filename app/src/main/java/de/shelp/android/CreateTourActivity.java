@@ -91,10 +91,10 @@ public class CreateTourActivity extends ActionBarActivity {
     public void createTour(View view) {
         Tour tour = new Tour();
         tour.setLocation((Location) ((Spinner) findViewById(R.id.citySpinner)).getSelectedItem());
-        tour.setApprovalStatus(((Spinner) findViewById(R.id.enablingSpinner)).getSelectedItem().toString());
-        tour.setCapacity(((Spinner) findViewById(R.id.capacitySpinner)).getSelectedItem().toString());
-        tour.setDeliveryConditions(((Spinner) findViewById(R.id.delSpinner)).getSelectedItem().toString());
-        tour.setPaymentConditions(((Spinner) findViewById(R.id.paySpinner)).getSelectedItem().toString());
+        tour.setApprovalStatus((ApprovalStatus) ((Spinner) findViewById(R.id.enablingSpinner)).getSelectedItem());
+        tour.setCapacity((Capacity) ((Spinner) findViewById(R.id.capacitySpinner)).getSelectedItem());
+        tour.setDeliveryConditions((DeliveryCondition)((Spinner) findViewById(R.id.delSpinner)).getSelectedItem());
+        tour.setPaymentConditions((PaymentCondition)((Spinner) findViewById(R.id.paySpinner)).getSelectedItem());
         tour.setTime(new GregorianCalendar());
 
         ShelpApplication application = (ShelpApplication) getApplication();

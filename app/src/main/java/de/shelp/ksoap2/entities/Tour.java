@@ -13,18 +13,18 @@ public class Tour implements KvmSerializable {
     private static final long serialVersionUID = 4333669660990735973L;
 
     private long id;
-    private String approvalStatus;
+    private ApprovalStatus approvalStatus;
     private Location location;
-    private String capacity;
-    private String paymentConditions;
-    private String deliveryConditions;
+    private Capacity capacity;
+    private PaymentCondition paymentConditions;
+    private DeliveryCondition deliveryConditions;
     private Calendar time;
     private List<Request> request;
     private User owner;
     private Calendar updatedOn;
     private TourStatus status;
 
-    public Tour(long id, String approval, Location location,String capacity, String payCondition, String delCondition, Calendar date, List<Request> request, User owner,Calendar updatedOn, TourStatus status){
+    public Tour(long id, ApprovalStatus approval, Location location,Capacity capacity, PaymentCondition payCondition, DeliveryCondition delCondition, Calendar date, List<Request> request, User owner,Calendar updatedOn, TourStatus status){
         this.id = id;
         this.approvalStatus=approval;
         this.location = location;
@@ -49,11 +49,11 @@ public class Tour implements KvmSerializable {
         this.id = id;
     }
 
-    public String getApprovalStatus() {
+    public ApprovalStatus getApprovalStatus() {
         return approvalStatus;
     }
 
-    public void setApprovalStatus(String approvalStatus) {
+    public void setApprovalStatus(ApprovalStatus approvalStatus) {
         this.approvalStatus = approvalStatus;
     }
 
@@ -65,27 +65,27 @@ public class Tour implements KvmSerializable {
         this.location = location;
     }
 
-    public String getCapacity() {
+    public Capacity getCapacity() {
         return capacity;
     }
 
-    public void setCapacity(String capacity) {
+    public void setCapacity(Capacity capacity) {
         this.capacity = capacity;
     }
 
-    public String getPaymentConditions() {
+    public PaymentCondition getPaymentConditions() {
         return paymentConditions;
     }
 
-    public void setPaymentConditions(String paymentConditions) {
+    public void setPaymentConditions(PaymentCondition paymentConditions) {
         this.paymentConditions = paymentConditions;
     }
 
-    public String getDeliveryConditions() {
+    public DeliveryCondition getDeliveryConditions() {
         return deliveryConditions;
     }
 
-    public void setDeliveryConditions(String deliveryConditions) {
+    public void setDeliveryConditions(DeliveryCondition deliveryConditions) {
         this.deliveryConditions = deliveryConditions;
     }
 
