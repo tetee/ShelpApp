@@ -32,6 +32,7 @@ import de.shelp.ksoap2.entities.DeliveryCondition;
 import de.shelp.ksoap2.entities.Location;
 import de.shelp.ksoap2.entities.PaymentCondition;
 import de.shelp.ksoap2.entities.Tour;
+import de.shelp.ksoap2.entities.User;
 
 public class SearchTourActivity extends ActionBarActivity {
 
@@ -41,14 +42,6 @@ public class SearchTourActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_activity);
-
-        //Button suchen
-        Button detailsButton = (Button) findViewById(R.id.detailsButton);
-        Button ratingButton = (Button) findViewById(R.id.ratingButton);
-        //Button unsichtbar machen
-        detailsButton.setVisibility(View.INVISIBLE);
-        ratingButton.setVisibility(View.INVISIBLE);
-
         ShelpApplication shelpApplication = (ShelpApplication) getApplication();
         allLists = shelpApplication.getAllLists();
 
@@ -111,24 +104,20 @@ public class SearchTourActivity extends ActionBarActivity {
             SearchTask searchTask = new SearchTask(view.getContext(),approvalStatus.getId(), location.getId(), capacity.getId(), timeStart, timeEnd, directSearch, application.getSession().getId(), this);
             searchTask.execute();
 
-        //Button suchen
-        Button detailsButton = (Button) findViewById(R.id.detailsButton);
-        Button ratingButton = (Button) findViewById(R.id.ratingButton);
-        //Button sichtbar machen
-        //detailsButton.setVisibility(View.VISIBLE);
-        //ratingButton.setVisibility(View.VISIBLE);
 
     }
 
-    //Wechsel in die CreateTourActivity
-    public void details(View view){
+    //Wechsel in die ShowTourActivity
+    public void details(View view, Tour tour){
         Intent i = new Intent(this, ShowTourActivity.class);
+        i.putExtra("Tour", tour);
         startActivity(i);
     }
 
     //Wechsel in die ShowRatingActivity
-    public void rating(View view) {
+    public void rating(View view, User owner) {
         Intent i = new Intent(this, ShowRatingActivity.class);
+        i.putExtra("User", owner);
         startActivity(i);
     }
 

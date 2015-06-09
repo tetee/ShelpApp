@@ -1,7 +1,9 @@
 package de.shelp.ksoap2.entities;
 
 
-public class PaymentCondition {
+import java.io.Serializable;
+
+public class PaymentCondition implements Serializable{
 
     private int id;
     private String description;

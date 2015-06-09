@@ -16,6 +16,8 @@ import java.util.List;
 
 import de.fh_muenster.shelpapp.R;
 import de.shelp.android.SearchTourActivity;
+import de.shelp.android.actionlistener.ShowRatingsListener;
+import de.shelp.android.actionlistener.ShowTourDetailsListener;
 import de.shelp.android.applications.ShelpApplication;
 import de.shelp.ksoap2.entities.ReturnCode;
 import de.shelp.ksoap2.entities.Tour;
@@ -99,13 +101,8 @@ public class SearchTask extends AsyncTask<Object, Integer, List<Tour>>
                 Button details = new Button(context);
                 details.setId(idEditText);
                 details.setText("Details");
-                details.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        activity.details(v);
-                    }
-                });
-                ll2.addView(details, relativeParams2);
+                details.setOnClickListener(new ShowTourDetailsListener(result.get(i), activity));
+                        ll2.addView(details, relativeParams2);
 
                 //Button Bewertung unter ausgegebener Tour anzeigen
                 RelativeLayout ll3 = (RelativeLayout) activity.findViewById(R.id.relativeLayoutSearch);
@@ -117,13 +114,8 @@ public class SearchTask extends AsyncTask<Object, Integer, List<Tour>>
                 Button rating = new Button(context);
                 rating.setId(idEditText);
                 rating.setText("Bewertung");
-                rating.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        activity.rating(v);
-                    }
-                });
-                ll3.addView(rating, relativeParams3);
+                rating.setOnClickListener(new ShowRatingsListener(result.get(i).getOwner(), activity));
+                        ll3.addView(rating, relativeParams3);
 
             }
         }

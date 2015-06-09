@@ -142,25 +142,6 @@
         android:layout_below="@+id/enabling"
         android:layout_marginBottom="10dp" />
 
-    <!--<TextView android:text="@string/sonstiges"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/sonstiges"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/enablingSpinner"
-        android:layout_marginBottom="10dp"/>
-
-    <EditText
-        android:id="@+id/sonstigesText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/sonstiges"
-        android:layout_marginBottom="10dp"/>-->
-
 
     <Button
         android:layout_width="wrap_content"

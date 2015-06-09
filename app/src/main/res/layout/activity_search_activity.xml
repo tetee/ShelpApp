@@ -168,31 +168,5 @@
             android:onClick="search"
             android:background="@drawable/button"/>
 
-     <Button
-         style="?android:attr/buttonStyleSmall"
-         android:layout_width="match_parent"
-         android:layout_height="wrap_content"
-         android:text="@string/detailsButton"
-         android:id="@+id/detailsButton"
-         android:layout_below="@+id/searchButton"
-         android:layout_marginTop="5dp"
-         android:layout_alignParentRight="true"
-         android:layout_alignParentEnd="true"
-         android:onClick="details"
-         android:background="@drawable/button"/>
-
-     <Button
-         style="?android:attr/buttonStyleSmall"
-         android:layout_width="match_parent"
-         android:layout_height="wrap_content"
-         android:text="@string/ratingButton"
-         android:layout_below="@+id/detailsButton"
-         android:layout_marginTop="5dp"
-         android:layout_alignParentRight="true"
-         android:id="@+id/ratingButton"
-         android:layout_alignParentEnd="true"
-         android:onClick="rating"
-         android:background="@drawable/button"/>
-
  </RelativeLayout>
 </ScrollView>

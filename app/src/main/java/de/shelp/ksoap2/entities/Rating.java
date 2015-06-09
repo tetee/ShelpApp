@@ -3,9 +3,11 @@ package de.shelp.ksoap2.entities;
 /**
  * Created by Rome on 02.06.2015.
  */
+import java.io.Serializable;
+
 import de.shelp.ksoap2.entities.User;
 
-public class Rating {
+public class Rating implements Serializable{
 
     private long id;
     private User sourceUser;

@@ -1,7 +1,9 @@
 package de.shelp.ksoap2.entities;
 
 
-public class Capacity {
+import java.io.Serializable;
+
+public class Capacity implements Serializable{
 
     private int id;
     private String description;

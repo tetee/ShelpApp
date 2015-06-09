@@ -14,6 +14,7 @@ import de.shelp.ksoap2.entities.DeliveryCondition;
 import de.shelp.ksoap2.entities.Friendship;
 import de.shelp.ksoap2.entities.Location;
 import de.shelp.ksoap2.entities.PaymentCondition;
+import de.shelp.ksoap2.entities.Rating;
 import de.shelp.ksoap2.entities.Request;
 import de.shelp.ksoap2.entities.ShelpSession;
 import de.shelp.ksoap2.entities.Tour;
@@ -135,6 +136,11 @@ public class SoapAssembler {
 
     public User soapToUser(SoapObject response) {
         return new User(response.getPropertyAsString("email"));
+    }
+
+    public Rating soapToRating(SoapObject response){
+        SoapObject owner =(SoapObject) response.getProperty("owner");
+        return null;
     }
 
 }
