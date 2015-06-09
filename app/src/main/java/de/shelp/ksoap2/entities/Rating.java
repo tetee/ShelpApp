@@ -15,6 +15,14 @@ public class Rating implements Serializable{
     private int rating;
     private String notice;
 
+    public Rating(long id, User sourceUser, User targetUser, int rating, String notice){
+        this.id=id;
+        this.sourceUser=sourceUser;
+        this.targetUser=targetUser;
+        this.rating=rating;
+        this.notice=notice;
+    }
+
     public long getId() {
         return id;
     }
