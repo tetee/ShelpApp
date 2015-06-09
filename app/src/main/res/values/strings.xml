@@ -66,5 +66,7 @@
     <string name="logoutButton">Logout</string>
     <string name="directSearch">in der Nähe suchen?</string>
     <string name="title_activity_show_tour_activity">show_tour_activity</string>
+    <string name="statusText">Status</string>
+    <string name="ownerText">Ersteller</string>
 
 </resources>

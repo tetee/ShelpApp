@@ -9,7 +9,7 @@ import java.util.Date;
 import java.util.Hashtable;
 import java.util.List;
 
-public class Tour implements KvmSerializable {
+public class Tour implements Serializable {
 
     private static final long serialVersionUID = 4333669660990735973L;
 
@@ -124,38 +124,4 @@ public class Tour implements KvmSerializable {
         return approvalStatus != null && location != null && capacity != null && paymentConditions != null && deliveryConditions != null;
     }
 
-    @Override
-    public Object getProperty(int arg0) {
-        // TODO Auto-generated method stub
-        return this;
-    }
-
-    @Override
-    public int getPropertyCount() {
-        // TODO Auto-generated method stub
-        return 1;
-    }
-
-    @Override
-    public void getPropertyInfo(int arg0, Hashtable arg1, PropertyInfo arg2) {
-        // TODO Auto-generated method stub
-        arg2.name = "string";
-        arg2.type = PropertyInfo.STRING_CLASS;
-    }
-
-    @Override
-    public void setProperty(int arg0, Object arg1) {
-        // TODO Auto-generated method stub
-
-    }
-
-    @Override
-    public String getInnerText() {
-        return null;
-    }
-
-    @Override
-    public void setInnerText(String s) {
-
-    }
 }

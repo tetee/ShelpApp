@@ -1,6 +1,8 @@
 package de.shelp.ksoap2.entities;
 
-public class ShelpSession {
+import java.io.Serializable;
+
+public class ShelpSession implements Serializable{
 
     private int id;
     private User user;

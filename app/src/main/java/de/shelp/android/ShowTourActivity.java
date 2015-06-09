@@ -1,11 +1,15 @@
 package de.shelp.android;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 
 import de.fh_muenster.shelpapp.R;
+import de.shelp.ksoap2.entities.Tour;
 
 public class ShowTourActivity extends ActionBarActivity {
 
@@ -13,6 +17,13 @@ public class ShowTourActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_tour_activity);
+
+        Intent intent = getIntent();
+        Tour tour = (Tour) intent.getSerializableExtra("Tour");
+//TODO Genauso mit dem restlichen Kraaaaaam!!
+        TextView owner = (TextView) findViewById(R.id.owner);
+        owner.setText(tour.getOwner().toString());
+
     }
 
 
@@ -37,4 +48,5 @@ public class ShowTourActivity extends ActionBarActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
 }

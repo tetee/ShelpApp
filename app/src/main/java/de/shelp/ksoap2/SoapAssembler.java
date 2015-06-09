@@ -13,6 +13,7 @@ import de.shelp.ksoap2.entities.Capacity;
 import de.shelp.ksoap2.entities.DeliveryCondition;
 import de.shelp.ksoap2.entities.Location;
 import de.shelp.ksoap2.entities.PaymentCondition;
+import de.shelp.ksoap2.entities.Rating;
 import de.shelp.ksoap2.entities.Request;
 import de.shelp.ksoap2.entities.ShelpSession;
 import de.shelp.ksoap2.entities.Tour;
@@ -119,6 +120,11 @@ public class SoapAssembler {
         }
 
         return new AllLists(capacities,deliveryConditions,paymentConditions,states,locations);
+    }
+
+    public Rating soapToRating(SoapObject response){
+
+        SoapObject owner =(SoapObject) response.getProperty("owner");
     }
 
 }

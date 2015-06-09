@@ -1,7 +1,9 @@
 package de.shelp.ksoap2.entities;
 
 
-public class DeliveryCondition {
+import java.io.Serializable;
+
+public class DeliveryCondition implements Serializable{
     
     private int id;
     private String description;

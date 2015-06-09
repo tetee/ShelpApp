@@ -1,7 +1,9 @@
 package de.shelp.ksoap2.entities;
 
 
-public class ApprovalStatus {
+import java.io.Serializable;
+
+public class ApprovalStatus implements Serializable{
     private int id;
     private String description;
 

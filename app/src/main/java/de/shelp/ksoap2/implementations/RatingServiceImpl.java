@@ -1,7 +1,12 @@
 package de.shelp.ksoap2.implementations;
 
+import android.content.Context;
+import android.widget.Toast;
+
 import org.ksoap2.SoapFault;
 import org.ksoap2.serialization.SoapObject;
+
+import java.util.List;
 
 import de.shelp.ksoap2.ServiceUtils;
 import de.shelp.ksoap2.SoapAssembler;
@@ -30,5 +35,26 @@ public class RatingServiceImpl {
         response = ServiceUtils.executeSoapAction(METHOD_NAME, URL, targetUser.getUserName(), rating, notice,  sessionId);
 
         return response.getPrimitivePropertyAsString("returnCode");
+    }
+
+    public List<Rating> getRatings(User user, Context context)throws SoapFault{
+        String METHOD_NAME = "getRatings";
+        SoapObject response = null;
+
+        response = ServiceUtils.executeSoapAction(METHOD_NAME, URL, user.getUserName());
+
+        if(response.getPrimitivePropertyAsString("returnCode").equals("ERROR")){
+            CharSequence text = "Benutzer existiert nicht!";
+            int duration = Toast.LENGTH_SHORT;
+            Toast toast = Toast.makeText(context, text, duration);
+            toast.show();
+        }
+        else {
+            for(int i = 1; i <= response.getPropertyCount()-1; i++) {
+                response.getPropertyCount();
+
+                SoapAssembler.getInstance().soapToRating((SoapObject)response.getProperty(i));
+            }
+        }
     }
 }
