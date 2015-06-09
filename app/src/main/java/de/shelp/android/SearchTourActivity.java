@@ -116,8 +116,8 @@ public class SearchTourActivity extends ActionBarActivity {
         Button detailsButton = (Button) findViewById(R.id.detailsButton);
         Button ratingButton = (Button) findViewById(R.id.ratingButton);
         //Button sichtbar machen
-        detailsButton.setVisibility(View.VISIBLE);
-        ratingButton.setVisibility(View.VISIBLE);
+        //detailsButton.setVisibility(View.VISIBLE);
+        //ratingButton.setVisibility(View.VISIBLE);
 
     }
 

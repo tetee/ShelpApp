@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -37,8 +38,7 @@ public class SearchTask extends AsyncTask<Object, Integer, List<Tour>>
     private static SearchTourActivity activity;
 
 
-    private int lastEditText = R.id.ratingButton;
-    private int idEditText = 1;
+    private int idEditText = R.id.searchButton;
     //Dem Konstruktor der Klasse wird der aktuelle Kontext der Activity übergeben
     //damit auf die UI-Elemente zugegriffen werden kann und Intents gestartet werden können, usw.
     public SearchTask(Context context,int approvalStatus, long location, int capacity, long timeStart, long timeEnd,boolean directSearch, int sessionId, SearchTourActivity activity)
@@ -81,14 +81,50 @@ public class SearchTask extends AsyncTask<Object, Integer, List<Tour>>
                 RelativeLayout ll = (RelativeLayout) activity.findViewById(R.id.relativeLayoutSearch);
 
                 RelativeLayout.LayoutParams relativeParams = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.FILL_PARENT);
-                relativeParams.addRule(RelativeLayout.BELOW, lastEditText);
+                relativeParams.addRule(RelativeLayout.BELOW, idEditText);
                 this.idEditText++;
                 TextView et = new TextView(context);
                 et.setId(idEditText);
                 String owner = result.get(i).getOwner().toString();
-                et.setText(owner);
-                this.lastEditText = et.getId();
+                String destination = result.get(i).getLocation().toString();
+                et.setText(owner + " " + destination);
                 ll.addView(et, relativeParams);
+
+                 //Button Details unter ausgegebener Tour anzeigen
+                RelativeLayout ll2 = (RelativeLayout) activity.findViewById(R.id.relativeLayoutSearch);
+
+                RelativeLayout.LayoutParams relativeParams2 = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.FILL_PARENT);
+                relativeParams2.addRule(RelativeLayout.BELOW, idEditText);
+                this.idEditText++;
+                Button details = new Button(context);
+                details.setId(idEditText);
+                details.setText("Details");
+                details.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        activity.details(v);
+                    }
+                });
+                ll2.addView(details, relativeParams2);
+
+                //Button Bewertung unter ausgegebener Tour anzeigen
+                RelativeLayout ll3 = (RelativeLayout) activity.findViewById(R.id.relativeLayoutSearch);
+
+                RelativeLayout.LayoutParams relativeParams3 = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.FILL_PARENT);
+
+                relativeParams3.addRule(RelativeLayout.BELOW, idEditText);
+                this.idEditText++;
+                Button rating = new Button(context);
+                rating.setId(idEditText);
+                rating.setText("Bewertung");
+                rating.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        activity.rating(v);
+                    }
+                });
+                ll3.addView(rating, relativeParams3);
+
             }
         }
     }
