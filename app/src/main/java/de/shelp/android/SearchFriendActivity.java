@@ -7,9 +7,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import de.fh_muenster.shelpapp.R;
+import de.shelp.android.tasks.SearchTask;
+import de.shelp.android.tasks.SearchUserTask;
 
 public class SearchFriendActivity extends ActionBarActivity {
 
@@ -45,10 +48,17 @@ public class SearchFriendActivity extends ActionBarActivity {
     //Durch betätigen des Suchen Button erscheinen gesuchte Freunde(TODO)
     //und der Hinzufügen Button erscheint
     public void search(View view){
+
+        EditText search = (EditText) findViewById(R.id.searchFriendByName);
+        String searchText = search.getText().toString();
+
+        SearchUserTask searchTask = new SearchUserTask(view.getContext(), searchText, this);
+        searchTask.execute();
+
         //Button suchen
-        Button addButton = (Button) findViewById(R.id.addButton);
+       // Button addButton = (Button) findViewById(R.id.addButton);
         //Button sichtbar machen
-        addButton.setVisibility(View.VISIBLE);
+      //  addButton.setVisibility(View.VISIBLE);
     }
 
     //Mit Klick auf Hinzufügen wird der Freund angefragt und Rückkehr zur Shelp Activity

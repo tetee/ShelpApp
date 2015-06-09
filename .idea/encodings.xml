@@ -3,7 +3,8 @@
   <component name="Encoding" useUTFGuessing="true" native2AsciiForPropertiesFiles="false">
     <file url="file://$PROJECT_DIR$/app/src/main/java/de/shelp/android/RegActivity.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/app/src/main/java/de/shelp/android/ShelpActivity.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/de/shelp/android/tasks/CreateTask.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/de/shelp/android/tasks/LoginTask.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/app/src/main/java/de/shelp/android/tasks/LogoutTask.java" charset="UTF-8" />
   </component>
 </project>
-

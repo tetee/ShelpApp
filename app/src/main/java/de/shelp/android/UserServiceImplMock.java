@@ -1,5 +1,7 @@
 package de.shelp.android;
 
+import org.ksoap2.SoapFault;
+
 import java.util.Calendar;
 import java.util.List;
 
@@ -42,16 +44,13 @@ public class UserServiceImplMock implements UserService {
     @Override
     public void logout(ShelpApplication s) { this.user = null; }
 
-    @Override
-    public Tour newTour(long id, ApprovalStatus approval, Location location,Capacity capacity, PaymentCondition payCondition, DeliveryCondition delCondition, Calendar date, List<Request> request, User owner,Calendar updatedOn, TourStatus status) throws InvalidTourException{
-        Location loc = new Location(12345, "Münster", "48149");
-        //tour = new Tour(1234,ApprovalStatus.ALL, loc, Capacity.LARGE_TRUNK, PaymentCondition.BAR, DeliveryCondition.BRING, Calendar.getInstance(), null,  this.user, null, null);
-        return null;
-
-    }
 
     public ShelpSession registration(String eMail, String hash) throws InvalidRegistrationException {
         user = new User("busch.roman20@gmail.com");
+        return null;
+    }
+
+    public List<User> searchUsers(String searchText) throws SoapFault {
         return null;
     }
 }

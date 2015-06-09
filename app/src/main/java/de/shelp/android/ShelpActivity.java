@@ -13,6 +13,7 @@ import org.ksoap2.SoapFault;
 
 import de.fh_muenster.shelpapp.R;
 import de.shelp.android.applications.ShelpApplication;
+import de.shelp.android.tasks.GetFriendsTask;
 import de.shelp.android.tasks.LogoutTask;
 
 public class ShelpActivity extends ActionBarActivity {
@@ -77,8 +78,8 @@ public class ShelpActivity extends ActionBarActivity {
 
     //Wechsel zur FriendsActivity
     public void friends(View view) {
-        Intent i = new Intent(this, FriendsActivity.class);
-        startActivity(i);
+        GetFriendsTask getFriendsTask = new GetFriendsTask(view.getContext(), (ShelpApplication) getApplication());
+        getFriendsTask.execute();
     }
 
 

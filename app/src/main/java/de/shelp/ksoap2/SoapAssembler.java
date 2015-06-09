@@ -11,6 +11,7 @@ import de.shelp.ksoap2.entities.AllLists;
 import de.shelp.ksoap2.entities.ApprovalStatus;
 import de.shelp.ksoap2.entities.Capacity;
 import de.shelp.ksoap2.entities.DeliveryCondition;
+import de.shelp.ksoap2.entities.Friendship;
 import de.shelp.ksoap2.entities.Location;
 import de.shelp.ksoap2.entities.PaymentCondition;
 import de.shelp.ksoap2.entities.Request;
@@ -68,8 +69,7 @@ public class SoapAssembler {
         //TODO SoapObject list
         List<Request> list = null;
         //Ersteller er Fahrt
-        SoapObject owner =(SoapObject) response.getProperty("owner");
-        User ownerTour = new User(owner.getPropertyAsString("email"));
+        User ownerTour = soapToUser((SoapObject) response.getProperty("owner"));
         //Zahlungsbedingungen
         SoapObject paymentCondition =(SoapObject) response.getProperty("paymentCondition");
         PaymentCondition payCon = new PaymentCondition(Integer.valueOf(paymentCondition.getPropertyAsString("id")), paymentCondition.getPropertyAsString("description"));
@@ -119,6 +119,22 @@ public class SoapAssembler {
         }
 
         return new AllLists(capacities,deliveryConditions,paymentConditions,states,locations);
+    }
+
+    public Friendship soapToFriendship(SoapObject response) {
+        int id = Integer.valueOf(response.getPropertyAsString("id"));
+        long changedOn = Long.valueOf(response.getPropertyAsString("changedOn"));
+        String friendshipStatus = response.getPropertyAsString("status");
+
+        User initiatorUser = soapToUser((SoapObject) response.getProperty("initiatorUser"));
+
+        User recipientUser = soapToUser((SoapObject) response.getProperty("recipientUser"));
+
+       return new Friendship(id, initiatorUser,recipientUser,friendshipStatus,changedOn);
+    }
+
+    public User soapToUser(SoapObject response) {
+        return new User(response.getPropertyAsString("email"));
     }
 
 }

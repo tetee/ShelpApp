@@ -1,5 +1,7 @@
 package de.shelp.ksoap2.services;
 
+import org.ksoap2.SoapFault;
+
 import java.util.Calendar;
 import java.util.List;
 
@@ -31,8 +33,6 @@ public interface UserService {
 
     public ShelpSession registration(String eMail, String hash) throws InvalidRegistrationException;
 
-    public Tour newTour(long id, ApprovalStatus approval, Location location,Capacity capacity, PaymentCondition payCondition, DeliveryCondition delCondition, Calendar date, List<Request> request, User owner,Calendar updatedOn, TourStatus status) throws InvalidTourException;
-
-
+    public List<User> searchUsers(String searchText) throws SoapFault;
 
 }

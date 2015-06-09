@@ -15,8 +15,8 @@ public class LoginTask extends AsyncTask<String, Integer, ShelpSession> {
     private Context context;
     private static MainActivity activity;
 
-    //Dem Konstruktor der Klasse wird der aktuelle Kontext der Activity übergeben
-    //damit auf die UI-Elemente zugegriffen werden kann und Intents gestartet werden können, usw.
+    //Dem Konstruktor der Klasse wird der aktuelle Kontext der Activity Ã¼bergeben
+    //damit auf die UI-Elemente zugegriffen werden kann und Intents gestartet werden kÃ¶nnen, usw.
     public LoginTask(Context context, MainActivity activity) {
         this.context = context;
         this.activity = activity;
@@ -53,7 +53,7 @@ public class LoginTask extends AsyncTask<String, Integer, ShelpSession> {
             Toast toast = Toast.makeText(context, text, duration);
             toast.show();
 
-            //Nächste Activity anzeigen
+            //NÃ¤chste Activity anzeigen
             Intent i = new Intent(context, ShelpActivity.class);
             activity.startActivity(i);
         } else {

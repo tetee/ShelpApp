@@ -18,8 +18,8 @@ public class CreateTask extends AsyncTask<Object, Integer, String>
     private Tour tour;
     private int sessionId;
     private static CreateTourActivity activity;
-    //Dem Konstruktor der Klasse wird der aktuelle Kontext der Activity übergeben
-    //damit auf die UI-Elemente zugegriffen werden kann und Intents gestartet werden können, usw.
+    //Dem Konstruktor der Klasse wird der aktuelle Kontext der Activity Ã¼bergeben
+    //damit auf die UI-Elemente zugegriffen werden kann und Intents gestartet werden kÃ¶nnen, usw.
     public CreateTask(Context context, Tour tour, int sessionId, CreateTourActivity activity)
     {
         this.tour = tour;

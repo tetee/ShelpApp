@@ -108,7 +108,6 @@ public class SearchTourActivity extends ActionBarActivity {
 
             ShelpApplication application = (ShelpApplication) getApplication();
 
-
             SearchTask searchTask = new SearchTask(view.getContext(),approvalStatus.getId(), location.getId(), capacity.getId(), timeStart, timeEnd, directSearch, application.getSession().getId(), this);
             searchTask.execute();
 

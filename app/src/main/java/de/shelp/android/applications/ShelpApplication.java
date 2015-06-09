@@ -3,6 +3,7 @@ package de.shelp.android.applications;
 import android.app.Application;
 
 import de.shelp.ksoap2.entities.AllLists;
+import de.shelp.ksoap2.implementations.FriendServiceImpl;
 import de.shelp.ksoap2.implementations.RatingServiceImpl;
 import de.shelp.ksoap2.implementations.StateServiceImpl;
 import de.shelp.ksoap2.implementations.TourServiceImpl;
@@ -18,6 +19,7 @@ public class ShelpApplication extends Application {
     private StateServiceImpl shelpAppService;
     private TourServiceImpl tourService;
     private RatingServiceImpl ratingService;
+    private FriendServiceImpl friendService;
 
 
     public ShelpApplication() {
@@ -25,6 +27,7 @@ public class ShelpApplication extends Application {
         this.shelpAppService = new StateServiceImpl();
         this.tourService = new TourServiceImpl();
         this.ratingService = new RatingServiceImpl();
+        this.friendService = new FriendServiceImpl();
     }
 
     public StateServiceImpl getShelpAppService() {return this.shelpAppService; }
@@ -34,6 +37,8 @@ public class ShelpApplication extends Application {
     public RatingServiceImpl getRatingService() {return this.ratingService;}
 
     public UserService getUserService() {return this.userService; }
+
+    public FriendServiceImpl getFriendService() { return this.friendService; }
 
     public ShelpSession getSession() { return this.session; }
 

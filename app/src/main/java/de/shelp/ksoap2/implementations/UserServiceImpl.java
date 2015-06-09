@@ -5,6 +5,7 @@ import android.util.Log;
 import org.ksoap2.SoapFault;
 import org.ksoap2.serialization.SoapObject;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
@@ -94,9 +95,16 @@ public class UserServiceImpl implements UserService {
         }
     }
 
-
     @Override
-    public Tour newTour(long id, ApprovalStatus approval, Location location,Capacity capacity, PaymentCondition payCondition, DeliveryCondition delCondition, Calendar date, List<Request> request, User owner,Calendar updatedOn, TourStatus status) throws InvalidTourException{
-        return null;
+    public List<User> searchUsers(String searchText) throws SoapFault{
+        String METHOD_NAME = "searchUsers";
+        SoapObject response = ServiceUtils.executeSoapAction(METHOD_NAME, URL, searchText);
+
+        List<User> users = new ArrayList<>();
+        for(int i = 1; i < response.getPropertyCount(); i++) {
+           users.add( SoapAssembler.getInstance().soapToUser((SoapObject) response.getProperty(i)));
+        }
+
+        return users;
     }
 }
