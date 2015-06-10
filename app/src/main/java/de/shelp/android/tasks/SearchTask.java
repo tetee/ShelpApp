@@ -110,8 +110,13 @@ public class SearchTask extends AsyncTask<Object, Integer, List<Tour>>
                 details.setId(idEditText);
                 details.setText("Details");
 
+
                 details.setOnClickListener(new ShowTourDetailsListener(result.get(i), activity));
                         ll2.addView(details);
+
+
+                details.setOnClickListener(new ShowTourDetailsListener(result.get(i), activity));
+                ll2.addView(details);
 
 
                 //Button Bewertung unter ausgegebener Tour anzeigen
@@ -126,7 +131,7 @@ public class SearchTask extends AsyncTask<Object, Integer, List<Tour>>
                 rating.setId(idEditText);
                 rating.setText("Bewertung");
                 rating.setOnClickListener(new ShowRatingsListener(result.get(i).getOwner(), activity));
-                        ll3.addView(rating, relativeParams3);
+                ll3.addView(rating, relativeParams3);
 
             }
         }

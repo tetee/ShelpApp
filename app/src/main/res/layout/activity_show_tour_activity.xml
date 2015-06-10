@@ -1,3 +1,8 @@
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ScrollView01"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
@@ -17,7 +22,7 @@
         android:layout_marginBottom="10dp"/>
 
     <TextView
-        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textAppearance="?android:attr/textAppearanceMedium"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/owner"
@@ -39,6 +44,7 @@
 
     <TextView
         android:id="@+id/citySpinner"
+        android:textAppearance="?android:attr/textAppearanceMedium"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
@@ -58,6 +64,7 @@
 
     <TextView
         android:id="@+id/capacitySpinner"
+        android:textAppearance="?android:attr/textAppearanceMedium"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
@@ -78,11 +85,13 @@
 
     <TextView
         android:id="@+id/paySpinner"
+        android:textAppearance="?android:attr/textAppearanceMedium"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/paymentTerms"/>
+        android:layout_below="@+id/paymentTerms"
+        android:layout_marginBottom="10dp" />
 
     <TextView android:text="@string/deliveryTerms"
         android:textAppearance="?android:attr/textAppearanceLarge"
@@ -91,15 +100,18 @@
         android:id="@+id/deliveryTerms"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/paySpinner"/>
+        android:layout_below="@+id/paySpinner"
+        android:layout_marginBottom="10dp" />
 
     <TextView
         android:id="@+id/delSpinner"
+        android:textAppearance="?android:attr/textAppearanceMedium"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/deliveryTerms"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="10dp"  />
 
 
     <TextView android:text="@string/date"
@@ -109,9 +121,11 @@
         android:id="@+id/date"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/delSpinner"/>
+        android:layout_below="@+id/delSpinner"
+        android:layout_marginBottom="10dp" />
 
     <TextView
+        android:textAppearance="?android:attr/textAppearanceMedium"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="date"
@@ -119,26 +133,8 @@
         android:id="@+id/dateCreate"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_below="@id/date"/>
-
-    <TextView android:text="@string/time"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/time"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/dateCreate"/>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="time"
-        android:ems="10"
-        android:id="@+id/timeCreate"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@id/time"/>
+        android:layout_below="@id/date"
+        android:layout_marginBottom="10dp" />
 
     <TextView android:text="@string/enabling"
         android:textAppearance="?android:attr/textAppearanceLarge"
@@ -147,10 +143,12 @@
         android:id="@+id/enabling"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/timeCreate"/>
+        android:layout_below="@+id/dateCreate"
+        android:layout_marginBottom="10dp" />
 
     <TextView
         android:id="@+id/enablingSpinner"
+        android:textAppearance="?android:attr/textAppearanceMedium"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
@@ -165,10 +163,12 @@
         android:id="@+id/statusText"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/enablingSpinner"/>
+        android:layout_below="@+id/enablingSpinner"
+        android:layout_marginBottom="10dp" />
 
     <TextView
         android:id="@+id/status"
+        android:textAppearance="?android:attr/textAppearanceMedium"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
@@ -176,4 +176,17 @@
         android:layout_below="@+id/statusText"
         android:layout_marginBottom="10dp" />
 
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/requestButton"
+        android:id="@+id/requestButton"
+        android:layout_below="@+id/status"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:onClick="request"
+        android:background="@drawable/button"/>
+
 </RelativeLayout>
+</ScrollView>

@@ -6,6 +6,7 @@ import android.widget.Toast;
 import org.ksoap2.SoapFault;
 import org.ksoap2.serialization.SoapObject;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import de.shelp.ksoap2.ServiceUtils;
@@ -42,6 +43,7 @@ public class RatingServiceImpl {
         SoapObject response = null;
 
         response = ServiceUtils.executeSoapAction(METHOD_NAME, URL, user.getUserName());
+        List<Rating> ratings = new ArrayList<Rating>();
 
         if(response.getPrimitivePropertyAsString("returnCode").equals("ERROR")){
             CharSequence text = "Benutzer existiert nicht!";
@@ -51,10 +53,10 @@ public class RatingServiceImpl {
         }
         else {
             for(int i = 1; i <= response.getPropertyCount()-1; i++) {
-                response.getPropertyCount();
-
-                SoapAssembler.getInstance().soapToRating((SoapObject)response.getProperty(i));
+                ratings.add(SoapAssembler.getInstance().soapToRating((SoapObject)response.getProperty(i)));
             }
+            return ratings;
         }
+        return ratings;
     }
 }

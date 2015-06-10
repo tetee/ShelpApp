@@ -139,8 +139,13 @@ public class SoapAssembler {
     }
 
     public Rating soapToRating(SoapObject response){
-        SoapObject owner =(SoapObject) response.getProperty("owner");
-        return null;
+        Long id = Long.valueOf(response.getPropertyAsString("id"));
+        User sourceUser = soapToUser((SoapObject) response.getProperty("sourceUser"));
+        User targetUser = soapToUser((SoapObject) response.getProperty("targetUser"));
+        int rating = Integer.valueOf(response.getPropertyAsString("rating"));
+        String notice = response.getPropertyAsString("notice");
+
+        return new Rating(id, sourceUser,targetUser,rating,notice);
     }
 
 }

@@ -7,8 +7,13 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import java.text.ParseException;
+import java.util.Date;
 
 import de.fh_muenster.shelpapp.R;
+import de.shelp.ksoap2.ServiceUtils;
 import de.shelp.ksoap2.entities.Tour;
 
 public class ShowTourActivity extends ActionBarActivity {
@@ -20,9 +25,35 @@ public class ShowTourActivity extends ActionBarActivity {
 
         Intent intent = getIntent();
         Tour tour = (Tour) intent.getSerializableExtra("Tour");
-//TODO Genauso mit dem restlichen Kraaaaaam!!
         TextView owner = (TextView) findViewById(R.id.owner);
         owner.setText(tour.getOwner().toString());
+
+        TextView location = (TextView) findViewById(R.id.citySpinner);
+        location.setText(tour.getLocation().toString());
+
+        TextView capacity = (TextView) findViewById(R.id.capacitySpinner);
+        capacity.setText(tour.getCapacity().toString());
+
+        TextView payConditions = (TextView) findViewById(R.id.paySpinner);
+        payConditions.setText(tour.getPaymentConditions().toString());
+
+        TextView delConditions = (TextView) findViewById(R.id.delSpinner);
+        delConditions.setText(tour.getDeliveryConditions().toString());
+
+        TextView date = (TextView) findViewById(R.id.dateCreate);
+        try {
+            date.setText(ServiceUtils.formatDatetoString(new Date(tour.getTime())));
+        } catch (ParseException ex) {
+            ex.printStackTrace();
+            Toast.makeText(getApplicationContext(), "Falsches Format!", Toast.LENGTH_SHORT).show();
+        }
+
+        TextView approval = (TextView) findViewById(R.id.enablingSpinner);
+        approval.setText(tour.getApprovalStatus().toString());
+
+        TextView status = (TextView) findViewById(R.id.status);
+        status.setText(tour.getStatus().toString());
+
 
     }
 
@@ -47,6 +78,11 @@ public class ShowTourActivity extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void request(View v){
+        Intent i = new Intent(this, WishlistActivity.class);
+        startActivity(i);
     }
 
 }
