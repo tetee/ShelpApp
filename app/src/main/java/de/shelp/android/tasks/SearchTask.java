@@ -109,18 +109,10 @@ public class SearchTask extends AsyncTask<Object, Integer, List<Tour>>
                 details.setBackgroundResource(R.drawable.button);
                 details.setId(idEditText);
                 details.setText("Details");
-<<<<<<< HEAD
+
                 details.setOnClickListener(new ShowTourDetailsListener(result.get(i), activity));
-                        ll2.addView(details, relativeParams2);
-=======
-                details.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        activity.details(v);
-                    }
-                });
-                ll2.addView(details);
->>>>>>> soapwork
+                        ll2.addView(details);
+
 
                 //Button Bewertung unter ausgegebener Tour anzeigen
                 RelativeLayout ll3 = (RelativeLayout) activity.findViewById(R.id.relativeLayoutSearch);
