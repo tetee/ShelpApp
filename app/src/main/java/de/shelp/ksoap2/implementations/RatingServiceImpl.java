@@ -33,7 +33,7 @@ public class RatingServiceImpl {
         String METHOD_NAME = "createRating";
         SoapObject response = null;
 
-        response = ServiceUtils.executeSoapAction(METHOD_NAME, URL, targetUser.getUserName(), rating, notice,  sessionId);
+        response = ServiceUtils.executeSoapAction(METHOD_NAME, URL,null, targetUser.getUserName(), rating, notice,  sessionId);
 
         return response.getPrimitivePropertyAsString("returnCode");
     }
@@ -42,7 +42,7 @@ public class RatingServiceImpl {
         String METHOD_NAME = "getRatings";
         SoapObject response = null;
 
-        response = ServiceUtils.executeSoapAction(METHOD_NAME, URL, user.getUserName());
+        response = ServiceUtils.executeSoapAction(METHOD_NAME, URL,null, user.getUserName());
         List<Rating> ratings = new ArrayList<Rating>();
 
         if(response.getPrimitivePropertyAsString("returnCode").equals("ERROR")){
