@@ -18,13 +18,15 @@ import de.shelp.ksoap2.entities.Tour;
 
 public class ShowTourActivity extends ActionBarActivity {
 
+    Tour tour;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_tour_activity);
 
         Intent intent = getIntent();
-        Tour tour = (Tour) intent.getSerializableExtra("Tour");
+        tour = (Tour) intent.getSerializableExtra("Tour");
         TextView owner = (TextView) findViewById(R.id.owner);
         owner.setText(tour.getOwner().toString());
 
@@ -82,6 +84,7 @@ public class ShowTourActivity extends ActionBarActivity {
 
     public void request(View v){
         Intent i = new Intent(this, WishlistActivity.class);
+        i.putExtra("Tour", tour);
         startActivity(i);
     }
 

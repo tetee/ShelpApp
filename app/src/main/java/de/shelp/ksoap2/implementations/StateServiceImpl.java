@@ -30,7 +30,7 @@ public class StateServiceImpl {
         String METHOD_NAME = "getAllLists";
         SoapObject response = null;
 
-        response = ServiceUtils.executeSoapAction(METHOD_NAME, URL);
+        response = ServiceUtils.executeSoapAction(METHOD_NAME, URL, null);
 
         return SoapAssembler.getInstance().soapToAllLists(response);
     }

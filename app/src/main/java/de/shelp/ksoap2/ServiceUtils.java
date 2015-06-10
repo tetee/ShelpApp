@@ -45,7 +45,7 @@ public class ServiceUtils {
      * @param methodName
      * @return
      */
-    public static SoapObject executeSoapAction(String methodName, String url, Object... args) throws SoapFault {
+    public static SoapObject executeSoapAction(String methodName, String url,List<String> alternativeArgs, Object... args) throws SoapFault {
 
         Object result = null;
 
@@ -55,9 +55,15 @@ public class ServiceUtils {
         SoapObject request = new SoapObject(NAMESPACE, methodName);
 
 	    /* The array of arguments is copied into properties of the SOAP request using the addProperty method. */
-        for (int i=0; i<args.length; i++) {
+        int i = 0;
+        for (i=0; i<args.length; i++) {
             request.addProperty("arg" + i, args[i]);
         }
+        if(alternativeArgs!=null){
+        for (Object list : alternativeArgs){
+            request.addProperty("arg" + i, list);
+            i++;
+        }}
 
 	    /* Next create a SOAP envelop. Use the SoapSerializationEnvelope class, which extends the SoapEnvelop class, with support for SOAP
 	     * Serialization format, which represents the structure of a SOAP serialized message. The main advantage of SOAP serialization is portability.

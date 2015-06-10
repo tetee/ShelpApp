@@ -25,7 +25,7 @@
     <string name="title_activity_own_request_activity">Persönliche Anfragen</string>
     <string name="title_activity_your_request_activity">Anfragen</string>
     <string name="title_activity_registration_activity">Registrierung</string>
-    <string name="title_activity_show_tour_activity">Tour Details</string>
+    <string name="title_activity_show_tour_activity">Fahrt Details</string>
     <string name="usernameReg">E-Mail:</string>
     <string name="passwordReg">Passwort:</string>
     <string name="regConfirm">Registrieren</string>
