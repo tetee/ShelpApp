@@ -36,6 +36,10 @@ public class ServiceUtils {
         SimpleDateFormat output = new SimpleDateFormat("dd.MM.yyyy hh:mm");
         return output.parse(date);
     }
+    public static final String formatDatetoString(Date date) throws ParseException {
+        SimpleDateFormat output = new SimpleDateFormat("dd.MM.yyyy hh:mm");
+        return output.format(date);
+    }
     /**
      * Diese Methode delegiert einen Methodenaufruf an den hinterlegten WebService.
      * @param methodName
