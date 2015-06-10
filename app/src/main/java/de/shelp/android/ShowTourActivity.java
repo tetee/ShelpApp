@@ -20,9 +20,30 @@ public class ShowTourActivity extends ActionBarActivity {
 
         Intent intent = getIntent();
         Tour tour = (Tour) intent.getSerializableExtra("Tour");
-//TODO Genauso mit dem restlichen Kraaaaaam!!
         TextView owner = (TextView) findViewById(R.id.owner);
         owner.setText(tour.getOwner().toString());
+
+        TextView location = (TextView) findViewById(R.id.citySpinner);
+        location.setText(tour.getOwner().toString());
+
+        TextView capacity = (TextView) findViewById(R.id.capacitySpinner);
+        capacity.setText(tour.getCapacity().toString());
+
+        TextView payConditions = (TextView) findViewById(R.id.paySpinner);
+        payConditions.setText(tour.getPaymentConditions().toString());
+
+        TextView delConditions = (TextView) findViewById(R.id.delSpinner);
+        delConditions.setText(tour.getDeliveryConditions().toString());
+
+        TextView date = (TextView) findViewById(R.id.date);
+        date.setText(tour.getTime().toString());
+
+        TextView approval = (TextView) findViewById(R.id.enablingSpinner);
+        approval.setText(tour.getApprovalStatus().toString());
+
+        TextView status = (TextView) findViewById(R.id.status);
+        status.setText(tour.getStatus().toString());
+
 
     }
 
