@@ -23,7 +23,7 @@ public class ShowOwnRequestActivity extends ActionBarActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_own_request_activity, menu);
+        getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
 
