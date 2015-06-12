@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -13,6 +14,7 @@ import java.text.ParseException;
 import java.util.Date;
 
 import de.fh_muenster.shelpapp.R;
+import de.shelp.android.applications.ShelpApplication;
 import de.shelp.ksoap2.ServiceUtils;
 import de.shelp.ksoap2.entities.Tour;
 
@@ -27,6 +29,13 @@ public class ShowTourActivity extends ActionBarActivity {
 
         Intent intent = getIntent();
         tour = (Tour) intent.getSerializableExtra("Tour");
+        //Abfrage des Besitzers der Tour
+        //Ist der Besitzer der User wird der Anfrage Button ausgeblendet um das Anfragen eigener Touren zu verhindern
+        boolean besitzer = (boolean) intent.getSerializableExtra("Besitzer");
+        if(besitzer == true){
+            Button button = (Button) findViewById(R.id.requestButton);
+            button.setVisibility(View.GONE);
+        }
         TextView owner = (TextView) findViewById(R.id.owner);
         owner.setText(tour.getOwner().toString());
 
@@ -55,7 +64,6 @@ public class ShowTourActivity extends ActionBarActivity {
 
         TextView status = (TextView) findViewById(R.id.status);
         status.setText(tour.getStatus().toString());
-
 
     }
 
