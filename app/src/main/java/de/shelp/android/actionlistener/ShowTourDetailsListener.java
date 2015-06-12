@@ -1,9 +1,12 @@
 package de.shelp.android.actionlistener;
 
+import android.app.Activity;
 import android.content.DialogInterface;
 import android.view.View;
 
 import de.shelp.android.SearchTourActivity;
+import de.shelp.android.ShowOwnTourActivity;
+import de.shelp.android.tasks.OwnToursTask;
 import de.shelp.ksoap2.entities.Tour;
 
 /**
@@ -12,16 +15,29 @@ import de.shelp.ksoap2.entities.Tour;
 public class ShowTourDetailsListener implements View.OnClickListener{
 
     private Tour tour;
-    private SearchTourActivity activity;
+    private SearchTourActivity searchActivity;
+    private ShowOwnTourActivity ownTourActivity;
+
 
     public ShowTourDetailsListener(Tour tour, SearchTourActivity activity){
         this.tour = tour;
-        this.activity=activity;
+        this.searchActivity=activity;
+        this.ownTourActivity=null;
+    }
+    public ShowTourDetailsListener(Tour tour, ShowOwnTourActivity activity){
+        this.tour = tour;
+        this.ownTourActivity=activity;
+        this.searchActivity = null;
     }
 
     @Override
     public void onClick(View v) {
-        activity.details(v, tour);
+        if(searchActivity != null){
+        searchActivity.details(v, tour);
+        }
+        if(ownTourActivity!=null){
+            ownTourActivity.details(v, tour);
+        }
 
     }
 }

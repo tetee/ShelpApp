@@ -3,10 +3,8 @@ package de.shelp.android.tasks;
 import android.content.Context;
 import android.graphics.Color;
 import android.os.AsyncTask;
-import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -16,43 +14,27 @@ import org.ksoap2.SoapFault;
 import java.util.List;
 
 import de.fh_muenster.shelpapp.R;
-import de.shelp.android.SearchTourActivity;
 import de.shelp.android.ShowOwnTourActivity;
+import de.shelp.android.actionlistener.EditTourListener;
 import de.shelp.android.actionlistener.ShowRatingsListener;
 import de.shelp.android.actionlistener.ShowTourDetailsListener;
 import de.shelp.android.applications.ShelpApplication;
-import de.shelp.ksoap2.entities.ReturnCode;
 import de.shelp.ksoap2.entities.Tour;
 
 /**
- * Created by user on 02.06.15.
+ * Created by user on 12.06.15.
  */
-
-
-public class SearchTask extends AsyncTask<Object, Integer, List<Tour>>
+public class OwnToursTask extends AsyncTask<Object, Integer, List<Tour>>
 {
     private Context context;
-    private int approvalStatus;
-    private long location;
-    private int capacity;
-    private long timeStart;
-    private long timeEnd;
-    boolean directSearch;
     private int sessionId;
-    private static SearchTourActivity activity;
+    private static ShowOwnTourActivity activity;
 
 
-    private int idEditText = R.id.searchButton;
+    private int idEditText =R.id.relativeLayoutOwnTour;
     //Dem Konstruktor der Klasse wird der aktuelle Kontext der Activity übergeben
     //damit auf die UI-Elemente zugegriffen werden kann und Intents gestartet werden können, usw.
-    public SearchTask(Context context,int approvalStatus, long location, int capacity, long timeStart, long timeEnd,boolean directSearch, int sessionId, SearchTourActivity activity)
-    {
-        this.approvalStatus = approvalStatus;
-        this.location =location;
-        this.capacity=capacity;
-        this.timeStart=timeStart;
-        this.timeEnd=timeEnd;
-        this.directSearch=directSearch;
+    public OwnToursTask(Context context,int sessionId, ShowOwnTourActivity activity){
         this.context = context;
         this.sessionId = sessionId;
         this.activity = activity;
@@ -62,7 +44,7 @@ public class SearchTask extends AsyncTask<Object, Integer, List<Tour>>
     protected List<Tour> doInBackground(Object... params){
         ShelpApplication myApp = (ShelpApplication) activity.getApplication();
         try {
-            return myApp.getTourService().searchTour(approvalStatus, location, capacity, timeStart, timeEnd, directSearch, sessionId);
+            return myApp.getTourService().searchOwnTour(sessionId);
         } catch (SoapFault e) {
             Toast.makeText(activity.getApplicationContext(), "Serververbindung konnte nicht erfolgreich aufgebaut werden!", Toast.LENGTH_SHORT).show();
 
@@ -81,21 +63,22 @@ public class SearchTask extends AsyncTask<Object, Integer, List<Tour>>
             Toast.makeText(activity.getApplicationContext(), "ERROR: Fahrt konnte nicht gefunden werden!", Toast.LENGTH_SHORT).show();
         } else {
             for(int i = 0; i<=result.size()-1;i++){
-                //result.get(i);
-                RelativeLayout ll = (RelativeLayout) activity.findViewById(R.id.relativeLayoutSearch);
+
+                RelativeLayout ll = (RelativeLayout) activity.findViewById(R.id.relativeLayoutOwnTour);
                 RelativeLayout.LayoutParams relativeParams = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.FILL_PARENT);
                 relativeParams.addRule(RelativeLayout.BELOW, idEditText);
                 this.idEditText++;
                 TextView et = new TextView(context);
                 et.setId(idEditText);
                 et.setTextSize(20);
-                String owner = result.get(i).getOwner().toString();
+                et.setTextColor(Color.BLACK);
                 String destination = result.get(i).getLocation().toString();
-                et.setText(owner + " " + destination);
+                String status =result.get(i).getStatus().toString();
+                et.setText("Ziel: "+ destination+ "\n" +"Status: "+ status);
                 ll.addView(et, relativeParams);
 
-                 //Button Details unter ausgegebener Tour anzeigen
-                RelativeLayout ll2 = (RelativeLayout) activity.findViewById(R.id.relativeLayoutSearch);
+                //Button Details unter ausgegebener Tour anzeigen
+                RelativeLayout ll2 = (RelativeLayout) activity.findViewById(R.id.relativeLayoutOwnTour);
                 RelativeLayout.LayoutParams relativeParams2 = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.FILL_PARENT);
                 relativeParams2.addRule(RelativeLayout.BELOW, idEditText);
                 //Abstände zwischen den Button werden programmatisch gesetzt
@@ -111,19 +94,17 @@ public class SearchTask extends AsyncTask<Object, Integer, List<Tour>>
                 ll2.addView(details);
 
                 //Button Bewertung unter ausgegebener Tour anzeigen
-                RelativeLayout ll3 = (RelativeLayout) activity.findViewById(R.id.relativeLayoutSearch);
+                RelativeLayout ll3 = (RelativeLayout) activity.findViewById(R.id.relativeLayoutOwnTour);
                 RelativeLayout.LayoutParams relativeParams3 = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.FILL_PARENT);
                 relativeParams3.addRule(RelativeLayout.BELOW, idEditText);
                 this.idEditText++;
-                Button rating = new Button(context);
-                rating.setBackgroundResource(R.drawable.button);
-                rating.setId(idEditText);
-                rating.setText("Bewertung");
-                rating.setOnClickListener(new ShowRatingsListener(result.get(i).getOwner(), activity));
-                ll3.addView(rating, relativeParams3);
-
+                Button edit = new Button(context);
+                edit.setBackgroundResource(R.drawable.button);
+                edit.setId(idEditText);
+                edit.setText("Bearbeiten");
+                edit.setOnClickListener(new EditTourListener(result.get(i), activity));
+                ll3.addView(edit, relativeParams3);
             }
         }
     }
-
 }

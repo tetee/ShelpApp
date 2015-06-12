@@ -47,4 +47,18 @@ public class TourServiceImpl {
 
         return tours;
     }
+
+
+    public List<Tour> searchOwnTour(int sessionId) throws SoapFault{
+        String METHOD_NAME = "getTours";
+        SoapObject response = null;
+
+        response = ServiceUtils.executeSoapAction(METHOD_NAME, URL,sessionId);
+        List<Tour> tours = new ArrayList<Tour>();
+        for(int i = 1; i<=response.getPropertyCount()-1; i++){
+            tours.add(SoapAssembler.getInstance().soapToTour((SoapObject)response.getProperty(i)));
+        }
+
+        return tours;
+    }
 }
