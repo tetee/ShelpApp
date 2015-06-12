@@ -13,6 +13,7 @@
     <item android:id="@+id/logo"
         android:icon="@mipmap/logoneu"
         android:title="logoTitle"
-        app:showAsAction="withText|ifRoom"/>
+        app:showAsAction="withText|ifRoom"
+        />
 
 </menu>
