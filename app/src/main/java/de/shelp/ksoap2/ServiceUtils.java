@@ -29,8 +29,8 @@ public class ServiceUtils {
      * the web service is hosted on the localhost server. Specify hostname as the IP address of the
      * server hosting the web service (or "10.0.2.15 instead of 'localhost' when running in the emulator).
      */
-    public static final String URL = "http://10.70.50.172:8080/shelp/";
-    //public static final String URL = "http://192.168.178.35:8080/shelp/";
+    //public static final String URL = "http://10.70.50.172:8080/shelp/";
+    public static final String URL = "http://192.168.0.101:8080/shelp/";
 
     public static final Date formatInputToDate(String date) throws ParseException {
         SimpleDateFormat output = new SimpleDateFormat("dd.MM.yyyy hh:mm");
@@ -55,15 +55,18 @@ public class ServiceUtils {
         SoapObject request = new SoapObject(NAMESPACE, methodName);
 
 	    /* The array of arguments is copied into properties of the SOAP request using the addProperty method. */
-        int i = 0;
-        for (i=0; i<args.length; i++) {
+        int i =0;
+        for ( i=0; i<args.length; i++) {
             request.addProperty("arg" + i, args[i]);
         }
         if(alternativeArgs!=null){
-        for (Object list : alternativeArgs){
-            request.addProperty("arg" + i, list);
-            i++;
-        }}
+            SoapObject soapObject = new SoapObject(NAMESPACE, "wishes");
+        for (int j=0; j<alternativeArgs.size(); j++){
+            soapObject.addProperty("String" , alternativeArgs.get(j));
+        }
+            request.addProperty("arg"+i, soapObject);
+        }
+
 
 	    /* Next create a SOAP envelop. Use the SoapSerializationEnvelope class, which extends the SoapEnvelop class, with support for SOAP
 	     * Serialization format, which represents the structure of a SOAP serialized message. The main advantage of SOAP serialization is portability.

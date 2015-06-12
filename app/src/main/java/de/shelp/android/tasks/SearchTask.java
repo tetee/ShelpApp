@@ -82,7 +82,6 @@ public class SearchTask extends AsyncTask<Object, Integer, List<Tour>>
             for(int i = 0; i<=result.size()-1;i++){
                 //result.get(i);
                 RelativeLayout ll = (RelativeLayout) activity.findViewById(R.id.relativeLayoutSearch);
-
                 RelativeLayout.LayoutParams relativeParams = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.FILL_PARENT);
                 relativeParams.addRule(RelativeLayout.BELOW, idEditText);
                 this.idEditText++;
@@ -96,8 +95,6 @@ public class SearchTask extends AsyncTask<Object, Integer, List<Tour>>
 
                  //Button Details unter ausgegebener Tour anzeigen
                 RelativeLayout ll2 = (RelativeLayout) activity.findViewById(R.id.relativeLayoutSearch);
-
-
                 RelativeLayout.LayoutParams relativeParams2 = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.FILL_PARENT);
                 relativeParams2.addRule(RelativeLayout.BELOW, idEditText);
                 //Abstände zwischen den Button werden programmatisch gesetzt
@@ -109,21 +106,13 @@ public class SearchTask extends AsyncTask<Object, Integer, List<Tour>>
                 details.setBackgroundResource(R.drawable.button);
                 details.setId(idEditText);
                 details.setText("Details");
-
-
-                details.setOnClickListener(new ShowTourDetailsListener(result.get(i), activity));
-                        ll2.addView(details);
-
-
                 details.setOnClickListener(new ShowTourDetailsListener(result.get(i), activity));
                 ll2.addView(details);
 
 
                 //Button Bewertung unter ausgegebener Tour anzeigen
                 RelativeLayout ll3 = (RelativeLayout) activity.findViewById(R.id.relativeLayoutSearch);
-
                 RelativeLayout.LayoutParams relativeParams3 = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.FILL_PARENT);
-
                 relativeParams3.addRule(RelativeLayout.BELOW, idEditText);
                 this.idEditText++;
                 Button rating = new Button(context);
