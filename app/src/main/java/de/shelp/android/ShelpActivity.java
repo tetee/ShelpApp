@@ -49,6 +49,11 @@ public class ShelpActivity extends ActionBarActivity {
             return true;
         }
 
+        if(id == R.id.logo) {
+            Intent i = new Intent(this, ShelpActivity.class);
+            startActivity(i);
+        }
+
         return super.onOptionsItemSelected(item);
     }
 
@@ -78,8 +83,8 @@ public class ShelpActivity extends ActionBarActivity {
 
     //Wechsel zur FriendsActivity
     public void friends(View view) {
-        GetFriendsTask getFriendsTask = new GetFriendsTask(view.getContext(), (ShelpApplication) getApplication());
-        getFriendsTask.execute();
+        Intent i = new Intent(this,FriendsActivity.class);
+        startActivity(i);
     }
 
 

@@ -3,6 +3,7 @@ package de.shelp.ksoap2;
 import org.ksoap2.HeaderProperty;
 import org.ksoap2.SoapEnvelope;
 import org.ksoap2.SoapFault;
+import org.ksoap2.serialization.PropertyInfo;
 import org.ksoap2.serialization.SoapObject;
 import org.ksoap2.serialization.SoapSerializationEnvelope;
 import org.ksoap2.transport.HttpTransportSE;
@@ -45,7 +46,7 @@ public class ServiceUtils {
      * @param methodName
      * @return
      */
-    public static SoapObject executeSoapAction(String methodName, String url,List<String> alternativeArgs, Object... args) throws SoapFault {
+    public static SoapObject executeSoapAction(String methodName, String url, Object... args) throws SoapFault {
 
         Object result = null;
 
@@ -58,13 +59,6 @@ public class ServiceUtils {
         int i =0;
         for ( i=0; i<args.length; i++) {
             request.addProperty("arg" + i, args[i]);
-        }
-        if(alternativeArgs!=null){
-            SoapObject soapObject = new SoapObject(NAMESPACE, "wishes");
-        for (int j=0; j<alternativeArgs.size(); j++){
-            soapObject.addProperty("String" , alternativeArgs.get(j));
-        }
-            request.addProperty("arg"+i, soapObject);
         }
 
 

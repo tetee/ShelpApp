@@ -109,7 +109,6 @@ public class SearchTask extends AsyncTask<Object, Integer, List<Tour>>
                 details.setOnClickListener(new ShowTourDetailsListener(result.get(i), activity));
                 ll2.addView(details);
 
-
                 //Button Bewertung unter ausgegebener Tour anzeigen
                 RelativeLayout ll3 = (RelativeLayout) activity.findViewById(R.id.relativeLayoutSearch);
                 RelativeLayout.LayoutParams relativeParams3 = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.FILL_PARENT);

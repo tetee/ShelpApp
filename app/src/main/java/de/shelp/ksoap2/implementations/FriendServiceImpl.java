@@ -28,7 +28,7 @@ public class FriendServiceImpl {
         String METHOD_NAME = "getFriends";
         SoapObject response = null;
 
-        response = ServiceUtils.executeSoapAction(METHOD_NAME, URL,null, sessionId);
+        response = ServiceUtils.executeSoapAction(METHOD_NAME, URL, sessionId);
 
         List<Friendship> friendships = new ArrayList<>();
 
@@ -38,4 +38,13 @@ public class FriendServiceImpl {
 
         return friendships;
     }
+
+   public boolean addFriend(int sessionId, String friendId) throws SoapFault {
+       String METHOD_NAME = "addFriend";
+       SoapObject response = null;
+
+       response = ServiceUtils.executeSoapAction(METHOD_NAME, URL, sessionId, friendId);
+
+       return response.getPrimitivePropertyAsString("returnCode").equals("OK");
+   }
 }

@@ -6,13 +6,13 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import de.fh_muenster.shelpapp.R;
-import de.shelp.android.tasks.SearchTask;
+import de.shelp.android.applications.ShelpApplication;
+import de.shelp.android.tasks.AddFriendTask;
 import de.shelp.android.tasks.SearchUserTask;
+import de.shelp.ksoap2.entities.User;
 
 public class SearchFriendActivity extends ActionBarActivity {
 
@@ -42,6 +42,11 @@ public class SearchFriendActivity extends ActionBarActivity {
             return true;
         }
 
+        if(id == R.id.logo) {
+            Intent i = new Intent(this, ShelpActivity.class);
+            startActivity(i);
+        }
+
         return super.onOptionsItemSelected(item);
     }
 
@@ -55,23 +60,11 @@ public class SearchFriendActivity extends ActionBarActivity {
         SearchUserTask searchTask = new SearchUserTask(view.getContext(), searchText, this);
         searchTask.execute();
 
-        //Button suchen
-       // Button addButton = (Button) findViewById(R.id.addButton);
-        //Button sichtbar machen
-      //  addButton.setVisibility(View.VISIBLE);
     }
 
     //Mit Klick auf Hinzufügen wird der Freund angefragt und Rückkehr zur Shelp Activity
-    public void add(View view) {
-        /**Toast.makeText();
-         CharSequence text = "Freund erfolgreich hinzugefügt!";
-         int duration = Toast.LENGTH_SHORT;
-         Toast toast = Toast.makeText(context, text, duration);
-         toast.show();*/
-
-        //Toast ob das hinzufügen eines neuen Freundes erfolgreich war
-        Toast.makeText(getApplicationContext(), "Freund erfolgreich hinzugefügt!", Toast.LENGTH_SHORT).show();
-        Intent i = new Intent(this, ShelpActivity.class);
-        startActivity(i);
+    public void add(View view, User user) {
+        AddFriendTask addFriendTask = new AddFriendTask(view.getContext(),(ShelpApplication) this.getApplication(), user);
+        addFriendTask.execute();
     }
 }

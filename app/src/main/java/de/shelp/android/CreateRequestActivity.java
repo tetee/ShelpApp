@@ -1,5 +1,6 @@
 package de.shelp.android;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -33,6 +34,11 @@ public class CreateRequestActivity extends ActionBarActivity {
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
+        }
+
+        if(id == R.id.logo) {
+            Intent i = new Intent(this, ShelpActivity.class);
+            startActivity(i);
         }
 
         return super.onOptionsItemSelected(item);
