@@ -153,8 +153,12 @@ public class SoapAssembler {
     public Request soapToRequest(SoapObject response) {
     SoapObject wishResponse = (SoapObject) response.getProperty("wishes");
         List<WishlistItem> wishlistItems = new ArrayList<WishlistItem>();
-        for (int i = 0; i < wishResponse.getPropertyCount(); i++) {
-            wishlistItems.add(soapToWishlistItem((SoapObject) wishResponse.getProperty(i)));
+        if(wishResponse.getProperty("id") != null){
+            wishlistItems.add(soapToWishlistItem(wishResponse));
+        } else {
+            for (int i = 0; i < wishResponse.getPropertyCount(); i++) {
+                wishlistItems.add(soapToWishlistItem((SoapObject) wishResponse.getProperty(i)));
+            }
         }
         Long id = Long.valueOf(response.getPropertyAsString("id"));
         User sourceUser = soapToUser((SoapObject) response.getProperty("sourceUser"));

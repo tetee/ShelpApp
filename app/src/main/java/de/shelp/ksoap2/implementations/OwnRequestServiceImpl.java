@@ -32,7 +32,7 @@ public class OwnRequestServiceImpl {
         SoapObject response = null;
 
         try {
-            response = ServiceUtils.executeSoapAction(METHOD_NAME, URL, null, sessionId);
+            response = ServiceUtils.executeSoapAction(METHOD_NAME, URL, sessionId);
             String request = (response.getPrimitivePropertySafelyAsString("returnCode"));
             if (request.equals(ReturnCode.ERROR.toString())) {
                 throw new InvalidRequestException("Request invalid!");

@@ -1,6 +1,7 @@
 package de.shelp.android.tasks;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
@@ -67,6 +68,7 @@ public class GetOwnRequestTask extends AsyncTask<Object, Integer, List<Request>>
                     TextView et = new TextView(context);
                     et.setId(nextAskedId);
                     et.setTextSize(20);
+                    et.setTextColor(Color.BLACK);
                     et.setText("Benutzer: " + request.getTargedUser() + " " + request.getTour().getLocation() + " " + request.getStatus());
                     ll.addView(et, relativeParams);
 
