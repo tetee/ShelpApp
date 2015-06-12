@@ -124,7 +124,7 @@ public class SearchTask extends AsyncTask<Object, Integer, List<Tour>>
                 rating.setId(idEditText);
                 rating.setText("Bewertung");
                 rating.setOnClickListener(new ShowRatingsListener(result.get(i).getOwner(), activity));
-                        ll3.addView(rating, relativeParams3);
+                ll3.addView(rating, relativeParams3);
 
             }
         }

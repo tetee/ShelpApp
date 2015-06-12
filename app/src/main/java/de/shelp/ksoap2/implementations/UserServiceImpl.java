@@ -50,7 +50,7 @@ public class UserServiceImpl implements UserService {
         String METHOD_NAME = "login";
         SoapObject response = null;
         try {
-            response = ServiceUtils.executeSoapAction(METHOD_NAME, URL, username, password);
+            response = ServiceUtils.executeSoapAction(METHOD_NAME, URL,null, username, password);
            // response = ServiceUtils.executeSoapAction("getAllLists", URL2);
             Log.d(TAG, response.toString());
             String login = (response.getPrimitivePropertySafelyAsString("returnCode"));
@@ -67,7 +67,7 @@ public class UserServiceImpl implements UserService {
         String METHOD_NAME = "regUser";
         SoapObject response = null;
         try {
-            response = ServiceUtils.executeSoapAction(METHOD_NAME, URL, eMail, hash);
+            response = ServiceUtils.executeSoapAction(METHOD_NAME, URL,null, eMail, hash);
             Log.d(TAG, response.toString());
             String reg = (response.getPrimitivePropertySafelyAsString("returnCode"));
 
@@ -88,7 +88,7 @@ public class UserServiceImpl implements UserService {
         String METHOD_NAME = "logout";
         try {
 
-            SoapObject response = ServiceUtils.executeSoapAction(METHOD_NAME, URL, shelpApplication.getSession().getId());
+            SoapObject response = ServiceUtils.executeSoapAction(METHOD_NAME, URL,null, shelpApplication.getSession().getId());
             Log.d(TAG, response.toString());
         } catch (SoapFault e) {
             throw new NoSessionException(e.getMessage());
@@ -98,7 +98,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<User> searchUsers(String searchText) throws SoapFault{
         String METHOD_NAME = "searchUsers";
-        SoapObject response = ServiceUtils.executeSoapAction(METHOD_NAME, URL, searchText);
+        SoapObject response = ServiceUtils.executeSoapAction(METHOD_NAME, URL,null, searchText);
 
         List<User> users = new ArrayList<>();
         for(int i = 1; i < response.getPropertyCount(); i++) {

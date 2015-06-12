@@ -2,6 +2,7 @@
     <string name="app_name">ShelpApp</string>
 
     <string name="hello_world">Hello world!</string>
+    <string name="creator">Bewertung(en) von Benutzer:</string>
     <string name="action_settings">Settings</string>
     <string name="username">E-Mail:</string>
     <string name="password">Passwort:</string>
@@ -24,6 +25,7 @@
     <string name="title_activity_own_request_activity">Persönliche Anfragen</string>
     <string name="title_activity_your_request_activity">Anfragen</string>
     <string name="title_activity_registration_activity">Registrierung</string>
+    <string name="title_activity_show_tour_activity">Fahrt Details</string>
     <string name="usernameReg">E-Mail:</string>
     <string name="passwordReg">Passwort:</string>
     <string name="regConfirm">Registrieren</string>
@@ -65,8 +67,8 @@
     <string name="createTour">Erstelle deine Fahrt..</string>
     <string name="logoutButton">Logout</string>
     <string name="directSearch">in der Nähe suchen?</string>
-    <string name="title_activity_show_tour_activity">show_tour_activity</string>
     <string name="statusText">Status</string>
     <string name="ownerText">Ersteller</string>
+    <string name="requestButton">Anfrage vorbereiten</string>
 
 </resources>
