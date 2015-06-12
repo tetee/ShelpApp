@@ -17,6 +17,7 @@ import java.util.List;
 import de.fh_muenster.shelpapp.R;
 import de.shelp.android.SearchFriendActivity;
 import de.shelp.android.SearchTourActivity;
+import de.shelp.android.actionlistener.AddFriendListener;
 import de.shelp.android.applications.ShelpApplication;
 import de.shelp.ksoap2.entities.Tour;
 import de.shelp.ksoap2.entities.User;
@@ -32,8 +33,7 @@ public class SearchUserTask extends AsyncTask<Object, Integer, List<User>>
     private String searchText;
     private SearchFriendActivity activity;
 
-    private int lastEditText = R.id.searchFriendButton;
-    private int idEditText = 1;
+    private int idEditText = R.id.searchFriendButton;
 
     //Dem Konstruktor der Klasse wird der aktuelle Kontext der Activity übergeben
     //damit auf die UI-Elemente zugegriffen werden kann und Intents gestartet werden können, usw.
@@ -69,7 +69,7 @@ public class SearchUserTask extends AsyncTask<Object, Integer, List<User>>
                 RelativeLayout relativeLayout = (RelativeLayout) activity.findViewById(R.id.relativeLayoutFriendSearch);
 
                 RelativeLayout.LayoutParams relativeParams = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-                relativeParams.addRule(RelativeLayout.BELOW, lastEditText);
+                relativeParams.addRule(RelativeLayout.BELOW, idEditText);
                 this.idEditText++;
                 TextView et = new TextView(context);
                 et.setId(idEditText);
@@ -77,26 +77,21 @@ public class SearchUserTask extends AsyncTask<Object, Integer, List<User>>
 
                 relativeLayout.addView(et, relativeParams);
 
-                this.lastEditText = et.getId();
+                RelativeLayout relativeLayout2 = (RelativeLayout) activity.findViewById(R.id.relativeLayoutFriendSearch);
+
+                RelativeLayout.LayoutParams relativeParams2 = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                relativeParams2.addRule(RelativeLayout.BELOW, idEditText);
+                relativeParams2.addRule(RelativeLayout.BELOW, idEditText);
+
                 this.idEditText++;
-
-                relativeParams.addRule(RelativeLayout.BELOW, lastEditText);
-
                 Button addButton = new Button(context);
                 addButton.setText("Hinzufügen");
                 addButton.setId(idEditText);
 
-                addButton.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
+                addButton.setOnClickListener(new AddFriendListener(result.get(i), activity));
 
-                    }
-                });
+                relativeLayout.addView(addButton, relativeParams2);
 
-                relativeLayout.addView(addButton, relativeParams);
-                this.lastEditText = addButton.getId();
-
-                this.idEditText++;
 
             }
         }

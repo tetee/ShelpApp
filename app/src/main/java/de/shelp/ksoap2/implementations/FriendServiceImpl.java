@@ -38,4 +38,13 @@ public class FriendServiceImpl {
 
         return friendships;
     }
+
+   public boolean addFriend(int sessionId, String friendId) throws SoapFault {
+       String METHOD_NAME = "addFriend";
+       SoapObject response = null;
+
+       response = ServiceUtils.executeSoapAction(METHOD_NAME, URL, sessionId, friendId);
+
+       return response.getPrimitivePropertyAsString("returnCode").equals("OK");
+   }
 }
