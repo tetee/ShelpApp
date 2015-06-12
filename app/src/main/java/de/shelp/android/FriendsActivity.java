@@ -37,6 +37,11 @@ public class FriendsActivity extends ActionBarActivity {
             return true;
         }
 
+        if(id == R.id.logo) {
+            Intent i = new Intent(this, ShelpActivity.class);
+            startActivity(i);
+        }
+
         return super.onOptionsItemSelected(item);
     }
 
@@ -45,4 +50,5 @@ public class FriendsActivity extends ActionBarActivity {
         Intent i = new Intent(this, SearchFriendActivity.class);
         startActivity(i);
     }
+
 }
