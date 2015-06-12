@@ -43,7 +43,7 @@ public class FriendServiceImpl {
        String METHOD_NAME = "addFriend";
        SoapObject response = null;
 
-       response = ServiceUtils.executeSoapAction(METHOD_NAME, URL, sessionId, friendId);
+       response = ServiceUtils.executeSoapAction(METHOD_NAME, URL, null, sessionId, friendId);
 
        return response.getPrimitivePropertyAsString("returnCode").equals("OK");
    }

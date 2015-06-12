@@ -8,6 +8,9 @@ import android.view.MenuItem;
 import android.view.View;
 
 import de.fh_muenster.shelpapp.R;
+import de.shelp.android.applications.ShelpApplication;
+import de.shelp.android.tasks.GetFriendsTask;
+import de.shelp.android.tasks.GetOwnRequestTask;
 
 public class ShowOwnRequestActivity extends ActionBarActivity {
 
@@ -17,6 +20,13 @@ public class ShowOwnRequestActivity extends ActionBarActivity {
         setContentView(R.layout.activity_own_request_activity);
         //TODO
         //if status == "Erledigt" ermögliche Bewertung
+/*
+        ShelpApplication shelpApplication = (ShelpApplication) getApplication();
+        allLists = shelpApplication.getAllLists();
+        */
+        GetOwnRequestTask getOwnRequestTask = new GetOwnRequestTask(this.getApplicationContext(), (ShelpApplication) getApplication(), this);
+        getOwnRequestTask.execute();
+
     }
 
 

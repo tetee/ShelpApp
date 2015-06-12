@@ -6,6 +6,7 @@ import org.ksoap2.serialization.SoapPrimitive;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.WeakHashMap;
 
 import de.shelp.ksoap2.entities.AllLists;
 import de.shelp.ksoap2.entities.ApprovalStatus;
@@ -20,6 +21,7 @@ import de.shelp.ksoap2.entities.ShelpSession;
 import de.shelp.ksoap2.entities.Tour;
 import de.shelp.ksoap2.entities.TourStatus;
 import de.shelp.ksoap2.entities.User;
+import de.shelp.ksoap2.entities.WishlistItem;
 
 /**
  * Created by Jos-Laptop on 31.05.2015.
@@ -146,6 +148,31 @@ public class SoapAssembler {
         String notice = response.getPropertyAsString("notice");
 
         return new Rating(id, sourceUser,targetUser,rating,notice);
+    }
+
+    public Request soapToRequest(SoapObject response) {
+    SoapObject wishResponse = (SoapObject) response.getProperty("wishes");
+        List<WishlistItem> wishlistItems = new ArrayList<WishlistItem>();
+        for (int i = 0; i < wishResponse.getPropertyCount(); i++) {
+            wishlistItems.add(soapToWishlistItem((SoapObject) wishResponse.getProperty(i)));
+        }
+        Long id = Long.valueOf(response.getPropertyAsString("id"));
+        User sourceUser = soapToUser((SoapObject) response.getProperty("sourceUser"));
+        User targetUser = soapToUser((SoapObject) response.getProperty("targetUser"));
+        Tour tour = soapToTour((SoapObject) response.getProperty("tour"));
+        String notice = response.getPropertyAsString("notice");
+        String status = response.getPropertyAsString("status");
+
+
+        return new Request(id, sourceUser, targetUser, tour, wishlistItems, notice, status );
+    }
+
+    public WishlistItem soapToWishlistItem(SoapObject response) {
+        int id = Integer.valueOf(response.getPropertyAsString("id"));
+        String text = response.getPropertyAsString("text");
+        Boolean checked = Boolean.valueOf(response.getPropertyAsString("checked"));
+
+        return new WishlistItem(id, text, checked);
     }
 
 }
