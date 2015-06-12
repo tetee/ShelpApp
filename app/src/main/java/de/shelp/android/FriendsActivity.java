@@ -8,6 +8,8 @@ import android.view.MenuItem;
 import android.view.View;
 
 import de.fh_muenster.shelpapp.R;
+import de.shelp.android.applications.ShelpApplication;
+import de.shelp.android.tasks.GetFriendsTask;
 
 public class FriendsActivity extends ActionBarActivity {
 
@@ -15,6 +17,10 @@ public class FriendsActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_friends_activity);
+
+        GetFriendsTask getFriendsTask = new GetFriendsTask(this.getApplicationContext(), (ShelpApplication) getApplication(), this);
+        getFriendsTask.execute();
+
     }
 
 
