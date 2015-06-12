@@ -39,6 +39,8 @@ public class WishlistActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_whishlist_activity);
 
+        EditText wish = (EditText) findViewById(R.id.editTextWishList);
+        list.add(wish);
         Intent intent = getIntent();
         Tour tour = (Tour) intent.getSerializableExtra("Tour");
         targedUserId = tour.getOwner().toString();

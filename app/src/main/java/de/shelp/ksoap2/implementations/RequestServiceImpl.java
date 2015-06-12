@@ -1,8 +1,10 @@
 package de.shelp.ksoap2.implementations;
 
 import org.ksoap2.SoapFault;
+import org.ksoap2.serialization.PropertyInfo;
 import org.ksoap2.serialization.SoapObject;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,6 +12,7 @@ import de.shelp.ksoap2.ServiceUtils;
 import de.shelp.ksoap2.SoapAssembler;
 import de.shelp.ksoap2.entities.Request;
 import de.shelp.ksoap2.entities.Tour;
+import de.shelp.ksoap2.entities.WishesList;
 import de.shelp.ksoap2.entities.WishlistItem;
 
 /**
@@ -29,8 +32,13 @@ public class RequestServiceImpl {
     public String createRequest(String targedUserId,Long tourId, List<String> wishes, String notice, int sessionId) throws SoapFault{
         String METHOD_NAME = "createRequest";
         SoapObject response = null;
+        String wishesString = "";
+        for(String wish :wishes){
+            wishesString += wish + "\n";
+        }
 
-        response = ServiceUtils.executeSoapAction(METHOD_NAME, URL,wishes, targedUserId, tourId, notice, sessionId);
+
+        response = ServiceUtils.executeSoapAction(METHOD_NAME, URL, targedUserId, tourId, notice, sessionId, wishesString);
 
         return response.getPrimitivePropertyAsString("returnCode");
     }

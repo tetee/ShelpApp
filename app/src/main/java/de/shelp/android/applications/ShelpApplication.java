@@ -4,6 +4,7 @@ import android.app.Application;
 
 import de.shelp.ksoap2.entities.AllLists;
 import de.shelp.ksoap2.implementations.FriendServiceImpl;
+import de.shelp.ksoap2.implementations.OwnRequestServiceImpl;
 import de.shelp.ksoap2.implementations.RatingServiceImpl;
 import de.shelp.ksoap2.implementations.RequestServiceImpl;
 import de.shelp.ksoap2.implementations.StateServiceImpl;
@@ -22,6 +23,7 @@ public class ShelpApplication extends Application {
     private RatingServiceImpl ratingService;
     private FriendServiceImpl friendService;
     private RequestServiceImpl requestService;
+    private OwnRequestServiceImpl ownRequestService;
 
 
     public ShelpApplication() {
@@ -31,6 +33,7 @@ public class ShelpApplication extends Application {
         this.ratingService = new RatingServiceImpl();
         this.friendService = new FriendServiceImpl();
         this.requestService = new RequestServiceImpl();
+        this.ownRequestService = new OwnRequestServiceImpl();
     }
 
     public StateServiceImpl getShelpAppService() {return this.shelpAppService; }
@@ -44,6 +47,8 @@ public class ShelpApplication extends Application {
     public UserService getUserService() {return this.userService; }
 
     public FriendServiceImpl getFriendService() { return this.friendService; }
+
+    public OwnRequestServiceImpl getOwnRequestService() { return this.ownRequestService; }
 
     public ShelpSession getSession() { return this.session; }
 

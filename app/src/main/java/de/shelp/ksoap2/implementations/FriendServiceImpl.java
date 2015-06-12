@@ -28,7 +28,7 @@ public class FriendServiceImpl {
         String METHOD_NAME = "getFriends";
         SoapObject response = null;
 
-        response = ServiceUtils.executeSoapAction(METHOD_NAME, URL,null, sessionId);
+        response = ServiceUtils.executeSoapAction(METHOD_NAME, URL, sessionId);
 
         List<Friendship> friendships = new ArrayList<>();
 

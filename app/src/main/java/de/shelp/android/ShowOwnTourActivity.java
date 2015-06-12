@@ -6,15 +6,39 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import java.text.ParseException;
+import java.util.Date;
 
 import de.fh_muenster.shelpapp.R;
+import de.shelp.android.applications.ShelpApplication;
+import de.shelp.android.tasks.CreateTask;
+import de.shelp.android.tasks.GetRatingsTask;
+import de.shelp.android.tasks.OwnToursTask;
+import de.shelp.ksoap2.ServiceUtils;
+import de.shelp.ksoap2.entities.Tour;
+import de.shelp.ksoap2.entities.User;
 
 public class ShowOwnTourActivity extends ActionBarActivity {
 
+    Tour tour;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tour_activity);
+
+
+        Intent intent = getIntent();
+        User user = (User) intent.getSerializableExtra("User");
+
+        ShelpApplication application = (ShelpApplication) getApplication();
+        OwnToursTask ownToursTask = new OwnToursTask(getApplicationContext(),application.getSession().getId(), this);
+        ownToursTask.execute();
+
+
     }
 
 
@@ -45,15 +69,21 @@ public class ShowOwnTourActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    //Aufruf der CreateTourActivity
-    public void edit(View view) {
-        Intent i = new Intent(this, CreateTourActivity.class);
+
+    //durch Klicken werden die Details zur eigenen Fahrt angezeigt
+    //um das Anfragen einer eigenen Fahrt zu vermeiden wird der Besitzer gleich true gesetzt und in der ShowTourActivity
+    //der Button zujm Anfragen ausgeblendet
+    public void details(View view, Tour tour){
+        Intent i = new Intent(this, ShowTourActivity.class);
+        i.putExtra("Tour", tour);
+        i.putExtra("Besitzer", true);
         startActivity(i);
     }
 
-    //Aufruf der CreateRequestActivity
-    public void yourRequest(View view) {
-        Intent i = new Intent(this, CreateRequestActivity.class);
+    //TODO ändern der Tour... bzw, löschen der alten Tour
+    public void edit(View view, Tour tour){
+        Intent i = new Intent(this, CreateTourActivity.class);
+        //i.putExtra("Tour", tour);
         startActivity(i);
     }
 }

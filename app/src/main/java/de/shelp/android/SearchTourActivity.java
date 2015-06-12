@@ -84,7 +84,7 @@ public class SearchTourActivity extends ActionBarActivity {
         long timeStart;
         long timeEnd;
 
-        boolean directSearch =((boolean) ((CheckBox) findViewById(R.id.checkBox)).isChecked());
+        boolean directSearch =!((boolean) ((CheckBox) findViewById(R.id.checkBox)).isChecked());
 
         EditText newDateStart = (EditText) findViewById(R.id.dateCreateStart);
         EditText newTimeStart = (EditText) findViewById(R.id.timeCreateStart);

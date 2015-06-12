@@ -3,6 +3,7 @@ package de.shelp.ksoap2;
 import org.ksoap2.HeaderProperty;
 import org.ksoap2.SoapEnvelope;
 import org.ksoap2.SoapFault;
+import org.ksoap2.serialization.PropertyInfo;
 import org.ksoap2.serialization.SoapObject;
 import org.ksoap2.serialization.SoapSerializationEnvelope;
 import org.ksoap2.transport.HttpTransportSE;
@@ -29,8 +30,8 @@ public class ServiceUtils {
      * the web service is hosted on the localhost server. Specify hostname as the IP address of the
      * server hosting the web service (or "10.0.2.15 instead of 'localhost' when running in the emulator).
      */
+    //public static final String URL = "http://10.70.50.172:8080/shelp/";
     public static final String URL = "http://192.168.0.101:8080/shelp/";
-    //public static final String URL = "http://192.168.178.35:8080/shelp/";
 
     public static final Date formatInputToDate(String date) throws ParseException {
         SimpleDateFormat output = new SimpleDateFormat("dd.MM.yyyy hh:mm");
@@ -45,7 +46,7 @@ public class ServiceUtils {
      * @param methodName
      * @return
      */
-    public static SoapObject executeSoapAction(String methodName, String url,List<String> alternativeArgs, Object... args) throws SoapFault {
+    public static SoapObject executeSoapAction(String methodName, String url, Object... args) throws SoapFault {
 
         Object result = null;
 
@@ -55,15 +56,11 @@ public class ServiceUtils {
         SoapObject request = new SoapObject(NAMESPACE, methodName);
 
 	    /* The array of arguments is copied into properties of the SOAP request using the addProperty method. */
-        int i = 0;
-        for (i=0; i<args.length; i++) {
+        int i =0;
+        for ( i=0; i<args.length; i++) {
             request.addProperty("arg" + i, args[i]);
         }
-        if(alternativeArgs!=null){
-        for (Object list : alternativeArgs){
-            request.addProperty("arg" + i, list);
-            i++;
-        }}
+
 
 	    /* Next create a SOAP envelop. Use the SoapSerializationEnvelope class, which extends the SoapEnvelop class, with support for SOAP
 	     * Serialization format, which represents the structure of a SOAP serialized message. The main advantage of SOAP serialization is portability.

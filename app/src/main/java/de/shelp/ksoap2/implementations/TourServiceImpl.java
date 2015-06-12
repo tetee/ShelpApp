@@ -28,7 +28,7 @@ public class TourServiceImpl {
         String METHOD_NAME = "createTour";
         SoapObject response = null;
 
-        response = ServiceUtils.executeSoapAction(METHOD_NAME, URL,null, tour.getApprovalStatus().getId(), tour.getLocation().getId(), tour.getCapacity().getId(), tour.getPaymentConditions().getId(),
+        response = ServiceUtils.executeSoapAction(METHOD_NAME, URL, tour.getApprovalStatus().getId(), tour.getLocation().getId(), tour.getCapacity().getId(), tour.getPaymentConditions().getId(),
                 tour.getDeliveryConditions().getId(), tour.getTime(), sessionId);
 
         return response.getPrimitivePropertyAsString("returnCode");
@@ -39,7 +39,21 @@ public class TourServiceImpl {
         String METHOD_NAME = "searchTours";
         SoapObject response = null;
 
-        response = ServiceUtils.executeSoapAction(METHOD_NAME, URL,null, approvalStatus, location, capacity, timeStart, timeEnd, directSearch, sessionId);
+        response = ServiceUtils.executeSoapAction(METHOD_NAME, URL, approvalStatus, location, capacity, timeStart, timeEnd, directSearch, sessionId);
+        List<Tour> tours = new ArrayList<Tour>();
+        for(int i = 1; i<=response.getPropertyCount()-1; i++){
+            tours.add(SoapAssembler.getInstance().soapToTour((SoapObject)response.getProperty(i)));
+        }
+
+        return tours;
+    }
+
+
+    public List<Tour> searchOwnTour(int sessionId) throws SoapFault{
+        String METHOD_NAME = "getTours";
+        SoapObject response = null;
+
+        response = ServiceUtils.executeSoapAction(METHOD_NAME, URL,sessionId);
         List<Tour> tours = new ArrayList<Tour>();
         for(int i = 1; i<=response.getPropertyCount()-1; i++){
             tours.add(SoapAssembler.getInstance().soapToTour((SoapObject)response.getProperty(i)));

@@ -1,10 +1,17 @@
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ScrollView01"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context="de.shelp.android.ShowOwnRequestActivity">
+    tools:context="de.shelp.android.ShowOwnRequestActivity"
+    android:id="@+id/relativeLayoutRequest">
 
     <TextView
         android:layout_width="wrap_content"
@@ -17,50 +24,6 @@
         android:layout_alignParentStart="true"
         android:layout_marginBottom="10dp"/>
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/editButton"
-        android:id="@+id/editButton"
-        android:layout_below="@+id/ownRequest"
-        android:layout_marginRight="5dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:onClick="editWishlist"
-        android:background="@drawable/button"/>
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/deleteButton"
-        android:id="@+id/deleteButton"
-        android:layout_alignBottom="@+id/editButton"
-        android:layout_marginRight="5dp"
-        android:layout_toRightOf="@+id/editButton"
-        android:layout_toEndOf="@+id/editButton"
-        android:onClick="delete"
-        android:background="@drawable/button"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="@string/status"
-        android:id="@+id/statusButton"
-        android:layout_marginRight="5dp"
-        android:layout_alignBottom="@+id/deleteButton"
-        android:layout_toRightOf="@+id/deleteButton"
-        android:layout_toEndOf="@+id/deleteButton" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/rating"
-        android:id="@+id/rateButton"
-        android:layout_alignBottom="@+id/statusButton"
-        android:layout_toRightOf="@+id/statusButton"
-        android:layout_toEndOf="@+id/statusButton"
-        android:onClick="rate"
-        android:background="@drawable/button"/>
 
 </RelativeLayout>
+</ScrollView>

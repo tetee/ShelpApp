@@ -1,7 +1,6 @@
 package de.shelp.android.tasks;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -15,7 +14,6 @@ import java.util.List;
 
 import de.fh_muenster.shelpapp.R;
 import de.shelp.android.FriendsActivity;
-import de.shelp.android.ShelpActivity;
 import de.shelp.android.applications.ShelpApplication;
 import de.shelp.ksoap2.entities.Friendship;
 
