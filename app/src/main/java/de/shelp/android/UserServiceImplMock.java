@@ -15,6 +15,7 @@ import de.shelp.ksoap2.exceptions.InvalidTourException;
 import de.shelp.ksoap2.entities.Location;
 import de.shelp.ksoap2.entities.PaymentCondition;
 import de.shelp.ksoap2.entities.Request;
+import de.shelp.ksoap2.exceptions.InvalidUsersException;
 import de.shelp.ksoap2.services.UserService;
 import de.shelp.ksoap2.entities.ShelpSession;
 import de.shelp.ksoap2.entities.Tour;
@@ -50,7 +51,7 @@ public class UserServiceImplMock implements UserService {
         return null;
     }
 
-    public List<User> searchUsers(String searchText) throws SoapFault {
+    public List<User> searchUsers(String searchText) throws SoapFault, InvalidUsersException {
         return null;
     }
 }

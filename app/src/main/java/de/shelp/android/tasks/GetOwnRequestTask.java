@@ -32,8 +32,8 @@ public class GetOwnRequestTask extends AsyncTask<Object, Integer, List<Request>>
     private int nextAskedId =  R.id.ownRequest;
 
 
-    //Dem Konstruktor der Klasse wird der aktuelle Kontext der Activity übergeben
-    //damit auf die UI-Elemente zugegriffen werden kann und Intents gestartet werden können, usw.
+    //Dem Konstruktor der Klasse wird der aktuelle Kontext der Activity Ã¼bergeben
+    //damit auf die UI-Elemente zugegriffen werden kann und Intents gestartet werden kÃ¶nnen, usw.
     public GetOwnRequestTask(Context context, ShelpApplication myApp, ShowOwnRequestActivity activity) {
         this.context = context;
         this.myApp = myApp;

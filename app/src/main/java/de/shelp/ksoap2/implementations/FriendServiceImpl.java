@@ -39,12 +39,32 @@ public class FriendServiceImpl {
         return friendships;
     }
 
-   public boolean addFriend(int sessionId, String friendId) throws SoapFault {
+   public SoapObject addFriend(int sessionId, String friendId) throws SoapFault {
        String METHOD_NAME = "addFriend";
        SoapObject response = null;
 
-       response = ServiceUtils.executeSoapAction(METHOD_NAME, URL, null, sessionId, friendId);
+       response = ServiceUtils.executeSoapAction(METHOD_NAME, URL, sessionId, friendId);
 
-       return response.getPrimitivePropertyAsString("returnCode").equals("OK");
+       return response;
    }
+
+    public SoapObject changeFriendship(int sessionId, Friendship friendship, int changeType) throws SoapFault {
+        String METHOD_NAME;
+        switch (changeType) {
+            case 0:
+                METHOD_NAME  = "acceptFriendship";
+                break;
+            case 1:
+                METHOD_NAME  = "deniedFriendship";
+                break;
+            default:
+                METHOD_NAME  = "deleteFriendship";
+                break;
+        }
+        SoapObject response = null;
+
+        response = ServiceUtils.executeSoapAction(METHOD_NAME, URL, friendship.getId(), sessionId);
+
+        return response;
+    }
 }

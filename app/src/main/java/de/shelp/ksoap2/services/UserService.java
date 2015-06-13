@@ -19,6 +19,7 @@ import de.shelp.ksoap2.entities.User;
 import de.shelp.ksoap2.exceptions.InvalidLoginException;
 import de.shelp.ksoap2.exceptions.InvalidRegistrationException;
 import de.shelp.ksoap2.exceptions.InvalidTourException;
+import de.shelp.ksoap2.exceptions.InvalidUsersException;
 import de.shelp.ksoap2.exceptions.NoSessionException;
 
 /**
@@ -33,6 +34,6 @@ public interface UserService {
 
     public ShelpSession registration(String eMail, String hash) throws InvalidRegistrationException;
 
-    public List<User> searchUsers(String searchText) throws SoapFault;
+    public List<User> searchUsers(String searchText) throws SoapFault, InvalidUsersException;
 
 }

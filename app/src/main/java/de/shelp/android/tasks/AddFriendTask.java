@@ -6,6 +6,7 @@ import android.os.AsyncTask;
 import android.widget.Toast;
 
 import org.ksoap2.SoapFault;
+import org.ksoap2.serialization.SoapObject;
 
 import java.util.List;
 
@@ -20,7 +21,7 @@ import de.shelp.ksoap2.entities.User;
  */
 
 
-public class AddFriendTask extends AsyncTask<Object, Object, Boolean>
+public class AddFriendTask extends AsyncTask<Object, Object, SoapObject>
 {
     private Context context;
     private ShelpApplication myApp;
@@ -35,7 +36,7 @@ public class AddFriendTask extends AsyncTask<Object, Object, Boolean>
     }
 
     @Override
-    protected Boolean doInBackground(Object... params){
+    protected SoapObject doInBackground(Object... params){
         try {
             return myApp.getFriendService().addFriend(myApp.getSession().getId(), user.getUserName());
         } catch (SoapFault e) {
@@ -45,15 +46,15 @@ public class AddFriendTask extends AsyncTask<Object, Object, Boolean>
         return null;
     }
 
-    protected void onPostExecute(Boolean result)
+    protected void onPostExecute(SoapObject result)
     {
-        if(result) {
+        if(result.getPrimitivePropertyAsString("returnCode").equals("OK")) {
             //Toast ob das hinzufügen eines neuen Freundes erfolgreich war
             Toast.makeText(context.getApplicationContext(), "Freund erfolgreich hinzugefügt!", Toast.LENGTH_SHORT).show();
-            Intent i = new Intent(context, ShelpActivity.class);
+            Intent i = new Intent(context, FriendsActivity.class);
             context.startActivity(i);
         } else {
-            Toast.makeText(context.getApplicationContext(), "Freund konnte nicht hinzugefügt werden!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context.getApplicationContext(), "Fehler: " + result.getPrimitivePropertyAsString("message"), Toast.LENGTH_SHORT).show();
         }
     }
 }

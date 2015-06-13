@@ -1,6 +1,7 @@
 package de.shelp.android.tasks;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -14,6 +15,7 @@ import java.util.List;
 
 import de.fh_muenster.shelpapp.R;
 import de.shelp.android.FriendsActivity;
+import de.shelp.android.actionlistener.ChangeFriendshipListener;
 import de.shelp.android.applications.ShelpApplication;
 import de.shelp.ksoap2.entities.Friendship;
 
@@ -65,60 +67,133 @@ public class GetFriendsTask extends AsyncTask<Object, Integer, List<Friendship>>
             TextView et = new TextView(context);
             et.setId(nextFriendId);
             et.setTextSize(20);
-            et.setText("Anfragen");
+            et.setTextColor(Color.BLACK);
+            et.setText("Anfragen:");
             ll.addView(et, relativeParams);
 
             for( Friendship friendship: result) {
-                if (friendship.getInitiatorUser().getUserName().equals(myApp.getSession().getUser().getUserName())) {
-                    RelativeLayout ll2 = (RelativeLayout) friendsActivity.findViewById(R.id.relativeLayoutFriend);
+                if (friendship.getStatus().equals("ASKED") || friendship.getStatus().equals("DENIED")) {
+                    if (friendship.getInitiatorUser().getUserName().equals(myApp.getSession().getUser().getUserName()) ||friendship.getStatus().equals("DENIED")) {
+                        RelativeLayout ll2 = (RelativeLayout) friendsActivity.findViewById(R.id.relativeLayoutFriend);
 
-                    RelativeLayout.LayoutParams relativeParams2 = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.FILL_PARENT);
-                    relativeParams.addRule(RelativeLayout.BELOW, nextFriendId);
-                    this.nextFriendId++;
-                    TextView et2 = new TextView(context);
-                    et2.setId(nextFriendId);
-                    et2.setTextSize(20);
-                    et2.setText(friendship.toString());
-                    ll2.addView(et2, relativeParams2);
+                        RelativeLayout.LayoutParams relativeParams2 = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.FILL_PARENT);
+                        relativeParams2.addRule(RelativeLayout.BELOW, nextFriendId);
+                        this.nextFriendId++;
+                        TextView et2 = new TextView(context);
+                        et2.setId(nextFriendId);
+                        et2.setTextSize(15);
+                        et2.setTextColor(Color.BLACK);
+                        et2.setText(friendship.toString());
+                        ll2.addView(et2, relativeParams2);
 
-                    RelativeLayout ll4 = (RelativeLayout) friendsActivity.findViewById(R.id.relativeLayoutFriend);
+                        RelativeLayout ll3 = (RelativeLayout) friendsActivity.findViewById(R.id.relativeLayoutFriend);
 
-                    RelativeLayout.LayoutParams relativeParams4 = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.FILL_PARENT);
-                    relativeParams.addRule(RelativeLayout.BELOW, nextFriendId);
-                    this.nextFriendId++;
-                    Button et4 = new Button(context);
-                    et4.setId(nextFriendId);
-                    et4.setTextSize(20);
-                    et4.setText("Löschen");
-                    ll4.addView(et4, relativeParams4);
+                        RelativeLayout.LayoutParams relativeParams3 = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.FILL_PARENT);
+                        relativeParams3.addRule(RelativeLayout.BELOW, nextFriendId);
+                        //Abstände zwischen den Button werden programmatisch gesetzt
+                        relativeParams3.setMargins(0, 10, 0, 10);
+                        this.nextFriendId++;
+                        Button et3 = new Button(context);
+                        //setzen des definierten Hintergrund in drawable
+                        et3.setBackgroundResource(R.drawable.button);
+                        et3.setId(nextFriendId);
+                        et3.setText("Löschen");
+
+                        et3.setOnClickListener(new ChangeFriendshipListener(friendship, 2, friendsActivity));
+
+                        ll3.addView(et3, relativeParams3);
+                    } else {
+                        RelativeLayout ll5 = (RelativeLayout) friendsActivity.findViewById(R.id.relativeLayoutFriend);
+
+                        RelativeLayout.LayoutParams relativeParams5 = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.FILL_PARENT);
+                        relativeParams5.addRule(RelativeLayout.BELOW, nextFriendId);
+                        this.nextFriendId++;
+                        TextView et5 = new TextView(context);
+                        et5.setId(nextFriendId);
+                        et5.setTextSize(15);
+                        et5.setTextColor(Color.BLACK);
+                        et5.setText(friendship.toString());
+                        ll5.addView(et5, relativeParams5);
+
+                        RelativeLayout ll6 = (RelativeLayout) friendsActivity.findViewById(R.id.relativeLayoutFriend);
+
+                        RelativeLayout.LayoutParams relativeParams6 = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.FILL_PARENT);
+                        relativeParams6.addRule(RelativeLayout.BELOW, nextFriendId);
+                        //Abstände zwischen den Button werden programmatisch gesetzt
+                        relativeParams6.setMargins(0, 10, 0, 10);
+                        this.nextFriendId++;
+                        Button et6 = new Button(context);
+                        //setzen des definierten Hintergrund in drawable
+                        et6.setBackgroundResource(R.drawable.button);
+                        et6.setId(nextFriendId);
+                        et6.setText("Annehmen");
+
+                        et6.setOnClickListener(new ChangeFriendshipListener(friendship, 0, friendsActivity));
+
+                        ll6.addView(et6, relativeParams6);
+
+                        RelativeLayout ll7 = (RelativeLayout) friendsActivity.findViewById(R.id.relativeLayoutFriend);
+
+                        RelativeLayout.LayoutParams relativeParams7 = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.FILL_PARENT);
+                        relativeParams7.addRule(RelativeLayout.BELOW, nextFriendId);
+                        //Abstände zwischen den Button werden programmatisch gesetzt
+                        relativeParams7.setMargins(0, 10, 0, 10);
+                        this.nextFriendId++;
+                        Button et7 = new Button(context);
+                        //setzen des definierten Hintergrund in drawable
+                        et7.setBackgroundResource(R.drawable.button);
+                        et7.setId(nextFriendId);
+                        et7.setText("Ablehnen");
+
+                        et7.setOnClickListener(new ChangeFriendshipListener(friendship, 1, friendsActivity));
+
+                        ll7.addView(et7, relativeParams7);
+                    }
                 }
             }
 
-//            RelativeLayout ll4 = (RelativeLayout) friendsActivity.findViewById(R.id.relativeLayoutFriend);
-//
-//            RelativeLayout.LayoutParams relativeParams4 = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.FILL_PARENT);
-//            relativeParams.addRule(RelativeLayout.BELOW, nextFriendId);
-//            this.nextFriendId++;
-//            TextView et4 = new TextView(context);
-//            et4.setId(nextFriendId);
-//            et4.setTextSize(20);
-//            et4.setText("Freunde " + "");
-//            ll4.addView(et4, relativeParams4);
-//
-//            for( Friendship friendship: result) {
-//                if (friendship.getRecipientUser().getUserName().equals(myApp.getSession().getUser().getUserName())){
-//                    RelativeLayout ll3 = (RelativeLayout) friendsActivity.findViewById(R.id.relativeLayoutFriend);
-//
-//                    RelativeLayout.LayoutParams relativeParams3 = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.FILL_PARENT);
-//                    relativeParams.addRule(RelativeLayout.BELOW, nextFriendId);
-//                    this.nextFriendId++;
-//                    TextView et3 = new TextView(context);
-//                    et3.setId(nextFriendId);
-//                    et3.setTextSize(20);
-//                    et3.setText(friendship.toString() + "");
-//                    ll3.addView(et3, relativeParams3);
-//                }
-//            }
+            RelativeLayout ll4 = (RelativeLayout) friendsActivity.findViewById(R.id.relativeLayoutFriend);
+
+            RelativeLayout.LayoutParams relativeParams4 = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.FILL_PARENT);
+            relativeParams4.addRule(RelativeLayout.BELOW, nextFriendId);
+            this.nextFriendId++;
+            TextView et4 = new TextView(context);
+            et4.setId(nextFriendId);
+            et4.setTextSize(20);
+            et4.setTextColor(Color.BLACK);
+            et4.setText("Freunde:");
+            ll4.addView(et4, relativeParams4);
+
+            for( Friendship friendship: result) {
+                if (friendship.getStatus().equals("ACCEPT")) {
+                    RelativeLayout ll5 = (RelativeLayout) friendsActivity.findViewById(R.id.relativeLayoutFriend);
+
+                    RelativeLayout.LayoutParams relativeParams5 = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.FILL_PARENT);
+                    relativeParams5.addRule(RelativeLayout.BELOW, nextFriendId);
+                    this.nextFriendId++;
+                    TextView et5 = new TextView(context);
+                    et5.setId(nextFriendId);
+                    et5.setTextSize(15);
+                    et5.setTextColor(Color.BLACK);
+                    et5.setText(friendship.toString());
+                    ll5.addView(et5, relativeParams5);
+
+                    RelativeLayout ll6 = (RelativeLayout) friendsActivity.findViewById(R.id.relativeLayoutFriend);
+
+                    RelativeLayout.LayoutParams relativeParams6 = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.FILL_PARENT);
+                    relativeParams6.addRule(RelativeLayout.BELOW, nextFriendId);
+                    //Abstände zwischen den Button werden programmatisch gesetzt
+                    relativeParams6.setMargins(0, 10, 0, 10);
+                    this.nextFriendId++;
+                    Button et6 = new Button(context);
+                    //setzen des definierten Hintergrund in drawable
+                    et6.setBackgroundResource(R.drawable.button);
+                    et6.setId(nextFriendId);
+                    et6.setText("Löschen");
+                    et6.setOnClickListener(new ChangeFriendshipListener(friendship, 2, friendsActivity));
+                    ll6.addView(et6, relativeParams6);
+                }
+            }
         }
     }
 }

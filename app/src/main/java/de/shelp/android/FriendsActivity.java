@@ -9,7 +9,9 @@ import android.view.View;
 
 import de.fh_muenster.shelpapp.R;
 import de.shelp.android.applications.ShelpApplication;
+import de.shelp.android.tasks.ChangeFriendshipTask;
 import de.shelp.android.tasks.GetFriendsTask;
+import de.shelp.ksoap2.entities.Friendship;
 
 public class FriendsActivity extends ActionBarActivity {
 
@@ -55,6 +57,11 @@ public class FriendsActivity extends ActionBarActivity {
     public void searchFriend(View view) {
         Intent i = new Intent(this, SearchFriendActivity.class);
         startActivity(i);
+    }
+
+    public void changeFriendship(Friendship fs, int changeType) {
+        ChangeFriendshipTask changeFriendshipTask = new ChangeFriendshipTask(fs,(ShelpApplication) getApplication(),this.getApplicationContext(),changeType);
+        changeFriendshipTask.execute();
     }
 
 }

@@ -61,11 +61,11 @@ public class Friendship {
     @Override
     public String toString() {
         if(status.equals("ACCEPT")) {
-            return "Befreundet mit " + recipientUser.getUserName();
+            return recipientUser.getUserName() + " und " + initiatorUser.getUserName() + " sind Freunde.";
         } else if(status.equals("ASKED")) {
             return "Anfrage von " + initiatorUser.getUserName() + " zu " + recipientUser.getUserName();
         } else if(status.equals("DENIED")) {
-            return "Anfrage wurde von " + recipientUser.getUserName() + " abgelehnt.";
+            return "Anfrage zwischen " + recipientUser.getUserName() + " und " + initiatorUser.getUserName() + " wurde abgelehnt.";
         }
         return "Keine Freundschaft";
     }

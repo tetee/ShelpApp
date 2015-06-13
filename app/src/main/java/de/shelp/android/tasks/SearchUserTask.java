@@ -2,6 +2,7 @@ package de.shelp.android.tasks;
 
 import android.app.ActionBar;
 import android.content.Context;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +22,7 @@ import de.shelp.android.actionlistener.AddFriendListener;
 import de.shelp.android.applications.ShelpApplication;
 import de.shelp.ksoap2.entities.Tour;
 import de.shelp.ksoap2.entities.User;
+import de.shelp.ksoap2.exceptions.InvalidUsersException;
 
 /**
  * Created by user on 02.06.15.
@@ -49,19 +51,17 @@ public class SearchUserTask extends AsyncTask<Object, Integer, List<User>>
         ShelpApplication myApp = (ShelpApplication) activity.getApplication();
         try {
             return myApp.getUserService().searchUsers(searchText);
+        } catch (InvalidUsersException e) {
+            Toast.makeText(activity.getApplicationContext(), "Fehler: " + e.getMessage(), Toast.LENGTH_SHORT).show();
         } catch (SoapFault e) {
             Toast.makeText(activity.getApplicationContext(), "Serververbindung konnte nicht erfolgreich aufgebaut werden!", Toast.LENGTH_SHORT).show();
-
         }
         return null;
     }
 
-    protected void onProgessUpdate(Integer... values)
-    { }
-
     protected void onPostExecute(List<User> result)
     {
-        if(result ==null) {
+        if(result.isEmpty() ||result == null ) {
             Toast.makeText(activity.getApplicationContext(), "Keinen Benutzer gefunden!", Toast.LENGTH_SHORT).show();
         } else {
             for(int i = 0; i<=result.size()-1;i++){
@@ -73,6 +73,8 @@ public class SearchUserTask extends AsyncTask<Object, Integer, List<User>>
                 this.idEditText++;
                 TextView et = new TextView(context);
                 et.setId(idEditText);
+                et.setTextSize(20);
+                et.setTextColor(Color.BLACK);
                 et.setText(result.get(i).getUserName());
 
                 relativeLayout.addView(et, relativeParams);
@@ -81,12 +83,15 @@ public class SearchUserTask extends AsyncTask<Object, Integer, List<User>>
 
                 RelativeLayout.LayoutParams relativeParams2 = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
                 relativeParams2.addRule(RelativeLayout.BELOW, idEditText);
-                relativeParams2.addRule(RelativeLayout.BELOW, idEditText);
+                //Abstände zwischen den Button werden programmatisch gesetzt
+                relativeParams2.setMargins(0, 10, 0, 10);
 
                 this.idEditText++;
                 Button addButton = new Button(context);
                 addButton.setText("Hinzufügen");
                 addButton.setId(idEditText);
+                //setzen des definierten Hintergrund in drawable
+                addButton.setBackgroundResource(R.drawable.button);
 
                 addButton.setOnClickListener(new AddFriendListener(result.get(i), activity));
 

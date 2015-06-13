@@ -18,6 +18,7 @@ import de.shelp.ksoap2.entities.DeliveryCondition;
 import de.shelp.ksoap2.exceptions.InvalidLoginException;
 import de.shelp.ksoap2.exceptions.InvalidRegistrationException;
 import de.shelp.ksoap2.exceptions.InvalidTourException;
+import de.shelp.ksoap2.exceptions.InvalidUsersException;
 import de.shelp.ksoap2.exceptions.NoSessionException;
 import de.shelp.ksoap2.entities.Location;
 import de.shelp.ksoap2.entities.PaymentCondition;
@@ -55,8 +56,11 @@ public class UserServiceImpl implements UserService {
             Log.d(TAG, response.toString());
             String login = (response.getPrimitivePropertySafelyAsString("returnCode"));
 
-
-            return SoapAssembler.getInstance().soapToSession(response);
+            if(login.equals("OK")) {
+                return SoapAssembler.getInstance().soapToSession(response);
+            } else {
+                throw new InvalidLoginException(response.getPrimitivePropertyAsString("message"));
+            }
         } catch (SoapFault e) {
             throw new InvalidLoginException(e.getMessage());
         }
@@ -96,9 +100,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<User> searchUsers(String searchText) throws SoapFault{
+    public List<User> searchUsers(String searchText) throws SoapFault, InvalidUsersException{
         String METHOD_NAME = "searchUsers";
         SoapObject response = ServiceUtils.executeSoapAction(METHOD_NAME, URL, searchText);
+
+        if(response.getPrimitivePropertyAsString("returnCode").equals("ERROR")) {
+            throw new InvalidUsersException(response.getPrimitivePropertyAsString("message"));
+        }
 
         List<User> users = new ArrayList<>();
         for(int i = 1; i < response.getPropertyCount(); i++) {
