@@ -69,8 +69,14 @@ public class SoapAssembler {
         SoapObject location =(SoapObject) response.getProperty("location");
         Location loc = new Location(Integer.valueOf(location.getPropertyAsString("id")), location.getPropertyAsString("description"), location.getPrimitivePropertyAsString("zipcode"));
         //Liste der Anfragen
-        //TODO SoapObject list
-        List<Request> list = null;
+        List<Request> list = new ArrayList<>();
+        for (int i = 0; i < response.getPropertyCount(); i++) {
+            PropertyInfo info = new PropertyInfo();
+            response.getPropertyInfo(i, info);
+            if("request".equals(info.getName())) {
+                list.add(soapToRequest((SoapObject) response.getProperty(i)));
+            }
+        }
         //Ersteller er Fahrt
         User ownerTour = soapToUser((SoapObject) response.getProperty("owner"));
         //Zahlungsbedingungen
@@ -151,24 +157,23 @@ public class SoapAssembler {
     }
 
     public Request soapToRequest(SoapObject response) {
-    SoapObject wishResponse = (SoapObject) response.getProperty("wishes");
         List<WishlistItem> wishlistItems = new ArrayList<WishlistItem>();
-        if(wishResponse.getProperty("id") != null){
-            wishlistItems.add(soapToWishlistItem(wishResponse));
-        } else {
-            for (int i = 0; i < wishResponse.getPropertyCount(); i++) {
-                wishlistItems.add(soapToWishlistItem((SoapObject) wishResponse.getProperty(i)));
-            }
-        }
-        Long id = Long.valueOf(response.getPropertyAsString("id"));
-        User sourceUser = soapToUser((SoapObject) response.getProperty("sourceUser"));
-        User targetUser = soapToUser((SoapObject) response.getProperty("targetUser"));
-        Tour tour = soapToTour((SoapObject) response.getProperty("tour"));
-        String notice = response.getPropertyAsString("notice");
-        String status = response.getPropertyAsString("status");
+
+        for (int i = 0; i < response.getPropertyCount(); i++) {
+            PropertyInfo info = new PropertyInfo();
+            response.getPropertyInfo(i, info);
+            if ("wishes".equals(info.getName())) {
+                wishlistItems.add(soapToWishlistItem((SoapObject) response.getProperty(i)));
+            }}
+            Long id = Long.valueOf(response.getPropertyAsString("id"));
+            User sourceUser = soapToUser((SoapObject) response.getProperty("sourceUser"));
+            User targetUser = soapToUser((SoapObject) response.getProperty("targetUser"));
+            //Tour tour = soapToTour((SoapObject) response.getProperty("tour"));
+            String notice = response.getPropertyAsString("notice");
+            String status = response.getPropertyAsString("status");
 
 
-        return new Request(id, sourceUser, targetUser, tour, wishlistItems, notice, status );
+        return new Request(id, sourceUser, targetUser, null, wishlistItems, notice, status );
     }
 
     public WishlistItem soapToWishlistItem(SoapObject response) {
