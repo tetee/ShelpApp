@@ -31,13 +31,13 @@ public class RatingServiceImpl {
      */
     private static final String TAG = RatingServiceImpl.class.getName();
 
-    public String createRating(User targetUser, int rating, String notice, int sessionId) throws SoapFault{
+    public SoapObject createRating(User targetUser, int rating, String notice, int sessionId) throws SoapFault{
         String METHOD_NAME = "createRating";
         SoapObject response = null;
 
         response = ServiceUtils.executeSoapAction(METHOD_NAME, URL, targetUser.getUserName(), rating, notice,  sessionId);
 
-        return response.getPrimitivePropertyAsString("returnCode");
+        return response;
     }
 
     public List<Rating> getRatings(User user, Context context)throws SoapFault, InvalidRatingException{

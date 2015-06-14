@@ -41,7 +41,6 @@ public class AddFriendTask extends AsyncTask<Object, Object, SoapObject>
             return myApp.getFriendService().addFriend(myApp.getSession().getId(), user.getUserName());
         } catch (SoapFault e) {
             Toast.makeText(myApp.getApplicationContext(), "Serververbindung konnte nicht erfolgreich aufgebaut werden!", Toast.LENGTH_SHORT).show();
-
         }
         return null;
     }

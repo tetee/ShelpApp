@@ -29,7 +29,7 @@ public class RequestServiceImpl {
     private static final String TAG = RequestServiceImpl.class.getName();
 
 
-    public String createRequest(Long tourId, List<String> wishes, String notice, int sessionId) throws SoapFault{
+    public SoapObject createRequest(Long tourId, List<String> wishes, String notice, int sessionId) throws SoapFault{
         String METHOD_NAME = "createRequest";
         SoapObject response = null;
         String wishesString = "";
@@ -40,7 +40,7 @@ public class RequestServiceImpl {
 
         response = ServiceUtils.executeSoapAction(METHOD_NAME, URL, tourId, notice, sessionId, wishesString);
 
-        return response.getPrimitivePropertyAsString("returnCode");
+        return response;
     }
 
     public SoapObject deleteRequest(int sessionId, long requestId) throws SoapFault{

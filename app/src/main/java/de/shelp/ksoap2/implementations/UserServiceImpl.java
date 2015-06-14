@@ -76,7 +76,7 @@ public class UserServiceImpl implements UserService {
             String reg = (response.getPrimitivePropertySafelyAsString("returnCode"));
 
             if(reg.equals(ReturnCode.ERROR.toString())) {
-                throw new InvalidRegistrationException("Registration invalid!");
+                throw new InvalidRegistrationException(response.getPrimitivePropertyAsString("message"));
             }
 
             return SoapAssembler.getInstance().soapToSession(response);
