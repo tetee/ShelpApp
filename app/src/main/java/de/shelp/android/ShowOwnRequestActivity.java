@@ -11,6 +11,7 @@ import de.fh_muenster.shelpapp.R;
 import de.shelp.android.applications.ShelpApplication;
 import de.shelp.android.tasks.GetFriendsTask;
 import de.shelp.android.tasks.GetOwnRequestTask;
+import de.shelp.ksoap2.entities.User;
 
 public class ShowOwnRequestActivity extends ActionBarActivity {
 
@@ -70,8 +71,9 @@ public class ShowOwnRequestActivity extends ActionBarActivity {
     //}
 
     //Aufruf der rating_activitiy (bei bestimmtem Status sichtbar)
-    public void rate(View view) {
+    public void rate(View view, User user) {
         Intent i = new Intent(this, RatingActivity.class);
+        i.putExtra("RatingUser", user);
         startActivity(i);
     }
 }

@@ -28,7 +28,6 @@ import de.shelp.ksoap2.entities.Tour;
 public class WishlistTask extends AsyncTask<Object, Integer, String>
 {
     private Context context;
-    private String targedUserId;
     private Long tourId;
     private List<String> wishes;
     private String notice;
@@ -37,9 +36,8 @@ public class WishlistTask extends AsyncTask<Object, Integer, String>
 
     //Dem Konstruktor der Klasse wird der aktuelle Kontext der Activity übergeben
     //damit auf die UI-Elemente zugegriffen werden kann und Intents gestartet werden können, usw.
-    public WishlistTask(Context context, String targedUserId, Long tourId, List<String> wishes, String notice, int sessionId, WishlistActivity activity)
+    public WishlistTask(Context context, Long tourId, List<String> wishes, String notice, int sessionId, WishlistActivity activity)
     {
-        this.targedUserId=targedUserId;
         this.tourId=tourId;
         this.wishes=wishes;
         this.notice=notice;
@@ -52,7 +50,7 @@ public class WishlistTask extends AsyncTask<Object, Integer, String>
     protected String doInBackground(Object... params){
         ShelpApplication myApp = (ShelpApplication) activity.getApplication();
         try {
-            return myApp.getRequestService().createRequest(targedUserId, tourId, wishes, notice, sessionId);
+            return myApp.getRequestService().createRequest(tourId, wishes, notice, sessionId);
         } catch (SoapFault e) {
             Toast.makeText(activity.getApplicationContext(), "Serververbindung konnte nicht erfolgreich aufgebaut werden!", Toast.LENGTH_SHORT).show();
 

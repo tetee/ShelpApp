@@ -1,6 +1,7 @@
 package de.shelp.android.tasks;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.view.ViewGroup;
@@ -14,10 +15,14 @@ import org.ksoap2.SoapFault;
 import java.util.List;
 
 import de.fh_muenster.shelpapp.R;
+import de.shelp.android.FriendsActivity;
 import de.shelp.android.ShowOwnRequestActivity;
+import de.shelp.android.actionlistener.AddDeleteListener;
+import de.shelp.android.actionlistener.AddRatingListener;
 import de.shelp.android.applications.ShelpApplication;
 import de.shelp.ksoap2.entities.Request;
 import de.shelp.ksoap2.exceptions.InvalidRequestException;
+import de.shelp.ksoap2.exceptions.InvalidUsersException;
 
 /**
  * Created by user on 02.06.15.
@@ -44,7 +49,9 @@ public class GetOwnRequestTask extends AsyncTask<Object, Integer, List<Request>>
     protected List<Request> doInBackground(Object... params) {
         try {
             return myApp.getOwnRequestService().getRequest(myApp.getSession().getId());
-        } catch (InvalidRequestException | SoapFault e) {
+        } catch (InvalidRequestException e) {
+                Toast.makeText(activity.getApplicationContext(), "Fehler: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+        } catch (SoapFault e) {
             Toast.makeText(myApp.getApplicationContext(), "Serververbindung konnte nicht erfolgreich aufgebaut werden!", Toast.LENGTH_SHORT).show();
         }
         return null;
@@ -97,6 +104,9 @@ public class GetOwnRequestTask extends AsyncTask<Object, Integer, List<Request>>
                 bt3.setText("Bewertung");
                 bt3.setBackgroundResource(R.drawable.button);
                 ll3.addView(bt3, relativeParams3);
+
+                bt3.setOnClickListener(new AddRatingListener(request, activity));
+                bt2.setOnClickListener(new AddDeleteListener(request, activity));
             }
         }
     }
