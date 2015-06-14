@@ -116,6 +116,7 @@ public class SearchTourActivity extends ActionBarActivity {
     public void details(View view, Tour tour){
         Intent i = new Intent(this, ShowTourActivity.class);
         i.putExtra("Tour", tour);
+        i.putExtra("Owner", false);
         startActivity(i);
     }
 

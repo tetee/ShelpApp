@@ -78,14 +78,11 @@ public class ShowOwnTourActivity extends ActionBarActivity {
     public void details(View view, Tour tour){
         Intent i = new Intent(this, ShowTourActivity.class);
         i.putExtra("Tour", tour);
-        i.putExtra("Besitzer", true);
+        i.putExtra("Owner", true);
         startActivity(i);
     }
 
-    //TODO ändern der Tour... bzw, löschen der alten Tour
-    //durch Klicken wird die eigene Fahrt bearbeitet
-    //um die bereits vorhandenen Daten zu laden wird dem Intent ein Extra "Bearbeiten" hinzugefügt,
-    //welches zudem den Button in der CreateTourActivity verändert sowie seine Funktion
+    //Tour löschen bzw. auf CANCLED setzen
     public void delete(View view, Tour tour){
 
         ShelpApplication application = (ShelpApplication) getApplication();
