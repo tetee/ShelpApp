@@ -11,6 +11,8 @@ import org.ksoap2.serialization.SoapObject;
 
 import de.shelp.android.CreateTourActivity;
 import de.shelp.android.FriendsActivity;
+import de.shelp.android.ShowOwnRequestActivity;
+import de.shelp.android.ShowOwnTourActivity;
 import de.shelp.android.ShowTourActivity;
 import de.shelp.android.applications.ShelpApplication;
 import de.shelp.ksoap2.entities.ReturnCode;
@@ -51,11 +53,11 @@ public class CreateTask extends AsyncTask<Object, Integer, SoapObject>
         if(result.getPrimitivePropertyAsString("returnCode").equals("OK")) {
             //Toast ob das hinzufügen eines neuen Freundes erfolgreich war
             Toast.makeText(context.getApplicationContext(), "Bewertung erfolgreich erstellt!", Toast.LENGTH_SHORT).show();
-            Intent i = new Intent(context, ShowTourActivity.class);
+            Intent i = new Intent(context, ShowOwnTourActivity.class);
+
             context.startActivity(i);
         } else {
             Toast.makeText(context.getApplicationContext(), "Fehler: " + result.getPrimitivePropertyAsString("message"), Toast.LENGTH_SHORT).show();
         }
-
     }
 }
