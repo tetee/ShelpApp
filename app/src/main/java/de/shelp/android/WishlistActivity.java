@@ -102,7 +102,7 @@ public class WishlistActivity extends ActionBarActivity {
 
         ShelpApplication application = (ShelpApplication) getApplication();
 
-        WishlistTask wishlistTask = new WishlistTask(view.getContext(), targedUserId, tourId, wishes, notice, application.getSession().getId(), this);
+        WishlistTask wishlistTask = new WishlistTask(view.getContext(), tourId, wishes, notice, application.getSession().getId(), this);
         wishlistTask.execute();
 
         Intent i = new Intent(this, ShelpActivity.class);

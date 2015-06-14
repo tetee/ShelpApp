@@ -13,6 +13,7 @@ import de.shelp.ksoap2.entities.Request;
 import de.shelp.ksoap2.entities.ReturnCode;
 import de.shelp.ksoap2.exceptions.InvalidRegistrationException;
 import de.shelp.ksoap2.exceptions.InvalidRequestException;
+import de.shelp.ksoap2.exceptions.InvalidUsersException;
 
 /**
  * Created by user on 21.05.15.
@@ -33,9 +34,8 @@ public class OwnRequestServiceImpl {
 
         try {
             response = ServiceUtils.executeSoapAction(METHOD_NAME, URL, sessionId);
-            String request = (response.getPrimitivePropertySafelyAsString("returnCode"));
-            if (request.equals(ReturnCode.ERROR.toString())) {
-                throw new InvalidRequestException("Request invalid!");
+            if(response.getPrimitivePropertyAsString("returnCode").equals("ERROR")) {
+                throw new InvalidRequestException(response.getPrimitivePropertyAsString("message"));
             }
 
             List<Request> requests = new ArrayList<>();

@@ -19,6 +19,8 @@ import de.shelp.android.ShowRatingActivity;
 import de.shelp.android.applications.ShelpApplication;
 import de.shelp.ksoap2.entities.Rating;
 import de.shelp.ksoap2.entities.User;
+import de.shelp.ksoap2.exceptions.InvalidRatingException;
+import de.shelp.ksoap2.exceptions.InvalidRequestException;
 
 /**
  * Created by user on 09.06.15.
@@ -44,6 +46,8 @@ public class GetRatingsTask extends AsyncTask<Object,Object, List<Rating>> {
         ShelpApplication myApp = (ShelpApplication) activity.getApplication();
         try {
             return myApp.getRatingService().getRatings(user, context);
+        } catch (InvalidRatingException e) {
+            Toast.makeText(activity.getApplicationContext(), "Fehler: " + e.getMessage(), Toast.LENGTH_SHORT).show();
         } catch (SoapFault e) {
             Toast.makeText(activity.getApplicationContext(), "Serververbindung konnte nicht erfolgreich aufgebaut werden!", Toast.LENGTH_SHORT).show();
 

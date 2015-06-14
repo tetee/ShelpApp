@@ -58,13 +58,15 @@ public class RatingActivity extends ActionBarActivity {
         EditText ratingText = (EditText) findViewById(R.id.editTextRating);
         String txtRating = ratingText.getText().toString();
         int ratingBar = (int)rating.getRating();
-
+        Intent intent = getIntent();
         ShelpApplication application = (ShelpApplication) getApplication();
 
-        RatingTask ratingTask = new RatingTask(view.getContext(), new User("tt"), ratingBar, txtRating, application.getSession().getId(), this);
+        RatingTask ratingTask = new RatingTask(view.getContext(), (User) intent.getSerializableExtra("RatingUser"), ratingBar, txtRating, application.getSession().getId(), this);
         ratingTask.execute();
 
         Intent i = new Intent(this, ShowOwnRequestActivity.class);
         startActivity(i);
     }
+
+
 }
