@@ -16,8 +16,10 @@ import java.util.Date;
 import de.fh_muenster.shelpapp.R;
 import de.shelp.android.applications.ShelpApplication;
 import de.shelp.android.tasks.CreateTask;
+import de.shelp.android.tasks.DeleteTourTask;
 import de.shelp.android.tasks.GetRatingsTask;
 import de.shelp.android.tasks.OwnToursTask;
+import de.shelp.android.tasks.SearchTask;
 import de.shelp.ksoap2.ServiceUtils;
 import de.shelp.ksoap2.entities.Tour;
 import de.shelp.ksoap2.entities.User;
@@ -31,8 +33,8 @@ public class ShowOwnTourActivity extends ActionBarActivity {
         setContentView(R.layout.activity_tour_activity);
 
 
-        Intent intent = getIntent();
-        User user = (User) intent.getSerializableExtra("User");
+        //Intent intent = getIntent();
+        //String status = (String) intent.getSerializableExtra("Status");
 
         ShelpApplication application = (ShelpApplication) getApplication();
         OwnToursTask ownToursTask = new OwnToursTask(getApplicationContext(),application.getSession().getId(), this);
@@ -81,9 +83,15 @@ public class ShowOwnTourActivity extends ActionBarActivity {
     }
 
     //TODO ändern der Tour... bzw, löschen der alten Tour
-    public void edit(View view, Tour tour){
-        Intent i = new Intent(this, CreateTourActivity.class);
-        //i.putExtra("Tour", tour);
-        startActivity(i);
+    //durch Klicken wird die eigene Fahrt bearbeitet
+    //um die bereits vorhandenen Daten zu laden wird dem Intent ein Extra "Bearbeiten" hinzugefügt,
+    //welches zudem den Button in der CreateTourActivity verändert sowie seine Funktion
+    public void delete(View view, Tour tour){
+
+        ShelpApplication application = (ShelpApplication) getApplication();
+        DeleteTourTask deleteToursTask = new DeleteTourTask(getApplicationContext(), tour,application.getSession().getId(), this);
+        deleteToursTask.execute();
+        finish();
+        startActivity(getIntent());
     }
 }

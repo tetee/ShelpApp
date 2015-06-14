@@ -93,6 +93,7 @@ public class OwnToursTask extends AsyncTask<Object, Integer, List<Tour>>
                 details.setOnClickListener(new ShowTourDetailsListener(result.get(i), activity));
                 ll2.addView(details);
 
+                if(!(result.get(i).getStatus().toString().equals("CANCLED"))){
                 //Button Bewertung unter ausgegebener Tour anzeigen
                 RelativeLayout ll3 = (RelativeLayout) activity.findViewById(R.id.relativeLayoutOwnTour);
                 RelativeLayout.LayoutParams relativeParams3 = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.FILL_PARENT);
@@ -101,9 +102,10 @@ public class OwnToursTask extends AsyncTask<Object, Integer, List<Tour>>
                 Button edit = new Button(context);
                 edit.setBackgroundResource(R.drawable.button);
                 edit.setId(idEditText);
-                edit.setText("Bearbeiten");
+                edit.setText("Löschen");
                 edit.setOnClickListener(new EditTourListener(result.get(i), activity));
                 ll3.addView(edit, relativeParams3);
+            }
             }
         }
     }
