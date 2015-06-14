@@ -52,7 +52,7 @@ public class RatingTask extends AsyncTask<Object, Integer, SoapObject>{
     protected void onPostExecute(SoapObject result)
     {
         if(result.getPrimitivePropertyAsString("returnCode").equals("OK")) {
-            //Toast ob das hinzufügen eines neuen Freundes erfolgreich war
+            //Toast ob das hinzufÃ¼gen eines neuen Freundes erfolgreich war
             Toast.makeText(context.getApplicationContext(), "Bewertung erfolgreich erstellt!", Toast.LENGTH_SHORT).show();
             Intent i = new Intent(context, ShelpActivity.class);
             context.startActivity(i);

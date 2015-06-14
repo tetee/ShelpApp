@@ -23,6 +23,8 @@ import de.shelp.android.actionlistener.ShowTourDetailsListener;
 import de.shelp.android.applications.ShelpApplication;
 import de.shelp.ksoap2.entities.ReturnCode;
 import de.shelp.ksoap2.entities.Tour;
+import de.shelp.ksoap2.exceptions.InvalidTourException;
+import de.shelp.ksoap2.exceptions.InvalidUsersException;
 
 /**
  * Created by user on 02.06.15.
@@ -63,6 +65,8 @@ public class SearchTask extends AsyncTask<Object, Integer, List<Tour>>
         ShelpApplication myApp = (ShelpApplication) activity.getApplication();
         try {
             return myApp.getTourService().searchTour(approvalStatus, location, capacity, timeStart, timeEnd, directSearch, sessionId);
+        } catch (InvalidTourException e) {
+            Toast.makeText(activity.getApplicationContext(), "Fehler: " + e.getMessage(), Toast.LENGTH_SHORT).show();
         } catch (SoapFault e) {
             Toast.makeText(activity.getApplicationContext(), "Serververbindung konnte nicht erfolgreich aufgebaut werden!", Toast.LENGTH_SHORT).show();
 
