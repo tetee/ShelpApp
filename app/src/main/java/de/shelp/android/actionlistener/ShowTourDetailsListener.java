@@ -15,28 +15,23 @@ import de.shelp.ksoap2.entities.Tour;
 public class ShowTourDetailsListener implements View.OnClickListener{
 
     private Tour tour;
-    private SearchTourActivity searchActivity;
-    private ShowOwnTourActivity ownTourActivity;
+    private Activity activity;
 
 
-    public ShowTourDetailsListener(Tour tour, SearchTourActivity activity){
+    public ShowTourDetailsListener(Tour tour, Activity activity){
         this.tour = tour;
-        this.searchActivity=activity;
-        this.ownTourActivity=null;
-    }
-    public ShowTourDetailsListener(Tour tour, ShowOwnTourActivity activity){
-        this.tour = tour;
-        this.ownTourActivity=activity;
-        this.searchActivity = null;
+        this.activity=activity;
     }
 
     @Override
     public void onClick(View v) {
-        if(searchActivity != null){
-        searchActivity.details(v, tour);
+        if(activity instanceof SearchTourActivity){
+            SearchTourActivity search = (SearchTourActivity) activity;
+            search.details(v, tour);
         }
-        if(ownTourActivity!=null){
-            ownTourActivity.details(v, tour);
+        else if(activity instanceof ShowOwnTourActivity){
+            ShowOwnTourActivity show = (ShowOwnTourActivity) activity;
+            show.details(v, tour);
         }
 
     }

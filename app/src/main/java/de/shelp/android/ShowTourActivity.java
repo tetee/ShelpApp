@@ -31,6 +31,7 @@ public class ShowTourActivity extends ActionBarActivity {
         tour = (Tour) intent.getSerializableExtra("Tour");
         //Abfrage des Besitzers der Tour
         //Ist der Besitzer der User wird der Anfrage Button ausgeblendet um das Anfragen eigener Touren zu verhindern
+
         boolean ownerIntent = (boolean) intent.getSerializableExtra("Owner");
         if(ownerIntent == true){
             Button button = (Button) findViewById(R.id.requestButton);
