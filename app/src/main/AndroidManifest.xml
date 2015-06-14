@@ -11,9 +11,8 @@
         android:theme="@style/CustomActionBarTheme" >
         <activity
             android:name="de.shelp.android.MainActivity"
-            android:label="@string/app_name"
             android:icon="@mipmap/logo"
-            >
+            android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -75,6 +74,10 @@
         <activity
             android:name="de.shelp.android.ShowTourActivity"
             android:label="@string/title_activity_show_tour_activity" >
+        </activity>
+        <activity
+            android:name="de.shelp.android.ShowTourRequestActivity"
+            android:label="@string/title_activity_show_tour_request" >
         </activity>
     </application>
 
