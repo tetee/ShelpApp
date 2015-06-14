@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.ArrayAdapter;
@@ -37,6 +38,7 @@ import de.shelp.ksoap2.exceptions.InvalidLoginException;
 
 public class CreateTourActivity extends ActionBarActivity {
 
+    Tour tour;
     private AllLists allLists;
 
     @Override
@@ -49,7 +51,6 @@ public class CreateTourActivity extends ActionBarActivity {
 
         //Aufruf der addItemsOnSpinner Methode
         addItemsOnSpinner();
-        //addItemsOnSpinnerDB();
     }
 
 
@@ -118,6 +119,8 @@ public class CreateTourActivity extends ActionBarActivity {
         } catch (ParseException ex) {
             ex.printStackTrace();
             Toast.makeText(getApplicationContext(), "Falsches Format!", Toast.LENGTH_SHORT).show();
+            finish();
+            startActivity(getIntent());
             return;
         }
 

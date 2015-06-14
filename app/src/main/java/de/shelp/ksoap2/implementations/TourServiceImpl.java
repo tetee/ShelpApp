@@ -61,4 +61,13 @@ public class TourServiceImpl {
 
         return tours;
     }
+
+    public String deleteTour(long tourId, int sessionId) throws SoapFault{
+        String METHOD_NAME = "deleteTour";
+        SoapObject response = null;
+
+        response = ServiceUtils.executeSoapAction(METHOD_NAME, URL, tourId, sessionId);
+
+        return response.getPrimitivePropertyAsString("returnCode");
+    }
 }
