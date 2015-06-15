@@ -21,11 +21,9 @@ public class TourServiceImpl {
 
     private static final String URL = ServiceUtils.URL + "TourIntegration";
 
-    /**
-     * TAG contains the class name and is used for logging.
-     */
     private static final String TAG = TourServiceImpl.class.getName();
 
+    //erstellen einer Fahrt / Übergabe als SoapObject
     public SoapObject createTour(Tour tour, int sessionId) throws SoapFault{
         String METHOD_NAME = "createTour";
         SoapObject response = null;
@@ -37,6 +35,7 @@ public class TourServiceImpl {
     }
 
 
+    //suchen einer Fahrt / Übergabe  der Liste <Tour> an den Server
     public List<Tour> searchTour(int approvalStatus,long location, int capacity,long timeStart,long timeEnd,boolean directSearch,int sessionId) throws SoapFault, InvalidTourException{
         String METHOD_NAME = "searchTours";
         SoapObject response = null;
@@ -53,7 +52,7 @@ public class TourServiceImpl {
         return tours;
     }
 
-
+    //suchen der eigenen Fahrten / Übergabe der Liste <Tour> an den Server
     public List<Tour> searchOwnTour(int sessionId) throws SoapFault, InvalidTourException{
         String METHOD_NAME = "getTours";
         SoapObject response = null;
@@ -70,6 +69,8 @@ public class TourServiceImpl {
         return tours;
     }
 
+
+    //löschen einer Tour / Übergabe als SoapObject
     public SoapObject deleteTour(long tourId, int sessionId) throws SoapFault{
         String METHOD_NAME = "deleteTour";
         SoapObject response = null;

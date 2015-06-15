@@ -23,12 +23,10 @@ public class RequestServiceImpl {
 
     private static final String URL = ServiceUtils.URL + "RequestIntegration";
 
-    /**
-     * TAG contains the class name and is used for logging.
-     */
     private static final String TAG = RequestServiceImpl.class.getName();
 
 
+    //Anfragen erstellen / Übergabe der Parameter als SoapObject
     public SoapObject createRequest(Long tourId, List<String> wishes, String notice, int sessionId) throws SoapFault{
         String METHOD_NAME = "createRequest";
         SoapObject response = null;
@@ -43,6 +41,7 @@ public class RequestServiceImpl {
         return response;
     }
 
+    //Anfragen löschen / Übergabe der Parameter als SoapObject
     public SoapObject deleteRequest(int sessionId, long requestId) throws SoapFault{
         String METHOD_Name = "deleteRequest";
         SoapObject response = null;

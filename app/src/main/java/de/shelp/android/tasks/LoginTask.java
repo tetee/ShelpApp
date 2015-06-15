@@ -33,8 +33,7 @@ public class LoginTask extends AsyncTask<String, Integer, ShelpSession> {
         try {
             return myApp.getUserService().login(username, hash);
         } catch (InvalidLoginException e) {
-            //TODO fix toast
-            //Toast.makeText(activity.getApplicationContext(), "Fehler: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(activity.getApplicationContext(), "Fehler: " + e.getMessage(), Toast.LENGTH_SHORT).show();
         }
         return null;
     }

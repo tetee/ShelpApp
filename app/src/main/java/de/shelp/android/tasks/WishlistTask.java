@@ -54,6 +54,7 @@ public class WishlistTask extends AsyncTask<Object, Integer, SoapObject> {
         try {
             return myApp.getRequestService().createRequest(tourId, wishes, notice, sessionId);
         } catch (SoapFault e) {
+            //Toast das die Verbindung zum Server nicht aufgebaut werden konnte
             Toast.makeText(activity.getApplicationContext(), "Serververbindung konnte nicht erfolgreich aufgebaut werden!", Toast.LENGTH_SHORT).show();
 
         }

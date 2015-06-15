@@ -40,6 +40,7 @@ public class DeleteTourTask extends AsyncTask<Object, Integer, SoapObject>
         try {
             return myApp.getTourService().deleteTour(tour.getId(), sessionId);
         } catch (SoapFault e) {
+            //Toast das die Verbindung zum Server nicht aufgebaut werden konnte
             Toast.makeText(activity.getApplicationContext(), "Serververbindung konnte nicht erfolgreich aufgebaut werden!", Toast.LENGTH_SHORT).show();
         }
         return null;
@@ -54,6 +55,7 @@ public class DeleteTourTask extends AsyncTask<Object, Integer, SoapObject>
             //Toast ob das hinzufügen eines neuen Freundes erfolgreich war
             Toast.makeText(context.getApplicationContext(), "Tour erfolgreich gelöscht!", Toast.LENGTH_SHORT).show();
             Intent i = new Intent(context, ShowOwnTourActivity.class);
+            //Wechsel zur ShowOwnTourActivity
             context.startActivity(i);
         } else {
             Toast.makeText(context.getApplicationContext(), "Fehler: " + result.getPrimitivePropertyAsString("message"), Toast.LENGTH_SHORT).show();

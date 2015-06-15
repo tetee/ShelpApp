@@ -68,12 +68,14 @@ public class OwnToursTask extends AsyncTask<Object, Integer, List<Tour>>
         } else {
             for(int i = 0; i<=result.size()-1;i++){
 
+                //Layout anhand der ID suchen und in Variable speichern
                 RelativeLayout ll = (RelativeLayout) activity.findViewById(R.id.relativeLayoutOwnTour);
                 RelativeLayout.LayoutParams relativeParams = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.FILL_PARENT);
                 relativeParams.addRule(RelativeLayout.BELOW, idEditText);
                 this.idEditText++;
                 TextView et = new TextView(context);
                 et.setId(idEditText);
+                //setzen der Textgröße/Textfarbe
                 et.setTextSize(20);
                 et.setTextColor(Color.BLACK);
                 String destination = result.get(i).getLocation().toString();

@@ -23,11 +23,9 @@ public class OwnRequestServiceImpl {
 
     private static final String URL = ServiceUtils.URL + "RequestIntegration";
 
-    /**
-     * TAG contains the class name and is used for logging.
-     */
     private static final String TAG = OwnRequestServiceImpl.class.getName();
 
+    //Übergabe der Liste <Request> an den Server / Abfragen der Anfragen
     public List<Request> getRequest(int sessionId) throws SoapFault, InvalidRequestException {
         String METHOD_NAME = "getRequests";
         SoapObject response = null;

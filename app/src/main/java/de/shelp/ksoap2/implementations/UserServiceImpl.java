@@ -40,12 +40,11 @@ public class UserServiceImpl implements UserService {
     private static final String URL = ServiceUtils.URL + "UserIntegration";
     private static final String URL2 = ServiceUtils.URL + "StateIntegration";
 
-    /**
-     * TAG contains the class name and is used for logging.
-     */
     private static final String TAG = UserServiceImpl.class.getName();
 
     //Methoden Klasse User
+
+    //Login eines Benutzers / Übergabe als ShelpSession
     @Override
     public ShelpSession login(String username, String password) throws InvalidLoginException {
         String METHOD_NAME = "login";
@@ -66,6 +65,7 @@ public class UserServiceImpl implements UserService {
         }
     }
 
+    //registrieren eines Benutzers / Übergabe als ShelpSession
     @Override
     public ShelpSession registration(String eMail, String hash) throws InvalidRegistrationException {
         String METHOD_NAME = "regUser";
@@ -85,7 +85,7 @@ public class UserServiceImpl implements UserService {
         }
     }
 
-
+    //ausloggen eines Benutzers
     @Override
     public void logout(ShelpApplication shelpApplication) throws NoSessionException {
         Log.d(TAG, "logout called.");
@@ -99,6 +99,8 @@ public class UserServiceImpl implements UserService {
         }
     }
 
+
+    //Benutzer suchen / Übergabe der Liste <User> an den Server
     @Override
     public List<User> searchUsers(String searchText) throws SoapFault, InvalidUsersException{
         String METHOD_NAME = "searchUsers";
