@@ -85,13 +85,14 @@ public class SearchTask extends AsyncTask<Object, Integer, List<Tour>>
             Toast.makeText(activity.getApplicationContext(), "ERROR: Fahrt konnte nicht gefunden werden!", Toast.LENGTH_SHORT).show();
         } else {
             for(int i = 0; i<=result.size()-1;i++){
-                //result.get(i);
+                //Layout anhand der ID suchen und in Variable speichern
                 RelativeLayout ll = (RelativeLayout) activity.findViewById(R.id.relativeLayoutSearch);
                 RelativeLayout.LayoutParams relativeParams = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.FILL_PARENT);
                 relativeParams.addRule(RelativeLayout.BELOW, idEditText);
                 this.idEditText++;
                 TextView et = new TextView(context);
                 et.setId(idEditText);
+                //setzen der Textgröße
                 et.setTextSize(20);
                 String owner = result.get(i).getOwner().toString();
                 String destination = result.get(i).getLocation().toString();

@@ -77,7 +77,7 @@ public class SoapAssembler {
                 list.add(soapToRequest((SoapObject) response.getProperty(i)));
             }
         }
-        //Ersteller er Fahrt
+        //Ersteller der Fahrt
         User ownerTour = soapToUser((SoapObject) response.getProperty("owner"));
         //Zahlungsbedingungen
         SoapObject paymentCondition =(SoapObject) response.getProperty("paymentCondition");

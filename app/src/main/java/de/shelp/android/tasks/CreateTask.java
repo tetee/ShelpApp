@@ -40,6 +40,7 @@ public class CreateTask extends AsyncTask<Object, Integer, SoapObject>
         try {
             return myApp.getTourService().createTour(tour, sessionId);
         } catch (SoapFault e) {
+            //Toast das die Verbindung zum Server nicht aufgebaut werden konnte
             Toast.makeText(activity.getApplicationContext(), "Serververbindung konnte nicht erfolgreich aufgebaut werden!", Toast.LENGTH_SHORT).show();
         }
         return null;
@@ -50,11 +51,12 @@ public class CreateTask extends AsyncTask<Object, Integer, SoapObject>
 
     protected void onPostExecute(SoapObject result)
     {
+        //Prüfung des returnCodes
         if(result.getPrimitivePropertyAsString("returnCode").equals("OK")) {
             //Toast ob das hinzufügen eines neuen Freundes erfolgreich war
             Toast.makeText(context.getApplicationContext(), "Bewertung erfolgreich erstellt!", Toast.LENGTH_SHORT).show();
             Intent i = new Intent(context, ShowOwnTourActivity.class);
-
+            //wechsel in die ShowOwnTourActivity
             context.startActivity(i);
         } else {
             Toast.makeText(context.getApplicationContext(), "Fehler: " + result.getPrimitivePropertyAsString("message"), Toast.LENGTH_SHORT).show();

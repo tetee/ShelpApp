@@ -38,8 +38,10 @@ public class AddFriendTask extends AsyncTask<Object, Object, SoapObject>
     @Override
     protected SoapObject doInBackground(Object... params){
         try {
+            //Übergabe der Parameter an die FriendServiceImpl
             return myApp.getFriendService().addFriend(myApp.getSession().getId(), user.getUserName());
         } catch (SoapFault e) {
+            //Toast das die Verbindung zum Server nicht aufgebaut worden konnte
             Toast.makeText(myApp.getApplicationContext(), "Serververbindung konnte nicht erfolgreich aufgebaut werden!", Toast.LENGTH_SHORT).show();
         }
         return null;

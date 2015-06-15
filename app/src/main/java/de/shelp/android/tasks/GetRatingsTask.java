@@ -71,6 +71,7 @@ public class GetRatingsTask extends AsyncTask<Object,Object, List<Rating>> {
                 TextView et = new TextView(context);
                 et.setId(idEditText);
                 String owner = ratings.get(i).getSourceUser().getUserName();
+                //setzen der Textgröße/Textfarbe
                 et.setTextColor(Color.BLACK);
                 et.setTextSize(20);
                 et.setText("Ersteller: " + owner);
@@ -85,6 +86,7 @@ public class GetRatingsTask extends AsyncTask<Object,Object, List<Rating>> {
                 TextView et2 = new TextView(context);
                 et2.setId(idEditText);
                 int ratingValue = ratings.get(i).getRating();
+                //setzen der Textgröße/Textfarbe
                 et2.setTextColor(Color.BLACK);
                 et2.setTextSize(20);
                 et2.setText("Sterne: " + ratingValue);
@@ -98,30 +100,14 @@ public class GetRatingsTask extends AsyncTask<Object,Object, List<Rating>> {
                 TextView et3 = new TextView(context);
                 et3.setId(idEditText);
                 String notice = ratings.get(i).getNotice();
+                //setzen der Textgröße/Textfarbe
                 et3.setTextColor(Color.BLACK);
                 et3.setTextSize(20);
+                //Abstände zwischen den Button werden programmatisch gesetzt
                 relativeParams3.setMargins(0, 0, 0, 45);
                 et3.setText("Beschreibung: " + notice);
                 et3.setLayoutParams(relativeParams3);
                 ll3.addView(et3);
-            /*
-                RelativeLayout ll4 = (RelativeLayout) activity.findViewById(R.id.relativeLayoutRatings);
-
-                RelativeLayout.LayoutParams relativeParams4 = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.FILL_PARENT);
-                relativeParams3.addRule(RelativeLayout.BELOW, idEditText);
-                this.idEditText++;
-                TextView et4 = new TextView(context);
-                et4.setId(idEditText);
-                String notice = ratings.get(i).getNotice();
-                et4.setTextColor(Color.BLACK);
-                et4.setTextSize(10);
-                et4.setText(notice);
-                relativeParams4.setMargins(0,0,0,20);
-                ll4.addView(et4, relativeParams4);
-            }
-            */
-
-
             }
         }
     }

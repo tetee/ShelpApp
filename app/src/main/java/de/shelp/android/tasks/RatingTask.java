@@ -41,6 +41,7 @@ public class RatingTask extends AsyncTask<Object, Integer, SoapObject>{
         try {
             return myApp.getRatingService().createRating(targetUser, rating, notice, sessionId);
         } catch (SoapFault e) {
+            //Toast das die Verbindung zum Server nicht aufgebaut werden konnte
             Toast.makeText(activity.getApplicationContext(), "Serververbindung konnte nicht erfolgreich aufgebaut werden!", Toast.LENGTH_SHORT).show();
         }
         return null;

@@ -53,6 +53,7 @@ public class DeleteRequestTask extends AsyncTask<Object, Integer, SoapObject>
         try {
             return myApp.getRequestService().deleteRequest(myApp.getSession().getId(), request.getId());
                } catch (SoapFault e) {
+            //Toast das die Verbindung zum Server nicht aufgebaut werden konnte
             Toast.makeText(activity.getApplicationContext(), "Serververbindung konnte nicht erfolgreich aufgebaut werden!", Toast.LENGTH_SHORT).show();
         }
         return null;
@@ -60,11 +61,14 @@ public class DeleteRequestTask extends AsyncTask<Object, Integer, SoapObject>
 
     protected void onPostExecute(SoapObject result)
     {
+        //Prüfung des returnCodes
         if(result.getPrimitivePropertyAsString("returnCode").equals("OK")) {
             //Toast ob das hinzufügen eines neuen Freundes erfolgreich war
             Toast.makeText(context.getApplicationContext(), "Anfrage erfolgreich gelöscht!", Toast.LENGTH_SHORT).show();
             Intent i = new Intent(context, ShowOwnRequestActivity.class);
+            //Aufruf eines neuen Tasks
             i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            //Wechsel zur ShowOwnRequestActivity
             context.startActivity(i);
         } else {
             Toast.makeText(context.getApplicationContext(), "Fehler: " + result.getPrimitivePropertyAsString("message"), Toast.LENGTH_SHORT).show();
