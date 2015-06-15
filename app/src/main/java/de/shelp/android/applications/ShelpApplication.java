@@ -13,6 +13,8 @@ import de.shelp.ksoap2.implementations.UserServiceImpl;
 import de.shelp.ksoap2.services.UserService;
 import de.shelp.ksoap2.entities.ShelpSession;
 
+//Das Application Object repräsentiert den übergreifenden Zustand einer App
+//Android verwaltet je App nur eine einzige Apllication Instanz (Singleton)
 public class ShelpApplication extends Application {
 
     private ShelpSession session;

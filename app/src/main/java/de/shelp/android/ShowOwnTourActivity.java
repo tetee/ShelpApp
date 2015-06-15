@@ -24,6 +24,7 @@ import de.shelp.ksoap2.ServiceUtils;
 import de.shelp.ksoap2.entities.Tour;
 import de.shelp.ksoap2.entities.User;
 
+//Activity, die eigens angelegte Fahrten anzeigt
 public class ShowOwnTourActivity extends ActionBarActivity {
 
     Tour tour;
@@ -32,14 +33,10 @@ public class ShowOwnTourActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tour_activity);
 
-
-        //Intent intent = getIntent();
-        //String status = (String) intent.getSerializableExtra("Status");
-
         ShelpApplication application = (ShelpApplication) getApplication();
+        //Fahrten über AsyncTask vom Server laden
         OwnToursTask ownToursTask = new OwnToursTask(getApplicationContext(),application.getSession().getId(), this);
         ownToursTask.execute();
-
 
     }
 
@@ -74,7 +71,7 @@ public class ShowOwnTourActivity extends ActionBarActivity {
 
     //durch Klicken werden die Details zur eigenen Fahrt angezeigt
     //um das Anfragen einer eigenen Fahrt zu vermeiden wird der Besitzer gleich true gesetzt und in der ShowTourActivity
-    //der Button zujm Anfragen ausgeblendet
+    //der Button zum Anfragen ausgeblendet
     public void details(View view, Tour tour){
         Intent i = new Intent(this, ShowTourActivity.class);
         i.putExtra("Tour", tour);
@@ -84,7 +81,6 @@ public class ShowOwnTourActivity extends ActionBarActivity {
 
     //Tour löschen bzw. auf CANCLED setzen
     public void delete(View view, Tour tour){
-
         ShelpApplication application = (ShelpApplication) getApplication();
         DeleteTourTask deleteToursTask = new DeleteTourTask(getApplicationContext(), tour,application.getSession().getId(), this);
         deleteToursTask.execute();

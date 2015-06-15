@@ -24,7 +24,7 @@ import de.shelp.ksoap2.entities.User;
 import de.shelp.ksoap2.entities.WishlistItem;
 
 /**
- * Created by Jos-Laptop on 31.05.2015.
+ * Klasse für die Umwandlung in SOAP Objekte und zurück
  */
 public class SoapAssembler {
 
@@ -42,6 +42,7 @@ public class SoapAssembler {
         return instance;
     }
 
+    //Umwandlung eines SoapObjects zu einer ShelpSession
     public ShelpSession soapToSession(SoapObject response) {
         SoapObject regEntry = (SoapObject) response.getProperty(1);
         SoapObject userEntry = (SoapObject) regEntry.getProperty(2);
@@ -52,6 +53,7 @@ public class SoapAssembler {
         return session;
     }
 
+    //Umwandlung eines SoapObjects zu einem Tour Object
     public Tour soapToTour(SoapObject response) {
         //Annahme der Daten aus dem response SoapObject
         //Freigabe
@@ -77,7 +79,7 @@ public class SoapAssembler {
                 list.add(soapToRequest((SoapObject) response.getProperty(i)));
             }
         }
-        //Ersteller er Fahrt
+        //Ersteller der Fahrt
         User ownerTour = soapToUser((SoapObject) response.getProperty("owner"));
         //Zahlungsbedingungen
         SoapObject paymentCondition =(SoapObject) response.getProperty("paymentCondition");
@@ -87,12 +89,11 @@ public class SoapAssembler {
         //Datum der Tour
         long time = Long.valueOf(response.getPropertyAsString("time"));
 
-
         Tour tour = new Tour(id, app, loc, cap, payCon, delCon,time,list, ownerTour,  status);
-
         return tour;
     }
 
+    //Umwandlung eines SoapObjects zu einem AllLists Objects
     public AllLists soapToAllLists(SoapObject response) {
         List<Capacity> capacities = new ArrayList<Capacity>();
         List<DeliveryCondition> deliveryConditions = new ArrayList<DeliveryCondition>();
@@ -130,6 +131,7 @@ public class SoapAssembler {
         return new AllLists(capacities,deliveryConditions,paymentConditions,states,locations);
     }
 
+    //Umwandlung eines SoapObjects zu einem Friendship Object
     public Friendship soapToFriendship(SoapObject response) {
         int id = Integer.valueOf(response.getPropertyAsString("id"));
         long changedOn = Long.valueOf(response.getPropertyAsString("changedOn"));
@@ -142,10 +144,12 @@ public class SoapAssembler {
        return new Friendship(id, initiatorUser,recipientUser,friendshipStatus,changedOn);
     }
 
+    //Umwandlung eines SoapObjects zu einem User Object
     public User soapToUser(SoapObject response) {
         return new User(response.getPropertyAsString("email"));
     }
 
+    //Umwandlung eines SoapObjects zu einem Rating Object
     public Rating soapToRating(SoapObject response){
         Long id = Long.valueOf(response.getPropertyAsString("id"));
         User sourceUser = soapToUser((SoapObject) response.getProperty("sourceUser"));
@@ -156,6 +160,7 @@ public class SoapAssembler {
         return new Rating(id, sourceUser,targetUser,rating,notice);
     }
 
+    //Umwandlung eines SoapObjects zu einem Request Object
     public Request soapToRequest(SoapObject response) {
         List<WishlistItem> wishlistItems = new ArrayList<WishlistItem>();
 
@@ -176,6 +181,7 @@ public class SoapAssembler {
         return new Request(id, sourceUser, targetUser, null, wishlistItems, notice, status );
     }
 
+    //Umwandlung eines SoapObjects zu einem WishlistItem Object
     public WishlistItem soapToWishlistItem(SoapObject response) {
         int id = Integer.valueOf(response.getPropertyAsString("id"));
         String text = response.getPropertyAsString("text");

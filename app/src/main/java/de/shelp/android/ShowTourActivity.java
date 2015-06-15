@@ -23,6 +23,7 @@ import de.shelp.ksoap2.ServiceUtils;
 import de.shelp.ksoap2.entities.Request;
 import de.shelp.ksoap2.entities.Tour;
 
+//Activity um Tour Details anzuzeigen und diese ggf. anzufragen
 public class ShowTourActivity extends ActionBarActivity {
 
     Tour tour;
@@ -36,12 +37,13 @@ public class ShowTourActivity extends ActionBarActivity {
         tour = (Tour) intent.getSerializableExtra("Tour");
         //Abfrage des Besitzers der Tour
         //Ist der Besitzer der User wird der Anfrage Button ausgeblendet um das Anfragen eigener Touren zu verhindern
-
         boolean ownerIntent = (boolean) intent.getSerializableExtra("Owner");
         if(ownerIntent == true){
             Button button = (Button) findViewById(R.id.requestButton);
             button.setVisibility(View.GONE);
 
+            //Anlegen eines neuen Buttons um vorhandene Anfragen an eigens erstellte Tour zu zeigen
+            //TODO vorhandenen Button nutzen aber OnClickListener ändern? (Theresa)
             RelativeLayout ll = (RelativeLayout) this.findViewById(R.id.relativeLayoutShowTourActivity);
             RelativeLayout.LayoutParams relativeParams = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.FILL_PARENT);
             relativeParams.addRule(RelativeLayout.BELOW, R.id.status);
@@ -53,6 +55,7 @@ public class ShowTourActivity extends ActionBarActivity {
             ll.addView(request, relativeParams);
 
         }
+        //Tour Details und ausgeben
         TextView owner = (TextView) findViewById(R.id.owner);
         owner.setText(tour.getOwner().toString());
 
@@ -69,6 +72,7 @@ public class ShowTourActivity extends ActionBarActivity {
         delConditions.setText(tour.getDeliveryConditions().toString());
 
         TextView date = (TextView) findViewById(R.id.dateCreate);
+        //Test des Datums
         try {
             date.setText(ServiceUtils.formatDatetoString(new Date(tour.getTime())));
         } catch (ParseException ex) {
@@ -112,12 +116,15 @@ public class ShowTourActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    //Methode um eine Tour anzufragen.. Für Anfrage zunächst Weiterleitung zur WishlistActivity
     public void request(View v){
         Intent i = new Intent(this, WishlistActivity.class);
+        //Übergabe der entsprechenden Tour
         i.putExtra("Tour", tour);
         startActivity(i);
     }
 
+    //Methode um bereits gestellte Anfragen an eine bestimmte Tour anzuzeigen
     public void showRequest(View v, Tour tour){
         Intent i = new Intent(this, ShowTourRequestActivity.class);
         i.putExtra("Tour", tour);

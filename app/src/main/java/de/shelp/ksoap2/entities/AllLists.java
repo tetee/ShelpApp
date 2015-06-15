@@ -6,6 +6,7 @@ import java.util.List;
 /**
  * Created by user on 21.05.15.
  */
+//Verwaltet alle Listen für die Touren
 public class AllLists {
 
     private List<Capacity> capacities;

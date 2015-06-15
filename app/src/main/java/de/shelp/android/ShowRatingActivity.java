@@ -12,6 +12,7 @@ import de.shelp.android.tasks.GetRatingsTask;
 import de.shelp.ksoap2.entities.Tour;
 import de.shelp.ksoap2.entities.User;
 
+//Activity um Bewertungen eines bestimmten Benutzers anzusehen
 public class ShowRatingActivity extends ActionBarActivity {
 
     @Override
@@ -20,12 +21,14 @@ public class ShowRatingActivity extends ActionBarActivity {
         setContentView(R.layout.activity_show_rating_activity);
 
         Intent intent = getIntent();
+        //Annahme des mit dem Intent übergebenen User Object
         User user = (User) intent.getSerializableExtra("User");
 
+        //Bewertungen über AsyncTask vom Server laden
         GetRatingsTask ratingTask = new GetRatingsTask(getApplicationContext(), this, user);
         ratingTask.execute();
 
-
+        //Name des bewerteten Users ausgeben
         TextView owner = (TextView) findViewById(R.id.user);
         owner.setText(user.toString());
     }

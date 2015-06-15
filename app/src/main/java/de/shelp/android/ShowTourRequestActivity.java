@@ -17,6 +17,7 @@ import de.shelp.android.actionlistener.ShowRequestListener;
 import de.shelp.ksoap2.entities.Request;
 import de.shelp.ksoap2.entities.Tour;
 
+//Activity um Anfragen zu eigens erstellter Tour anzuzeigen
 public class ShowTourRequestActivity extends ActionBarActivity {
     Tour tour;
 
@@ -25,12 +26,15 @@ public class ShowTourRequestActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_tour_request);
 
+        //Annahme der übergebenen Tour
         Intent intent = getIntent();
         tour = (Tour) intent.getSerializableExtra("Tour");
 
         int lastEdit = R.id.relativeLayoutShowTourRequest;
 
-
+        //Für die Tour wird für jedes Request Object eine Schleife durchlaufen um zugehörige Daten auszugeben
+        //Der Fahrt Anbieter kann die Anfrage (teilweise) annehmen
+        //TODO Anfrage annehmen, bzw. teilweise (Checkboxen)
         for(int i = 0; i <=tour.getRequest().size()-1; i++){
             RelativeLayout ll = (RelativeLayout) this.findViewById(R.id.relativeLayoutShowTourRequest);
             RelativeLayout.LayoutParams relativeParams = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.FILL_PARENT);
