@@ -84,6 +84,38 @@ public class GetOwnRequestTask extends AsyncTask<Object, Integer, List<Request>>
                 et.setText("Fahrt: " + request.getTargedUser() + " " + request.getTour().getLocation() + " " + request.getStatus());
                 ll.addView(et, relativeParams);
 
+
+                for(int i=0; i < request.getWishes().size(); i++){
+                    if(request.getWishes().get(i).isChecked()) {
+                        //Layout anhand der ID suchen und in Variable speichern
+                        RelativeLayout ll1 = (RelativeLayout) activity.findViewById(R.id.relativeLayoutRequest);
+                        //neues Layout erstellen und unter der nextAskedId anordnen
+                        RelativeLayout.LayoutParams relativeParams1 = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.FILL_PARENT);
+                        this.nextAskedId++;
+                        TextView et1 = new TextView(context);
+                        et1.setId(nextAskedId);
+                        et1.setTextSize(20);
+                        relativeParams1.setMargins(0, 0, 0, 20);
+                        et1.setTextColor(Color.GREEN);
+                        et1.setText(request.getWishes().get(i).getText());
+                        ll1.addView(et1, relativeParams1);
+                    } else {
+                        //Layout anhand der ID suchen und in Variable speichern
+                        RelativeLayout ll11 = (RelativeLayout) activity.findViewById(R.id.relativeLayoutRequest);
+                        //neues Layout erstellen und unter der nextAskedId anordnen
+                        RelativeLayout.LayoutParams relativeParams11 = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.FILL_PARENT);
+                        this.nextAskedId++;
+                        TextView et11 = new TextView(context);
+                        et11.setId(nextAskedId);
+                        et11.setTextSize(20);
+                        relativeParams11.setMargins(0,0,0,20);
+                        et11.setTextColor(Color.RED);
+                        et11.setText(request.getWishes().get(i).getText());
+                        ll11.addView(et11, relativeParams11);
+
+                    }
+                }
+
                 RelativeLayout ll2 = (RelativeLayout) activity.findViewById(R.id.relativeLayoutRequest);
 
                 RelativeLayout.LayoutParams relativeParams2 = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.FILL_PARENT);
