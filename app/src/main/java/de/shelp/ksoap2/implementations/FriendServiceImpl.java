@@ -21,7 +21,7 @@ public class FriendServiceImpl {
 
     private static final String TAG = FriendServiceImpl.class.getName();
 
-    //Übergabe der Liste <Friendship> an den Server und Abfrage der aktuellen Freunde
+    //Ãœbergabe der Liste <Friendship> an den Server und Abfrage der aktuellen Freunde
     public List<Friendship> getFriends(int sessionId) throws SoapFault {
         String METHOD_NAME = "getFriends";
         SoapObject response = null;
@@ -37,7 +37,7 @@ public class FriendServiceImpl {
         return friendships;
     }
 
-    //Freund hinzufügen und Parameter in SoapObject an den Server übergeben
+    //Freund hinzufÃ¼gen und Parameter in SoapObject an den Server Ã¼bergeben
    public SoapObject addFriend(int sessionId, String friendId) throws SoapFault {
        String METHOD_NAME = "addFriend";
        SoapObject response = null;
@@ -47,7 +47,7 @@ public class FriendServiceImpl {
        return response;
    }
 
-    //Freunde akzeptieren / ablehnen / löschen / Übergabe der Parameter als SoapObject
+    //Freunde akzeptieren / ablehnen / lÃ¶schen / Ãœbergabe der Parameter als SoapObject
     public SoapObject changeFriendship(int sessionId, Friendship friendship, int changeType) throws SoapFault {
         String METHOD_NAME;
         switch (changeType) {
