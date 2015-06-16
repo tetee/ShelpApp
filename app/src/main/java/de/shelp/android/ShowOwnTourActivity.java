@@ -82,7 +82,7 @@ public class ShowOwnTourActivity extends ActionBarActivity {
         startActivity(i);
     }
 
-    //Tour löschen bzw. auf CANCLED setzen
+    //Tour löschen bzw. auf CANCELLED setzen
     public void delete(View view, Tour tour){
         ShelpApplication application = (ShelpApplication) getApplication();
         DeleteTourTask deleteToursTask = new DeleteTourTask(getApplicationContext(), tour,application.getSession().getId(), this);

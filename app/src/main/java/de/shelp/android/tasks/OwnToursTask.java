@@ -119,7 +119,7 @@ public class OwnToursTask extends AsyncTask<Object, Integer, ObjectResponse<Tour
                 details.setOnClickListener(new ShowTourDetailsListener(currentTour, activity));
                 ll2.addView(details);
 
-                if(!(currentTour.getStatus().toString().equals("CANCLED"))){
+                if(!(currentTour.getStatus().toString().equals("CANCELLED"))){
                 //Button Bewertung unter ausgegebener Tour anzeigen
                 RelativeLayout ll3 = (RelativeLayout) activity.findViewById(R.id.relativeLayoutOwnTour);
                 RelativeLayout.LayoutParams relativeParams3 = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.FILL_PARENT);

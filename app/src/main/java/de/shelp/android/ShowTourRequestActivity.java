@@ -6,7 +6,6 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -17,12 +16,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 import de.fh_muenster.shelpapp.R;
-import de.shelp.android.actionlistener.AddRatingListener;
 import de.shelp.android.actionlistener.CheckboxListener;
-import de.shelp.android.actionlistener.ShowRequestListener;
 import de.shelp.android.applications.ShelpApplication;
 import de.shelp.android.tasks.AcceptRequestTask;
-import de.shelp.android.tasks.ChangeFriendshipTask;
 import de.shelp.ksoap2.entities.Request;
 import de.shelp.ksoap2.entities.Tour;
 import de.shelp.ksoap2.entities.TourStatus;
@@ -88,7 +84,7 @@ public class ShowTourRequestActivity extends ActionBarActivity {
                 wishMap.put(item, wishBox);
             }
 
-            if(req.getStatus().equals("ASKED") && tour.getStatus().equals(TourStatus.PLANED)) {
+            if(req.getStatus().equals("ASKED") && tour.getStatus().equals(TourStatus.PLANNED)) {
                 RelativeLayout ll3 = (RelativeLayout) this.findViewById(R.id.relativeLayoutShowTourRequest);
                 RelativeLayout.LayoutParams relativeParams3 = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.FILL_PARENT);
                 relativeParams3.addRule(RelativeLayout.BELOW, lastEdit);
