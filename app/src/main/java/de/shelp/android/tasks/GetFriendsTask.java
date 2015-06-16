@@ -103,6 +103,7 @@ public class GetFriendsTask extends AsyncTask<Object, Integer, ObjectResponse<Fr
                         relativeParams3.setMargins(0, 10, 0, 10);
                         this.nextFriendId++;
                         Button et3 = new Button(context);
+                        et3.setTextColor(Color.BLACK);
                         //setzen des definierten Hintergrund in drawable
                         et3.setBackgroundResource(R.drawable.button);
                         et3.setId(nextFriendId);
@@ -133,6 +134,7 @@ public class GetFriendsTask extends AsyncTask<Object, Integer, ObjectResponse<Fr
                         relativeParams6.setMargins(0, 10, 0, 10);
                         this.nextFriendId++;
                         Button et6 = new Button(context);
+                        et6.setTextColor(Color.BLACK);
                         //setzen des definierten Hintergrund in drawable
                         et6.setBackgroundResource(R.drawable.button);
                         et6.setId(nextFriendId);
@@ -150,6 +152,7 @@ public class GetFriendsTask extends AsyncTask<Object, Integer, ObjectResponse<Fr
                         relativeParams7.setMargins(0, 10, 0, 10);
                         this.nextFriendId++;
                         Button et7 = new Button(context);
+                        et7.setTextColor(Color.BLACK);
                         //setzen des definierten Hintergrund in drawable
                         et7.setBackgroundResource(R.drawable.button);
                         et7.setId(nextFriendId);
@@ -196,6 +199,7 @@ public class GetFriendsTask extends AsyncTask<Object, Integer, ObjectResponse<Fr
                     relativeParams6.setMargins(0, 10, 0, 10);
                     this.nextFriendId++;
                     Button et6 = new Button(context);
+                    et6.setTextColor(Color.BLACK);
                     //setzen des definierten Hintergrund in drawable
                     et6.setBackgroundResource(R.drawable.button);
                     et6.setId(nextFriendId);
