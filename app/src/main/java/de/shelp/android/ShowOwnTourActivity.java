@@ -16,12 +16,15 @@ import java.util.Date;
 import de.fh_muenster.shelpapp.R;
 import de.shelp.android.applications.ShelpApplication;
 import de.shelp.android.tasks.CreateTask;
+import de.shelp.android.tasks.DeleteTourTask;
 import de.shelp.android.tasks.GetRatingsTask;
 import de.shelp.android.tasks.OwnToursTask;
+import de.shelp.android.tasks.SearchTask;
 import de.shelp.ksoap2.ServiceUtils;
 import de.shelp.ksoap2.entities.Tour;
 import de.shelp.ksoap2.entities.User;
 
+//Activity, die eigens angelegte Fahrten anzeigt
 public class ShowOwnTourActivity extends ActionBarActivity {
 
     Tour tour;
@@ -30,14 +33,10 @@ public class ShowOwnTourActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tour_activity);
 
-
-        Intent intent = getIntent();
-        User user = (User) intent.getSerializableExtra("User");
-
         ShelpApplication application = (ShelpApplication) getApplication();
+        //Fahrten über AsyncTask vom Server laden
         OwnToursTask ownToursTask = new OwnToursTask(getApplicationContext(),application.getSession().getId(), this);
         ownToursTask.execute();
-
 
     }
 
@@ -72,18 +71,20 @@ public class ShowOwnTourActivity extends ActionBarActivity {
 
     //durch Klicken werden die Details zur eigenen Fahrt angezeigt
     //um das Anfragen einer eigenen Fahrt zu vermeiden wird der Besitzer gleich true gesetzt und in der ShowTourActivity
-    //der Button zujm Anfragen ausgeblendet
+    //der Button zum Anfragen ausgeblendet
     public void details(View view, Tour tour){
         Intent i = new Intent(this, ShowTourActivity.class);
         i.putExtra("Tour", tour);
-        i.putExtra("Besitzer", true);
+        i.putExtra("Owner", true);
         startActivity(i);
     }
 
-    //TODO ändern der Tour... bzw, löschen der alten Tour
-    public void edit(View view, Tour tour){
-        Intent i = new Intent(this, CreateTourActivity.class);
-        //i.putExtra("Tour", tour);
-        startActivity(i);
+    //Tour löschen bzw. auf CANCLED setzen
+    public void delete(View view, Tour tour){
+        ShelpApplication application = (ShelpApplication) getApplication();
+        DeleteTourTask deleteToursTask = new DeleteTourTask(getApplicationContext(), tour,application.getSession().getId(), this);
+        deleteToursTask.execute();
+        finish();
+        startActivity(getIntent());
     }
 }

@@ -1,6 +1,7 @@
 package de.shelp.android.tasks;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.view.ViewGroup;
@@ -14,10 +15,14 @@ import org.ksoap2.SoapFault;
 import java.util.List;
 
 import de.fh_muenster.shelpapp.R;
+import de.shelp.android.FriendsActivity;
 import de.shelp.android.ShowOwnRequestActivity;
+import de.shelp.android.actionlistener.AddDeleteListener;
+import de.shelp.android.actionlistener.AddRatingListener;
 import de.shelp.android.applications.ShelpApplication;
 import de.shelp.ksoap2.entities.Request;
 import de.shelp.ksoap2.exceptions.InvalidRequestException;
+import de.shelp.ksoap2.exceptions.InvalidUsersException;
 
 /**
  * Created by user on 02.06.15.
@@ -44,7 +49,10 @@ public class GetOwnRequestTask extends AsyncTask<Object, Integer, List<Request>>
     protected List<Request> doInBackground(Object... params) {
         try {
             return myApp.getOwnRequestService().getRequest(myApp.getSession().getId());
-        } catch (InvalidRequestException | SoapFault e) {
+        } catch (InvalidRequestException e) {
+                Toast.makeText(activity.getApplicationContext(), "Fehler: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+        } catch (SoapFault e) {
+            //Toast das die Verbindung zum Server nicht aufgebaut werden konnte
             Toast.makeText(myApp.getApplicationContext(), "Serververbindung konnte nicht erfolgreich aufgebaut werden!", Toast.LENGTH_SHORT).show();
         }
         return null;
@@ -55,18 +63,21 @@ public class GetOwnRequestTask extends AsyncTask<Object, Integer, List<Request>>
 
     protected void onPostExecute(List<Request> result) {
         if (result == null) {
+            //Prüfung ob die Liste <Friendship> bereits gefüllt ist, ansonsten Ausgabe des Toasts
             Toast.makeText(myApp.getApplicationContext(), "Du hast noch keine Anfragen gestellt.", Toast.LENGTH_SHORT).show();
         } else {
             for (Request request : result) {
-
+                //Layout anhand der ID suchen und in Variable speichern
                 RelativeLayout ll = (RelativeLayout) activity.findViewById(R.id.relativeLayoutRequest);
-
+                //neues Layout erstellen und unter der nextAskedId anordnen
                 RelativeLayout.LayoutParams relativeParams = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.FILL_PARENT);
                 relativeParams.addRule(RelativeLayout.BELOW, nextAskedId);
                 this.nextAskedId++;
                 TextView et = new TextView(context);
                 et.setId(nextAskedId);
+                //setzen der Textgröße/Textfarbe
                 et.setTextSize(20);
+                //Abstände zwischen den Button werden programmatisch gesetzt
                 relativeParams.setMargins(0, 0, 0, 20);
                 et.setTextColor(Color.BLACK);
                 et.setText("Benutzer: " + request.getTargedUser() + " " + request.getTour().getLocation() + " " + request.getStatus());
@@ -79,9 +90,12 @@ public class GetOwnRequestTask extends AsyncTask<Object, Integer, List<Request>>
                 this.nextAskedId++;
                 Button bt2 = new Button(context);
                 bt2.setId(nextAskedId);
+                //Abstände zwischen den Button werden programmatisch gesetzt
                 relativeParams2.setMargins(0, 0, 0, 20);
+                //setzen der Textfarbe
                 bt2.setTextColor(Color.BLACK);
                 bt2.setText("löschen");
+                //setzen des definierten Hintergrund in drawable
                 bt2.setBackgroundResource(R.drawable.button);
                 ll2.addView(bt2, relativeParams2);
 
@@ -92,11 +106,17 @@ public class GetOwnRequestTask extends AsyncTask<Object, Integer, List<Request>>
                 this.nextAskedId++;
                 Button bt3 = new Button(context);
                 bt3.setId(nextAskedId);
+                //Abstände zwischen den Button werden programmatisch gesetzt
                 relativeParams3.setMargins(0, 0, 0, 20);
+                //setzen der Textfarbe
                 bt3.setTextColor(Color.BLACK);
                 bt3.setText("Bewertung");
+                //setzen des definierten Hintergrund in drawable
                 bt3.setBackgroundResource(R.drawable.button);
                 ll3.addView(bt3, relativeParams3);
+
+                bt3.setOnClickListener(new AddRatingListener(request, activity));
+                bt2.setOnClickListener(new AddDeleteListener(request, activity));
             }
         }
     }

@@ -20,6 +20,8 @@ import de.shelp.android.actionlistener.ShowRatingsListener;
 import de.shelp.android.actionlistener.ShowTourDetailsListener;
 import de.shelp.android.applications.ShelpApplication;
 import de.shelp.ksoap2.entities.Tour;
+import de.shelp.ksoap2.exceptions.InvalidTourException;
+import de.shelp.ksoap2.exceptions.InvalidUsersException;
 
 /**
  * Created by user on 12.06.15.
@@ -45,6 +47,8 @@ public class OwnToursTask extends AsyncTask<Object, Integer, List<Tour>>
         ShelpApplication myApp = (ShelpApplication) activity.getApplication();
         try {
             return myApp.getTourService().searchOwnTour(sessionId);
+        } catch (InvalidTourException e) {
+            Toast.makeText(activity.getApplicationContext(), "Fehler: " + e.getMessage(), Toast.LENGTH_SHORT).show();
         } catch (SoapFault e) {
             Toast.makeText(activity.getApplicationContext(), "Serververbindung konnte nicht erfolgreich aufgebaut werden!", Toast.LENGTH_SHORT).show();
 
@@ -64,12 +68,14 @@ public class OwnToursTask extends AsyncTask<Object, Integer, List<Tour>>
         } else {
             for(int i = 0; i<=result.size()-1;i++){
 
+                //Layout anhand der ID suchen und in Variable speichern
                 RelativeLayout ll = (RelativeLayout) activity.findViewById(R.id.relativeLayoutOwnTour);
                 RelativeLayout.LayoutParams relativeParams = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.FILL_PARENT);
                 relativeParams.addRule(RelativeLayout.BELOW, idEditText);
                 this.idEditText++;
                 TextView et = new TextView(context);
                 et.setId(idEditText);
+                //setzen der Textgröße/Textfarbe
                 et.setTextSize(20);
                 et.setTextColor(Color.BLACK);
                 String destination = result.get(i).getLocation().toString();
@@ -93,6 +99,7 @@ public class OwnToursTask extends AsyncTask<Object, Integer, List<Tour>>
                 details.setOnClickListener(new ShowTourDetailsListener(result.get(i), activity));
                 ll2.addView(details);
 
+                if(!(result.get(i).getStatus().toString().equals("CANCLED"))){
                 //Button Bewertung unter ausgegebener Tour anzeigen
                 RelativeLayout ll3 = (RelativeLayout) activity.findViewById(R.id.relativeLayoutOwnTour);
                 RelativeLayout.LayoutParams relativeParams3 = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.FILL_PARENT);
@@ -101,9 +108,10 @@ public class OwnToursTask extends AsyncTask<Object, Integer, List<Tour>>
                 Button edit = new Button(context);
                 edit.setBackgroundResource(R.drawable.button);
                 edit.setId(idEditText);
-                edit.setText("Bearbeiten");
+                edit.setText("Löschen");
                 edit.setOnClickListener(new EditTourListener(result.get(i), activity));
                 ll3.addView(edit, relativeParams3);
+            }
             }
         }
     }

@@ -34,8 +34,10 @@ public class ChangeFriendshipTask  extends AsyncTask<Object, Object, SoapObject>
     @Override
     protected SoapObject doInBackground(Object... params){
         try {
+            //Übergabe der Parameter an die FriendServiceImpl
             return myApp.getFriendService().changeFriendship(myApp.getSession().getId(), fs, changeType);
         } catch (SoapFault e) {
+            //Toast das die Verbindung zum Server nicht aufgebaut werden konnte
             Toast.makeText(context.getApplicationContext(), "Serververbindung konnte nicht erfolgreich aufgebaut werden!", Toast.LENGTH_SHORT).show();
         }
         return null;
@@ -57,7 +59,9 @@ public class ChangeFriendshipTask  extends AsyncTask<Object, Object, SoapObject>
             }
 
             Intent i = new Intent(context, FriendsActivity.class);
+            //Aufruf eines neuen Tasks
             i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            //Wechsel in die FriendsActivity
             context.startActivity(i);
         } else {
             Toast.makeText(context.getApplicationContext(), "Fehler: " + result.getPrimitivePropertyAsString("message"), Toast.LENGTH_SHORT).show();

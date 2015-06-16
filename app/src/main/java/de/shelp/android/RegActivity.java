@@ -16,10 +16,11 @@ import java.security.NoSuchAlgorithmException;
 
 import de.fh_muenster.shelpapp.R;
 import de.shelp.android.applications.ShelpApplication;
+import de.shelp.android.tasks.RegTask;
 import de.shelp.ksoap2.exceptions.InvalidRegistrationException;
 import de.shelp.ksoap2.entities.ShelpSession;
 
-
+//Activity für das Registrieren einen neuen Benutzers
 public class RegActivity extends ActionBarActivity {
 
     private String eMail, password, passwordConfirm, result;
@@ -58,6 +59,7 @@ public class RegActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    //Registration eines neuen Benutzers
     public void registration(View regView) {
         EditText mail = (EditText) findViewById(R.id.editMailReg);
         EditText pw = (EditText) findViewById(R.id.editTextPasswordReg);
@@ -65,13 +67,16 @@ public class RegActivity extends ActionBarActivity {
         eMail = mail.getText().toString();
         password = pw.getText().toString();
         passwordConfirm = pwConfirm.getText().toString();
+        //Verschlüsselung des Passwortes
         computeMD5Hash(password);
 
+        //Format des Passwortes überprüfen
         if(password.length() < 6 && passwordConfirm.length() < 6){
             Toast.makeText(getApplicationContext(), "Passwort muss mind. 6 Zeichen enthalten!", Toast.LENGTH_SHORT).show();
         } else if (password.equals(passwordConfirm)) {
             if ((eMail != null && password != null && passwordConfirm != null)) {
-                RegTask registrationTask = new RegTask(regView.getContext());
+                //Registrierung im AsyncTask
+                RegTask registrationTask = new RegTask(regView.getContext(), this);
                 registrationTask.execute(eMail, this.result);
             }
         } else {
@@ -79,59 +84,9 @@ public class RegActivity extends ActionBarActivity {
         }
     }
 
-    private class RegTask extends AsyncTask<String, Integer, ShelpSession> {
-        private Context context;
-
-        //Dem Konstruktor der Klasse wird der aktuelle Kontext der Activity übergeben
-        //damit auf die UI-Elemente zugegriffen werden kann und Intents gestartet werden können, usw.
-        public RegTask(Context context) {
-            this.context = context;
-        }
-
-        @Override
-        protected ShelpSession doInBackground(String... params) {
-            if (params.length != 2)
-                return null;
-            String eMail = params[0];
-            String hash = params[1];
-            ShelpApplication myApp = (ShelpApplication) getApplication();
-            try {
-               return myApp.getUserService().registration(eMail, hash);
-            } catch (InvalidRegistrationException e) {
-                e.printStackTrace();
-            }
-            return null;
-        }
-
-        protected void onProgessUpdate(Integer... values) {
-        }
-
-        protected void onPostExecute(ShelpSession result) {
-            if (result != null) {
-                //erfolgreich eingeloggt
-                ShelpApplication myApp = (ShelpApplication) getApplication();
-                myApp.setSession(result);
-
-                //Toast anzeigen
-                CharSequence text = "Registrierung erfolgreich! Angemeldeter Benutzername: " + result.getUser();
-                int duration = Toast.LENGTH_SHORT;
-                Toast toast = Toast.makeText(context, text, duration);
-                toast.show();
-
-                //Nächste Activity anzeigen
-                Intent i = new Intent(context, ShelpActivity.class);
-                startActivity(i);
-            } else {
-                //Toast anzeigen
-                CharSequence text = "Registrierung fehlgeschlagen!";
-                int duration = Toast.LENGTH_SHORT;
-                Toast toast = Toast.makeText(context, text, duration);
-                toast.show();
-            }
-        }
-    }
 
 
+    //Methode zur Verschlüsselung des Passwortes
     public void computeMD5Hash(String password) {
         try {
             // Create MD5 Hash cc03e747a6afbbcbf8be7668acfebee5

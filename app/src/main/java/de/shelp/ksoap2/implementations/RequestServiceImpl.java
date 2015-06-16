@@ -23,13 +23,11 @@ public class RequestServiceImpl {
 
     private static final String URL = ServiceUtils.URL + "RequestIntegration";
 
-    /**
-     * TAG contains the class name and is used for logging.
-     */
     private static final String TAG = RequestServiceImpl.class.getName();
 
 
-    public String createRequest(String targedUserId, Long tourId, List<String> wishes, String notice, int sessionId) throws SoapFault{
+    //Anfragen erstellen / Übergabe der Parameter als SoapObject
+    public SoapObject createRequest(Long tourId, List<String> wishes, String notice, int sessionId) throws SoapFault{
         String METHOD_NAME = "createRequest";
         SoapObject response = null;
         String wishesString = "";
@@ -37,8 +35,17 @@ public class RequestServiceImpl {
             wishesString += wish + "\n";
         }
 
-        response = ServiceUtils.executeSoapAction(METHOD_NAME, URL, targedUserId, tourId, notice, sessionId, wishesString);
+        return ServiceUtils.executeSoapAction(METHOD_NAME, URL, tourId, notice, sessionId, wishesString);
 
-        return response.getPrimitivePropertyAsString("returnCode");
+    }
+
+    //Anfragen löschen / Übergabe der Parameter als SoapObject
+    public SoapObject deleteRequest(int sessionId, long requestId) throws SoapFault{
+        String METHOD_Name = "deleteRequest";
+        SoapObject response = null;
+
+        response = ServiceUtils.executeSoapAction(METHOD_Name, URL, requestId, sessionId);
+
+        return response;
     }
 }

@@ -24,7 +24,7 @@ import de.shelp.android.tasks.SearchTask;
 import de.shelp.android.tasks.WishlistTask;
 import de.shelp.ksoap2.entities.Tour;
 
-
+//Activity zum Erstellen einer Wunschliste zu einer Anfrage für eine bestimmte Tour
 public class WishlistActivity extends ActionBarActivity {
 
     private int lastEditText = R.id.editTextWishList;
@@ -39,6 +39,7 @@ public class WishlistActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_whishlist_activity);
 
+        //eingegebene Daten abfragen und speichern
         EditText wish = (EditText) findViewById(R.id.editTextWishList);
         list.add(wish);
         Intent intent = getIntent();
@@ -76,6 +77,7 @@ public class WishlistActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    //Methode um weitere Wünsche zur Wunschliste hinzuzufügen
     public void addTextView(View view) {
         RelativeLayout ll = (RelativeLayout) findViewById(R.id.relativeLayout);
 
@@ -90,6 +92,7 @@ public class WishlistActivity extends ActionBarActivity {
         ll.addView(et, relativeParams);
     }
 
+    //Methode um endgültige Anfrage zu schicken mit der Wunschliste
     public void requestWishList(View view) {
 
         List<String> wishes = new ArrayList<String>();
@@ -102,9 +105,11 @@ public class WishlistActivity extends ActionBarActivity {
 
         ShelpApplication application = (ShelpApplication) getApplication();
 
-        WishlistTask wishlistTask = new WishlistTask(view.getContext(), targedUserId, tourId, wishes, notice, application.getSession().getId(), this);
+        //Sendern der Daten Daten an den Server über einen AsynsTask
+        WishlistTask wishlistTask = new WishlistTask(view.getContext(), tourId, wishes, notice, application.getSession().getId(), this);
         wishlistTask.execute();
 
+        //Wechsel in die ShelpActivity
         Intent i = new Intent(this, ShelpActivity.class);
         startActivity(i);
     }

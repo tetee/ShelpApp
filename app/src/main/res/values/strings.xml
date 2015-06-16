@@ -26,6 +26,7 @@
     <string name="title_activity_your_request_activity">Anfragen</string>
     <string name="title_activity_registration_activity">Registrierung</string>
     <string name="title_activity_show_tour_activity">Fahrt Details</string>
+    <string name="title_activity_show_tour_request">Anfragen zu deinen Touren</string>
     <string name="usernameReg">E-Mail:</string>
     <string name="passwordReg">Passwort:</string>
     <string name="regConfirm">Registrieren</string>

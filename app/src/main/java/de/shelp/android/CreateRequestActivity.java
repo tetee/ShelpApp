@@ -8,6 +8,7 @@ import android.view.MenuItem;
 
 import de.fh_muenster.shelpapp.R;
 
+//In der Activity lässt sich eine Anfrage erstellen.
 public class CreateRequestActivity extends ActionBarActivity {
 
     @Override

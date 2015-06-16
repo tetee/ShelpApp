@@ -52,19 +52,24 @@ public class RatingActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    //Aufruf der ShowOwnRequestActivity
+    //Methode um einen Benutzer zu bewerten
+    //anschließend Aufruf der ShowOwnRequestActivity um Anfragen des Benutzers anzuzeigen
     public void sendRating(View view) {
         RatingBar rating = (RatingBar) findViewById(R.id.rating);
         EditText ratingText = (EditText) findViewById(R.id.editTextRating);
         String txtRating = ratingText.getText().toString();
         int ratingBar = (int)rating.getRating();
-
+        Intent intent = getIntent();
         ShelpApplication application = (ShelpApplication) getApplication();
 
-        RatingTask ratingTask = new RatingTask(view.getContext(), new User("tt"), ratingBar, txtRating, application.getSession().getId(), this);
+        //Benutzer bewerten im AsyncTask
+        RatingTask ratingTask = new RatingTask(view.getContext(), (User) intent.getSerializableExtra("RatingUser"), ratingBar, txtRating, application.getSession().getId(), this);
         ratingTask.execute();
 
+        //Wechsel in die ShowOwnRequestActivity
         Intent i = new Intent(this, ShowOwnRequestActivity.class);
         startActivity(i);
     }
+
+
 }

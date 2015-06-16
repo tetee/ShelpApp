@@ -19,11 +19,9 @@ public class FriendServiceImpl {
 
     private static final String URL = ServiceUtils.URL + "FriendIntegration";
 
-    /**
-     * TAG contains the class name and is used for logging.
-     */
     private static final String TAG = FriendServiceImpl.class.getName();
 
+    //Übergabe der Liste <Friendship> an den Server und Abfrage der aktuellen Freunde
     public List<Friendship> getFriends(int sessionId) throws SoapFault {
         String METHOD_NAME = "getFriends";
         SoapObject response = null;
@@ -39,6 +37,7 @@ public class FriendServiceImpl {
         return friendships;
     }
 
+    //Freund hinzufügen und Parameter in SoapObject an den Server übergeben
    public SoapObject addFriend(int sessionId, String friendId) throws SoapFault {
        String METHOD_NAME = "addFriend";
        SoapObject response = null;
@@ -48,6 +47,7 @@ public class FriendServiceImpl {
        return response;
    }
 
+    //Freunde akzeptieren / ablehnen / löschen / Übergabe der Parameter als SoapObject
     public SoapObject changeFriendship(int sessionId, Friendship friendship, int changeType) throws SoapFault {
         String METHOD_NAME;
         switch (changeType) {

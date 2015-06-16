@@ -16,6 +16,7 @@ import de.shelp.android.applications.ShelpApplication;
 import de.shelp.android.tasks.GetFriendsTask;
 import de.shelp.android.tasks.LogoutTask;
 
+//Activity zur Übersicht der Funktionen der Application (nach Login oder Registrierung)
 public class ShelpActivity extends ActionBarActivity {
 
     private ShelpActivity thisActivity;
@@ -57,37 +58,38 @@ public class ShelpActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    //Wechsel zur CreateTourActivity
+    //Wechsel zur CreateTourActivity um neue Fahrt zu erstellen
     public void create(View view) {
         CreateTask createTask = new CreateTask(view.getContext(), CreateTourActivity.class);
         createTask.execute();
     }
 
-    //Wechsel zur SearchTourActivity
+    //Wechsel zur SearchTourActivity um bestehende Fahrten zu suchen
+    //TODO zwei mal CreateTask?!
     public void search(View view) {
         CreateTask createTask = new CreateTask(view.getContext(), SearchTourActivity.class);
         createTask.execute();
     }
 
-    //Wechsel zur ShowOwnRequestActivity
+    //Wechsel zur ShowOwnRequestActivity um eigene Anfragen an fremde Fahrten anzuzeigen
     public void request(View view) {
         Intent i = new Intent(this, ShowOwnRequestActivity.class);
         startActivity(i);
     }
 
-    //Wechsel zur ShowOwnTourActivity
+    //Wechsel zur ShowOwnTourActivity um eigens angelegte Fahrten anzuzeigen
     public void ownTours(View view) {
         Intent i = new Intent(this, ShowOwnTourActivity.class);
         startActivity(i);
     }
 
-    //Wechsel zur FriendsActivity
+    //Wechsel zur FriendsActivity um eine Freunde anzuzeigen und neue zu suchen
     public void friends(View view) {
         Intent i = new Intent(this,FriendsActivity.class);
         startActivity(i);
     }
 
-
+    //Logout
     public void logout(View ausloeser) {
         //Logout asynchron ausfuehren:
         LogoutTask logoutTask = new LogoutTask(ausloeser.getContext(), (ShelpApplication) getApplication());

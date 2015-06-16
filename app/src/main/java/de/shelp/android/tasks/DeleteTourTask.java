@@ -1,6 +1,5 @@
 package de.shelp.android.tasks;
 
-
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -10,27 +9,28 @@ import org.ksoap2.SoapFault;
 import org.ksoap2.serialization.SoapObject;
 
 import de.shelp.android.CreateTourActivity;
-import de.shelp.android.FriendsActivity;
-import de.shelp.android.ShowOwnRequestActivity;
+import de.shelp.android.ShelpActivity;
 import de.shelp.android.ShowOwnTourActivity;
-import de.shelp.android.ShowTourActivity;
 import de.shelp.android.applications.ShelpApplication;
 import de.shelp.ksoap2.entities.ReturnCode;
 import de.shelp.ksoap2.entities.Tour;
 
-public class CreateTask extends AsyncTask<Object, Integer, SoapObject>
+/**
+ * Created by user on 14.06.15.
+ */
+public class DeleteTourTask extends AsyncTask<Object, Integer, SoapObject>
 {
     private Context context;
     private Tour tour;
     private int sessionId;
-    private static CreateTourActivity activity;
+    private static ShowOwnTourActivity activity;
     //Dem Konstruktor der Klasse wird der aktuelle Kontext der Activity übergeben
     //damit auf die UI-Elemente zugegriffen werden kann und Intents gestartet werden können, usw.
-    public CreateTask(Context context, Tour tour, int sessionId, CreateTourActivity activity)
+    public DeleteTourTask(Context context, Tour tour,int sessionId, ShowOwnTourActivity activity)
     {
         this.tour = tour;
-        this.sessionId = sessionId;
         this.context = context;
+        this.sessionId = sessionId;
         this.activity = activity;
     }
 
@@ -38,7 +38,7 @@ public class CreateTask extends AsyncTask<Object, Integer, SoapObject>
     protected SoapObject doInBackground(Object... params){
         ShelpApplication myApp = (ShelpApplication) activity.getApplication();
         try {
-            return myApp.getTourService().createTour(tour, sessionId);
+            return myApp.getTourService().deleteTour(tour.getId(), sessionId);
         } catch (SoapFault e) {
             //Toast das die Verbindung zum Server nicht aufgebaut werden konnte
             Toast.makeText(activity.getApplicationContext(), "Serververbindung konnte nicht erfolgreich aufgebaut werden!", Toast.LENGTH_SHORT).show();
@@ -51,12 +51,11 @@ public class CreateTask extends AsyncTask<Object, Integer, SoapObject>
 
     protected void onPostExecute(SoapObject result)
     {
-        //Prüfung des returnCodes
         if(result.getPrimitivePropertyAsString("returnCode").equals("OK")) {
             //Toast ob das hinzufügen eines neuen Freundes erfolgreich war
-            Toast.makeText(context.getApplicationContext(), "Tour erfolgreich erstellt!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context.getApplicationContext(), "Tour erfolgreich gelöscht!", Toast.LENGTH_SHORT).show();
             Intent i = new Intent(context, ShowOwnTourActivity.class);
-            //wechsel in die ShowOwnTourActivity
+            //Wechsel zur ShowOwnTourActivity
             context.startActivity(i);
         } else {
             Toast.makeText(context.getApplicationContext(), "Fehler: " + result.getPrimitivePropertyAsString("message"), Toast.LENGTH_SHORT).show();

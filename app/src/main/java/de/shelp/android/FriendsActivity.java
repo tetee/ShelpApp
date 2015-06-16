@@ -54,11 +54,13 @@ public class FriendsActivity extends ActionBarActivity {
     }
 
 
+    //Methode um zur SearchFriendActivity zu gelangen um hier neue Freunde zu suchen
     public void searchFriend(View view) {
         Intent i = new Intent(this, SearchFriendActivity.class);
         startActivity(i);
     }
 
+    //TODO Kommentar
     public void changeFriendship(Friendship fs, int changeType) {
         ChangeFriendshipTask changeFriendshipTask = new ChangeFriendshipTask(fs,(ShelpApplication) getApplication(),this.getApplicationContext(),changeType);
         changeFriendshipTask.execute();

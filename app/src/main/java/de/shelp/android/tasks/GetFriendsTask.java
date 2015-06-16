@@ -45,6 +45,7 @@ public class GetFriendsTask extends AsyncTask<Object, Integer, List<Friendship>>
         try {
             return myApp.getFriendService().getFriends(myApp.getSession().getId());
         } catch (SoapFault e) {
+            //Toast das die Verbindung zum Server nicht aufgebaut werden konnte
             Toast.makeText(myApp.getApplicationContext(), "Serververbindung konnte nicht erfolgreich aufgebaut werden!", Toast.LENGTH_SHORT).show();
 
         }
@@ -57,15 +58,18 @@ public class GetFriendsTask extends AsyncTask<Object, Integer, List<Friendship>>
     protected void onPostExecute(List<Friendship> result)
     {
         if(result == null) {
+            //Prüfung ob die Liste <Friendship> bereits gefüllt ist, ansonsten Ausgabe des Toasts
             Toast.makeText(myApp.getApplicationContext(), "Du hast noch keine Freunde. Füge doch einfach welche hinzu.", Toast.LENGTH_SHORT).show();
         } else {
+            //Layout anhand der ID suchen und in Variable speichern
             RelativeLayout ll = (RelativeLayout) friendsActivity.findViewById(R.id.relativeLayoutFriend);
-
+            //neues Layout erstellen und unter der nextFriendId anordnen
             RelativeLayout.LayoutParams relativeParams = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.FILL_PARENT);
             relativeParams.addRule(RelativeLayout.BELOW, nextFriendId);
             this.nextFriendId++;
             TextView et = new TextView(context);
             et.setId(nextFriendId);
+            //setzen der Textgröße/Textfarbe
             et.setTextSize(20);
             et.setTextColor(Color.BLACK);
             et.setText("Anfragen:");
@@ -81,6 +85,7 @@ public class GetFriendsTask extends AsyncTask<Object, Integer, List<Friendship>>
                         this.nextFriendId++;
                         TextView et2 = new TextView(context);
                         et2.setId(nextFriendId);
+                        //setzen der Textgröße/Textfarbe
                         et2.setTextSize(15);
                         et2.setTextColor(Color.BLACK);
                         et2.setText(friendship.toString());
@@ -110,6 +115,7 @@ public class GetFriendsTask extends AsyncTask<Object, Integer, List<Friendship>>
                         this.nextFriendId++;
                         TextView et5 = new TextView(context);
                         et5.setId(nextFriendId);
+                        //setzen der Textgröße/Textfarbe
                         et5.setTextSize(15);
                         et5.setTextColor(Color.BLACK);
                         et5.setText(friendship.toString());

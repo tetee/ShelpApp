@@ -24,7 +24,7 @@ import de.shelp.ksoap2.entities.User;
 import de.shelp.ksoap2.entities.WishlistItem;
 
 /**
- * Created by Jos-Laptop on 31.05.2015.
+ * Klasse für die Umwandlung in SOAP Objekte und zurück
  */
 public class SoapAssembler {
 
@@ -42,6 +42,7 @@ public class SoapAssembler {
         return instance;
     }
 
+    //Umwandlung eines SoapObjects zu einer ShelpSession
     public ShelpSession soapToSession(SoapObject response) {
         SoapObject regEntry = (SoapObject) response.getProperty(1);
         SoapObject userEntry = (SoapObject) regEntry.getProperty(2);
@@ -52,6 +53,7 @@ public class SoapAssembler {
         return session;
     }
 
+    //Umwandlung eines SoapObjects zu einem Tour Object
     public Tour soapToTour(SoapObject response) {
         //Annahme der Daten aus dem response SoapObject
         //Freigabe
@@ -69,9 +71,15 @@ public class SoapAssembler {
         SoapObject location =(SoapObject) response.getProperty("location");
         Location loc = new Location(Integer.valueOf(location.getPropertyAsString("id")), location.getPropertyAsString("description"), location.getPrimitivePropertyAsString("zipcode"));
         //Liste der Anfragen
-        //TODO SoapObject list
-        List<Request> list = null;
-        //Ersteller er Fahrt
+        List<Request> list = new ArrayList<>();
+        for (int i = 0; i < response.getPropertyCount(); i++) {
+            PropertyInfo info = new PropertyInfo();
+            response.getPropertyInfo(i, info);
+            if("request".equals(info.getName())) {
+                list.add(soapToRequest((SoapObject) response.getProperty(i)));
+            }
+        }
+        //Ersteller der Fahrt
         User ownerTour = soapToUser((SoapObject) response.getProperty("owner"));
         //Zahlungsbedingungen
         SoapObject paymentCondition =(SoapObject) response.getProperty("paymentCondition");
@@ -81,12 +89,43 @@ public class SoapAssembler {
         //Datum der Tour
         long time = Long.valueOf(response.getPropertyAsString("time"));
 
-
         Tour tour = new Tour(id, app, loc, cap, payCon, delCon,time,list, ownerTour,  status);
-
         return tour;
     }
 
+    //Umwandlung eines SoapObjects zu einem Tour Object
+    public Tour soapToTourForRequest(SoapObject response) {
+        //Annahme der Daten aus dem response SoapObject
+        //Freigabe
+        SoapObject approvalStatus = (SoapObject) response.getProperty("approvalStatus");
+        ApprovalStatus app = new ApprovalStatus(Integer.valueOf(approvalStatus.getPropertyAsString("id")),approvalStatus.getPropertyAsString("description"));
+        //Kapazität
+        SoapObject capacity =(SoapObject) response.getProperty("capacity");
+        Capacity cap = new Capacity(Integer.valueOf(capacity.getPropertyAsString("id")), capacity.getPropertyAsString("description"));
+        //Lieferbedingung
+        SoapObject deliveryCondition =(SoapObject) response.getProperty("deliveryCondition");
+        DeliveryCondition delCon = new DeliveryCondition(Integer.valueOf(deliveryCondition.getPropertyAsString("id")), deliveryCondition.getPropertyAsString("description"));
+        //ID
+        long id = Long.valueOf(response.getPropertyAsString("id"));
+        //Ort
+        SoapObject location =(SoapObject) response.getProperty("location");
+        Location loc = new Location(Integer.valueOf(location.getPropertyAsString("id")), location.getPropertyAsString("description"), location.getPrimitivePropertyAsString("zipcode"));
+
+        //Ersteller der Fahrt
+        User ownerTour = soapToUser((SoapObject) response.getProperty("owner"));
+        //Zahlungsbedingungen
+        SoapObject paymentCondition =(SoapObject) response.getProperty("paymentCondition");
+        PaymentCondition payCon = new PaymentCondition(Integer.valueOf(paymentCondition.getPropertyAsString("id")), paymentCondition.getPropertyAsString("description"));
+        //Status der Tour
+        TourStatus status = TourStatus.valueOf(response.getPropertyAsString("status"));
+        //Datum der Tour
+        long time = Long.valueOf(response.getPropertyAsString("time"));
+
+        Tour tour = new Tour(id, app, loc, cap, payCon, delCon,time,null, ownerTour,  status);
+        return tour;
+    }
+
+    //Umwandlung eines SoapObjects zu einem AllLists Objects
     public AllLists soapToAllLists(SoapObject response) {
         List<Capacity> capacities = new ArrayList<Capacity>();
         List<DeliveryCondition> deliveryConditions = new ArrayList<DeliveryCondition>();
@@ -124,6 +163,7 @@ public class SoapAssembler {
         return new AllLists(capacities,deliveryConditions,paymentConditions,states,locations);
     }
 
+    //Umwandlung eines SoapObjects zu einem Friendship Object
     public Friendship soapToFriendship(SoapObject response) {
         int id = Integer.valueOf(response.getPropertyAsString("id"));
         long changedOn = Long.valueOf(response.getPropertyAsString("changedOn"));
@@ -136,10 +176,12 @@ public class SoapAssembler {
        return new Friendship(id, initiatorUser,recipientUser,friendshipStatus,changedOn);
     }
 
+    //Umwandlung eines SoapObjects zu einem User Object
     public User soapToUser(SoapObject response) {
         return new User(response.getPropertyAsString("email"));
     }
 
+    //Umwandlung eines SoapObjects zu einem Rating Object
     public Rating soapToRating(SoapObject response){
         Long id = Long.valueOf(response.getPropertyAsString("id"));
         User sourceUser = soapToUser((SoapObject) response.getProperty("sourceUser"));
@@ -150,27 +192,28 @@ public class SoapAssembler {
         return new Rating(id, sourceUser,targetUser,rating,notice);
     }
 
+    //Umwandlung eines SoapObjects zu einem Request Object
     public Request soapToRequest(SoapObject response) {
-    SoapObject wishResponse = (SoapObject) response.getProperty("wishes");
         List<WishlistItem> wishlistItems = new ArrayList<WishlistItem>();
-        if(wishResponse.getProperty("id") != null){
-            wishlistItems.add(soapToWishlistItem(wishResponse));
-        } else {
-            for (int i = 0; i < wishResponse.getPropertyCount(); i++) {
-                wishlistItems.add(soapToWishlistItem((SoapObject) wishResponse.getProperty(i)));
-            }
-        }
-        Long id = Long.valueOf(response.getPropertyAsString("id"));
-        User sourceUser = soapToUser((SoapObject) response.getProperty("sourceUser"));
-        User targetUser = soapToUser((SoapObject) response.getProperty("targetUser"));
-        Tour tour = soapToTour((SoapObject) response.getProperty("tour"));
-        String notice = response.getPropertyAsString("notice");
-        String status = response.getPropertyAsString("status");
+
+        for (int i = 0; i < response.getPropertyCount(); i++) {
+            PropertyInfo info = new PropertyInfo();
+            response.getPropertyInfo(i, info);
+            if ("wishes".equals(info.getName())) {
+                wishlistItems.add(soapToWishlistItem((SoapObject) response.getProperty(i)));
+            }}
+            Long id = Long.valueOf(response.getPropertyAsString("id"));
+            User sourceUser = soapToUser((SoapObject) response.getProperty("sourceUser"));
+            User targetUser = soapToUser((SoapObject) response.getProperty("targetUser"));
+            Tour tour = soapToTourForRequest((SoapObject) response.getProperty("tour"));
+            String notice = response.getPropertyAsString("notice");
+            String status = response.getPropertyAsString("status");
 
 
         return new Request(id, sourceUser, targetUser, tour, wishlistItems, notice, status );
     }
 
+    //Umwandlung eines SoapObjects zu einem WishlistItem Object
     public WishlistItem soapToWishlistItem(SoapObject response) {
         int id = Integer.valueOf(response.getPropertyAsString("id"));
         String text = response.getPropertyAsString("text");

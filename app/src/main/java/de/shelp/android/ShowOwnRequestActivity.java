@@ -11,7 +11,9 @@ import de.fh_muenster.shelpapp.R;
 import de.shelp.android.applications.ShelpApplication;
 import de.shelp.android.tasks.GetFriendsTask;
 import de.shelp.android.tasks.GetOwnRequestTask;
+import de.shelp.ksoap2.entities.User;
 
+//Activity, die eigene Anfragen an fremde Touren anzeigt
 public class ShowOwnRequestActivity extends ActionBarActivity {
 
     @Override
@@ -24,6 +26,7 @@ public class ShowOwnRequestActivity extends ActionBarActivity {
         ShelpApplication shelpApplication = (ShelpApplication) getApplication();
         allLists = shelpApplication.getAllLists();
         */
+        //Fahrten über AsyncTask vom Server laden
         GetOwnRequestTask getOwnRequestTask = new GetOwnRequestTask(this.getApplicationContext(), (ShelpApplication) getApplication(), this);
         getOwnRequestTask.execute();
 
@@ -57,21 +60,12 @@ public class ShowOwnRequestActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    //Aufruf der wishlist_activitiy (bei bestimmtem STatus nicht mehr klickbar)
-    public void editWishlist(View view) {
-        Intent i = new Intent(this, WishlistActivity.class);
-        startActivity(i);
-    }
 
-    //TODO
-    //angefragte Fahrt wieder löschen
-    //public void delete(){
-
-    //}
-
-    //Aufruf der rating_activitiy (bei bestimmtem Status sichtbar)
-    public void rate(View view) {
+    //Aufruf der RatingActivitiy um einene Benutzer zu bewerten (bei bestimmtem Status sichtbar)
+    public void rate(View view, User user) {
         Intent i = new Intent(this, RatingActivity.class);
+        //Intent den zu bewertenden User mitgeben!
+        i.putExtra("RatingUser", user);
         startActivity(i);
     }
 }

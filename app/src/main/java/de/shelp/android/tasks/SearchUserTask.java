@@ -54,6 +54,7 @@ public class SearchUserTask extends AsyncTask<Object, Integer, List<User>>
         } catch (InvalidUsersException e) {
             Toast.makeText(activity.getApplicationContext(), "Fehler: " + e.getMessage(), Toast.LENGTH_SHORT).show();
         } catch (SoapFault e) {
+            //Toast das die Verbindung zum Server nicht aufgebaut werden konnte
             Toast.makeText(activity.getApplicationContext(), "Serververbindung konnte nicht erfolgreich aufgebaut werden!", Toast.LENGTH_SHORT).show();
         }
         return null;
@@ -73,6 +74,7 @@ public class SearchUserTask extends AsyncTask<Object, Integer, List<User>>
                 this.idEditText++;
                 TextView et = new TextView(context);
                 et.setId(idEditText);
+                //setzen der Textgröße/Textfarbe
                 et.setTextSize(20);
                 et.setTextColor(Color.BLACK);
                 et.setText(result.get(i).getUserName());

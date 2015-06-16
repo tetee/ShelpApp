@@ -14,6 +14,7 @@ import de.shelp.android.tasks.AddFriendTask;
 import de.shelp.android.tasks.SearchUserTask;
 import de.shelp.ksoap2.entities.User;
 
+//Activity für das Suchen von neuen Freunden
 public class SearchFriendActivity extends ActionBarActivity {
 
     @Override
@@ -50,7 +51,7 @@ public class SearchFriendActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    //Durch betätigen des Suchen Button erscheinen gesuchte Freunde(TODO)
+    //Durch betätigen des Suchen Button erscheinen gesuchte Freunde
     //und der Hinzufügen Button erscheint
     public void search(View view){
 

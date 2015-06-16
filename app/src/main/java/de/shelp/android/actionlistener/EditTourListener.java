@@ -22,7 +22,7 @@ public class EditTourListener implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        activity.edit(v, tour);
+        activity.delete(v, tour);
 
     }
 }

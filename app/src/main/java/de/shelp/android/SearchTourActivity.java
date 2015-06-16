@@ -34,6 +34,7 @@ import de.shelp.ksoap2.entities.PaymentCondition;
 import de.shelp.ksoap2.entities.Tour;
 import de.shelp.ksoap2.entities.User;
 
+//Activity für die Suche nach einer bestimmten Fahrt
 public class SearchTourActivity extends ActionBarActivity {
 
     private AllLists allLists;
@@ -45,7 +46,7 @@ public class SearchTourActivity extends ActionBarActivity {
         ShelpApplication shelpApplication = (ShelpApplication) getApplication();
         allLists = shelpApplication.getAllLists();
 
-        //Aufruf der addItemsOnSpinner Methode
+        //Aufruf der addItemsOnSpinner Methode um Spinner mit Werten zu füllen
         addItemsOnSpinner();
     }
 
@@ -77,7 +78,9 @@ public class SearchTourActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    //Methode zum Suchen einer Tour
     public void search(View view){
+        //Auslese des Daten für die gesuchte Tour
         ApprovalStatus approvalStatus = ((ApprovalStatus)((Spinner) findViewById(R.id.enablingSpinner)).getSelectedItem());
         Location location =((Location)((Spinner) findViewById(R.id.citySpinner)).getSelectedItem());
         Capacity capacity= ((Capacity) ((Spinner) findViewById(R.id.capacitySpinner)).getSelectedItem());
@@ -95,31 +98,38 @@ public class SearchTourActivity extends ActionBarActivity {
         EditText newTimeEnd = (EditText) findViewById(R.id.timeCreateEnd);
         String txtDateEnd = newDateEnd.getText().toString();
         String txtTimeEnd = newTimeEnd.getText().toString();
+        //Überprüfung des Datumsformates
         try {
             timeStart =(ServiceUtils.formatInputToDate(txtDateStart + " " + txtTimeStart).getTime());
             timeEnd =(ServiceUtils.formatInputToDate(txtDateEnd + " " + txtTimeEnd).getTime());
         } catch (ParseException ex) {
             ex.printStackTrace();
             Toast.makeText(getApplicationContext(), "Falsches Format!", Toast.LENGTH_SHORT).show();
+            //bei falschem Format wird die Activity neu geladen
+            finish();
+            startActivity(getIntent());
             return;
         }
 
             ShelpApplication application = (ShelpApplication) getApplication();
 
+            //Erstellen der Tour über einen AsyncTask und Suche der entsprechenden Touren auf den Server
             SearchTask searchTask = new SearchTask(view.getContext(),approvalStatus.getId(), location.getId(), capacity.getId(), timeStart, timeEnd, directSearch, application.getSession().getId(), this);
             searchTask.execute();
 
 
     }
 
-    //Wechsel in die ShowTourActivity
+    //Wechsel in die ShowTourActivity um Details der Tour zu sehen
     public void details(View view, Tour tour){
         Intent i = new Intent(this, ShowTourActivity.class);
+        i.putExtra("Owner", false);
         i.putExtra("Tour", tour);
+        i.putExtra("Owner", false);
         startActivity(i);
     }
 
-    //Wechsel in die ShowRatingActivity
+    //Wechsel in die ShowRatingActivity um Bewertung des Fahrterstellers anzuzeigen
     public void rating(View view, User owner) {
         Intent i = new Intent(this, ShowRatingActivity.class);
         i.putExtra("User", owner);
@@ -127,15 +137,13 @@ public class SearchTourActivity extends ActionBarActivity {
     }
 
     public void addItemsOnSpinner(){
-         //Daten anhand der Spinner ID holen und in Variable speichern
-        //Daten der Spinner mit Enumeration Werten auffüllen
+        //Daten anhand der Spinner ID holen und in Variable speichern
         Spinner spinnerCity = (Spinner) findViewById(R.id.citySpinner);
         spinnerCity.setAdapter(new ArrayAdapter<Location>(this, android.R.layout.simple_spinner_item, allLists.getLocations()));
 
         Spinner approvalStatus = (Spinner) findViewById(R.id.enablingSpinner);
         approvalStatus.setAdapter(new ArrayAdapter<ApprovalStatus>(this, android.R.layout.simple_spinner_item, allLists.getStates()));
 
-        //Daten der Spinner mit Enumeration Werten auffüllen
         Spinner cap = (Spinner) findViewById(R.id.capacitySpinner);
         cap.setAdapter(new ArrayAdapter<Capacity>(this, android.R.layout.simple_spinner_item, allLists.getCapacities()));
 

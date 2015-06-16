@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.ArrayAdapter;
@@ -35,8 +36,10 @@ import de.shelp.ksoap2.entities.ReturnCode;
 import de.shelp.ksoap2.entities.Tour;
 import de.shelp.ksoap2.exceptions.InvalidLoginException;
 
+//Activity für das Erstellen einer Tour
 public class CreateTourActivity extends ActionBarActivity {
 
+    Tour tour;
     private AllLists allLists;
 
     @Override
@@ -47,19 +50,17 @@ public class CreateTourActivity extends ActionBarActivity {
         ShelpApplication shelpApplication = (ShelpApplication) getApplication();
         allLists = shelpApplication.getAllLists();
 
-        //Aufruf der addItemsOnSpinner Methode
+        //Aufruf der addItemsOnSpinner Methode um Spinner mit Werten zu füllen
         addItemsOnSpinner();
-        //addItemsOnSpinnerDB();
     }
 
 
     public void addItemsOnSpinner(){
 
-        //Daten der Spinner mit Enumeration Werten auffüllen
+        //Daten der Spinner mit Werten füllen
         Spinner spinnerCity = (Spinner) findViewById(R.id.citySpinner);
         spinnerCity.setAdapter(new ArrayAdapter<Location>(this, android.R.layout.simple_spinner_item, allLists.getLocations()));
 
-        //Daten der Spinner mit Enumeration Werten auffüllen
         Spinner cap = (Spinner) findViewById(R.id.capacitySpinner);
         cap.setAdapter(new ArrayAdapter<Capacity>(this, android.R.layout.simple_spinner_item, allLists.getCapacities()));
 
@@ -101,8 +102,12 @@ public class CreateTourActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    //Methode zur Erstellung einer Tour
     public void createTour(View view) {
+        //leeres Tour Object anlegen
         Tour tour = new Tour();
+
+        //Tour Object mit angegebenen Daten des Erstellers füllen
         tour.setLocation((Location) ((Spinner) findViewById(R.id.citySpinner)).getSelectedItem());
         tour.setApprovalStatus((ApprovalStatus) ((Spinner) findViewById(R.id.enablingSpinner)).getSelectedItem());
         tour.setCapacity((Capacity) ((Spinner) findViewById(R.id.capacitySpinner)).getSelectedItem());
@@ -113,20 +118,26 @@ public class CreateTourActivity extends ActionBarActivity {
         EditText newTime = (EditText) findViewById(R.id.timeCreate);
         String txtDate = newDate.getText().toString();
         String txtTime = newTime.getText().toString();
+        //Test des Datumsformats
         try {
             tour.setTime(ServiceUtils.formatInputToDate(txtDate + " " + txtTime).getTime());
         } catch (ParseException ex) {
             ex.printStackTrace();
             Toast.makeText(getApplicationContext(), "Falsches Format!", Toast.LENGTH_SHORT).show();
+            //bei falschem Format wird die Activity neu geladen
+            finish();
+            startActivity(getIntent());
             return;
         }
 
 
         ShelpApplication application = (ShelpApplication) getApplication();
 
+        //Erstellen der Tour über einen AsyncTask und Übergabe an den Server
         CreateTask createTask = new CreateTask(view.getContext(), tour, application.getSession().getId(), this);
         createTask.execute();
 
+        //Wechsel zu ShelpActivity
         Intent i = new Intent(this, ShelpActivity.class);
         startActivity(i);
     }
