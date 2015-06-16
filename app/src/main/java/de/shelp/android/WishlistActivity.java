@@ -32,7 +32,6 @@ public class WishlistActivity extends ActionBarActivity {
     private String targedUserId;
     private Long tourId;
     private List<EditText> list = new ArrayList<>();
-    private List<EditText> editTexts = new ArrayList<>();
 
 
     @Override
@@ -92,15 +91,14 @@ public class WishlistActivity extends ActionBarActivity {
         et.setHint("+ Wunsch");
         list.add(et);
         ll.addView(et, relativeParams);
-        editTexts.add(et);
     }
 
     //Methode um endgültige Anfrage zu schicken mit der Wunschliste
     public void requestWishList(View view) {
 
         boolean oneFilled = false;
-        for (int j = 0; j < editTexts.size(); j++) {
-            if (!editTexts.get(j).getText().equals("")) {
+        for (int j = 0; j < list.size(); j++) {
+            if (!list.get(j).getText().toString().trim().equals("")) {
                 oneFilled = true;
             }
         }

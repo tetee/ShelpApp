@@ -137,7 +137,7 @@ public class GetOwnRequestTask extends AsyncTask<Object, Integer,  ObjectRespons
 
                 bt2.setOnClickListener(new AddDeleteListener(request, activity));
 
-                if( request.getTour().getStatus().equals(TourStatus.CLOSED) && request.getStatus().equals("ACCEPT") ) {
+                if( request.getTour().getStatus().equals(TourStatus.CLOSED) && ( request.getStatus().equals("ACCEPT") || request.getStatus().equals("PARTLY_ACCEPT")) ) {
                    RelativeLayout ll3 = (RelativeLayout) activity.findViewById(R.id.relativeLayoutRequest);
 
                     RelativeLayout.LayoutParams relativeParams3 = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.FILL_PARENT);
