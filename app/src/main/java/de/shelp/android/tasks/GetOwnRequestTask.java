@@ -91,26 +91,28 @@ public class GetOwnRequestTask extends AsyncTask<Object, Integer, List<Request>>
                         RelativeLayout ll1 = (RelativeLayout) activity.findViewById(R.id.relativeLayoutRequest);
                         //neues Layout erstellen und unter der nextAskedId anordnen
                         RelativeLayout.LayoutParams relativeParams1 = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.FILL_PARENT);
+                        relativeParams1.addRule(RelativeLayout.BELOW, nextAskedId);
                         this.nextAskedId++;
                         TextView et1 = new TextView(context);
                         et1.setId(nextAskedId);
                         et1.setTextSize(20);
                         relativeParams1.setMargins(0, 0, 0, 20);
-                        et1.setTextColor(Color.GREEN);
-                        et1.setText(request.getWishes().get(i).getText());
+                        et1.setTextColor(Color.parseColor("#10A24A"));
+                        et1.setText("Wunsch: " + request.getWishes().get(i).getText());
                         ll1.addView(et1, relativeParams1);
                     } else {
                         //Layout anhand der ID suchen und in Variable speichern
                         RelativeLayout ll11 = (RelativeLayout) activity.findViewById(R.id.relativeLayoutRequest);
                         //neues Layout erstellen und unter der nextAskedId anordnen
                         RelativeLayout.LayoutParams relativeParams11 = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.FILL_PARENT);
+                        relativeParams11.addRule(RelativeLayout.BELOW, nextAskedId);
                         this.nextAskedId++;
                         TextView et11 = new TextView(context);
                         et11.setId(nextAskedId);
                         et11.setTextSize(20);
-                        relativeParams11.setMargins(0,0,0,20);
+                        relativeParams11.setMargins(0, 0, 0, 20);
                         et11.setTextColor(Color.RED);
-                        et11.setText(request.getWishes().get(i).getText());
+                        et11.setText("Wunsch: " + request.getWishes().get(i).getText());
                         ll11.addView(et11, relativeParams11);
 
                     }
