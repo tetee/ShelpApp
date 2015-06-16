@@ -50,6 +50,7 @@ public class RequestServiceImpl {
         return response;
     }
 
+<<<<<<< HEAD
     public List<Request> getUpdatedRequests(int sessionId) throws  SoapFault, NoSessionException {
         String METHOD_NAME = "getUpdatedRequests";
         SoapObject response = null;
@@ -65,5 +66,14 @@ public class RequestServiceImpl {
             }
         }
         return requests;
+=======
+    public SoapObject acceptRequest(long requestId, int sessionId, String idChecked) throws SoapFault{
+        String METHOD_NAME = "acceptRequest";
+        SoapObject response = null;
+
+        response = ServiceUtils.executeSoapAction(METHOD_NAME, URL, requestId, idChecked, sessionId);
+
+        return response;
+>>>>>>> soapwork
     }
 }

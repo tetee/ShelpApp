@@ -44,7 +44,7 @@ public class UserServiceImpl implements UserService {
 
     //Methoden Klasse User
 
-    //Login eines Benutzers / Übergabe als ShelpSession
+    //Login eines Benutzers / Ãœbergabe als ShelpSession
     @Override
     public ShelpSession login(String username, String password) throws InvalidLoginException {
         String METHOD_NAME = "login";
@@ -65,7 +65,7 @@ public class UserServiceImpl implements UserService {
         }
     }
 
-    //registrieren eines Benutzers / Übergabe als ShelpSession
+    //registrieren eines Benutzers / Ãœbergabe als ShelpSession
     @Override
     public ShelpSession registration(String eMail, String hash) throws InvalidRegistrationException {
         String METHOD_NAME = "regUser";
@@ -100,7 +100,7 @@ public class UserServiceImpl implements UserService {
     }
 
 
-    //Benutzer suchen / Übergabe der Liste <User> an den Server
+    //Benutzer suchen / Ãœbergabe der Liste <User> an den Server
     @Override
     public List<User> searchUsers(String searchText) throws SoapFault, InvalidUsersException{
         String METHOD_NAME = "searchUsers";

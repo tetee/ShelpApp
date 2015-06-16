@@ -23,7 +23,8 @@ public class StateServiceImpl {
 
     private static final String TAG = StateServiceImpl.class.getName();
 
-    //�bergabe von AllLists (enthält Listen: Capacity, DeliveryConditions, PaymentConditions, ApprovalStatus, Location)
+    //Übergabe von AllLists (enthält Listen: Capacity, DeliveryConditions, PaymentConditions, ApprovalStatus, Location)
+
     public AllLists getLists() throws SoapFault{
         String METHOD_NAME = "getAllLists";
         SoapObject response = null;
