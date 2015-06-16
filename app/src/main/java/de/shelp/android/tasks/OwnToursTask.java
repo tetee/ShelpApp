@@ -19,6 +19,7 @@ import de.shelp.android.actionlistener.EditTourListener;
 import de.shelp.android.actionlistener.ShowRatingsListener;
 import de.shelp.android.actionlistener.ShowTourDetailsListener;
 import de.shelp.android.applications.ShelpApplication;
+import de.shelp.ksoap2.ObjectResponse;
 import de.shelp.ksoap2.entities.Tour;
 import de.shelp.ksoap2.exceptions.InvalidTourException;
 import de.shelp.ksoap2.exceptions.InvalidUsersException;
@@ -26,7 +27,7 @@ import de.shelp.ksoap2.exceptions.InvalidUsersException;
 /**
  * Created by user on 12.06.15.
  */
-public class OwnToursTask extends AsyncTask<Object, Integer, List<Tour>>
+public class OwnToursTask extends AsyncTask<Object, Integer, ObjectResponse<Tour>>
 {
     private Context context;
     private int sessionId;
@@ -44,17 +45,15 @@ public class OwnToursTask extends AsyncTask<Object, Integer, List<Tour>>
     }
 
     @Override
-    protected List<Tour> doInBackground(Object... params){
+    protected  ObjectResponse<Tour> doInBackground(Object... params){
          myApp = (ShelpApplication) activity.getApplication();
         try {
-            return myApp.getTourService().searchOwnTour(sessionId);
+            return new  ObjectResponse<Tour>( myApp.getTourService().searchOwnTour(sessionId), "");
         } catch (InvalidTourException e) {
-            Toast.makeText(activity.getApplicationContext(), "Fehler: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+            return new  ObjectResponse<Tour>( null, "Fehler: " + e.getMessage());
         } catch (SoapFault e) {
-            Toast.makeText(activity.getApplicationContext(), "Serververbindung konnte nicht erfolgreich aufgebaut werden!", Toast.LENGTH_SHORT).show();
-
+            return new  ObjectResponse<Tour>( null, "Serververbindung konnte nicht erfolgreich aufgebaut werden!");
         }
-        return null;
     }
 
 
@@ -62,16 +61,20 @@ public class OwnToursTask extends AsyncTask<Object, Integer, List<Tour>>
     protected void onProgessUpdate(Integer... values)
     { }
 
-    protected void onPostExecute(List<Tour> result)
+    protected void onPostExecute(ObjectResponse<Tour> result)
     {
         if(result ==null) {
-            Toast.makeText(activity.getApplicationContext(), "ERROR: Fahrt konnte nicht gefunden werden!", Toast.LENGTH_SHORT).show();
+            if(result.getMessage().equals("")) {
+                Toast.makeText(activity.getApplicationContext(), "Es gibt noch keine Fahrten!", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(activity.getApplicationContext(), result.getMessage() , Toast.LENGTH_SHORT).show();
+            }
         } else {
             List<Tour> tours = myApp.getUpdatedTours();
 
-            for(int i = 0; i<=result.size()-1;i++){
+            for(int i = 0; i<=result.getList().size()-1;i++){
 
-                Tour currentTour = result.get(i);
+                Tour currentTour = result.getList().get(i);
 
                 //Layout anhand der ID suchen und in Variable speichern
                 RelativeLayout ll = (RelativeLayout) activity.findViewById(R.id.relativeLayoutOwnTour);
@@ -109,7 +112,7 @@ public class OwnToursTask extends AsyncTask<Object, Integer, List<Tour>>
                 }
 
                 if(changed) {
-                    details.setTextColor(Color.MAGENTA);
+                    details.setTextColor(Color.RED);
                 }else {
                     details.setTextColor(Color.BLACK);
                 }

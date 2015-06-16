@@ -20,6 +20,8 @@ import de.shelp.android.ShowOwnRequestActivity;
 import de.shelp.android.actionlistener.AddDeleteListener;
 import de.shelp.android.actionlistener.AddRatingListener;
 import de.shelp.android.applications.ShelpApplication;
+import de.shelp.ksoap2.ObjectResponse;
+import de.shelp.ksoap2.entities.Friendship;
 import de.shelp.ksoap2.entities.Request;
 import de.shelp.ksoap2.entities.TourStatus;
 import de.shelp.ksoap2.exceptions.InvalidRequestException;
@@ -30,7 +32,7 @@ import de.shelp.ksoap2.exceptions.InvalidUsersException;
  */
 
 
-public class GetOwnRequestTask extends AsyncTask<Object, Integer, List<Request>> {
+public class GetOwnRequestTask extends AsyncTask<Object, Integer,  ObjectResponse<Request>> {
     private Context context;
     private ShelpApplication myApp;
     private ShowOwnRequestActivity activity;
@@ -47,27 +49,26 @@ public class GetOwnRequestTask extends AsyncTask<Object, Integer, List<Request>>
     }
 
     @Override
-    protected List<Request> doInBackground(Object... params) {
+    protected ObjectResponse<Request> doInBackground(Object... params) {
         try {
-            return myApp.getOwnRequestService().getRequest(myApp.getSession().getId());
+            return new ObjectResponse<Request>( myApp.getOwnRequestService().getRequest(myApp.getSession().getId()), "");
         } catch (InvalidRequestException e) {
-                Toast.makeText(activity.getApplicationContext(), "Fehler: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+            return new ObjectResponse<Request>(null, "Fehler: " + e.getMessage());
         } catch (SoapFault e) {
-            //Toast das die Verbindung zum Server nicht aufgebaut werden konnte
-            Toast.makeText(myApp.getApplicationContext(), "Serververbindung konnte nicht erfolgreich aufgebaut werden!", Toast.LENGTH_SHORT).show();
+            return new ObjectResponse<Request>(null, "Serververbindung konnte nicht erfolgreich aufgebaut werden!");
         }
-        return null;
     }
 
-    protected void onProgessUpdate(Integer... values) {
-    }
-
-    protected void onPostExecute(List<Request> result) {
-        if (result == null) {
-            //Prüfung ob die Liste <Friendship> bereits gefüllt ist, ansonsten Ausgabe des Toasts
-            Toast.makeText(myApp.getApplicationContext(), "Du hast noch keine Anfragen gestellt.", Toast.LENGTH_SHORT).show();
-        } else {
-            for (Request request : result) {
+    protected void onPostExecute(ObjectResponse<Request> result) {
+        if (result.getList() == null) {
+            if(result.getMessage().equals("")) {
+                //Prüfung ob die Liste <Friendship> bereits gefüllt ist, ansonsten Ausgabe des Toasts
+                Toast.makeText(myApp.getApplicationContext(), "Du hast noch keine Anfragen gestellt.", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(activity.getApplicationContext(), result.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+           } else {
+            for (Request request : result.getList()) {
                 //Layout anhand der ID suchen und in Variable speichern
                 RelativeLayout ll = (RelativeLayout) activity.findViewById(R.id.relativeLayoutRequest);
                 //neues Layout erstellen und unter der nextAskedId anordnen

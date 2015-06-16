@@ -56,6 +56,7 @@ public class DeleteTourTask extends AsyncTask<Object, Integer, SoapObject>
             Toast.makeText(context.getApplicationContext(), "Tour erfolgreich gelöscht!", Toast.LENGTH_SHORT).show();
             Intent i = new Intent(context, ShowOwnTourActivity.class);
             //Wechsel zur ShowOwnTourActivity
+            i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             context.startActivity(i);
         } else {
             Toast.makeText(context.getApplicationContext(), "Fehler: " + result.getPrimitivePropertyAsString("message"), Toast.LENGTH_SHORT).show();

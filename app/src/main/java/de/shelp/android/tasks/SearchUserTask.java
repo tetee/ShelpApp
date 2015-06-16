@@ -20,6 +20,7 @@ import de.shelp.android.SearchFriendActivity;
 import de.shelp.android.SearchTourActivity;
 import de.shelp.android.actionlistener.AddFriendListener;
 import de.shelp.android.applications.ShelpApplication;
+import de.shelp.ksoap2.ObjectResponse;
 import de.shelp.ksoap2.entities.Tour;
 import de.shelp.ksoap2.entities.User;
 import de.shelp.ksoap2.exceptions.InvalidUsersException;
@@ -29,7 +30,7 @@ import de.shelp.ksoap2.exceptions.InvalidUsersException;
  */
 
 
-public class SearchUserTask extends AsyncTask<Object, Integer, List<User>>
+public class SearchUserTask extends AsyncTask<Object, Integer, ObjectResponse<User>>
 {
     private Context context;
     private String searchText;
@@ -47,30 +48,33 @@ public class SearchUserTask extends AsyncTask<Object, Integer, List<User>>
     }
 
     @Override
-    protected List<User> doInBackground(Object... params){
+    protected ObjectResponse<User> doInBackground(Object... params){
         ShelpApplication myApp = (ShelpApplication) activity.getApplication();
         try {
-            return myApp.getUserService().searchUsers(searchText);
+            return new ObjectResponse<User> ( myApp.getUserService().searchUsers(searchText), "");
         } catch (InvalidUsersException e) {
-            Toast.makeText(activity.getApplicationContext(), "Fehler: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+            return new ObjectResponse<User> ( null , "Fehler: " + e.getMessage());
         } catch (SoapFault e) {
-            //Toast das die Verbindung zum Server nicht aufgebaut werden konnte
-            Toast.makeText(activity.getApplicationContext(), "Serververbindung konnte nicht erfolgreich aufgebaut werden!", Toast.LENGTH_SHORT).show();
+            return new ObjectResponse<User> ( null , "Serververbindung konnte nicht erfolgreich aufgebaut werden!");
         }
-        return null;
     }
 
-    protected void onPostExecute(List<User> result)
+    protected void onPostExecute(ObjectResponse<User> result)
     {
-        if(result.isEmpty() ||result == null ) {
-            Toast.makeText(activity.getApplicationContext(), "Keinen Benutzer gefunden!", Toast.LENGTH_SHORT).show();
+        if(result.getList() == null ) {
+            if(result.getMessage().equals("")) {
+                Toast.makeText(activity.getApplicationContext(), "Keinen Benutzer gefunden!", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(activity.getApplicationContext(), result.getMessage() , Toast.LENGTH_SHORT).show();
+            }
+
         } else {
             for(TextView elem : activity.getSearchedElements()) {
                 RelativeLayout ll = (RelativeLayout) activity.findViewById(R.id.relativeLayoutFriendSearch);
                 ll.removeView(elem);
             }
 
-            for(int i = 0; i<result.size();i++){
+            for(int i = 0; i<result.getList().size();i++){
                 //result.get(i);
                 RelativeLayout relativeLayout = (RelativeLayout) activity.findViewById(R.id.relativeLayoutFriendSearch);
 
@@ -82,7 +86,7 @@ public class SearchUserTask extends AsyncTask<Object, Integer, List<User>>
                 //setzen der Textgröße/Textfarbe
                 et.setTextSize(20);
                 et.setTextColor(Color.BLACK);
-                et.setText(result.get(i).getUserName());
+                et.setText(result.getList().get(i).getUserName());
 
                 relativeLayout.addView(et, relativeParams);
 
@@ -102,7 +106,7 @@ public class SearchUserTask extends AsyncTask<Object, Integer, List<User>>
                 //setzen des definierten Hintergrund in drawable
                 addButton.setBackgroundResource(R.drawable.button);
 
-                addButton.setOnClickListener(new AddFriendListener(result.get(i), activity));
+                addButton.setOnClickListener(new AddFriendListener(result.getList().get(i), activity));
 
                 relativeLayout.addView(addButton, relativeParams2);
 

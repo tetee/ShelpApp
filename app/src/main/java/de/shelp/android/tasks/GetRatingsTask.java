@@ -17,7 +17,9 @@ import java.util.List;
 import de.fh_muenster.shelpapp.R;
 import de.shelp.android.ShowRatingActivity;
 import de.shelp.android.applications.ShelpApplication;
+import de.shelp.ksoap2.ObjectResponse;
 import de.shelp.ksoap2.entities.Rating;
+import de.shelp.ksoap2.entities.Request;
 import de.shelp.ksoap2.entities.User;
 import de.shelp.ksoap2.exceptions.InvalidRatingException;
 import de.shelp.ksoap2.exceptions.InvalidRequestException;
@@ -25,7 +27,7 @@ import de.shelp.ksoap2.exceptions.InvalidRequestException;
 /**
  * Created by user on 09.06.15.
  */
-public class GetRatingsTask extends AsyncTask<Object,Object, List<Rating>> {
+public class GetRatingsTask extends AsyncTask<Object,Object, ObjectResponse<Rating>> {
 
     private Context context;
     private ShowRatingActivity activity;
@@ -42,26 +44,29 @@ public class GetRatingsTask extends AsyncTask<Object,Object, List<Rating>> {
     }
 
     @Override
-    protected List<Rating> doInBackground(Object[] params) {
+    protected ObjectResponse<Rating> doInBackground(Object[] params) {
         ShelpApplication myApp = (ShelpApplication) activity.getApplication();
         try {
-            return myApp.getRatingService().getRatings(user, context);
+            return new ObjectResponse<Rating> (myApp.getRatingService().getRatings(user, context),"");
         } catch (InvalidRatingException e) {
-            Toast.makeText(activity.getApplicationContext(), "Fehler: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+            return new ObjectResponse<Rating>(null,"Fehler: " + e.getMessage() );
         } catch (SoapFault e) {
-            Toast.makeText(activity.getApplicationContext(), "Serververbindung konnte nicht erfolgreich aufgebaut werden!", Toast.LENGTH_SHORT).show();
+            return new ObjectResponse<Rating>(null, "Serververbindung konnte nicht erfolgreich aufgebaut werden!" );
 
         }
-        return null;
     }
 
 
     @Override
-    protected void onPostExecute(List<Rating> ratings) {
-        if (ratings == null) {
-            Toast.makeText(activity.getApplicationContext(), "ERROR: Bewertung konnte nicht gefunden werden!", Toast.LENGTH_SHORT).show();
+    protected void onPostExecute(ObjectResponse<Rating>  ratings) {
+        if (ratings.getList() == null) {
+            if(ratings.getMessage().equals("")) {
+                Toast.makeText(activity.getApplicationContext(), "Es gibt keine Bewertungen!", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(activity.getApplicationContext(), ratings.getMessage(), Toast.LENGTH_SHORT).show();
+            }
         } else {
-            for (int i = 0; i <= ratings.size() - 1; i++) {
+            for (int i = 0; i <= ratings.getList().size() - 1; i++) {
 
                 RelativeLayout ll = (RelativeLayout) activity.findViewById(R.id.relativeLayoutRatings);
 
@@ -70,7 +75,7 @@ public class GetRatingsTask extends AsyncTask<Object,Object, List<Rating>> {
                 this.idEditText++;
                 TextView et = new TextView(context);
                 et.setId(idEditText);
-                String owner = ratings.get(i).getSourceUser().getUserName();
+                String owner = ratings.getList().get(i).getSourceUser().getUserName();
                 //setzen der Textgröße/Textfarbe
                 et.setTextColor(Color.BLACK);
                 et.setTextSize(20);
@@ -85,7 +90,7 @@ public class GetRatingsTask extends AsyncTask<Object,Object, List<Rating>> {
                 this.idEditText++;
                 TextView et2 = new TextView(context);
                 et2.setId(idEditText);
-                int ratingValue = ratings.get(i).getRating();
+                int ratingValue = ratings.getList().get(i).getRating();
                 //setzen der Textgröße/Textfarbe
                 et2.setTextColor(Color.BLACK);
                 et2.setTextSize(20);
@@ -99,7 +104,7 @@ public class GetRatingsTask extends AsyncTask<Object,Object, List<Rating>> {
                 this.idEditText++;
                 TextView et3 = new TextView(context);
                 et3.setId(idEditText);
-                String notice = ratings.get(i).getNotice();
+                String notice = ratings.getList().get(i).getNotice();
                 //setzen der Textgröße/Textfarbe
                 et3.setTextColor(Color.BLACK);
                 et3.setTextSize(20);

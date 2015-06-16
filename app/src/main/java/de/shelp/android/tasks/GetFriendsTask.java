@@ -17,6 +17,7 @@ import de.fh_muenster.shelpapp.R;
 import de.shelp.android.FriendsActivity;
 import de.shelp.android.actionlistener.ChangeFriendshipListener;
 import de.shelp.android.applications.ShelpApplication;
+import de.shelp.ksoap2.ObjectResponse;
 import de.shelp.ksoap2.entities.Friendship;
 
 /**
@@ -24,7 +25,7 @@ import de.shelp.ksoap2.entities.Friendship;
  */
 
 
-public class GetFriendsTask extends AsyncTask<Object, Integer, List<Friendship>>
+public class GetFriendsTask extends AsyncTask<Object, Integer, ObjectResponse<Friendship>>
 {
     private Context context;
     private ShelpApplication myApp;
@@ -41,25 +42,28 @@ public class GetFriendsTask extends AsyncTask<Object, Integer, List<Friendship>>
     }
 
     @Override
-    protected List<Friendship> doInBackground(Object... params){
+    protected ObjectResponse<Friendship> doInBackground(Object... params){
         try {
-            return myApp.getFriendService().getFriends(myApp.getSession().getId());
-        } catch (SoapFault e) {
-            //Toast das die Verbindung zum Server nicht aufgebaut werden konnte
-            Toast.makeText(myApp.getApplicationContext(), "Serververbindung konnte nicht erfolgreich aufgebaut werden!", Toast.LENGTH_SHORT).show();
 
+            return new ObjectResponse<>(myApp.getFriendService().getFriends(myApp.getSession().getId()), "");
+        } catch (SoapFault e) {
+            return new ObjectResponse<>(null, "Serververbindung konnte nicht erfolgreich aufgebaut werden!");
         }
-        return null;
     }
 
     protected void onProgessUpdate(Integer... values)
     { }
 
-    protected void onPostExecute(List<Friendship> result)
+    protected void onPostExecute(ObjectResponse<Friendship> result)
     {
-        if(result == null) {
-            //Prüfung ob die Liste <Friendship> bereits gefüllt ist, ansonsten Ausgabe des Toasts
-            Toast.makeText(myApp.getApplicationContext(), "Du hast noch keine Freunde. Füge doch einfach welche hinzu.", Toast.LENGTH_SHORT).show();
+        if(result.getList() == null) {
+            if(result.getMessage().equals("")) {
+                //Prüfung ob die Liste <Friendship> bereits gefüllt ist, ansonsten Ausgabe des Toasts
+                Toast.makeText(myApp.getApplicationContext(), "Du hast noch keine Freunde. Füge doch einfach welche hinzu.", Toast.LENGTH_SHORT).show();
+            } else {
+                //Toast das die Verbindung zum Server nicht aufgebaut werden konnte
+                Toast.makeText(myApp.getApplicationContext(), result.getMessage(), Toast.LENGTH_SHORT).show();
+            }
         } else {
             //Layout anhand der ID suchen und in Variable speichern
             RelativeLayout ll = (RelativeLayout) friendsActivity.findViewById(R.id.relativeLayoutFriend);
@@ -75,7 +79,7 @@ public class GetFriendsTask extends AsyncTask<Object, Integer, List<Friendship>>
             et.setText("Anfragen:");
             ll.addView(et, relativeParams);
 
-            for( Friendship friendship: result) {
+            for( Friendship friendship: result.getList()) {
                 if (friendship.getStatus().equals("ASKED") || friendship.getStatus().equals("DENIED")) {
                     if (friendship.getInitiatorUser().getUserName().equals(myApp.getSession().getUser().getUserName()) ||friendship.getStatus().equals("DENIED")) {
                         RelativeLayout ll2 = (RelativeLayout) friendsActivity.findViewById(R.id.relativeLayoutFriend);
@@ -170,7 +174,7 @@ public class GetFriendsTask extends AsyncTask<Object, Integer, List<Friendship>>
             et4.setText("Freunde:");
             ll4.addView(et4, relativeParams4);
 
-            for( Friendship friendship: result) {
+            for( Friendship friendship: result.getList()) {
                 if (friendship.getStatus().equals("ACCEPT")) {
                     RelativeLayout ll5 = (RelativeLayout) friendsActivity.findViewById(R.id.relativeLayoutFriend);
 

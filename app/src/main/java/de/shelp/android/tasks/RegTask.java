@@ -35,9 +35,8 @@ public class RegTask extends AsyncTask<String, Integer, ShelpSession> {
         try {
             return myApp.getUserService().registration(eMail, hash);
         } catch (InvalidRegistrationException e) {
-            e.printStackTrace();
+           return null;
         }
-        return null;
     }
 
     protected void onProgessUpdate(Integer... values) {

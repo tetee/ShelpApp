@@ -12,6 +12,7 @@ import java.util.List;
 import de.fh_muenster.shelpapp.R;
 import de.shelp.android.ShelpActivity;
 import de.shelp.android.applications.ShelpApplication;
+import de.shelp.ksoap2.ObjectResponse;
 import de.shelp.ksoap2.entities.Request;
 import de.shelp.ksoap2.entities.Tour;
 import de.shelp.ksoap2.exceptions.NoSessionException;
@@ -21,7 +22,7 @@ import de.shelp.ksoap2.exceptions.NoSessionException;
  */
 
 
-public class GetUpdatedRequestsTask extends AsyncTask<Object, Object,  List<Request>>
+public class GetUpdatedRequestsTask extends AsyncTask<Object, Object,  ObjectResponse<Request> >
 {
     private ShelpApplication myApp;
     private ShelpActivity activity;
@@ -34,25 +35,28 @@ public class GetUpdatedRequestsTask extends AsyncTask<Object, Object,  List<Requ
     }
 
     @Override
-    protected List<Request> doInBackground(Object... params){
+    protected ObjectResponse<Request>  doInBackground(Object... params){
         try {
             //Übergabe der Parameter an die FriendServiceImpl
-            return myApp.getRequestService().getUpdatedRequests(myApp.getSession().getId());
+            return new ObjectResponse<Request>(myApp.getRequestService().getUpdatedRequests(myApp.getSession().getId()), "");
         }catch (NoSessionException e) {
-            Toast.makeText(myApp.getApplicationContext(), "Fehler: " +e.getMessage(), Toast.LENGTH_SHORT).show();
-        } catch (SoapFault e) {
-            //Toast das die Verbindung zum Server nicht aufgebaut worden konnte
-            Toast.makeText(myApp.getApplicationContext(), "Serververbindung konnte nicht erfolgreich aufgebaut werden!", Toast.LENGTH_SHORT).show();
+            return new ObjectResponse<Request>(null, "Fehler: " +e.getMessage());
+           } catch (SoapFault e) {
+            return new ObjectResponse<Request>(null, "Serververbindung konnte nicht erfolgreich aufgebaut werden!");
         }
-        return null;
     }
 
-    protected void onPostExecute(List<Request> result)
+    protected void onPostExecute(ObjectResponse<Request> result)
     {
-       myApp.setUpdatedRequests(result);
-        if(!result.isEmpty()) {
+        if(result==null) {
+            if(!result.getMessage().equals("")) {
+                Toast.makeText(myApp.getApplicationContext(), result.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        }
+       myApp.setUpdatedRequests(result.getList());
+        if(!result.getList().isEmpty()) {
             Button button = (Button) activity.findViewById(R.id.request);
-            button.setTextColor(Color.MAGENTA);
+            button.setTextColor(Color.RED);
         }
     }
 }
