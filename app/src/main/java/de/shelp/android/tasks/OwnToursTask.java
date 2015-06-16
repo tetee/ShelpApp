@@ -96,6 +96,7 @@ public class OwnToursTask extends AsyncTask<Object, Integer, List<Tour>>
                 details.setBackgroundResource(R.drawable.button);
                 details.setId(idEditText);
                 details.setText("Details");
+                details.setTextColor(Color.BLACK);
                 details.setOnClickListener(new ShowTourDetailsListener(result.get(i), activity));
                 ll2.addView(details);
 
@@ -109,6 +110,7 @@ public class OwnToursTask extends AsyncTask<Object, Integer, List<Tour>>
                 edit.setBackgroundResource(R.drawable.button);
                 edit.setId(idEditText);
                 edit.setText("Löschen");
+                edit.setTextColor(Color.BLACK);
                 edit.setOnClickListener(new EditTourListener(result.get(i), activity));
                 ll3.addView(edit, relativeParams3);
             }

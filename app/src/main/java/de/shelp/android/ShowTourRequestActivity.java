@@ -56,8 +56,19 @@ public class ShowTourRequestActivity extends ActionBarActivity {
             TextView wishText = new TextView(getApplicationContext());
             wishText.setId(lastEdit);
             wishText.setTextColor(Color.BLACK);
-            wishText.setText("Wünsche: "+ tour.getCapacity().toString());
+            wishText.setText("Wünsche: "+ tour.getRequest().get(0).getWishes().get(0).toString());
             ll2.addView(wishText, relativeParams2);
+
+            RelativeLayout ll3 = (RelativeLayout) this.findViewById(R.id.relativeLayoutShowTourRequest);
+            RelativeLayout.LayoutParams relativeParams3 = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.FILL_PARENT);
+            relativeParams3.addRule(RelativeLayout.BELOW, lastEdit);
+            lastEdit++;
+            Button bt3 = new Button(getApplicationContext());
+            bt3.setBackgroundResource(R.drawable.button);
+            bt3.setId(lastEdit);
+            bt3.setTextColor(Color.BLACK);
+            bt3.setText("Details");
+            ll3.addView(bt3, relativeParams3);
         }
     }
 

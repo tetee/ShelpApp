@@ -49,8 +49,8 @@ public class ShowTourActivity extends ActionBarActivity {
             relativeParams.addRule(RelativeLayout.BELOW, R.id.status);
             Button request = new Button(getApplicationContext());
             request.setBackgroundResource(R.drawable.button);
-            request.setTextSize(20);
-            request.setText(" Anfragen");
+            request.setText("Anfragen");
+            request.setTextColor(Color.BLACK);
             request.setOnClickListener(new ShowRequestListener(tour, this));
             ll.addView(request, relativeParams);
 
