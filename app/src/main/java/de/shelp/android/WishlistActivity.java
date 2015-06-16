@@ -32,6 +32,7 @@ public class WishlistActivity extends ActionBarActivity {
     private String targedUserId;
     private Long tourId;
     private List<EditText> list = new ArrayList<>();
+    private List<EditText> editTexts = new ArrayList<>();
 
 
     @Override
@@ -45,7 +46,7 @@ public class WishlistActivity extends ActionBarActivity {
         Intent intent = getIntent();
         Tour tour = (Tour) intent.getSerializableExtra("Tour");
         targedUserId = tour.getOwner().toString();
-        tourId=tour.getId();
+        tourId = tour.getId();
 
     }
 
@@ -69,13 +70,14 @@ public class WishlistActivity extends ActionBarActivity {
             return true;
         }
 
-        if(id == R.id.logo) {
+        if (id == R.id.logo) {
             Intent i = new Intent(this, ShelpActivity.class);
             startActivity(i);
         }
 
         return super.onOptionsItemSelected(item);
     }
+
 
     //Methode um weitere Wünsche zur Wunschliste hinzuzufügen
     public void addTextView(View view) {
@@ -90,29 +92,45 @@ public class WishlistActivity extends ActionBarActivity {
         et.setHint("+ Wunsch");
         list.add(et);
         ll.addView(et, relativeParams);
+        editTexts.add(et);
     }
 
     //Methode um endgültige Anfrage zu schicken mit der Wunschliste
     public void requestWishList(View view) {
 
-        List<String> wishes = new ArrayList<String>();
-
-        for(EditText et : list){
-            wishes.add(et.getText().toString());
+        boolean oneFilled = false;
+        for (int j = 0; j < editTexts.size(); j++) {
+            if (!editTexts.get(j).getText().equals("")) {
+                oneFilled = true;
+            }
         }
-        EditText noticeText = (EditText) findViewById(R.id.wishEditText);
-        String notice = noticeText.getText().toString();
+        if (oneFilled) {
+            List<String> wishes = new ArrayList<String>();
 
-        ShelpApplication application = (ShelpApplication) getApplication();
+            for (EditText et : list) {
+                //Toast.makeText(getApplicationContext(), "Es wurden nicht alle Felder gefüllt!", Toast.LENGTH_SHORT).show();
 
-        //Sendern der Daten Daten an den Server über einen AsynsTask
-        WishlistTask wishlistTask = new WishlistTask(view.getContext(), tourId, wishes, notice, application.getSession().getId(), this);
-        wishlistTask.execute();
+                wishes.add(et.getText().toString());
 
-        //Wechsel in die ShelpActivity
-        Intent i = new Intent(this, ShelpActivity.class);
-        startActivity(i);
+            }
+            EditText noticeText = (EditText) findViewById(R.id.wishEditText);
+            String notice = noticeText.getText().toString();
+
+            ShelpApplication application = (ShelpApplication) getApplication();
+
+            //Sendern der Daten Daten an den Server über einen AsynsTask
+            WishlistTask wishlistTask = new WishlistTask(view.getContext(), tourId, wishes, notice, application.getSession().getId(), this);
+            wishlistTask.execute();
+
+            //Wechsel in die ShelpActivity
+            Intent i = new Intent(this, ShelpActivity.class);
+            startActivity(i);
+        } else {
+
+            Toast.makeText(getApplicationContext(), "Es wmuss mind. ein Feld gefüllt sein!", Toast.LENGTH_SHORT).show();
+        }
     }
 }
+
 
 
