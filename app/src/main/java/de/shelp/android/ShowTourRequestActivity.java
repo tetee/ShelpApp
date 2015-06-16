@@ -88,18 +88,20 @@ public class ShowTourRequestActivity extends ActionBarActivity {
                 wishMap.put(item, wishBox);
             }
 
-            RelativeLayout ll3 = (RelativeLayout) this.findViewById(R.id.relativeLayoutShowTourRequest);
-            RelativeLayout.LayoutParams relativeParams3 = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.FILL_PARENT);
-            relativeParams3.addRule(RelativeLayout.BELOW, lastEdit);
-            lastEdit++;
-            Button bt3 = new Button(getApplicationContext());
-            bt3.setBackgroundResource(R.drawable.button);
-            bt3.setId(lastEdit);
-            bt3.setTextColor(Color.BLACK);
-            bt3.setText("Anfrage senden");
-            ll3.addView(bt3, relativeParams3);
+            if(!req.getStatus().equals("ASKED")) {
+                RelativeLayout ll3 = (RelativeLayout) this.findViewById(R.id.relativeLayoutShowTourRequest);
+                RelativeLayout.LayoutParams relativeParams3 = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.FILL_PARENT);
+                relativeParams3.addRule(RelativeLayout.BELOW, lastEdit);
+                lastEdit++;
+                Button bt3 = new Button(getApplicationContext());
+                bt3.setBackgroundResource(R.drawable.button);
+                bt3.setId(lastEdit);
+                bt3.setTextColor(Color.BLACK);
+                bt3.setText("Anfrage senden");
+                ll3.addView(bt3, relativeParams3);
 
-            bt3.setOnClickListener(new CheckboxListener(wishMap, this, req));
+                bt3.setOnClickListener(new CheckboxListener(wishMap, this, req));
+            }
         }
     }
 
@@ -125,6 +127,11 @@ public class ShowTourRequestActivity extends ActionBarActivity {
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
+        }
+
+        if(id == R.id.logo) {
+            Intent i = new Intent(this, ShelpActivity.class);
+            startActivity(i);
         }
 
         return super.onOptionsItemSelected(item);
