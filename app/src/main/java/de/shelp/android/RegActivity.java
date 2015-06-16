@@ -66,6 +66,7 @@ public class RegActivity extends ActionBarActivity {
         EditText pwConfirm = (EditText) findViewById(R.id.editPasswordRegConfirm);
         eMail = mail.getText().toString();
         password = pw.getText().toString();
+        passwordConfirm = pwConfirm.getText().toString();
         //Verschlüsselung des Passwortes
         computeMD5Hash(password);
 

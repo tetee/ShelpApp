@@ -54,7 +54,7 @@ public class CreateTask extends AsyncTask<Object, Integer, SoapObject>
         //Prüfung des returnCodes
         if(result.getPrimitivePropertyAsString("returnCode").equals("OK")) {
             //Toast ob das hinzufügen eines neuen Freundes erfolgreich war
-            Toast.makeText(context.getApplicationContext(), "Bewertung erfolgreich erstellt!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context.getApplicationContext(), "Tour erfolgreich erstellt!", Toast.LENGTH_SHORT).show();
             Intent i = new Intent(context, ShowOwnTourActivity.class);
             //wechsel in die ShowOwnTourActivity
             context.startActivity(i);
