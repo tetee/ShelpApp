@@ -71,6 +71,8 @@ public class OwnToursTask extends AsyncTask<Object, Integer, List<Tour>>
 
             for(int i = 0; i<=result.size()-1;i++){
 
+                Tour currentTour = result.get(i);
+
                 //Layout anhand der ID suchen und in Variable speichern
                 RelativeLayout ll = (RelativeLayout) activity.findViewById(R.id.relativeLayoutOwnTour);
                 RelativeLayout.LayoutParams relativeParams = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.FILL_PARENT);
@@ -81,8 +83,8 @@ public class OwnToursTask extends AsyncTask<Object, Integer, List<Tour>>
                 //setzen der Textgröße/Textfarbe
                 et.setTextSize(20);
                 et.setTextColor(Color.BLACK);
-                String destination = result.get(i).getLocation().toString();
-                String status =result.get(i).getStatus().toString();
+                String destination = currentTour.getLocation().toString();
+                String status = currentTour.getStatus().toString();
                 et.setText("Ziel: "+ destination+ "\n" +"Status: "+ status);
                 ll.addView(et, relativeParams);
 
@@ -99,11 +101,22 @@ public class OwnToursTask extends AsyncTask<Object, Integer, List<Tour>>
                 details.setBackgroundResource(R.drawable.button);
                 details.setId(idEditText);
                 details.setText("Details");
-                details.setTextColor(Color.BLACK);
-                details.setOnClickListener(new ShowTourDetailsListener(result.get(i), activity));
+                boolean changed = false;
+                for(Tour t : tours) {
+                   if( t.getId() == currentTour.getId() ) {
+                       changed = true;
+                   }
+                }
+
+                if(changed) {
+                    details.setTextColor(Color.MAGENTA);
+                }else {
+                    details.setTextColor(Color.BLACK);
+                }
+                details.setOnClickListener(new ShowTourDetailsListener(currentTour, activity));
                 ll2.addView(details);
 
-                if(!(result.get(i).getStatus().toString().equals("CANCLED"))){
+                if(!(currentTour.getStatus().toString().equals("CANCLED"))){
                 //Button Bewertung unter ausgegebener Tour anzeigen
                 RelativeLayout ll3 = (RelativeLayout) activity.findViewById(R.id.relativeLayoutOwnTour);
                 RelativeLayout.LayoutParams relativeParams3 = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.FILL_PARENT);
@@ -114,7 +127,7 @@ public class OwnToursTask extends AsyncTask<Object, Integer, List<Tour>>
                 edit.setId(idEditText);
                 edit.setText("Löschen");
                 edit.setTextColor(Color.BLACK);
-                edit.setOnClickListener(new EditTourListener(result.get(i), activity));
+                edit.setOnClickListener(new EditTourListener(currentTour, activity));
                 ll3.addView(edit, relativeParams3);
             }
             }

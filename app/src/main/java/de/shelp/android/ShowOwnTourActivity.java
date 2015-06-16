@@ -18,6 +18,8 @@ import de.shelp.android.applications.ShelpApplication;
 import de.shelp.android.tasks.CreateTask;
 import de.shelp.android.tasks.DeleteTourTask;
 import de.shelp.android.tasks.GetRatingsTask;
+import de.shelp.android.tasks.GetUpdatedRequestsTask;
+import de.shelp.android.tasks.GetUpdatedToursTask;
 import de.shelp.android.tasks.OwnToursTask;
 import de.shelp.android.tasks.SearchTask;
 import de.shelp.ksoap2.ServiceUtils;
@@ -34,6 +36,7 @@ public class ShowOwnTourActivity extends ActionBarActivity {
         setContentView(R.layout.activity_tour_activity);
 
         ShelpApplication application = (ShelpApplication) getApplication();
+
         //Fahrten über AsyncTask vom Server laden
         OwnToursTask ownToursTask = new OwnToursTask(getApplicationContext(),application.getSession().getId(), this);
         ownToursTask.execute();

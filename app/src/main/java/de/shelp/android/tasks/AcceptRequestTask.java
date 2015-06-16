@@ -15,6 +15,7 @@ import java.util.List;
 import java.util.Map;
 
 import de.shelp.android.ShowOwnRequestActivity;
+import de.shelp.android.ShowOwnTourActivity;
 import de.shelp.android.ShowTourRequestActivity;
 import de.shelp.android.WishlistActivity;
 import de.shelp.android.applications.ShelpApplication;
@@ -66,7 +67,7 @@ public class AcceptRequestTask extends AsyncTask<Object, Integer, SoapObject> {
         if (result.getPrimitivePropertyAsString("returnCode").equals("OK")) {
             //Toast ob das hinzufügen eines neuen Freundes erfolgreich war
             Toast.makeText(context.getApplicationContext(), "Anfrage erfolgreich versendet!", Toast.LENGTH_SHORT).show();
-            Intent i = new Intent(context, ShowOwnRequestActivity.class);
+            Intent i = new Intent(context, ShowOwnTourActivity.class);
             i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             context.startActivity(i);
         } else {

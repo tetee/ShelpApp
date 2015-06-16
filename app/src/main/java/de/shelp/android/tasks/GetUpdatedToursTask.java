@@ -56,7 +56,7 @@ public class GetUpdatedToursTask extends AsyncTask<Object, Object,  List<Tour>>
        myApp.setUpdatedTours(result);
         if(!result.isEmpty()) {
             Button button = (Button) activity.findViewById(R.id.ownTours);
-            button.setTextColor(Color.RED);
+            button.setTextColor(Color.MAGENTA);
         }
     }
 }

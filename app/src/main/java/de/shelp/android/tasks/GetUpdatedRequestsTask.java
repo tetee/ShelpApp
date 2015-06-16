@@ -52,7 +52,7 @@ public class GetUpdatedRequestsTask extends AsyncTask<Object, Object,  List<Requ
        myApp.setUpdatedRequests(result);
         if(!result.isEmpty()) {
             Button button = (Button) activity.findViewById(R.id.request);
-            button.setTextColor(Color.RED);
+            button.setTextColor(Color.MAGENTA);
         }
     }
 }

@@ -126,6 +126,9 @@ public class SearchTourActivity extends ActionBarActivity {
 
     //Wechsel in die ShowTourActivity um Details der Tour zu sehen
     public void details(View view, Tour tour){
+        ShelpApplication myApp = (ShelpApplication) getApplication();
+        myApp.removeUpdatedTours(tour);
+
         Intent i = new Intent(this, ShowTourActivity.class);
         i.putExtra("Owner", false);
         i.putExtra("Tour", tour);

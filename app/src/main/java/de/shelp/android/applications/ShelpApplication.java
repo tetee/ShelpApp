@@ -2,6 +2,7 @@ package de.shelp.android.applications;
 
 import android.app.Application;
 
+import java.util.Iterator;
 import java.util.List;
 
 import de.shelp.ksoap2.entities.AllLists;
@@ -82,6 +83,14 @@ public class ShelpApplication extends Application {
         return updatedRequests;
     }
 
-
+    public void removeUpdatedTours(Tour tour) {
+       Iterator<Tour> iter = updatedTours.iterator();
+        while(iter.hasNext()) {
+            Tour t = iter.next();
+            if(t.getId() == tour.getId() ) {
+                iter.remove();
+            }
+        }
+    }
 
 }
