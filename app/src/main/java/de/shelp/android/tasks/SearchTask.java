@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import org.ksoap2.SoapFault;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import de.fh_muenster.shelpapp.R;
@@ -84,7 +85,12 @@ public class SearchTask extends AsyncTask<Object, Integer, List<Tour>>
         if(result ==null) {
             Toast.makeText(activity.getApplicationContext(), "ERROR: Fahrt konnte nicht gefunden werden!", Toast.LENGTH_SHORT).show();
         } else {
-            for(int i = 0; i<=result.size()-1;i++){
+            for(TextView elem : activity.getSearchedElements()) {
+                RelativeLayout ll = (RelativeLayout) activity.findViewById(R.id.relativeLayoutSearch);
+                ll.removeView(elem);
+            }
+
+            for(int i = 0; i < result.size(); i++){
                 //Layout anhand der ID suchen und in Variable speichern
                 RelativeLayout ll = (RelativeLayout) activity.findViewById(R.id.relativeLayoutSearch);
                 RelativeLayout.LayoutParams relativeParams = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.FILL_PARENT);
@@ -98,6 +104,8 @@ public class SearchTask extends AsyncTask<Object, Integer, List<Tour>>
                 String destination = result.get(i).getLocation().toString();
                 et.setText(owner + " " + destination);
                 ll.addView(et, relativeParams);
+
+                activity.addSearchedElement(et);
 
                  //Button Details unter ausgegebener Tour anzeigen
                 RelativeLayout ll2 = (RelativeLayout) activity.findViewById(R.id.relativeLayoutSearch);
@@ -115,6 +123,8 @@ public class SearchTask extends AsyncTask<Object, Integer, List<Tour>>
                 details.setOnClickListener(new ShowTourDetailsListener(result.get(i), activity));
                 ll2.addView(details);
 
+                activity.addSearchedElement(details);
+
                 //Button Bewertung unter ausgegebener Tour anzeigen
                 RelativeLayout ll3 = (RelativeLayout) activity.findViewById(R.id.relativeLayoutSearch);
                 RelativeLayout.LayoutParams relativeParams3 = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.FILL_PARENT);
@@ -123,10 +133,11 @@ public class SearchTask extends AsyncTask<Object, Integer, List<Tour>>
                 Button rating = new Button(context);
                 rating.setBackgroundResource(R.drawable.button);
                 rating.setId(idEditText);
-                rating.setText("Bewertung");
+                rating.setText("Bewertungen");
                 rating.setOnClickListener(new ShowRatingsListener(result.get(i).getOwner(), activity));
                 ll3.addView(rating, relativeParams3);
 
+                activity.addSearchedElement(rating);
             }
         }
     }

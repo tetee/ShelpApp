@@ -7,6 +7,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import de.fh_muenster.shelpapp.R;
 import de.shelp.android.applications.ShelpApplication;
@@ -16,6 +20,8 @@ import de.shelp.ksoap2.entities.User;
 
 //Activity für das Suchen von neuen Freunden
 public class SearchFriendActivity extends ActionBarActivity {
+
+    private List<TextView> searchedElements = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,4 +74,14 @@ public class SearchFriendActivity extends ActionBarActivity {
         AddFriendTask addFriendTask = new AddFriendTask(view.getContext(),(ShelpApplication) this.getApplication(), user);
         addFriendTask.execute();
     }
+
+
+    public List<TextView> getSearchedElements() {
+        return searchedElements;
+    }
+
+    public void addSearchedElement(TextView view) {
+        searchedElements.add(view);
+    }
+
 }

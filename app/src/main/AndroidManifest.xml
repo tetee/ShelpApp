@@ -3,6 +3,7 @@
     package="de.fh_muenster.shelpapp" >
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:name="de.shelp.android.applications.ShelpApplication"
@@ -79,6 +80,7 @@
             android:name="de.shelp.android.ShowTourRequestActivity"
             android:label="@string/title_activity_show_tour_request" >
         </activity>
+
     </application>
 
 </manifest>

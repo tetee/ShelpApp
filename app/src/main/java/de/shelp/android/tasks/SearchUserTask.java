@@ -65,7 +65,12 @@ public class SearchUserTask extends AsyncTask<Object, Integer, List<User>>
         if(result.isEmpty() ||result == null ) {
             Toast.makeText(activity.getApplicationContext(), "Keinen Benutzer gefunden!", Toast.LENGTH_SHORT).show();
         } else {
-            for(int i = 0; i<=result.size()-1;i++){
+            for(TextView elem : activity.getSearchedElements()) {
+                RelativeLayout ll = (RelativeLayout) activity.findViewById(R.id.relativeLayoutFriendSearch);
+                ll.removeView(elem);
+            }
+
+            for(int i = 0; i<result.size();i++){
                 //result.get(i);
                 RelativeLayout relativeLayout = (RelativeLayout) activity.findViewById(R.id.relativeLayoutFriendSearch);
 
@@ -80,6 +85,8 @@ public class SearchUserTask extends AsyncTask<Object, Integer, List<User>>
                 et.setText(result.get(i).getUserName());
 
                 relativeLayout.addView(et, relativeParams);
+
+                activity.addSearchedElement(et);
 
                 RelativeLayout relativeLayout2 = (RelativeLayout) activity.findViewById(R.id.relativeLayoutFriendSearch);
 
@@ -99,6 +106,7 @@ public class SearchUserTask extends AsyncTask<Object, Integer, List<User>>
 
                 relativeLayout.addView(addButton, relativeParams2);
 
+                activity.addSearchedElement(addButton);
 
             }
         }

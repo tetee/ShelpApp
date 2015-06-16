@@ -2,7 +2,11 @@ package de.shelp.android.applications;
 
 import android.app.Application;
 
+import java.util.List;
+
 import de.shelp.ksoap2.entities.AllLists;
+import de.shelp.ksoap2.entities.Request;
+import de.shelp.ksoap2.entities.Tour;
 import de.shelp.ksoap2.implementations.FriendServiceImpl;
 import de.shelp.ksoap2.implementations.OwnRequestServiceImpl;
 import de.shelp.ksoap2.implementations.RatingServiceImpl;
@@ -26,7 +30,8 @@ public class ShelpApplication extends Application {
     private FriendServiceImpl friendService;
     private RequestServiceImpl requestService;
     private OwnRequestServiceImpl ownRequestService;
-
+    private List<Tour> updatedTours;
+    private List<Request> updatedRequests;
 
     public ShelpApplication() {
         this.userService = new UserServiceImpl();
@@ -60,5 +65,23 @@ public class ShelpApplication extends Application {
     public AllLists getAllLists() { return this.allLists; }
 
     public void setAllLists(AllLists allLists) {this.allLists = allLists; }
+
+    public void setUpdatedTours(List<Tour> tours) {
+        this.updatedTours = tours;
+    }
+
+    public List<Tour> getUpdatedTours() {
+        return updatedTours;
+    }
+
+    public void setUpdatedRequests(List<Request> requests) {
+        this.updatedRequests = requests;
+    }
+
+    public List<Request> getUpdatedRequests() {
+        return updatedRequests;
+    }
+
+
 
 }

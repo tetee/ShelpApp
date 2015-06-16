@@ -31,6 +31,7 @@ public class OwnToursTask extends AsyncTask<Object, Integer, List<Tour>>
     private Context context;
     private int sessionId;
     private static ShowOwnTourActivity activity;
+    private ShelpApplication myApp;
 
 
     private int idEditText =R.id.relativeLayoutOwnTour;
@@ -44,7 +45,7 @@ public class OwnToursTask extends AsyncTask<Object, Integer, List<Tour>>
 
     @Override
     protected List<Tour> doInBackground(Object... params){
-        ShelpApplication myApp = (ShelpApplication) activity.getApplication();
+         myApp = (ShelpApplication) activity.getApplication();
         try {
             return myApp.getTourService().searchOwnTour(sessionId);
         } catch (InvalidTourException e) {
@@ -66,6 +67,8 @@ public class OwnToursTask extends AsyncTask<Object, Integer, List<Tour>>
         if(result ==null) {
             Toast.makeText(activity.getApplicationContext(), "ERROR: Fahrt konnte nicht gefunden werden!", Toast.LENGTH_SHORT).show();
         } else {
+            List<Tour> tours = myApp.getUpdatedTours();
+
             for(int i = 0; i<=result.size()-1;i++){
 
                 //Layout anhand der ID suchen und in Variable speichern

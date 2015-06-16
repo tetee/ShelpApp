@@ -1,7 +1,10 @@
 package de.shelp.android;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.preference.PreferenceManager;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -43,6 +46,12 @@ public class MainActivity extends ActionBarActivity {
         //Textfeld anhand der ID suchen und Passwort setzen
         EditText pw = (EditText) findViewById(R.id.editTextPassword);
         pw.setText(password);
+
+        ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo netInfo = cm.getActiveNetworkInfo();
+        if(netInfo == null || !netInfo.isConnected()) {
+            Toast.makeText(getApplicationContext(), "Einen Internetverbindung wird zur Nutzung der App benötigt!", Toast.LENGTH_SHORT).show();
+        }
 
     }
 

@@ -21,6 +21,7 @@ import de.shelp.android.actionlistener.AddDeleteListener;
 import de.shelp.android.actionlistener.AddRatingListener;
 import de.shelp.android.applications.ShelpApplication;
 import de.shelp.ksoap2.entities.Request;
+import de.shelp.ksoap2.entities.TourStatus;
 import de.shelp.ksoap2.exceptions.InvalidRequestException;
 import de.shelp.ksoap2.exceptions.InvalidUsersException;
 
@@ -80,7 +81,7 @@ public class GetOwnRequestTask extends AsyncTask<Object, Integer, List<Request>>
                 //Abstände zwischen den Button werden programmatisch gesetzt
                 relativeParams.setMargins(0, 0, 0, 20);
                 et.setTextColor(Color.BLACK);
-                et.setText("Benutzer: " + request.getTargedUser() + " " + request.getTour().getLocation() + " " + request.getStatus());
+                et.setText("Fahrt: " + request.getTargedUser() + " " + request.getTour().getLocation() + " " + request.getStatus());
                 ll.addView(et, relativeParams);
 
                 RelativeLayout ll2 = (RelativeLayout) activity.findViewById(R.id.relativeLayoutRequest);
@@ -99,24 +100,27 @@ public class GetOwnRequestTask extends AsyncTask<Object, Integer, List<Request>>
                 bt2.setBackgroundResource(R.drawable.button);
                 ll2.addView(bt2, relativeParams2);
 
-                RelativeLayout ll3 = (RelativeLayout) activity.findViewById(R.id.relativeLayoutRequest);
-
-                RelativeLayout.LayoutParams relativeParams3 = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.FILL_PARENT);
-                relativeParams3.addRule(RelativeLayout.BELOW, nextAskedId);
-                this.nextAskedId++;
-                Button bt3 = new Button(context);
-                bt3.setId(nextAskedId);
-                //Abstände zwischen den Button werden programmatisch gesetzt
-                relativeParams3.setMargins(0, 0, 0, 20);
-                //setzen der Textfarbe
-                bt3.setTextColor(Color.BLACK);
-                bt3.setText("Bewertung");
-                //setzen des definierten Hintergrund in drawable
-                bt3.setBackgroundResource(R.drawable.button);
-                ll3.addView(bt3, relativeParams3);
-
-                bt3.setOnClickListener(new AddRatingListener(request, activity));
                 bt2.setOnClickListener(new AddDeleteListener(request, activity));
+
+                if( request.getTour().getStatus().equals(TourStatus.CLOSED) && request.getStatus().equals("ACCEPT") ) {
+                   RelativeLayout ll3 = (RelativeLayout) activity.findViewById(R.id.relativeLayoutRequest);
+
+                    RelativeLayout.LayoutParams relativeParams3 = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.FILL_PARENT);
+                    relativeParams3.addRule(RelativeLayout.BELOW, nextAskedId);
+                    this.nextAskedId++;
+                    Button bt3 = new Button(context);
+                    bt3.setId(nextAskedId);
+                    //Abstände zwischen den Button werden programmatisch gesetzt
+                    relativeParams3.setMargins(0, 0, 0, 20);
+                    //setzen der Textfarbe
+                       bt3.setTextColor(Color.BLACK);
+                    bt3.setText("Bewertung");
+                    //setzen des definierten Hintergrund in drawable
+                    bt3.setBackgroundResource(R.drawable.button);
+
+                    ll3.addView(bt3, relativeParams3);
+                    bt3.setOnClickListener(new AddRatingListener(request, activity));
+                   }
             }
         }
     }

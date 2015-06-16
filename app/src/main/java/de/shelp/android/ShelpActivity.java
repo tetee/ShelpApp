@@ -14,7 +14,10 @@ import org.ksoap2.SoapFault;
 import de.fh_muenster.shelpapp.R;
 import de.shelp.android.applications.ShelpApplication;
 import de.shelp.android.tasks.GetFriendsTask;
+import de.shelp.android.tasks.GetUpdatedRequestsTask;
+import de.shelp.android.tasks.GetUpdatedToursTask;
 import de.shelp.android.tasks.LogoutTask;
+import de.shelp.android.tasks.SearchTask;
 
 //Activity zur Übersicht der Funktionen der Application (nach Login oder Registrierung)
 public class ShelpActivity extends ActionBarActivity {
@@ -28,6 +31,13 @@ public class ShelpActivity extends ActionBarActivity {
 
         thisActivity = this;
 
+        ShelpApplication application = (ShelpApplication) getApplication();
+
+        GetUpdatedToursTask getUpdatedToursTask = new GetUpdatedToursTask( application, this);
+        getUpdatedToursTask.execute();
+
+        GetUpdatedRequestsTask getUpdatedRequestsTask = new GetUpdatedRequestsTask( application, this);
+        getUpdatedRequestsTask.execute();
     }
 
 

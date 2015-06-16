@@ -28,7 +28,7 @@ public class RatingServiceImpl {
 
     private static final String TAG = RatingServiceImpl.class.getName();
 
-    //Bewertung erstellen / Übergabe der Parameter als SoapObject
+    //Bewertung erstellen / Ãœbergabe der Parameter als SoapObject
     public SoapObject createRating(User targetUser, int rating, String notice, int sessionId) throws SoapFault{
         String METHOD_NAME = "createRating";
         SoapObject response = null;
@@ -38,7 +38,7 @@ public class RatingServiceImpl {
         return response;
     }
 
-    //Übergabe der Liste <Rating> an den Server / Abfrage der einzelnen Bewertungen
+    //Ãœbergabe der Liste <Rating> an den Server / Abfrage der einzelnen Bewertungen
     public List<Rating> getRatings(User user, Context context)throws SoapFault, InvalidRatingException{
         String METHOD_NAME = "getRatings";
         SoapObject response = null;

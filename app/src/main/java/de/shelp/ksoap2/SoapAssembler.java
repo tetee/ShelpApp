@@ -31,7 +31,6 @@ public class SoapAssembler {
     public static SoapAssembler instance;
 
     private SoapAssembler() {
-
     }
 
     public static SoapAssembler getInstance() {
@@ -76,7 +75,7 @@ public class SoapAssembler {
             PropertyInfo info = new PropertyInfo();
             response.getPropertyInfo(i, info);
             if("request".equals(info.getName())) {
-                list.add(soapToRequest((SoapObject) response.getProperty(i)));
+                list.add(soapToRequestForTour((SoapObject) response.getProperty(i)));
             }
         }
         //Ersteller der Fahrt
@@ -211,6 +210,25 @@ public class SoapAssembler {
 
 
         return new Request(id, sourceUser, targetUser, tour, wishlistItems, notice, status );
+    }
+
+    public Request soapToRequestForTour(SoapObject response) {
+        List<WishlistItem> wishlistItems = new ArrayList<WishlistItem>();
+
+        for (int i = 0; i < response.getPropertyCount(); i++) {
+            PropertyInfo info = new PropertyInfo();
+            response.getPropertyInfo(i, info);
+            if ("wishes".equals(info.getName())) {
+                wishlistItems.add(soapToWishlistItem((SoapObject) response.getProperty(i)));
+            }}
+        Long id = Long.valueOf(response.getPropertyAsString("id"));
+        User sourceUser = soapToUser((SoapObject) response.getProperty("sourceUser"));
+        User targetUser = soapToUser((SoapObject) response.getProperty("targetUser"));
+        String notice = response.getPropertyAsString("notice");
+        String status = response.getPropertyAsString("status");
+
+
+        return new Request(id, sourceUser, targetUser, null, wishlistItems, notice, status );
     }
 
     //Umwandlung eines SoapObjects zu einem WishlistItem Object

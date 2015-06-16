@@ -13,13 +13,16 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.ksoap2.SoapFault;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import de.fh_muenster.shelpapp.R;
 import de.shelp.android.applications.ShelpApplication;
@@ -38,6 +41,7 @@ import de.shelp.ksoap2.entities.User;
 public class SearchTourActivity extends ActionBarActivity {
 
     private AllLists allLists;
+    private List<TextView> searchedElements = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -147,6 +151,14 @@ public class SearchTourActivity extends ActionBarActivity {
         Spinner cap = (Spinner) findViewById(R.id.capacitySpinner);
         cap.setAdapter(new ArrayAdapter<Capacity>(this, android.R.layout.simple_spinner_item, allLists.getCapacities()));
 
+    }
+
+    public List<TextView> getSearchedElements() {
+        return searchedElements;
+    }
+
+    public void addSearchedElement(TextView view) {
+        searchedElements.add(view);
     }
 
 }

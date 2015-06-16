@@ -43,7 +43,6 @@ public class ShowTourActivity extends ActionBarActivity {
             button.setVisibility(View.GONE);
 
             //Anlegen eines neuen Buttons um vorhandene Anfragen an eigens erstellte Tour zu zeigen
-            //TODO vorhandenen Button nutzen aber OnClickListener ändern? (Theresa)
             RelativeLayout ll = (RelativeLayout) this.findViewById(R.id.relativeLayoutShowTourActivity);
             RelativeLayout.LayoutParams relativeParams = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.FILL_PARENT);
             relativeParams.addRule(RelativeLayout.BELOW, R.id.status);
