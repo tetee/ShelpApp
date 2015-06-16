@@ -16,6 +16,8 @@ import de.fh_muenster.shelpapp.R;
 import de.shelp.android.FriendsActivity;
 import de.shelp.android.ShelpActivity;
 import de.shelp.android.applications.ShelpApplication;
+import de.shelp.ksoap2.ObjectResponse;
+import de.shelp.ksoap2.entities.Request;
 import de.shelp.ksoap2.entities.Tour;
 import de.shelp.ksoap2.entities.User;
 import de.shelp.ksoap2.exceptions.NoSessionException;
@@ -25,7 +27,7 @@ import de.shelp.ksoap2.exceptions.NoSessionException;
  */
 
 
-public class GetUpdatedToursTask extends AsyncTask<Object, Object,  List<Tour>>
+public class GetUpdatedToursTask extends AsyncTask<Object, Object,  ObjectResponse<Tour>>
 {
     private ShelpApplication myApp;
     private ShelpActivity activity;
@@ -38,10 +40,10 @@ public class GetUpdatedToursTask extends AsyncTask<Object, Object,  List<Tour>>
     }
 
     @Override
-    protected List<Tour> doInBackground(Object... params){
+    protected ObjectResponse<Tour> doInBackground(Object... params){
         try {
             //Übergabe der Parameter an die FriendServiceImpl
-            return myApp.getTourService().getUpdatedTours(myApp.getSession().getId());
+            return new ObjectResponse<Tour>(myApp.getTourService().getUpdatedTours(myApp.getSession().getId()), "");
         }catch (NoSessionException e) {
             Toast.makeText(myApp.getApplicationContext(), "Fehler: " +e.getMessage(), Toast.LENGTH_SHORT).show();
         } catch (SoapFault e) {
@@ -51,12 +53,17 @@ public class GetUpdatedToursTask extends AsyncTask<Object, Object,  List<Tour>>
         return null;
     }
 
-    protected void onPostExecute(List<Tour> result)
+    protected void onPostExecute(ObjectResponse<Tour> result)
     {
-       myApp.setUpdatedTours(result);
-        if(!result.isEmpty()) {
+        if(result==null) {
+            if(!result.getMessage().equals("")) {
+                Toast.makeText(myApp.getApplicationContext(), result.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        }
+       myApp.setUpdatedTours(result.getList());
+        if(!result.getList().isEmpty()) {
             Button button = (Button) activity.findViewById(R.id.ownTours);
-            button.setTextColor(Color.MAGENTA);
+            button.setTextColor(Color.RED);
         }
     }
 }

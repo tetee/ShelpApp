@@ -25,6 +25,7 @@ import de.shelp.android.tasks.AcceptRequestTask;
 import de.shelp.android.tasks.ChangeFriendshipTask;
 import de.shelp.ksoap2.entities.Request;
 import de.shelp.ksoap2.entities.Tour;
+import de.shelp.ksoap2.entities.TourStatus;
 import de.shelp.ksoap2.entities.WishlistItem;
 
 //Activity um Anfragen zu eigens erstellter Tour anzuzeigen
@@ -45,7 +46,6 @@ public class ShowTourRequestActivity extends ActionBarActivity {
 
         //Für die Tour wird für jedes Request Object eine Schleife durchlaufen um zugehörige Daten auszugeben
         //Der Fahrt Anbieter kann die Anfrage (teilweise) annehmen
-        //TODO Anfrage annehmen, bzw. teilweise (Checkboxen)
         for (int i = 0; i <= tour.getRequest().size() - 1; i++) {
             RelativeLayout ll = (RelativeLayout) this.findViewById(R.id.relativeLayoutShowTourRequest);
             RelativeLayout.LayoutParams relativeParams = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.FILL_PARENT);
@@ -88,7 +88,7 @@ public class ShowTourRequestActivity extends ActionBarActivity {
                 wishMap.put(item, wishBox);
             }
 
-            if(!req.getStatus().equals("ASKED")) {
+            if(req.getStatus().equals("ASKED") && tour.getStatus().equals(TourStatus.PLANED)) {
                 RelativeLayout ll3 = (RelativeLayout) this.findViewById(R.id.relativeLayoutShowTourRequest);
                 RelativeLayout.LayoutParams relativeParams3 = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.FILL_PARENT);
                 relativeParams3.addRule(RelativeLayout.BELOW, lastEdit);

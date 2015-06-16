@@ -29,7 +29,6 @@ public class LogoutTask extends AsyncTask<Void, Integer, Boolean>  {
             myApp.getUserService().logout(myApp);
             return true;
         } catch (NoSessionException e) {
-            e.printStackTrace();
             return false;
         }
     }
