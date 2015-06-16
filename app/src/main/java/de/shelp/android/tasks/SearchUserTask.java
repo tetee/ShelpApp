@@ -81,7 +81,7 @@ public class SearchUserTask extends AsyncTask<Object, Integer, List<User>>
 
                 RelativeLayout relativeLayout2 = (RelativeLayout) activity.findViewById(R.id.relativeLayoutFriendSearch);
 
-                RelativeLayout.LayoutParams relativeParams2 = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                RelativeLayout.LayoutParams relativeParams2 = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.FILL_PARENT);
                 relativeParams2.addRule(RelativeLayout.BELOW, idEditText);
                 //Abstände zwischen den Button werden programmatisch gesetzt
                 relativeParams2.setMargins(0, 10, 0, 10);

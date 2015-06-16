@@ -29,14 +29,13 @@ public class RequestServiceImpl {
     private static final String TAG = RequestServiceImpl.class.getName();
 
 
-    public String createRequest(String targedUserId,Long tourId, List<String> wishes, String notice, int sessionId) throws SoapFault{
+    public String createRequest(String targedUserId, Long tourId, List<String> wishes, String notice, int sessionId) throws SoapFault{
         String METHOD_NAME = "createRequest";
         SoapObject response = null;
         String wishesString = "";
         for(String wish :wishes){
             wishesString += wish + "\n";
         }
-
 
         response = ServiceUtils.executeSoapAction(METHOD_NAME, URL, targedUserId, tourId, notice, sessionId, wishesString);
 
