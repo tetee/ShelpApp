@@ -50,7 +50,7 @@ public class RequestServiceImpl {
         return response;
     }
 
-<<<<<<< HEAD
+
     public List<Request> getUpdatedRequests(int sessionId) throws  SoapFault, NoSessionException {
         String METHOD_NAME = "getUpdatedRequests";
         SoapObject response = null;
@@ -58,15 +58,16 @@ public class RequestServiceImpl {
         response = ServiceUtils.executeSoapAction(METHOD_NAME, URL, sessionId);
         List<Request> requests = new ArrayList<Request>();
 
-        if(response.getPrimitivePropertyAsString("returnCode").equals("ERROR")) {
+        if (response.getPrimitivePropertyAsString("returnCode").equals("ERROR")) {
             throw new NoSessionException(response.getPrimitivePropertyAsString("message"));
         } else {
-            for(int i = 1; i <= response.getPropertyCount()-1; i++) {
+            for (int i = 1; i <= response.getPropertyCount() - 1; i++) {
                 requests.add(SoapAssembler.getInstance().soapToRequest((SoapObject) response.getProperty(i)));
             }
         }
         return requests;
-=======
+    }
+
     public SoapObject acceptRequest(long requestId, int sessionId, String idChecked) throws SoapFault{
         String METHOD_NAME = "acceptRequest";
         SoapObject response = null;
@@ -74,6 +75,6 @@ public class RequestServiceImpl {
         response = ServiceUtils.executeSoapAction(METHOD_NAME, URL, requestId, idChecked, sessionId);
 
         return response;
->>>>>>> soapwork
+
     }
 }

@@ -33,6 +33,4 @@ public class StateServiceImpl {
 
         return SoapAssembler.getInstance().soapToAllLists(response);
     }
-
-
 }
