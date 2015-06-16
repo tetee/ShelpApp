@@ -26,7 +26,7 @@ public class RequestServiceImpl {
     private static final String TAG = RequestServiceImpl.class.getName();
 
 
-    //Anfragen erstellen / Übergabe der Parameter als SoapObject
+    //Anfragen erstellen / Ãœbergabe der Parameter als SoapObject
     public SoapObject createRequest(Long tourId, List<String> wishes, String notice, int sessionId) throws SoapFault{
         String METHOD_NAME = "createRequest";
         SoapObject response = null;
@@ -41,12 +41,21 @@ public class RequestServiceImpl {
         return response;
     }
 
-    //Anfragen löschen / Übergabe der Parameter als SoapObject
+    //Anfragen lÃ¶schen / Ãœbergabe der Parameter als SoapObject
     public SoapObject deleteRequest(int sessionId, long requestId) throws SoapFault{
         String METHOD_Name = "deleteRequest";
         SoapObject response = null;
 
         response = ServiceUtils.executeSoapAction(METHOD_Name, URL, requestId, sessionId);
+
+        return response;
+    }
+
+    public SoapObject acceptRequest(long requestId, int sessionId, String idChecked) throws SoapFault{
+        String METHOD_NAME = "acceptRequest";
+        SoapObject response = null;
+
+        response = ServiceUtils.executeSoapAction(METHOD_NAME, URL, requestId, idChecked, sessionId);
 
         return response;
     }

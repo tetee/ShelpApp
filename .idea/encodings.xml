@@ -12,5 +12,10 @@
     <file url="file://$PROJECT_DIR$/app/src/main/java/de/shelp/android/tasks/RatingTask.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/app/src/main/java/de/shelp/ksoap2/implementations/FriendServiceImpl.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/app/src/main/java/de/shelp/ksoap2/implementations/OwnRequestServiceImpl.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/de/shelp/ksoap2/implementations/RatingServiceImpl.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/de/shelp/ksoap2/implementations/RequestServiceImpl.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/de/shelp/ksoap2/implementations/StateServiceImpl.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/de/shelp/ksoap2/implementations/TourServiceImpl.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/de/shelp/ksoap2/implementations/UserServiceImpl.java" charset="UTF-8" />
   </component>
 </project>
