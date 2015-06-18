@@ -12,10 +12,10 @@ public class Rating implements Serializable{
     private long id;
     private User sourceUser;
     private User targetUser;
-    private int rating;
+    private float rating;
     private String notice;
 
-    public Rating(long id, User sourceUser, User targetUser, int rating, String notice){
+    public Rating(long id, User sourceUser, User targetUser, float rating, String notice){
         this.id=id;
         this.sourceUser=sourceUser;
         this.targetUser=targetUser;
@@ -41,7 +41,7 @@ public class Rating implements Serializable{
     public void setTargetUser(User targetUser) {
         this.targetUser = targetUser;
     }
-    public Integer getRating() {
+    public float getRating() {
         return rating;
     }
     public void setRating(int rating) {

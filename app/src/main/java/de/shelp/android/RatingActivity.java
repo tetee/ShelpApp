@@ -58,7 +58,7 @@ public class RatingActivity extends ActionBarActivity {
         RatingBar rating = (RatingBar) findViewById(R.id.rating);
         EditText ratingText = (EditText) findViewById(R.id.editTextRating);
         String txtRating = ratingText.getText().toString();
-        int ratingBar = (int)rating.getRating();
+        int ratingBar = (int)(rating.getRating() * 10);
         Intent intent = getIntent();
         ShelpApplication application = (ShelpApplication) getApplication();
 

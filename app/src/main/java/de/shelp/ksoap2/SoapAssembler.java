@@ -185,7 +185,7 @@ public class SoapAssembler {
         Long id = Long.valueOf(response.getPropertyAsString("id"));
         User sourceUser = soapToUser((SoapObject) response.getProperty("sourceUser"));
         User targetUser = soapToUser((SoapObject) response.getProperty("targetUser"));
-        int rating = Integer.valueOf(response.getPropertyAsString("rating"));
+        float rating = Integer.valueOf(response.getPropertyAsString("rating")) / 10f;
         String notice = response.getPropertyAsString("notice");
 
         return new Rating(id, sourceUser,targetUser,rating,notice);

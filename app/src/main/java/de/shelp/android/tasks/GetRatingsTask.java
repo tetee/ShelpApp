@@ -66,6 +66,26 @@ public class GetRatingsTask extends AsyncTask<Object,Object, ObjectResponse<Rati
                 Toast.makeText(activity.getApplicationContext(), ratings.getMessage(), Toast.LENGTH_SHORT).show();
             }
         } else {
+            float sum = 0;
+            for(Rating r : ratings.getList()) {
+                 sum += r.getRating();
+            }
+
+            sum = ((int) (sum / ratings.getList().size() * 10) ) / 10f;
+
+            RelativeLayout ll0 = (RelativeLayout) activity.findViewById(R.id.relativeLayoutRatings);
+
+            RelativeLayout.LayoutParams relativeParams0 = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.FILL_PARENT);
+            relativeParams0.addRule(RelativeLayout.BELOW, idEditText);
+            this.idEditText++;
+            TextView et0 = new TextView(context);
+            et0.setId(idEditText);
+            //setzen der Textgröße/Textfarbe
+            et0.setTextColor(Color.BLACK);
+            et0.setTextSize(20);
+            et0.setText("Gesamtbewertung: " + sum);
+            ll0.addView(et0, relativeParams0);
+
             for (int i = 0; i <= ratings.getList().size() - 1; i++) {
 
                 RelativeLayout ll = (RelativeLayout) activity.findViewById(R.id.relativeLayoutRatings);
@@ -90,7 +110,7 @@ public class GetRatingsTask extends AsyncTask<Object,Object, ObjectResponse<Rati
                 this.idEditText++;
                 TextView et2 = new TextView(context);
                 et2.setId(idEditText);
-                int ratingValue = ratings.getList().get(i).getRating();
+                float ratingValue = ratings.getList().get(i).getRating();
                 //setzen der Textgröße/Textfarbe
                 et2.setTextColor(Color.BLACK);
                 et2.setTextSize(20);
