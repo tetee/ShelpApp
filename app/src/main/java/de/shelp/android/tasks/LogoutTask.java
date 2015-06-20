@@ -13,7 +13,7 @@ import de.shelp.ksoap2.exceptions.NoSessionException;
  * AsyncTask, für das Logout.
  * Schickt die Anfrage an den Server und erhält einen ReturnCode zurück.
  *
- * @author
+ * @author Roman Busch
  *
  */
 public class LogoutTask extends AsyncTask<Void, Integer, Boolean>  {

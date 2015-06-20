@@ -18,7 +18,7 @@ import de.shelp.ksoap2.entities.Friendship;
  * sowie die Suche nach neuen Freunden {@link #searchFriend(android.view.View)} und
  * das Statusänderungen {@link #changeFriendship(de.shelp.ksoap2.entities.Friendship, int)} ermöglicht.
  *
- * @author
+ * @author Theresa Sollert
  *
  */
 public class FriendsActivity extends ActionBarActivity {

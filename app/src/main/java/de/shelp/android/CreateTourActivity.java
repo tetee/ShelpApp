@@ -35,7 +35,8 @@ import de.shelp.ksoap2.entities.Tour;
  * {@link #addItemsOnSpinner()}
  * Das Erstellen der Fahrt läuft über den AsynTask {@link de.shelp.android.tasks.CreateTask}.
  *
- * @author
+ * @author Roman Busch
+ * @author Theresa Sollert
  * 
  */
 

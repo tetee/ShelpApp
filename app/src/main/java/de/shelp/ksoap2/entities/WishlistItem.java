@@ -6,7 +6,7 @@ import java.io.Serializable;
  * Klasse, die einen Wunsch respr�sentiert. Umfasst eine Id, einen Text und ein
  * Flag ob der Wunsch aktzeptiert wurde oder nicht.
  *
- * @author
+ * @author Roman Busch
  *
  */
 public class WishlistItem implements Serializable {

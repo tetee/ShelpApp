@@ -19,7 +19,7 @@ import de.shelp.ksoap2.entities.Tour;
  * {@link #delete(View, Tour)}
  * In der onCreate() Methode wird der AsyncTask zum anzeigen der eigenen Fahrten aufgerufen {@link de.shelp.android.tasks.OwnToursTask}.
  *
- * @author
+ * @author Roman Busch
  *
  */
 public class ShowOwnTourActivity extends ActionBarActivity {

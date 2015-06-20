@@ -25,7 +25,7 @@ import de.shelp.android.tasks.SetListTask;
  * Vor Anzeige der View werden die Tourstaten {@link de.shelp.android.tasks.GetUpdatedToursTask}
  * und Anfragen {@link de.shelp.android.tasks.GetUpdatedRequestsTask} aktualisiert.
  *
- * @author
+ * @author Roman Busch
  *
  */
 public class ShelpActivity extends ActionBarActivity {

@@ -5,6 +5,9 @@ import android.preference.PreferenceActivity;
 
 import de.fh_muenster.shelpapp.R;
 
+/**
+ * @author Roman Busch
+ */
 
 public class PrefsActivity extends PreferenceActivity {
 

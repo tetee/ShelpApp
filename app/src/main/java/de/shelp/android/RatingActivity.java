@@ -18,7 +18,7 @@ import de.shelp.ksoap2.entities.User;
  * Activity, die die Berwetung eines Benutzers ermöglicht {@link #sendRating(android.view.View)}
  * über den AsynsTask{@link de.shelp.android.tasks.RatingTask}
  *
- * @author
+ * @author Roman Busch
  *
  */
 public class RatingActivity extends ActionBarActivity {

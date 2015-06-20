@@ -6,7 +6,7 @@ import java.util.List;
 /**
  * Klasse, die alle Listen respräsentiert. Umfasst eine Liste Kapazitäten, Lieferbedingungen, Zahlungsbedingungen, Freigabestatus und Orte.
  *
- * @author
+ * @author Theresa Sollert
  *
  */
 public class AllLists {

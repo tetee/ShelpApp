@@ -18,7 +18,7 @@ import de.shelp.android.tasks.RegTask;
  * Activity, für das Registrieren eines neuen Benutzers {@link #registration(android.view.View)}
  * Das Passwort für die Registrierung wird verschlüsselt {@link #computeMD5Hash(String)}
  *
- * @author
+ * @author Roman Busch
  *
  */
 public class RegActivity extends ActionBarActivity {

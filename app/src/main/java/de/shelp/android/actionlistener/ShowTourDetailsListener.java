@@ -13,6 +13,8 @@ import de.shelp.ksoap2.entities.Tour;
  * Die Klasse stellt einen Listener für den Button "Details" bereit.
  * Mit ausführen des Buttons können Details zu einer Fahrt angezeigt werden.
  *
+ * @author Roman Busch
+ *
  */
 public class ShowTourDetailsListener implements View.OnClickListener{
 

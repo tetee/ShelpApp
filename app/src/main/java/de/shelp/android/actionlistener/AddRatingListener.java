@@ -13,6 +13,8 @@ import de.shelp.ksoap2.entities.User;
  * Die Klasse stellt einen Listener für den Button "Bewertung" bereit.
  * Mit ausführen des Buttons wird auf die RatingActivity gewechselet.
  *
+ * @author Roman Busch
+ *
  */
 public class AddRatingListener implements View.OnClickListener {
 

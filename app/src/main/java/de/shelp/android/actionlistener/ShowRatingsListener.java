@@ -9,6 +9,8 @@ import de.shelp.ksoap2.entities.User;
  * Die Klasse stellt einen Listener für den Button Bewertung bereit.
  * Mit ausführen des Buttons werden die Bewertungen zu einer Fahrt angezeigt.
  *
+ * @author Roman Busch
+ *
  */
 public class ShowRatingsListener implements View.OnClickListener {
 

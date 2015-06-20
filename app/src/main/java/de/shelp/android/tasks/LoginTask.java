@@ -14,7 +14,7 @@ import de.shelp.ksoap2.exceptions.InvalidLoginException;
  * AsyncTask, für das Login.
  * Schickt die Anfrage an den Server und erhält einen ReturnCode zurück.
  *
- * @author
+ * @author Roman Busch
  *
  */
 public class LoginTask extends AsyncTask<String, Integer, ShelpSession> {

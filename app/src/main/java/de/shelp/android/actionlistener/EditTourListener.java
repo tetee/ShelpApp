@@ -11,6 +11,8 @@ import de.shelp.ksoap2.entities.User;
  * Die Klasse stellt einen Listener für den Button "löschen" bereit.
  * Mit ausführen des Buttons wird eine selbst erstellte Fahrt gelöscht.
  *
+ * @author Theresa Sollert
+ *
  */
 public class EditTourListener implements View.OnClickListener {
 

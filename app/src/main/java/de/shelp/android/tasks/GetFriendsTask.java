@@ -24,7 +24,7 @@ import de.shelp.ksoap2.entities.Friendship;
  * Die Ausgabe erfolgt dynamisch in {@link #onPostExecute(de.shelp.ksoap2.ObjectResponse)}
  * Fragt die Daten vom Server an.
  *
- * @author
+ * @author Theresa Sollert
  *
  */
 public class GetFriendsTask extends AsyncTask<Object, Integer, ObjectResponse<Friendship>>

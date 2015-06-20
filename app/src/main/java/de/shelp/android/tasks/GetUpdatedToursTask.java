@@ -18,7 +18,7 @@ import de.shelp.ksoap2.exceptions.NoSessionException;
  * AsyncTask, für das Benachrichtigen bei neuen Anfragen an eine eigene Fahrt.
  * Fragt die Daten vom Server an.
  *
- * @author
+ * @author Theresa Sollert
  *
  */
 public class GetUpdatedToursTask extends AsyncTask<Object, Object,  ObjectResponse<Tour>>

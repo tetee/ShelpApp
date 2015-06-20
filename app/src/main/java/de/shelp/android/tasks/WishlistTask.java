@@ -18,7 +18,7 @@ import de.shelp.android.applications.ShelpApplication;
  * AsyncTask, für das Erstellen einer Wunschliste.
  * Schickt die Anfrage an den Server und erhält einen ReturnCode zurück.
  *
- * @author
+ * @author Theresa Sollert
  *
  */
 public class WishlistTask extends AsyncTask<Object, Integer, SoapObject> {

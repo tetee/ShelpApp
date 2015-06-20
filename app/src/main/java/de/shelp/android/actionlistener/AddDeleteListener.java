@@ -13,6 +13,8 @@ import de.shelp.ksoap2.entities.Request;
  * Die Klasse stellt einen Listener für den Button "löschen" bereit.
  * Mit ausführen des Buttons wird eine persönliche Anfrage gelöscht.
  *
+ * @author Roman Busch
+ *
  */
 public class AddDeleteListener implements View.OnClickListener {
 

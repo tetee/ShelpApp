@@ -11,6 +11,8 @@ import de.shelp.ksoap2.entities.Tour;
  * Die Klasse stellt einen Listener für den Button "anfragen" bereit.
  * Mit ausführen des Buttons können angezeigte Fahrten angefragt werden.
  *
+ * @author Theresa Sollert
+ *
  */
 public class ShowRequestListener implements View.OnClickListener {
 

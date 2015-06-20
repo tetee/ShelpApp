@@ -4,7 +4,7 @@ import java.util.List;
 
 /**
  * Rückgabetyp für allgemeine Objecte im Response
- * beinhaltet eine Liste der vom Server zurück gegebenen Objekte und einer Fehlermeldung falls aufgetreten
+ * beinhaltet eine Liste der vom Server zurÃ¼ck gegebenen Objekte und einer Fehlermeldung falls aufgetreten
  *
  * @param <T> - Typ des Objektes vom Server
  *

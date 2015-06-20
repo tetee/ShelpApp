@@ -16,7 +16,7 @@ import de.shelp.ksoap2.exceptions.InvalidRegistrationException;
  * AsyncTask, für die Registrierung.
  * Schickt die Anfrage an den Server und erhält einen ReturnCode zurück.
  *
- * @author
+ * @author Roman Busch
  *
  */
 public class RegTask extends AsyncTask<String, Integer, ShelpSession> {

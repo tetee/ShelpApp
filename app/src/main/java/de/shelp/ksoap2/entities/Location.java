@@ -7,7 +7,7 @@ import java.io.Serializable;
  * Klasse, die einen Ort respräsentiert. Umfasst eine Id, eine Beschreibung und
  * die PLZ.
  *
- * @author
+ * @author Theresa Sollert
  *
  */
 public class Location implements Serializable{

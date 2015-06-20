@@ -28,7 +28,7 @@ import de.shelp.ksoap2.entities.Tour;
  * {@link #request(View)}
  * In der Methode onCreate() wird die Fahrt abgebildet, ohne das noch Änderungen gemacht werden können.
  *
- * @author
+ * @author Theresa Sollert
  *
  */
 public class ShowTourActivity extends ActionBarActivity {

@@ -7,7 +7,7 @@ import java.io.Serializable;
  * Klasse, die eine Bezahlmethode respräsentiert. Umfasst eine Id und eine
  * Beschreibung.
  *
- * @author
+ * @author Theresa Sollert
  *
  */
 public class PaymentCondition implements Serializable{

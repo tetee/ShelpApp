@@ -15,7 +15,7 @@ import de.shelp.ksoap2.entities.User;
  * Activity um Bewertungen eines bestimmten Benutzers anzusehen.
  * In der onCreate() Methode wird der AsyncTask zum Abfragen von Bewertungen aufgerufen {@link de.shelp.android.tasks.GetRatingsTask}.
  *
- * @author
+ * @author Roman Busch
  *
  */
 //

@@ -13,7 +13,7 @@ import de.shelp.android.applications.ShelpApplication;
 /**
  * AsyncTask, für das Laden der Listen vom Server.
  *
- * @author
+ * @author Theresa Sollert
  *
  */
 public class SetListTask extends AsyncTask<Object, Object, Boolean> {

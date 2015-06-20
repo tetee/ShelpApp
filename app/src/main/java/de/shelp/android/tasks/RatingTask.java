@@ -17,7 +17,7 @@ import de.shelp.ksoap2.entities.User;
  * AsyncTask, für das Bewerten eines Benutzers .
  * Schickt die Anfrage an den Server und erhält einen ReturnCode zurück.
  *
- * @author
+ * @author Roman Busch
  *
  */
 public class RatingTask extends AsyncTask<Object, Integer, SoapObject>{

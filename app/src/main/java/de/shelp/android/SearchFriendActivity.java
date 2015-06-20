@@ -24,7 +24,7 @@ import de.shelp.ksoap2.entities.User;
  * {@link #getSearchedElements()} Die gesuchten Freunde werden angezeigt
  * {@link #addSearchedElement(android.widget.TextView)} und zur bestehenden View hinzugefügt.
  *
- * @author
+ * @author Theresa Sollert
  *
  */
 public class SearchFriendActivity extends ActionBarActivity {

@@ -16,7 +16,7 @@ import de.shelp.ksoap2.entities.Tour;
  * AsyncTask, für das Ändern des Tourstatusses (CANCELLED).
  * Schickt die Anfrage an den Server und erhält einen ReturnCode zurück.
  *
- * @author
+ * @author Theresa Sollert
  *
  */
 public class DeleteTourTask extends AsyncTask<Object, Integer, SoapObject>

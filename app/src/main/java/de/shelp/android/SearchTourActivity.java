@@ -35,7 +35,7 @@ import de.shelp.ksoap2.entities.User;
  * {@link #details(android.view.View, de.shelp.ksoap2.entities.Tour)} Details der Tour anzeigen,
  * {@link #addItemsOnSpinner()} und Laden der Details in die Spinner.
  *
- * @author
+ * @author Theresa Sollert
  *
  */
 public class SearchTourActivity extends ActionBarActivity {

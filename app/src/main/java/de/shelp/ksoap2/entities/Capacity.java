@@ -7,7 +7,7 @@ import java.io.Serializable;
  * Klasse, die eine Kapazität respräsentiert. Umfasst eine Id und eine
  * Beschreibung.
  *
- * @author
+ * @author Theresa Sollert
  *
  *
  */

@@ -16,7 +16,7 @@ import de.shelp.ksoap2.entities.User;
  * AsyncTask, für das Hinzufügen eines neuen Freundes.
  * Schickt die Anfrage an den Server und erhält einen ReturnCode zurück.
  *
- * @author
+ * @author Theresa Sollert
  *
  */
 public class AddFriendTask extends AsyncTask<Object, Object, SoapObject>

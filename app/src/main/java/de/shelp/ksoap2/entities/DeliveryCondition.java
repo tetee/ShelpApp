@@ -7,7 +7,7 @@ import java.io.Serializable;
  * Klasse, die eine Lieferbedingung respräsentiert. Umfasst eine Id und eine
  * Beschreibung.
  *
- * @author
+ * @author Theresa Sollert
  *
  */
 public class DeliveryCondition implements Serializable{

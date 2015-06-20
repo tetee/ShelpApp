@@ -16,7 +16,7 @@ import de.shelp.ksoap2.entities.Friendship;
  * AsyncTask, für das Ändern eines Freundschaftsstatusses.
  * Schickt die Anfrage an den Server und erhält einen ReturnCode zurück.
  *
- * @author
+ * @author Theresa Sollert
  *
  */
 public class ChangeFriendshipTask  extends AsyncTask<Object, Object, SoapObject> {

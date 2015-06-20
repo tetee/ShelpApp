@@ -27,7 +27,7 @@ import de.shelp.ksoap2.exceptions.InvalidRequestException;
  * Die Ausgabe erfolgt dynamisch in {@link #onPostExecute(de.shelp.ksoap2.ObjectResponse)}
  * Fragt die Daten vom Server an.
  *
- * @author
+ * @author Roman Busch
  *
  */
 public class GetOwnRequestTask extends AsyncTask<Object, Integer,  ObjectResponse<Request>> {

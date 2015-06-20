@@ -25,7 +25,7 @@ import de.shelp.ksoap2.exceptions.InvalidUsersException;
  * Der Server schickt den oder die passenden Benutzer zurück.
  * Die Ausgabe erfolgt dynamisch in {@link #onPostExecute(de.shelp.ksoap2.ObjectResponse)}
  *
- * @author
+ * @author Roman Busch
  *
  */
 public class SearchUserTask extends AsyncTask<Object, Integer, ObjectResponse<User>>

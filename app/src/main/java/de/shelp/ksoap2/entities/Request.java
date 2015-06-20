@@ -10,7 +10,7 @@ import de.shelp.android.WishlistActivity;
  * {@link User}), den Empfänger ({@link User}), eine Fahrt ({@link Tour}), eine
  * Liste mit Wünschen {@link WishlistItem}, eine Beschreibung und einen Status.
  *
- * @author Thomas Sennekamp
+ * @author Roman Busch
  *
  */
 public class Request implements Serializable{

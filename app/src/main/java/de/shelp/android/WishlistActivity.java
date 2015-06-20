@@ -26,7 +26,7 @@ import de.shelp.ksoap2.entities.Tour;
  * {@link #requestWishList(android.view.View)}
  * Das erstellen der Wunschliste läuft über den AsyncTask {@link de.shelp.android.tasks.WishlistTask}
  *
- * @author
+ * @author Roman Busch
  *
  */
 public class WishlistActivity extends ActionBarActivity {

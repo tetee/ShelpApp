@@ -3,7 +3,7 @@ package de.shelp.ksoap2.entities;
 /**
  * Enumartion, die vorgibt welche R�ckgabecodes es gibt.
  *
- * @author
+ * @author Roman Busch
  *
  */
 public enum ReturnCode {

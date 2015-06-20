@@ -11,6 +11,8 @@ import de.shelp.ksoap2.entities.Friendship;
  * Mit ausführen des Buttons "ablehnen" wird eine Freundschaftsanfrage abgelehnt.
  * Mit ausführen des Buttons "löschen" wird eine Freundschaftsanfrage gelöscht.
  *
+ * @author Theresa Sollert
+ *
  */
 public class ChangeFriendshipListener implements View.OnClickListener {
 

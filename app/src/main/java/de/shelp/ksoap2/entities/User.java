@@ -5,7 +5,7 @@ import java.io.Serializable;
 /**
  * Klasse, die einen Benutzer respr�sentiert. Umfasst eine E-Mailadresse (Id)
  *
- * @author
+ * @author Roman Busch
  *
  */
 public class User implements Serializable{

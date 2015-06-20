@@ -17,7 +17,7 @@ import de.shelp.ksoap2.entities.Tour;
  * AsyncTask, für das Erstellen einer Fahrt
  * Schickt die Anfrage an den Server und erhält einen ReturnCode zurück.
  *
- * @author
+ * @author Roman Busch
  *
  */
 public class CreateTask extends AsyncTask<Object, Integer, SoapObject>

@@ -29,7 +29,7 @@ import de.shelp.android.tasks.LoginTask;
  * Hier besteht die Möglichkeit für einen Login{@link #login(android.view.View)}
  * und für die Registrierung {@link #registration(android.view.View)}.
  *
- * @author
+ * @author Roman Busch
  *
  */
 public class MainActivity extends ActionBarActivity {

@@ -25,7 +25,7 @@ import de.shelp.ksoap2.exceptions.InvalidTourException;
  * Der Server schickt die passenden Fahrten zurück.
  * Die Ausgabe erfolgt dynamisch in {@link #onPostExecute(de.shelp.ksoap2.ObjectResponse)}
  *
- * @author
+ * @author Theresa Sollert
  *
  */
 public class SearchTask extends AsyncTask<Object, Integer, ObjectResponse<Tour>>

@@ -23,7 +23,7 @@ import de.shelp.ksoap2.exceptions.InvalidRatingException;
  * Die Ausgabe erfolgt dynamisch in {@link #onPostExecute(de.shelp.ksoap2.ObjectResponse)}
  * Fragt die Daten vom Server an.
  *
- * @author
+ * @author Roman Busch
  *
  */
 public class GetRatingsTask extends AsyncTask<Object,Object, ObjectResponse<Rating>> {

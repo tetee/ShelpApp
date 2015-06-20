@@ -31,7 +31,7 @@ import de.shelp.ksoap2.entities.WishlistItem;
  * In der onCreate() Methode werden dynamisch die Anfragen zu den entsprechenden Fahrten aufgelistet.
  * Aufgelistet wird der Anfrager, der Kurztext und die Checkbox mit dem entsprechenden Wunsch.
  *
- * @author
+ * @author Theresa Sollert
  *
  */
 public class ShowTourRequestActivity extends ActionBarActivity {

@@ -10,6 +10,8 @@ import de.shelp.ksoap2.entities.User;
  * Die Klasse stellt einen Listener für den Button "hinzufügen" bereit.
  * Mit ausführen des Buttons wird ein Freund hinzugefügt.
  *
+ * @author Theresa Sollert
+ *
  */
 public class AddFriendListener implements View.OnClickListener {
 

@@ -27,7 +27,7 @@ import de.shelp.ksoap2.exceptions.InvalidTourException;
  * Die Ausgabe erfolgt dynamisch in {@link #onPostExecute(de.shelp.ksoap2.ObjectResponse)}
  * Fragt die Daten vom Server an.
  *
- * @author
+ * @author Theresa Sollert
  *
  */
 public class OwnToursTask extends AsyncTask<Object, Integer, ObjectResponse<Tour>>

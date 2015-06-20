@@ -16,6 +16,8 @@ import de.shelp.ksoap2.entities.WishlistItem;
  * Die Klasse stellt einen Listener für den Button "Anfrage senden" bereit.
  * Mit ausführen des Buttons wird ein Kurztext, sowie eine Wunschliste angefragt.
  *
+ * @author Roman Busch
+ *
  */
 public class CheckboxListener implements View.OnClickListener {
 

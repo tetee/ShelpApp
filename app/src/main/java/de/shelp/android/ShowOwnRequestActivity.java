@@ -16,7 +16,7 @@ import de.shelp.ksoap2.entities.User;
  * Activity, um eigene Anfragen an fremde Touren anzuzeigen über den {@link de.shelp.android.tasks.GetOwnRequestTask}.
  * Bei bestimmtem Tourstatus können Benutzer bewertet {@link #rate(android.view.View, de.shelp.ksoap2.entities.User)} werden
  *
- * @author
+ * @author Roman Busch
  *
  */
 public class ShowOwnRequestActivity extends ActionBarActivity {

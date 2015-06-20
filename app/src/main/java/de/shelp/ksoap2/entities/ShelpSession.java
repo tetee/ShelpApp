@@ -5,7 +5,7 @@ import java.io.Serializable;
  * Klasse die eine Session respr�sentiert. Umfasst eine Id und den Besitzer (
  * {@link User})
  *
- * @author
+ * @author Roman Busch
  *
  */
 public class ShelpSession implements Serializable{

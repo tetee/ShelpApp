@@ -11,7 +11,7 @@ import java.util.List;
  * eine Liste von Anfragen ({@link Request}), einen Ort ({@link Location}), ein
  * Flag ob die Fahrt ver�ndert wurde und ein Zeitpunkt.
  *
- * @author
+ * @author Roman Busch
  *
  */
 public class Tour implements Serializable {

@@ -18,7 +18,7 @@ import de.shelp.ksoap2.exceptions.NoSessionException;
  * AsyncTask, für das Benachrichtigen bei aktualisierten Anfragen in der ShelpActivity.
  * Fragt die Daten vom Server an.
  *
- * @author
+ * @author Theresa Sollert
  *
  */
 public class GetUpdatedRequestsTask extends AsyncTask<Object, Object,  ObjectResponse<Request> >

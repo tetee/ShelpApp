@@ -3,7 +3,7 @@ package de.shelp.ksoap2.entities;
 /**
  * Enumarations welche Fahrtstatusse es gibt.
  *
- * @author
+ * @author Roman Busch
  *
  */
 public enum TourStatus {

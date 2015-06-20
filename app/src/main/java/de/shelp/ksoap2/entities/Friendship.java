@@ -5,7 +5,7 @@ package de.shelp.ksoap2.entities;
  * {@link User}), Empfänger ({@link User}), Status
  * und ein Änderungsdatum.
  *
- * @author
+ * @author Theresa Sollert
  *
  */
 public class Friendship {

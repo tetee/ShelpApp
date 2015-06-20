@@ -12,7 +12,7 @@ import de.shelp.ksoap2.entities.User;
  * {@link User}), den Empfänger ({@link User}), ein Rating (in Sternen 10 - 50)
  * und eine Beschreibung der Bewertung.
  *
- * @author
+ * @author Theresa Sollert
  *
  */
 public class Rating implements Serializable{

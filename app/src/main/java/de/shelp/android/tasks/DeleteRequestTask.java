@@ -16,7 +16,7 @@ import de.shelp.ksoap2.entities.Request;
  * AsyncTask, für das Löschen einer Anfrage an eine fremde Fahrt.
  * Schickt die Anfrage an den Server und erhält einen ReturnCode zurück.
  *
- * @author
+ * @author Roman Busch
  *
  */
 public class DeleteRequestTask extends AsyncTask<Object, Integer, SoapObject>
