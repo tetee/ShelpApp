@@ -1,30 +1,21 @@
 package de.shelp.android;
 
-import android.content.Context;
 import android.content.Intent;
-import android.os.AsyncTask;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
-import org.ksoap2.SoapFault;
-
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.GregorianCalendar;
 
 import de.fh_muenster.shelpapp.R;
 import de.shelp.android.applications.ShelpApplication;
 import de.shelp.android.tasks.CreateTask;
-import de.shelp.android.tasks.LogoutTask;
 import de.shelp.ksoap2.ServiceUtils;
 import de.shelp.ksoap2.entities.AllLists;
 import de.shelp.ksoap2.entities.ApprovalStatus;
@@ -32,11 +23,18 @@ import de.shelp.ksoap2.entities.Capacity;
 import de.shelp.ksoap2.entities.DeliveryCondition;
 import de.shelp.ksoap2.entities.Location;
 import de.shelp.ksoap2.entities.PaymentCondition;
-import de.shelp.ksoap2.entities.ReturnCode;
 import de.shelp.ksoap2.entities.Tour;
-import de.shelp.ksoap2.exceptions.InvalidLoginException;
 
-//Activity für das Erstellen einer Tour
+/**
+ * Diese Activity ermöglicht das Erstellen einer Fahrt
+ * {@link #createTour(android.view.View)}
+ * {@link #addItemsOnSpinner()}
+ * Das Erstellen der Fahrt läuft über den AsynTask {@link CreateTask}
+ *
+ * @author
+ * 
+ */
+
 public class CreateTourActivity extends ActionBarActivity {
 
     Tour tour;
@@ -54,7 +52,9 @@ public class CreateTourActivity extends ActionBarActivity {
         addItemsOnSpinner();
     }
 
-
+    /**
+     * Methode um Daten in die Spinner zu laden
+     */
     public void addItemsOnSpinner(){
 
         //Daten der Spinner mit Werten füllen
@@ -77,19 +77,14 @@ public class CreateTourActivity extends ActionBarActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
         }
@@ -102,7 +97,12 @@ public class CreateTourActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    //Methode zur Erstellung einer Tour
+    /**
+     * Methode zur Erstellung einer Fahrt
+     * Werte werden aus Spinner ausgelesen und an den {@link de.shelp.android.tasks.CreateTask} gesendet
+     *
+     * @param view - Die aktuell sichtbare View
+     */
     public void createTour(View view) {
         //leeres Tour Object anlegen
         Tour tour = new Tour();

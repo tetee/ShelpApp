@@ -1,8 +1,8 @@
 package de.shelp.android;
 
 import android.content.Intent;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -13,6 +13,14 @@ import de.shelp.android.tasks.ChangeFriendshipTask;
 import de.shelp.android.tasks.GetFriendsTask;
 import de.shelp.ksoap2.entities.Friendship;
 
+/**
+ * Activity die bestehende Freunde anzeigt über den AsyncTask {@link de.shelp.android.tasks.GetFriendsTask}
+ * sowie die Suche nach neuen Freunden {@link #searchFriend(android.view.View)} und
+ * das Statusänderungen {@link #changeFriendship(de.shelp.ksoap2.entities.Friendship, int)} ermöglicht.
+ *
+ * @author
+ *
+ */
 public class FriendsActivity extends ActionBarActivity {
 
     @Override
@@ -28,19 +36,14 @@ public class FriendsActivity extends ActionBarActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
         }
@@ -53,14 +56,21 @@ public class FriendsActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
-
-    //Methode um zur SearchFriendActivity zu gelangen um hier neue Freunde zu suchen
+    /**
+     * Methode um zur SearchFriendActivity zu gelangen um hier neue Freunde zu suchen
+     *
+     * @param view - Die aktuell sichtbare View
+     */
     public void searchFriend(View view) {
         Intent i = new Intent(this, SearchFriendActivity.class);
         startActivity(i);
     }
 
-    //TODO Kommentar
+    /**
+     * Methode um den Freundschaftsstaus zu verändern
+     * @param fs - Freundschaft deren Status verändert werden soll
+     * @param changeType - 0 - annehmen, 1 - ablehnen, rest - löschen
+     */
     public void changeFriendship(Friendship fs, int changeType) {
         ChangeFriendshipTask changeFriendshipTask = new ChangeFriendshipTask(fs,(ShelpApplication) getApplication(),this.getApplicationContext(),changeType);
         changeFriendshipTask.execute();
