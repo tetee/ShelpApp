@@ -7,7 +7,9 @@ import de.shelp.android.SearchTourActivity;
 import de.shelp.ksoap2.entities.User;
 
 /**
- * Created by user on 09.06.15.
+ * Die Klasse stellt einen Listener für den Button "hinzufügen" bereit.
+ * Mit ausführen des Buttons wird ein Freund hinzugefügt.
+ *
  */
 public class AddFriendListener implements View.OnClickListener {
 

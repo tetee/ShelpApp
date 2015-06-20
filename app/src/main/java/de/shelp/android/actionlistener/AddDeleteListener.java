@@ -10,7 +10,9 @@ import de.shelp.android.tasks.GetOwnRequestTask;
 import de.shelp.ksoap2.entities.Request;
 
 /**
- * Created by user on 09.06.15.
+ * Die Klasse stellt einen Listener für den Button "löschen" bereit.
+ * Mit ausführen des Buttons wird eine persönliche Anfrage gelöscht.
+ *
  */
 public class AddDeleteListener implements View.OnClickListener {
 

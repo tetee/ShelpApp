@@ -10,7 +10,9 @@ import de.shelp.android.tasks.OwnToursTask;
 import de.shelp.ksoap2.entities.Tour;
 
 /**
- * Created by user on 09.06.15.
+ * Die Klasse stellt einen Listener für den Button "Details" bereit.
+ * Mit ausführen des Buttons können Details zu einer Fahrt angezeigt werden.
+ *
  */
 public class ShowTourDetailsListener implements View.OnClickListener{
 

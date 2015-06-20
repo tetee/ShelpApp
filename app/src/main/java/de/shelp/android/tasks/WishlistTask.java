@@ -3,10 +3,6 @@ package de.shelp.android.tasks;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
-import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import org.ksoap2.SoapFault;
@@ -14,17 +10,9 @@ import org.ksoap2.serialization.SoapObject;
 
 import java.util.List;
 
-import de.fh_muenster.shelpapp.R;
-import de.shelp.android.FriendsActivity;
-import de.shelp.android.SearchTourActivity;
 import de.shelp.android.ShowOwnRequestActivity;
 import de.shelp.android.WishlistActivity;
-import de.shelp.android.actionlistener.ShowRatingsListener;
-import de.shelp.android.actionlistener.ShowTourDetailsListener;
 import de.shelp.android.applications.ShelpApplication;
-import de.shelp.ksoap2.entities.Request;
-import de.shelp.ksoap2.entities.ReturnCode;
-import de.shelp.ksoap2.entities.Tour;
 
 /**
  * Created by user on 10.06.15.

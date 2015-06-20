@@ -6,7 +6,9 @@ import de.shelp.android.SearchTourActivity;
 import de.shelp.ksoap2.entities.User;
 
 /**
- * Created by user on 09.06.15.
+ * Die Klasse stellt einen Listener für den Button Bewertung bereit.
+ * Mit ausführen des Buttons werden die Bewertungen zu einer Fahrt angezeigt.
+ *
  */
 public class ShowRatingsListener implements View.OnClickListener {
 

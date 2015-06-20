@@ -10,7 +10,9 @@ import de.shelp.ksoap2.entities.Request;
 import de.shelp.ksoap2.entities.User;
 
 /**
- * Created by user on 09.06.15.
+ * Die Klasse stellt einen Listener für den Button "Bewertung" bereit.
+ * Mit ausführen des Buttons wird auf die RatingActivity gewechselet.
+ *
  */
 public class AddRatingListener implements View.OnClickListener {
 

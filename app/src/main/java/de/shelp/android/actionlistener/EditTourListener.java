@@ -8,7 +8,9 @@ import de.shelp.ksoap2.entities.Tour;
 import de.shelp.ksoap2.entities.User;
 
 /**
- * Created by user on 12.06.15.
+ * Die Klasse stellt einen Listener für den Button "löschen" bereit.
+ * Mit ausführen des Buttons wird eine selbst erstellte Fahrt gelöscht.
+ *
  */
 public class EditTourListener implements View.OnClickListener {
 

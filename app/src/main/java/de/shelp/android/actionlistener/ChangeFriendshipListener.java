@@ -6,7 +6,11 @@ import de.shelp.android.FriendsActivity;
 import de.shelp.ksoap2.entities.Friendship;
 
 /**
- * Created by Jos-Laptop on 13.06.2015.
+ * Die Klasse stellt einen Listener für die Buttons "annehmen", "ablehnen" und "löschen" bereit.
+ * Mit ausführen des Buttons "annehmen" wird eine Freundschaftsanfrage angenommen.
+ * Mit ausführen des Buttons "ablehnen" wird eine Freundschaftsanfrage abgelehnt.
+ * Mit ausführen des Buttons "löschen" wird eine Freundschaftsanfrage gelöscht.
+ *
  */
 public class ChangeFriendshipListener implements View.OnClickListener {
 

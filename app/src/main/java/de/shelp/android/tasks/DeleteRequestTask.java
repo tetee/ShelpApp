@@ -2,28 +2,16 @@ package de.shelp.android.tasks;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.AsyncTask;
-import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import org.ksoap2.SoapFault;
 import org.ksoap2.serialization.SoapObject;
 
-import java.util.List;
-
 import de.fh_muenster.shelpapp.R;
-import de.shelp.android.FriendsActivity;
-import de.shelp.android.SearchFriendActivity;
 import de.shelp.android.ShowOwnRequestActivity;
-import de.shelp.android.actionlistener.AddFriendListener;
 import de.shelp.android.applications.ShelpApplication;
 import de.shelp.ksoap2.entities.Request;
-import de.shelp.ksoap2.entities.User;
-import de.shelp.ksoap2.exceptions.InvalidUsersException;
 
 /**
  * Created by user on 02.06.15.

@@ -31,7 +31,7 @@ public class ServiceUtils {
      * server hosting the web service (or "10.0.2.15 instead of 'localhost' when running in the emulator).
      */
     //public static final String URL = "http://10.70.50.172:8080/shelp/";
-    public static final String URL = "http://10.70.50.172:8080/shelp/";
+    public static final String URL = "http://192.168.0.100:8080/shelp/";
 
     public static final Date formatInputToDate(String date) throws ParseException {
         SimpleDateFormat output = new SimpleDateFormat("dd.MM.yyyy hh:mm");

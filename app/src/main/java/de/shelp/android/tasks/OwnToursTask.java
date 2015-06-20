@@ -16,13 +16,11 @@ import java.util.List;
 import de.fh_muenster.shelpapp.R;
 import de.shelp.android.ShowOwnTourActivity;
 import de.shelp.android.actionlistener.EditTourListener;
-import de.shelp.android.actionlistener.ShowRatingsListener;
 import de.shelp.android.actionlistener.ShowTourDetailsListener;
 import de.shelp.android.applications.ShelpApplication;
 import de.shelp.ksoap2.ObjectResponse;
 import de.shelp.ksoap2.entities.Tour;
 import de.shelp.ksoap2.exceptions.InvalidTourException;
-import de.shelp.ksoap2.exceptions.InvalidUsersException;
 
 /**
  * Created by user on 12.06.15.
