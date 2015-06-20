@@ -1,18 +1,16 @@
 package de.shelp.android;
 
 import android.content.Intent;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.RatingBar;
-import android.widget.Spinner;
 
 import de.fh_muenster.shelpapp.R;
 import de.shelp.android.applications.ShelpApplication;
-import de.shelp.android.tasks.CreateTask;
 import de.shelp.android.tasks.RatingTask;
 import de.shelp.ksoap2.entities.User;
 

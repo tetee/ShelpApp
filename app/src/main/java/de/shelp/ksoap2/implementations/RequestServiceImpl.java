@@ -1,19 +1,14 @@
 package de.shelp.ksoap2.implementations;
 
 import org.ksoap2.SoapFault;
-import org.ksoap2.serialization.PropertyInfo;
 import org.ksoap2.serialization.SoapObject;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
 import de.shelp.ksoap2.ServiceUtils;
 import de.shelp.ksoap2.SoapAssembler;
 import de.shelp.ksoap2.entities.Request;
-import de.shelp.ksoap2.entities.Tour;
-import de.shelp.ksoap2.entities.WishesList;
-import de.shelp.ksoap2.entities.WishlistItem;
 import de.shelp.ksoap2.exceptions.NoSessionException;
 
 /**

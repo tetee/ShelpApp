@@ -1,7 +1,6 @@
 package de.shelp.ksoap2.implementations;
 
 import android.content.Context;
-import android.widget.Toast;
 
 import org.ksoap2.SoapFault;
 import org.ksoap2.serialization.SoapObject;
@@ -11,12 +10,9 @@ import java.util.List;
 
 import de.shelp.ksoap2.ServiceUtils;
 import de.shelp.ksoap2.SoapAssembler;
-import de.shelp.ksoap2.entities.AllLists;
 import de.shelp.ksoap2.entities.Rating;
-import de.shelp.ksoap2.entities.Tour;
 import de.shelp.ksoap2.entities.User;
 import de.shelp.ksoap2.exceptions.InvalidRatingException;
-import de.shelp.ksoap2.exceptions.InvalidRequestException;
 
 /**
  * Created by user on 21.05.15.

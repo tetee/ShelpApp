@@ -1,6 +1,5 @@
 package de.shelp.ksoap2;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**

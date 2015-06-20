@@ -2,25 +2,21 @@ package de.shelp.android;
 
 
 import android.content.Intent;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.util.Log;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 import android.widget.Toast;
-
 
 import java.util.ArrayList;
 import java.util.List;
 
 import de.fh_muenster.shelpapp.R;
 import de.shelp.android.applications.ShelpApplication;
-import de.shelp.android.tasks.SearchTask;
 import de.shelp.android.tasks.WishlistTask;
 import de.shelp.ksoap2.entities.Tour;
 

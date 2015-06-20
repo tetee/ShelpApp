@@ -1,10 +1,7 @@
 package de.shelp.android;
 
-import android.content.Context;
-import android.content.Intent;
-import android.os.AsyncTask;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -15,10 +12,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 import de.fh_muenster.shelpapp.R;
-import de.shelp.android.applications.ShelpApplication;
 import de.shelp.android.tasks.RegTask;
-import de.shelp.ksoap2.exceptions.InvalidRegistrationException;
-import de.shelp.ksoap2.entities.ShelpSession;
 
 //Activity für das Registrieren einen neuen Benutzers
 public class RegActivity extends ActionBarActivity {

@@ -2,8 +2,8 @@ package de.shelp.android;
 
 import android.content.Intent;
 import android.graphics.Color;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -18,9 +18,7 @@ import java.util.Date;
 
 import de.fh_muenster.shelpapp.R;
 import de.shelp.android.actionlistener.ShowRequestListener;
-import de.shelp.android.applications.ShelpApplication;
 import de.shelp.ksoap2.ServiceUtils;
-import de.shelp.ksoap2.entities.Request;
 import de.shelp.ksoap2.entities.Tour;
 
 //Activity um Tour Details anzuzeigen und diese ggf. anzufragen

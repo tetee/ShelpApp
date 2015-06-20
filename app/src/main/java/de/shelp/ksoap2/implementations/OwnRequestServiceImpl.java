@@ -8,12 +8,8 @@ import java.util.List;
 
 import de.shelp.ksoap2.ServiceUtils;
 import de.shelp.ksoap2.SoapAssembler;
-import de.shelp.ksoap2.entities.Friendship;
 import de.shelp.ksoap2.entities.Request;
-import de.shelp.ksoap2.entities.ReturnCode;
-import de.shelp.ksoap2.exceptions.InvalidRegistrationException;
 import de.shelp.ksoap2.exceptions.InvalidRequestException;
-import de.shelp.ksoap2.exceptions.InvalidUsersException;
 
 /**
  * Created by user on 21.05.15.

@@ -1,15 +1,14 @@
 package de.shelp.android;
 
 import android.content.Intent;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
 import de.fh_muenster.shelpapp.R;
 import de.shelp.android.tasks.GetRatingsTask;
-import de.shelp.ksoap2.entities.Tour;
 import de.shelp.ksoap2.entities.User;
 
 //Activity um Bewertungen eines bestimmten Benutzers anzusehen

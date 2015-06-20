@@ -67,9 +67,9 @@ public class FriendsActivity extends ActionBarActivity {
     }
 
     /**
-     * Methode um den Freundschaftsstaus zu verändern
-     * @param fs - Freundschaft deren Status verändert werden soll
-     * @param changeType - 0 - annehmen, 1 - ablehnen, rest - löschen
+     * Methode um den Freundschaftsstaus zu verÃ¤ndern
+     * @param fs - Freundschaft deren Status verÃ¤ndert werden soll
+     * @param changeType - 0 - annehmen, 1 - ablehnen, rest - lÃ¶schen
      */
     public void changeFriendship(Friendship fs, int changeType) {
         ChangeFriendshipTask changeFriendshipTask = new ChangeFriendshipTask(fs,(ShelpApplication) getApplication(),this.getApplicationContext(),changeType);

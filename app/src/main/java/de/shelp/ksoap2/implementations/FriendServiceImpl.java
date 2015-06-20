@@ -9,7 +9,6 @@ import java.util.List;
 import de.shelp.ksoap2.ServiceUtils;
 import de.shelp.ksoap2.SoapAssembler;
 import de.shelp.ksoap2.entities.Friendship;
-import de.shelp.ksoap2.entities.User;
 
 /**
  * Created by user on 21.05.15.
