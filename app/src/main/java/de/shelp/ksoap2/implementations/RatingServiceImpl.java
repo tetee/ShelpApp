@@ -30,7 +30,7 @@ public class RatingServiceImpl {
     private static final String TAG = RatingServiceImpl.class.getName();
 
     /**
-     *
+     * Die Methode erstellt eine Bewertung
      * @param targetUser - Benutzer der bewertet wird
      * @param rating - Bewertung der Fahrt
      * @param notice - Kurztext der Bewertung
@@ -48,7 +48,7 @@ public class RatingServiceImpl {
     }
 
     /**
-     *
+     *Mit der Methode können die Bewertungen abgefragt werden
      * @param user - Benutzer zu dem die Bewertung abgefragt wird
      * @param context - Kontext der Activity
      * @return gibt die Liste der gespeicherten Bewertungen zurück

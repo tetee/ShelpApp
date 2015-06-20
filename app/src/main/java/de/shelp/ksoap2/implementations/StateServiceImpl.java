@@ -8,7 +8,12 @@ import de.shelp.ksoap2.SoapAssembler;
 import de.shelp.ksoap2.entities.AllLists;
 
 /**
- * Created by user on 21.05.15.
+ * Die Klasse übergibt alle Listen.
+ * Die Listen werden über die Schnittstelle "StateIntegration" übertragen.
+ * {@link #getLists()}
+ *
+ * @author
+ *
  */
 public class StateServiceImpl {
 
@@ -19,6 +24,11 @@ public class StateServiceImpl {
 
     //Übergabe von AllLists (enthält Listen: Capacity, DeliveryConditions, PaymentConditions, ApprovalStatus, Location)
 
+    /**
+     * Abfrage aller Listen
+     * @return Rückgabe des Objekts AllLists
+     * @throws SoapFault - es kann keine Verbindung zum Server aufgebaut werden
+     */
     public AllLists getLists() throws SoapFault{
         String METHOD_NAME = "getAllLists";
         SoapObject response = null;
