@@ -10,7 +10,13 @@ import de.shelp.android.ShelpActivity;
 import de.shelp.android.applications.ShelpApplication;
 import de.shelp.ksoap2.entities.ShelpSession;
 import de.shelp.ksoap2.exceptions.InvalidLoginException;
-
+/**
+ * AsyncTask, für das Login.
+ * Schickt die Anfrage an den Server und erhält einen ReturnCode zurück.
+ *
+ * @author
+ *
+ */
 public class LoginTask extends AsyncTask<String, Integer, ShelpSession> {
     private Context context;
     private static MainActivity activity;

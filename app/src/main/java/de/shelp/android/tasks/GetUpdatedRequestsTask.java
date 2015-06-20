@@ -18,10 +18,12 @@ import de.shelp.ksoap2.entities.Tour;
 import de.shelp.ksoap2.exceptions.NoSessionException;
 
 /**
- * Created by user on 02.06.15.
+ * AsyncTask, für das Benachrichtigen bei aktualisierten Anfragen in der ShelpActivity.
+ * Fragt die Daten vom Server an.
+ *
+ * @author
+ *
  */
-
-
 public class GetUpdatedRequestsTask extends AsyncTask<Object, Object,  ObjectResponse<Request> >
 {
     private ShelpApplication myApp;

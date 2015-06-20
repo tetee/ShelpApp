@@ -13,7 +13,11 @@ import de.shelp.android.applications.ShelpApplication;
 import de.shelp.ksoap2.entities.Friendship;
 
 /**
- * Created by Jos-Laptop on 13.06.2015.
+ * AsyncTask, für das Ändern eines Freundschaftsstatusses.
+ * Schickt die Anfrage an den Server und erhält einen ReturnCode zurück.
+ *
+ * @author
+ *
  */
 public class ChangeFriendshipTask  extends AsyncTask<Object, Object, SoapObject> {
 

@@ -24,7 +24,7 @@ import de.shelp.ksoap2.entities.WishlistItem;
 
 /**
  * AsyncTask, für das (teilweise) Annehmen von Anfragen.
- * Schickt die angenommen Anfrage anschließend an den Server.
+ * Schickt die Anfrage an den Server und erhält einen ReturnCode zurück.
  *
  * @author
  *

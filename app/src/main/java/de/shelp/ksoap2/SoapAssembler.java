@@ -23,6 +23,20 @@ import de.shelp.ksoap2.entities.WishlistItem;
 
 /**
  * Klasse für die Umwandlung in SOAP Objekte und zurück
+ * {@link #getInstance()}
+ * {@link #soapToRequest(org.ksoap2.serialization.SoapObject)}
+ * {@link #soapToAllLists(org.ksoap2.serialization.SoapObject)}
+ * {@link #soapToFriendship(org.ksoap2.serialization.SoapObject)}
+ * {@link #soapToRating(org.ksoap2.serialization.SoapObject)}
+ * {@link #soapToRequestForTour(org.ksoap2.serialization.SoapObject)}
+ * {@link #soapToSession(org.ksoap2.serialization.SoapObject)}
+ * {@link #soapToTour(org.ksoap2.serialization.SoapObject)}
+ * {@link #soapToTourForRequest(org.ksoap2.serialization.SoapObject)}
+ * {@link #soapToUser(org.ksoap2.serialization.SoapObject)}
+ * {@link #soapToWishlistItem(org.ksoap2.serialization.SoapObject)}
+ *
+ * @author Roman Busch
+ * @author Theresa Sollert
  */
 public class SoapAssembler {
 

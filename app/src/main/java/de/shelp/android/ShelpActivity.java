@@ -16,11 +16,6 @@ import de.shelp.android.applications.ShelpApplication;
 import de.shelp.android.tasks.GetUpdatedRequestsTask;
 import de.shelp.android.tasks.GetUpdatedToursTask;
 import de.shelp.android.tasks.LogoutTask;
-<<<<<<< HEAD
-
-//Activity zur Übersicht der Funktionen der Application (nach Login oder Registrierung)
-=======
-import de.shelp.android.tasks.SearchTask;
 import de.shelp.android.tasks.SetListTask;
 
 /**
@@ -37,7 +32,6 @@ import de.shelp.android.tasks.SetListTask;
  * @author
  *
  */
->>>>>>> activityWork
 public class ShelpActivity extends ActionBarActivity {
 
     private ShelpActivity thisActivity;

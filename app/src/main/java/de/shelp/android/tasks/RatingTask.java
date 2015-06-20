@@ -15,7 +15,11 @@ import de.shelp.ksoap2.entities.ReturnCode;
 import de.shelp.ksoap2.entities.User;
 
 /**
- * Created by Rome on 02.06.2015.
+ * AsyncTask, für das Bewerten eines Benutzers .
+ * Schickt die Anfrage an den Server und erhält einen ReturnCode zurück.
+ *
+ * @author
+ *
  */
 public class RatingTask extends AsyncTask<Object, Integer, SoapObject>{
 

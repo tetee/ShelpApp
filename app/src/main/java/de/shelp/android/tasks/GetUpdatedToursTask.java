@@ -23,10 +23,12 @@ import de.shelp.ksoap2.entities.User;
 import de.shelp.ksoap2.exceptions.NoSessionException;
 
 /**
- * Created by user on 02.06.15.
+ * AsyncTask, für das Benachrichtigen bei neuen Anfragen an eine eigene Fahrt.
+ * Fragt die Daten vom Server an.
+ *
+ * @author
+ *
  */
-
-
 public class GetUpdatedToursTask extends AsyncTask<Object, Object,  ObjectResponse<Tour>>
 {
     private ShelpApplication myApp;
