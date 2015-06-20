@@ -9,15 +9,10 @@ import android.widget.Toast;
 import org.ksoap2.SoapFault;
 import org.ksoap2.serialization.SoapObject;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
-import de.shelp.android.ShowOwnRequestActivity;
 import de.shelp.android.ShowOwnTourActivity;
 import de.shelp.android.ShowTourRequestActivity;
-import de.shelp.android.WishlistActivity;
 import de.shelp.android.applications.ShelpApplication;
 import de.shelp.ksoap2.entities.Request;
 import de.shelp.ksoap2.entities.WishlistItem;

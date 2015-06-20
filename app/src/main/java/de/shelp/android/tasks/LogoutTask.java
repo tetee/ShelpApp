@@ -5,9 +5,9 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.widget.Toast;
 
-import de.shelp.ksoap2.exceptions.NoSessionException;
 import de.shelp.android.MainActivity;
 import de.shelp.android.applications.ShelpApplication;
+import de.shelp.ksoap2.exceptions.NoSessionException;
 
 
 /**

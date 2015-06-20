@@ -1,8 +1,6 @@
 package de.shelp.android.tasks;
 
-import android.app.Activity;
 import android.content.Context;
-import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.view.ViewGroup;
@@ -12,17 +10,13 @@ import android.widget.Toast;
 
 import org.ksoap2.SoapFault;
 
-import java.util.List;
-
 import de.fh_muenster.shelpapp.R;
 import de.shelp.android.ShowRatingActivity;
 import de.shelp.android.applications.ShelpApplication;
 import de.shelp.ksoap2.ObjectResponse;
 import de.shelp.ksoap2.entities.Rating;
-import de.shelp.ksoap2.entities.Request;
 import de.shelp.ksoap2.entities.User;
 import de.shelp.ksoap2.exceptions.InvalidRatingException;
-import de.shelp.ksoap2.exceptions.InvalidRequestException;
 
 /**
  * Created by user on 09.06.15.

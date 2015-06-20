@@ -1,26 +1,17 @@
 package de.shelp.android;
 
-import android.content.Context;
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-import org.ksoap2.SoapFault;
-
 import de.fh_muenster.shelpapp.R;
 import de.shelp.android.applications.ShelpApplication;
 import de.shelp.android.tasks.GetUpdatedRequestsTask;
 import de.shelp.android.tasks.GetUpdatedToursTask;
 import de.shelp.android.tasks.LogoutTask;
-<<<<<<< HEAD
-
-//Activity zur Übersicht der Funktionen der Application (nach Login oder Registrierung)
-=======
-import de.shelp.android.tasks.SearchTask;
 import de.shelp.android.tasks.SetListTask;
 
 /**
@@ -37,7 +28,6 @@ import de.shelp.android.tasks.SetListTask;
  * @author
  *
  */
->>>>>>> activityWork
 public class ShelpActivity extends ActionBarActivity {
 
     private ShelpActivity thisActivity;

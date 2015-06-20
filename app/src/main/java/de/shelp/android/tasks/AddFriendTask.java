@@ -8,12 +8,8 @@ import android.widget.Toast;
 import org.ksoap2.SoapFault;
 import org.ksoap2.serialization.SoapObject;
 
-import java.util.List;
-
 import de.shelp.android.FriendsActivity;
-import de.shelp.android.ShelpActivity;
 import de.shelp.android.applications.ShelpApplication;
-import de.shelp.ksoap2.entities.Friendship;
 import de.shelp.ksoap2.entities.User;
 
 /**

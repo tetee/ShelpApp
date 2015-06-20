@@ -7,14 +7,11 @@ import android.widget.Toast;
 
 import org.ksoap2.SoapFault;
 
-import java.util.List;
-
 import de.fh_muenster.shelpapp.R;
 import de.shelp.android.ShelpActivity;
 import de.shelp.android.applications.ShelpApplication;
 import de.shelp.ksoap2.ObjectResponse;
 import de.shelp.ksoap2.entities.Request;
-import de.shelp.ksoap2.entities.Tour;
 import de.shelp.ksoap2.exceptions.NoSessionException;
 
 /**

@@ -7,7 +7,6 @@ import android.os.AsyncTask;
 
 import org.ksoap2.SoapFault;
 
-import de.shelp.android.SearchTourActivity;
 import de.shelp.android.applications.ShelpApplication;
 
 /**

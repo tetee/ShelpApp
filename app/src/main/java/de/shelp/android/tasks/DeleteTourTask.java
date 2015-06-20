@@ -8,11 +8,8 @@ import android.widget.Toast;
 import org.ksoap2.SoapFault;
 import org.ksoap2.serialization.SoapObject;
 
-import de.shelp.android.CreateTourActivity;
-import de.shelp.android.ShelpActivity;
 import de.shelp.android.ShowOwnTourActivity;
 import de.shelp.android.applications.ShelpApplication;
-import de.shelp.ksoap2.entities.ReturnCode;
 import de.shelp.ksoap2.entities.Tour;
 
 /**

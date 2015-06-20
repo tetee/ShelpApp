@@ -11,16 +11,28 @@ import de.shelp.ksoap2.SoapAssembler;
 import de.shelp.ksoap2.entities.Friendship;
 
 /**
- * Created by user on 21.05.15.
+ * Die Klasse übergibt alle Daten die bezüglich der Freundesliste erstellt werden.
+ * Die Daten werden über die Schnittstelle "FriendIntegration" übertragen.
+ * {@link #getFriends(int)}
+ * {@link #addFriend(int, String)}
+ * {@link #changeFriendship(int, Friendship, int)}
+ *
+ * @author
+ *
  */
 public class FriendServiceImpl {
-
 
     private static final String URL = ServiceUtils.URL + "FriendIntegration";
 
     private static final String TAG = FriendServiceImpl.class.getName();
 
-    //Übergabe der Liste <Friendship> an den Server und Abfrage der aktuellen Freunde
+    /**
+     * Mit der Methode können die aktuellen Freunde abgefragt werden.
+     * @param sessionId - ID der aktuellen Session
+     * @return - gibt die Liste der gespeicherten Freunde zurück
+     * @throws SoapFault - es kann keine Verbindung zum Server aufgebaut werden
+     *
+     */
     public List<Friendship> getFriends(int sessionId) throws SoapFault {
         String METHOD_NAME = "getFriends";
         SoapObject response = null;
@@ -36,7 +48,13 @@ public class FriendServiceImpl {
         return friendships;
     }
 
-    //Freund hinzufügen und Parameter in SoapObject an den Server übergeben
+    /**
+     * Methode um Freunde zur Freundesliste hinzuzufügen
+     * @param sessionId - ID der aktuellen Session
+     * @param friendId - ID des Benutzer mit dem die Freundschaft abgeschlossen werden soll
+     * @return - gibt den response als SoapObject zurück
+     * @throws SoapFault - es kann keine Verbindung zum Server aufgebaut werden
+     */
    public SoapObject addFriend(int sessionId, String friendId) throws SoapFault {
        String METHOD_NAME = "addFriend";
        SoapObject response = null;
@@ -46,7 +64,14 @@ public class FriendServiceImpl {
        return response;
    }
 
-    //Freunde akzeptieren / ablehnen / löschen / Übergabe der Parameter als SoapObject
+    /**
+     * Methode zum ändern des Freundschaftsstatus
+     * @param sessionId - ID der aktuellen Session
+     * @param friendship - Übergabe der Freundschaft
+     * @param changeType - akzeptieren / ablehnen / löschen
+     * @return - gibt den response als SoapObject zurück
+     * @throws SoapFault - es kann keine Verbindung zum Server aufgebaut werden
+     */
     public SoapObject changeFriendship(int sessionId, Friendship friendship, int changeType) throws SoapFault {
         String METHOD_NAME;
         switch (changeType) {

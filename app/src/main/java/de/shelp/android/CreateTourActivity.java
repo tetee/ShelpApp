@@ -26,7 +26,6 @@ import de.shelp.ksoap2.entities.PaymentCondition;
 import de.shelp.ksoap2.entities.Tour;
 
 /**
-<<<<<<< HEAD
  * Diese Activity ermöglicht das Erstellen einer Fahrt.
  * {@link #createTour(android.view.View)}.
  * {@link #addItemsOnSpinner()} Laden der Daten in die Spinner.

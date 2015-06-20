@@ -15,16 +15,29 @@ import de.shelp.ksoap2.entities.User;
 import de.shelp.ksoap2.exceptions.InvalidRatingException;
 
 /**
- * Created by user on 21.05.15.
+ * Die Klasse übergibt alle Daten die bezüglich der Bewertungen erstellt werden.
+ * Die Daten werden über die Schnittstelle "RatingIntegration" übertragen.
+ * {@link #createRating(User, int, String, int)}
+ * {@link #getRatings(User, Context)}
+ *
+ * @author
+ *
  */
 public class RatingServiceImpl {
-
 
     private static final String URL = ServiceUtils.URL + "RatingIntegration";
 
     private static final String TAG = RatingServiceImpl.class.getName();
 
-    //Bewertung erstellen / Übergabe der Parameter als SoapObject
+    /**
+     *
+     * @param targetUser - Benutzer der bewertet wird
+     * @param rating - Bewertung der Fahrt
+     * @param notice - Kurztext der Bewertung
+     * @param sessionId - ID der aktuellen Session
+     * @return - gibt den response als SoapObject zurück
+     * @throws SoapFault - es kann keine Verbindung zum Server aufgebaut werden
+     */
     public SoapObject createRating(User targetUser, int rating, String notice, int sessionId) throws SoapFault{
         String METHOD_NAME = "createRating";
         SoapObject response = null;
@@ -34,7 +47,14 @@ public class RatingServiceImpl {
         return response;
     }
 
-    //Übergabe der Liste <Rating> an den Server / Abfrage der einzelnen Bewertungen
+    /**
+     *
+     * @param user - Benutzer zu dem die Bewertung abgefragt wird
+     * @param context - Kontext der Activity
+     * @return gibt die Liste der gespeicherten Bewertungen zurück
+     * @throws SoapFault - es kann keine Verbindung zum Server aufgebaut werden
+     * @throws InvalidRatingException - die Bewertung konnte nicht verarbeitet werden
+     */
     public List<Rating> getRatings(User user, Context context)throws SoapFault, InvalidRatingException{
         String METHOD_NAME = "getRatings";
         SoapObject response = null;

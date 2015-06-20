@@ -1,7 +1,6 @@
 package de.shelp.android.tasks;
 
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.view.ViewGroup;
@@ -12,20 +11,15 @@ import android.widget.Toast;
 
 import org.ksoap2.SoapFault;
 
-import java.util.List;
-
 import de.fh_muenster.shelpapp.R;
-import de.shelp.android.FriendsActivity;
 import de.shelp.android.ShowOwnRequestActivity;
 import de.shelp.android.actionlistener.AddDeleteListener;
 import de.shelp.android.actionlistener.AddRatingListener;
 import de.shelp.android.applications.ShelpApplication;
 import de.shelp.ksoap2.ObjectResponse;
-import de.shelp.ksoap2.entities.Friendship;
 import de.shelp.ksoap2.entities.Request;
 import de.shelp.ksoap2.entities.TourStatus;
 import de.shelp.ksoap2.exceptions.InvalidRequestException;
-import de.shelp.ksoap2.exceptions.InvalidUsersException;
 
 /**
  * Created by user on 02.06.15.
