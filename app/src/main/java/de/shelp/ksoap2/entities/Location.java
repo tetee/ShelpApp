@@ -3,6 +3,13 @@ package de.shelp.ksoap2.entities;
 
 import java.io.Serializable;
 
+/**
+ * Klasse, die einen Ort respräsentiert. Umfasst eine Id, eine Beschreibung und
+ * die PLZ.
+ *
+ * @author
+ *
+ */
 public class Location implements Serializable{
 
     private long id;

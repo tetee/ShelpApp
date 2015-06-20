@@ -3,6 +3,13 @@ package de.shelp.ksoap2.entities;
 
 import java.io.Serializable;
 
+/**
+ * Klasse, die eine Bezahlmethode respräsentiert. Umfasst eine Id und eine
+ * Beschreibung.
+ *
+ * @author
+ *
+ */
 public class PaymentCondition implements Serializable{
 
     private int id;

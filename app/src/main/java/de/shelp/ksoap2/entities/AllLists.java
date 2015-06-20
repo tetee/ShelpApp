@@ -4,9 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by user on 21.05.15.
+ * Klasse, die alle Listen respräsentiert. Umfasst eine Liste Kapazitäten, Lieferbedingungen, Zahlungsbedingungen, Freigabestatus und Orte.
+ *
+ * @author
+ *
  */
-//Verwaltet alle Listen für die Touren
 public class AllLists {
 
     private List<Capacity> capacities;
