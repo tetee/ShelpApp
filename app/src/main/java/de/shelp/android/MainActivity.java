@@ -5,9 +5,9 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.ActionBarActivity;
-import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -20,8 +20,14 @@ import java.security.NoSuchAlgorithmException;
 import de.fh_muenster.shelpapp.R;
 import de.shelp.android.tasks.LoginTask;
 
-//Die MainActivity ist der Startbildschirm der Application
-//Hier gibt es die Methoden zum Login und zur Registrierung
+/**
+ * MainActivity ist der Startbildschirm der Anwendung
+ * Hier besteht die Möglichkeit für einen Login{@link #login(android.view.View)}
+ * und für die Registrierung {@link #registration(android.view.View)}
+ *
+ * @author
+ *
+ */
 public class MainActivity extends ActionBarActivity {
 
     private String usern, userp;
@@ -58,7 +64,6 @@ public class MainActivity extends ActionBarActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        //Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
@@ -78,14 +83,21 @@ public class MainActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    //Wechsel in die RegActivity um einen neuen Benutzer zu registrieren
+    /**
+     * Methode um zur RegActivity zu wechseln, um einen neuen Benutzer zu registrieren
+     *
+     * @param view - Die aktuelle sichtbare View
+     */
     public void registration(View view) {
         //neues Intent erstellen und zur RegActivity wechseln
         Intent i = new Intent(this, RegActivity.class);
         startActivity(i);
     }
 
-    //Login eines bestehenden Benutzers
+    /**
+     *
+     * @param loginView
+     */
     public void login(View loginView) {
         //Eingegebene Daten des Benutzers auslesen
         EditText un = (EditText) findViewById(R.id.editUsername);

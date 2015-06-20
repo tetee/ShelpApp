@@ -11,7 +11,6 @@ import org.ksoap2.serialization.SoapObject;
 import de.shelp.android.FriendsActivity;
 import de.shelp.android.applications.ShelpApplication;
 import de.shelp.ksoap2.entities.Friendship;
-import de.shelp.ksoap2.entities.ReturnCode;
 
 /**
  * Created by Jos-Laptop on 13.06.2015.

@@ -26,12 +26,12 @@ public class ServiceUtils {
     /**
      * The WSDL URL. Its value is the location attribute of the soap:address element for a port
      * element in a WSDL. Unless the web service is also hosted on the Android device, the hostname
-     * should not be specified as localhost, because the application runs on the Android device while
+     * should not be specif
+     * ied as localhost, because the application runs on the Android device while
      * the web service is hosted on the localhost server. Specify hostname as the IP address of the
      * server hosting the web service (or "10.0.2.15 instead of 'localhost' when running in the emulator).
      */
-    //public static final String URL = "http://10.70.50.172:8080/shelp/";
-    public static final String URL = "http://10.70.50.172:8080/shelp/";
+    public static final String URL = "http://192.168.1.128:8080/shelp/";
 
     public static final Date formatInputToDate(String date) throws ParseException {
         SimpleDateFormat output = new SimpleDateFormat("dd.MM.yyyy hh:mm");

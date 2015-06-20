@@ -65,10 +65,6 @@
             android:label="@string/title_activity_own_request_activity" >
         </activity>
         <activity
-            android:name="de.shelp.android.CreateRequestActivity"
-            android:label="@string/title_activity_your_request_activity" >
-        </activity>
-        <activity
             android:name="de.shelp.android.RegActivity"
             android:label="@string/title_activity_registration_activity" >
         </activity>
