@@ -28,7 +28,16 @@ import de.shelp.ksoap2.entities.Location;
 import de.shelp.ksoap2.entities.Tour;
 import de.shelp.ksoap2.entities.User;
 
-//Activity für die Suche nach einer bestimmten Fahrt
+/**
+ * Activity, um nach einer bestimmten Fahrt zu suchen,
+ * {@link #search(android.view.View)},
+ * {@link #rating(android.view.View, de.shelp.ksoap2.entities.User)} Bewertungen des Erstellers anzeigen,
+ * {@link #details(android.view.View, de.shelp.ksoap2.entities.Tour)} Details der Tour anzeigen,
+ * {@link #addItemsOnSpinner()} und Laden der Details in die Spinner.
+ *
+ * @author
+ *
+ */
 public class SearchTourActivity extends ActionBarActivity {
 
     private AllLists allLists;
@@ -48,19 +57,14 @@ public class SearchTourActivity extends ActionBarActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
         }
@@ -73,7 +77,12 @@ public class SearchTourActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    //Methode zum Suchen einer Tour
+    /**
+     * Methode um nach einer Tour zu suchen über den {@link de.shelp.android.tasks.SearchTask}.
+     * Die Ausgabe der gefundenen Touren erfolgt in aktueller View.
+     *
+     * @param view - Die aktuell sichtbare View
+     */
     public void search(View view){
         //Auslese des Daten für die gesuchte Tour
         ApprovalStatus approvalStatus = ((ApprovalStatus)((Spinner) findViewById(R.id.enablingSpinner)).getSelectedItem());
@@ -115,25 +124,38 @@ public class SearchTourActivity extends ActionBarActivity {
 
     }
 
-    //Wechsel in die ShowTourActivity um Details der Tour zu sehen
+    /**
+     * Methode, die in die {@link de.shelp.android.ShowTourActivity} wechselt um Details der Fahrt anzuzeigen.
+     *
+     * @param view - Die aktuell sichtbare View.
+     * @param tour - Fahrt, zu der Details angezeigt werden sollen.
+     */
     public void details(View view, Tour tour){
         ShelpApplication myApp = (ShelpApplication) getApplication();
         myApp.removeUpdatedTours(tour);
 
         Intent i = new Intent(this, ShowTourActivity.class);
+        //Intent den Besitzer und Tour mitgeben
         i.putExtra("Owner", false);
         i.putExtra("Tour", tour);
-        i.putExtra("Owner", false);
         startActivity(i);
     }
 
-    //Wechsel in die ShowRatingActivity um Bewertung des Fahrterstellers anzuzeigen
+    /**
+     * Methode um in die {@link de.shelp.android.ShowRatingActivity} um Bewertungen des Fahrterstellers anzuzeugen.
+     *
+     * @param view - Die aktuell sichtbare View
+     * @param owner - Der Ersteller der Fahrt.
+     */
     public void rating(View view, User owner) {
         Intent i = new Intent(this, ShowRatingActivity.class);
         i.putExtra("User", owner);
         startActivity(i);
     }
 
+    /**
+     * Methode um Daten in die Spinner zu laden
+     */
     public void addItemsOnSpinner(){
         //Daten anhand der Spinner ID holen und in Variable speichern
         Spinner spinnerCity = (Spinner) findViewById(R.id.citySpinner);

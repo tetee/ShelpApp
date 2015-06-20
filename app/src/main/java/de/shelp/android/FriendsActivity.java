@@ -14,7 +14,7 @@ import de.shelp.android.tasks.GetFriendsTask;
 import de.shelp.ksoap2.entities.Friendship;
 
 /**
- * Activity die bestehende Freunde anzeigt über den AsyncTask {@link de.shelp.android.tasks.GetFriendsTask}
+ * Activity, die bestehende Freunde anzeigt über den AsyncTask {@link de.shelp.android.tasks.GetFriendsTask}
  * sowie die Suche nach neuen Freunden {@link #searchFriend(android.view.View)} und
  * das Statusänderungen {@link #changeFriendship(de.shelp.ksoap2.entities.Friendship, int)} ermöglicht.
  *
@@ -57,7 +57,7 @@ public class FriendsActivity extends ActionBarActivity {
     }
 
     /**
-     * Methode um zur SearchFriendActivity zu gelangen um hier neue Freunde zu suchen
+     * Methode um zur {@link de.shelp.android.SearchFriendActivity} zu gelangen um hier neue Freunde zu suchen
      *
      * @param view - Die aktuell sichtbare View
      */
@@ -67,9 +67,9 @@ public class FriendsActivity extends ActionBarActivity {
     }
 
     /**
-     * Methode um den Freundschaftsstaus zu verÃ¤ndern
-     * @param fs - Freundschaft deren Status verÃ¤ndert werden soll
-     * @param changeType - 0 - annehmen, 1 - ablehnen, rest - lÃ¶schen
+     * Methode um den Freundschaftsstaus zu verändern über {@link de.shelp.android.tasks.ChangeFriendshipTask}
+     * @param fs - Freundschaft deren Status verändert werden soll
+     * @param changeType - 0 - annehmen, 1 - ablehnen, rest - löschen
      */
     public void changeFriendship(Friendship fs, int changeType) {
         ChangeFriendshipTask changeFriendshipTask = new ChangeFriendshipTask(fs,(ShelpApplication) getApplication(),this.getApplicationContext(),changeType);

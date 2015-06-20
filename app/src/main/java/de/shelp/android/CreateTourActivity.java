@@ -27,8 +27,8 @@ import de.shelp.ksoap2.entities.Tour;
 
 /**
  * Diese Activity ermöglicht das Erstellen einer Fahrt
- * {@link #createTour(android.view.View)}
- * {@link #addItemsOnSpinner()}
+ * {@link #createTour(android.view.View)}.
+ * {@link #addItemsOnSpinner()} Laden der Daten in die Spinner.
  * Das Erstellen der Fahrt läuft über den AsynTask {@link CreateTask}
  *
  * @author

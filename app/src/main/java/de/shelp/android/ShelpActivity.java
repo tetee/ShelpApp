@@ -16,8 +16,28 @@ import de.shelp.android.applications.ShelpApplication;
 import de.shelp.android.tasks.GetUpdatedRequestsTask;
 import de.shelp.android.tasks.GetUpdatedToursTask;
 import de.shelp.android.tasks.LogoutTask;
+<<<<<<< HEAD
 
 //Activity zur Übersicht der Funktionen der Application (nach Login oder Registrierung)
+=======
+import de.shelp.android.tasks.SearchTask;
+import de.shelp.android.tasks.SetListTask;
+
+/**
+ * Activity, die eine Übersicht der Funktionen der Anwendung zeigt (nach Login oder Registrierung):
+ * {@link #search(android.view.View)} eine Fahrt suchen,
+ * {@link #create(android.view.View)} eine Fahrt erstellen,
+ * {@link #friends(android.view.View)} Freunde enzeigen/suchen,
+ * {@link #request(android.view.View)} Anfragen zeigen,
+ * {@link #ownTours(android.view.View)} eigens angelegte Touren zeigen und
+ * {@link #logout(android.view.View)} Logout durchführen.
+ * Vor Anzeige der View werden die Tourstaten {@link de.shelp.android.tasks.GetUpdatedToursTask}
+ * und Anfragen {@link de.shelp.android.tasks.GetUpdatedRequestsTask} aktualisiert.
+ *
+ * @author
+ *
+ */
+>>>>>>> activityWork
 public class ShelpActivity extends ActionBarActivity {
 
     private ShelpActivity thisActivity;
@@ -41,19 +61,14 @@ public class ShelpActivity extends ActionBarActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
         }
@@ -66,73 +81,69 @@ public class ShelpActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    //Wechsel zur CreateTourActivity um neue Fahrt zu erstellen
+    /**
+     * Methode um in die {@link de.shelp.android.CreateTourActivity} zu wechseln um hier eine neue Fahrt zu erstellen.
+     * Über den {@link de.shelp.android.tasks.SetListTask} werden die vorbereiteten Listen für die Tourestellung geladen.
+     *
+     * @param view - Die aktuell sichtbare View
+     */
     public void create(View view) {
-        CreateTask createTask = new CreateTask(view.getContext(), CreateTourActivity.class);
+        ShelpApplication app = (ShelpApplication) getApplication();
+        SetListTask createTask = new SetListTask(view.getContext(),this, CreateTourActivity.class, app);
         createTask.execute();
     }
 
-    //Wechsel zur SearchTourActivity um bestehende Fahrten zu suchen
-    //TODO zwei mal CreateTask?!
+    /**
+     * Methode um in die {@link de.shelp.android.SearchTourActivity} zu wechseln um hier nach Fahrten zu suchen.
+     * Über den {@link de.shelp.android.tasks.SetListTask} werden die vorbereiteten Listen für die Toursuche geladen.
+     *
+     * @param view - Die aktuell sichtbare View
+     */
     public void search(View view) {
-        CreateTask createTask = new CreateTask(view.getContext(), SearchTourActivity.class);
+        ShelpApplication app = (ShelpApplication) getApplication();
+        SetListTask createTask = new SetListTask(view.getContext(),this, SearchTourActivity.class, app);
         createTask.execute();
     }
 
-    //Wechsel zur ShowOwnRequestActivity um eigene Anfragen an fremde Fahrten anzuzeigen
+    /**
+     * Methode um in die {@link de.shelp.android.ShowOwnRequestActivity} zu wechseln um hier eigene Anfragen an fremde Fahrten anzuzeigen.
+     *
+     * @param view - Die aktuell sichtbare View
+     */
     public void request(View view) {
         Intent i = new Intent(this, ShowOwnRequestActivity.class);
         startActivity(i);
     }
 
-    //Wechsel zur ShowOwnTourActivity um eigens angelegte Fahrten anzuzeigen
+    /**
+     * Methode um in die {@link de.shelp.android.ShowOwnTourActivity} zu wechseln um eigene Fahrten, sowie zugehörige Anfragen anzuzeigen.
+     *
+     * @param view - Die aktuell sichtbare View
+     */
     public void ownTours(View view) {
         Intent i = new Intent(this, ShowOwnTourActivity.class);
         startActivity(i);
     }
 
-    //Wechsel zur FriendsActivity um eine Freunde anzuzeigen und neue zu suchen
+    /**
+     * Methode um in die {@link de.shelp.android.FriendsActivity} zu wechseln um hier eigene Freunde anzuzeigen, neue zu suchen oder Freundschaftsanfragen annehmen.
+     *
+     * @param view - Die aktuell sichtbare View
+     */
     public void friends(View view) {
         Intent i = new Intent(this,FriendsActivity.class);
         startActivity(i);
     }
 
-    //Logout
+    /**
+     * Ausloggen des Benutzers über den {@link de.shelp.android.tasks.LogoutTask}
+     *
+     * @param ausloeser - Die aktuell sichtbare View
+     */
     public void logout(View ausloeser) {
         //Logout asynchron ausfuehren:
         LogoutTask logoutTask = new LogoutTask(ausloeser.getContext(), (ShelpApplication) getApplication());
         logoutTask.execute();
     }
 
-
-    private class CreateTask extends AsyncTask<Object, Object, Object> {
-        private Context context;
-        private Class nextActivity;
-
-        public CreateTask(Context context, Class nextActivity) {
-            this.context = context;
-            this.nextActivity = nextActivity;
-        }
-
-        @Override
-        protected Object doInBackground(Object... params) {
-            try {
-                ShelpApplication app = (ShelpApplication) getApplication();
-                if (app.getAllLists() == null) {
-                    app.setAllLists(app.getShelpAppService().getLists());
-                }
-            } catch (SoapFault ex) {
-                //TODO errorhandling
-            }
-            return null;
-        }
-
-        protected void onProgessUpdate(Object... values) {
-        }
-
-        protected void onPostExecute(Object result) {
-            Intent i = new Intent(thisActivity, nextActivity);
-            startActivity(i);
-        }
-    }
 }

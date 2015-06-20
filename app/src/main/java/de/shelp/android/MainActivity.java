@@ -22,8 +22,9 @@ import de.shelp.android.tasks.LoginTask;
 
 /**
  * MainActivity ist der Startbildschirm der Anwendung
- * Hier besteht die Möglichkeit für einen Login{@link #login(android.view.View)}
+ * Hier besteht die Möglichkeit für einen Login {@link #login(android.view.View)}
  * und für die Registrierung {@link #registration(android.view.View)}
+ * das Passwort für den Login wird verschlüsselt {@link #computeMD5Hash(String)}
  *
  * @author
  *
@@ -95,8 +96,9 @@ public class MainActivity extends ActionBarActivity {
     }
 
     /**
+     *Methode um im AsyncTask {@link de.shelp.android.tasks.LoginTask} einen Benutzer einzuloggen
      *
-     * @param loginView
+     * @param loginView- die aktuell sichtbare View
      */
     public void login(View loginView) {
         //Eingegebene Daten des Benutzers auslesen
@@ -105,7 +107,7 @@ public class MainActivity extends ActionBarActivity {
         usern = un.getText().toString();
         userp = pw.getText().toString();
         //Passwort in Hash Wert ändern/ Aufruf der computeMD5Hash Methode
-        computeMD5Hash(userp);
+        result = computeMD5Hash(userp);
 
         if ((usern != null && userp != null)) {
                 //LoginTask erstellen
@@ -121,11 +123,16 @@ public class MainActivity extends ActionBarActivity {
             }
         }
 
-
-    //Verschlüsselung des Passwortes
-    public void computeMD5Hash(String password) {
+    /**
+     * Methode um das Passwort zu Verschlüsseln
+     *
+     * @param password - Passwort, das gehasht wird
+     * @return - Das gehashte Passwort
+     *
+     */
+    public String computeMD5Hash(String password) {
         try {
-            // Create MD5 Hash example: mcc03e747a6afbbcbf8be7668acfebee5
+            // Erstelle MD5 Hash Beispiel: mcc03e747a6afbbcbf8be7668acfebee5
             MessageDigest digest = java.security.MessageDigest.getInstance("MD5");
             digest.update(password.getBytes());
             byte messageDigest[] = digest.digest();
@@ -137,9 +144,10 @@ public class MainActivity extends ActionBarActivity {
                     h = "0" + h;
                 MD5Hash.append(h);
             }
-            this.result = MD5Hash.toString();
+            return MD5Hash.toString();
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
+            return "";
         }
     }
 }

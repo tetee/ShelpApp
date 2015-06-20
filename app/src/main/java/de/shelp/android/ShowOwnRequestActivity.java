@@ -12,19 +12,19 @@ import de.shelp.android.applications.ShelpApplication;
 import de.shelp.android.tasks.GetOwnRequestTask;
 import de.shelp.ksoap2.entities.User;
 
-//Activity, die eigene Anfragen an fremde Touren anzeigt
+/**
+ * Activity, um eigene Anfragen an fremde Touren anzuzeigen über den {@link de.shelp.android.tasks.GetOwnRequestTask}.
+ * Bei bestimmtem Tourstatus können Benutzer bewertet {@link #rate(android.view.View, de.shelp.ksoap2.entities.User)} werden
+ *
+ * @author
+ *
+ */
 public class ShowOwnRequestActivity extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_own_request_activity);
-        //TODO
-        //if status == "Erledigt" ermögliche Bewertung
-/*
-        ShelpApplication shelpApplication = (ShelpApplication) getApplication();
-        allLists = shelpApplication.getAllLists();
-        */
         //Fahrten über AsyncTask vom Server laden
         GetOwnRequestTask getOwnRequestTask = new GetOwnRequestTask(this.getApplicationContext(), (ShelpApplication) getApplication(), this);
         getOwnRequestTask.execute();
@@ -34,19 +34,14 @@ public class ShowOwnRequestActivity extends ActionBarActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
         }
@@ -59,11 +54,15 @@ public class ShowOwnRequestActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
-
-    //Aufruf der RatingActivitiy um einene Benutzer zu bewerten (bei bestimmtem Status sichtbar)
+    /**
+     * Methode um in die {@link de.shelp.android.RatingActivity} zu wechseln um einen Benutzer zu bewerten.
+     *
+     * @param view - Die aktuell sichtbare View.
+     * @param user - Der zu bewertenden Benutzer.
+     */
     public void rate(View view, User user) {
         Intent i = new Intent(this, RatingActivity.class);
-        //Intent den zu bewertenden User mitgeben!
+        //Intent den zu bewertenden User mitgeben
         i.putExtra("RatingUser", user);
         startActivity(i);
     }
