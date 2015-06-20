@@ -12,7 +12,15 @@ import de.shelp.ksoap2.entities.Request;
 import de.shelp.ksoap2.exceptions.NoSessionException;
 
 /**
- * Created by user on 10.06.15.
+ * Die Klasse übergibt alle Daten die bezüglich der Anfragen erstellt werden.
+ * Die Daten werden über die Schnittstelle "RequestIntegration" übertragen.
+ * {@link #createRequest(Long, List, String, int)}
+ * {@link #deleteRequest(int, long)}
+ * {@link #getUpdatedRequests(int)}
+ * {@link #acceptRequest(long, int, String)}
+ *
+ * @author
+ *
  */
 public class RequestServiceImpl {
 
@@ -21,8 +29,15 @@ public class RequestServiceImpl {
 
     private static final String TAG = RequestServiceImpl.class.getName();
 
-
-    //Anfragen erstellen / Übergabe der Parameter als SoapObject
+    /**
+     * Mit der Methode können neue Anfragen gestellt werden.
+     * @param tourId - ID zu der aktuell angefragten Fahrt
+     * @param wishes - aktuelle Liste der Wünsche
+     * @param notice - Kurztext zu den aktuellen Wünschen
+     * @param sessionId - ID der aktuellen Session
+     * @return - gibt den response als SoapObject zurück
+     * @throws SoapFault - es kann keine Verbindung zum Server aufgebaut werden
+     */
     public SoapObject createRequest(Long tourId, List<String> wishes, String notice, int sessionId) throws SoapFault{
         String METHOD_NAME = "createRequest";
         SoapObject response = null;
@@ -31,11 +46,19 @@ public class RequestServiceImpl {
             wishesString += wish + "\n";
         }
 
-        return ServiceUtils.executeSoapAction(METHOD_NAME, URL, tourId, notice, sessionId, wishesString);
+        response = ServiceUtils.executeSoapAction(METHOD_NAME, URL, tourId, notice, sessionId, wishesString);
+
+        return response;
 
     }
 
-    //Anfragen löschen / Übergabe der Parameter als SoapObject
+    /**
+     * Mit der Methode können Anfragen gelöscht werden.
+     * @param sessionId - ID der aktuellen Session
+     * @param requestId - ID der aktuell zu löschenden Anfrage
+     * @return - gibt den response als SoapObject zurück
+     * @throws SoapFault - es kann keine Verbindung zum Server aufgebaut werden
+     */
     public SoapObject deleteRequest(int sessionId, long requestId) throws SoapFault{
         String METHOD_Name = "deleteRequest";
         SoapObject response = null;
@@ -46,6 +69,13 @@ public class RequestServiceImpl {
     }
 
 
+    /**
+     * Mit der Methode können die aktualisierten Anfragen abgefragt werden.
+     * @param sessionId - ID der aktuellen Session
+     * @return - gibt eine Liste der Anfragen zurück
+     * @throws SoapFault - es kann keine Verbindung zum Server aufgebaut werden
+     * @throws NoSessionException - Keine gültige Session
+     */
     public List<Request> getUpdatedRequests(int sessionId) throws  SoapFault, NoSessionException {
         String METHOD_NAME = "getUpdatedRequests";
         SoapObject response = null;
@@ -63,6 +93,14 @@ public class RequestServiceImpl {
         return requests;
     }
 
+    /**
+     * Methode um Anfragen zu akzeptieren
+     * @param requestId - ID der akzeptierten Anfrage
+     * @param sessionId - ID der aktuellen Session
+     * @param idChecked - ID der angenommenen Wünsche
+     * @return - gibt den response als SoapObject zurück
+     * @throws SoapFault - es kann keine Verbindung zum Server aufgebaut werden
+     */
     public SoapObject acceptRequest(long requestId, int sessionId, String idChecked) throws SoapFault{
         String METHOD_NAME = "acceptRequest";
         SoapObject response = null;
