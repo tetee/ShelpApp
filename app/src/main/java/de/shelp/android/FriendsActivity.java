@@ -58,6 +58,7 @@ public class FriendsActivity extends ActionBarActivity {
 
     /**
      * Methode um zur {@link de.shelp.android.SearchFriendActivity} zu gelangen um hier neue Freunde zu suchen
+     * Methode um zur SearchFriendActivity zu gelangen um hier neue Freunde zu suchen.
      *
      * @param view - Die aktuell sichtbare View
      */
@@ -69,6 +70,8 @@ public class FriendsActivity extends ActionBarActivity {
     /**
      * Methode um den Freundschaftsstaus zu verändern über {@link de.shelp.android.tasks.ChangeFriendshipTask}
      * @param fs - Freundschaft deren Status verändert werden soll
+     * Methode um den Freundschaftsstaus zu verändern.
+     * @param fs - Freundschaft deren Status verändert werden soll.
      * @param changeType - 0 - annehmen, 1 - ablehnen, rest - löschen
      */
     public void changeFriendship(Friendship fs, int changeType) {

@@ -13,7 +13,15 @@ import de.shelp.android.tasks.DeleteTourTask;
 import de.shelp.android.tasks.OwnToursTask;
 import de.shelp.ksoap2.entities.Tour;
 
-//Activity, die eigens angelegte Fahrten anzeigt
+/**
+ * Activity, die eigens angelegte Fahrten anzeigt.
+ * {@link #details(View, Tour)}
+ * {@link #delete(View, Tour)}
+ * In der onCreate() Methode wird der AsyncTask zum anzeigen der eigenen Fahrten aufgerufen {@link de.shelp.android.tasks.OwnToursTask}.
+ *
+ * @author
+ *
+ */
 public class ShowOwnTourActivity extends ActionBarActivity {
 
     Tour tour;
@@ -33,19 +41,15 @@ public class ShowOwnTourActivity extends ActionBarActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
+
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
         }
@@ -59,9 +63,13 @@ public class ShowOwnTourActivity extends ActionBarActivity {
     }
 
 
-    //durch Klicken werden die Details zur eigenen Fahrt angezeigt
-    //um das Anfragen einer eigenen Fahrt zu vermeiden wird der Besitzer gleich true gesetzt und in der ShowTourActivity
-    //der Button zum Anfragen ausgeblendet
+    /**
+     * Durch klicken des Button "Details" werden die Details zur eigenen Fahrt angezeigt.
+     * Um das Anfragen einer eigenen Fahrt zu vermeiden wird der Besitzer gleich true gesetzt und in der ShowTourActivity
+     * der Button zum Anfragen ausgeblendet.
+     * @param view - Die aktuell sichtbare View
+     * @param tour - Fahrt wird an eine andere Activity übergeben
+     */
     public void details(View view, Tour tour){
         Intent i = new Intent(this, ShowTourActivity.class);
         i.putExtra("Tour", tour);
@@ -69,7 +77,12 @@ public class ShowOwnTourActivity extends ActionBarActivity {
         startActivity(i);
     }
 
-    //Tour löschen bzw. auf CANCELLED setzen
+    /**
+     * Tour löschen bzw. auf CANCELLED setzen
+     * @param view - Die aktuell sichtbare View
+     * @param tour - Fahrt wird an den AsyncTaks übergeben
+     * Zum löschen der eigenen Fahrt wird der AsyncTask aufgerufen {@link de.shelp.android.tasks.DeleteTourTask}
+     */
     public void delete(View view, Tour tour){
         ShelpApplication application = (ShelpApplication) getApplication();
         DeleteTourTask deleteToursTask = new DeleteTourTask(getApplicationContext(), tour,application.getSession().getId(), this);

@@ -26,10 +26,15 @@ import de.shelp.ksoap2.entities.PaymentCondition;
 import de.shelp.ksoap2.entities.Tour;
 
 /**
- * Diese Activity ermöglicht das Erstellen einer Fahrt
+<<<<<<< HEAD
+ * Diese Activity ermöglicht das Erstellen einer Fahrt.
  * {@link #createTour(android.view.View)}.
  * {@link #addItemsOnSpinner()} Laden der Daten in die Spinner.
- * Das Erstellen der Fahrt läuft über den AsynTask {@link CreateTask}
+ * Das Erstellen der Fahrt läuft über den AsynTask {@link CreateTask}.
+ * Diese Activity ermöglicht das Erstellen einer Fahrt.
+ * {@link #createTour(android.view.View)}
+ * {@link #addItemsOnSpinner()}
+ * Das Erstellen der Fahrt läuft über den AsynTask {@link de.shelp.android.tasks.CreateTask}.
  *
  * @author
  * 
@@ -53,7 +58,7 @@ public class CreateTourActivity extends ActionBarActivity {
     }
 
     /**
-     * Methode um Daten in die Spinner zu laden
+     * Methode um Daten in die Spinner zu laden.
      */
     public void addItemsOnSpinner(){
 
@@ -98,8 +103,8 @@ public class CreateTourActivity extends ActionBarActivity {
     }
 
     /**
-     * Methode zur Erstellung einer Fahrt
-     * Werte werden aus Spinner ausgelesen und an den {@link de.shelp.android.tasks.CreateTask} gesendet
+     * Methode zur Erstellung einer Fahrt.
+     * Werte werden aus Spinner ausgelesen und an den {@link de.shelp.android.tasks.CreateTask} gesendet.
      *
      * @param view - Die aktuell sichtbare View
      */

@@ -20,7 +20,15 @@ import de.shelp.android.applications.ShelpApplication;
 import de.shelp.android.tasks.WishlistTask;
 import de.shelp.ksoap2.entities.Tour;
 
-//Activity zum Erstellen einer Wunschliste zu einer Anfrage für eine bestimmte Tour
+/**
+ * Activity zum Erstellen einer Wunschliste zu einer Anfrage, für eine bestimmte Tour.
+ * {@link #addTextView(android.view.View)}
+ * {@link #requestWishList(android.view.View)}
+ * Das erstellen der Wunschliste läuft über den AsyncTask {@link de.shelp.android.tasks.WishlistTask}
+ *
+ * @author
+ *
+ */
 public class WishlistActivity extends ActionBarActivity {
 
     private int lastEditText = R.id.editTextWishList;
@@ -48,19 +56,14 @@ public class WishlistActivity extends ActionBarActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
         }
@@ -74,7 +77,11 @@ public class WishlistActivity extends ActionBarActivity {
     }
 
 
-    //Methode um weitere Wünsche zur Wunschliste hinzuzufügen
+    /**
+     * Methode um weitere Wünsche zur Wunschliste hinzuzufügen
+     *
+     * @param view - Die aktuell sichtbare View
+     */
     public void addTextView(View view) {
         RelativeLayout ll = (RelativeLayout) findViewById(R.id.relativeLayout);
 
@@ -89,7 +96,13 @@ public class WishlistActivity extends ActionBarActivity {
         ll.addView(et, relativeParams);
     }
 
-    //Methode um endgültige Anfrage zu schicken mit der Wunschliste
+    /**
+     * Methode um die Wunschliste an den Benutzer zu senden.
+     * Prüfung ob mindestens ein Wunsch gefüllt ist.
+     * Die Wünsche und der Kurztext werden an den {@link de.shelp.android.tasks.WishlistTask} gesendet.
+     *
+     * @param view - Die aktuell sichtbare View
+     */
     public void requestWishList(View view) {
 
         boolean oneFilled = false;
@@ -102,7 +115,6 @@ public class WishlistActivity extends ActionBarActivity {
             List<String> wishes = new ArrayList<String>();
 
             for (EditText et : list) {
-                //Toast.makeText(getApplicationContext(), "Es wurden nicht alle Felder gefüllt!", Toast.LENGTH_SHORT).show();
 
                 wishes.add(et.getText().toString());
 
