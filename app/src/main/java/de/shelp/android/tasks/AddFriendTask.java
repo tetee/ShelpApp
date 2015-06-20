@@ -13,10 +13,12 @@ import de.shelp.android.applications.ShelpApplication;
 import de.shelp.ksoap2.entities.User;
 
 /**
- * Created by user on 02.06.15.
+ * AsyncTask, für das Hinzufügen eines neuen Freundes.
+ * Schickt die Anfrage an den Server und erhält einen ReturnCode zurück.
+ *
+ * @author
+ *
  */
-
-
 public class AddFriendTask extends AsyncTask<Object, Object, SoapObject>
 {
     private Context context;

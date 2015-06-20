@@ -23,7 +23,12 @@ import de.shelp.ksoap2.entities.Tour;
 import de.shelp.ksoap2.exceptions.InvalidTourException;
 
 /**
- * Created by user on 12.06.15.
+ * AsyncTask, für das Anzeigen von eigenen Fahrten.
+ * Die Ausgabe erfolgt dynamisch in {@link #onPostExecute(de.shelp.ksoap2.ObjectResponse)}
+ * Fragt die Daten vom Server an.
+ *
+ * @author
+ *
  */
 public class OwnToursTask extends AsyncTask<Object, Integer, ObjectResponse<Tour>>
 {

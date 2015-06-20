@@ -19,7 +19,12 @@ import de.shelp.ksoap2.entities.User;
 import de.shelp.ksoap2.exceptions.InvalidRatingException;
 
 /**
- * Created by user on 09.06.15.
+ * AsyncTask, für das Anzeigen von Bewertungen eines Benutzers.
+ * Die Ausgabe erfolgt dynamisch in {@link #onPostExecute(de.shelp.ksoap2.ObjectResponse)}
+ * Fragt die Daten vom Server an.
+ *
+ * @author
+ *
  */
 public class GetRatingsTask extends AsyncTask<Object,Object, ObjectResponse<Rating>> {
 

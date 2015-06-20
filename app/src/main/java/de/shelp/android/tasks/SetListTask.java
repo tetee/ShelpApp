@@ -4,15 +4,19 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.widget.Toast;
 
 import org.ksoap2.SoapFault;
 
 import de.shelp.android.applications.ShelpApplication;
 
 /**
- * Created by user on 20.06.15.
+ * AsyncTask, für das Laden der Listen vom Server.
+ *
+ * @author
+ *
  */
-public class SetListTask extends AsyncTask<Object, Object, Object> {
+public class SetListTask extends AsyncTask<Object, Object, Boolean> {
     private Context context;
     private Activity activity;
     private Class nextActivity;
@@ -26,22 +30,27 @@ public class SetListTask extends AsyncTask<Object, Object, Object> {
     }
 
     @Override
-    protected Object doInBackground(Object... params) {
+    protected Boolean doInBackground(Object... params) {
         try {
             if (app.getAllLists() == null) {
                 app.setAllLists(app.getShelpAppService().getLists());
             }
-        } catch (SoapFault ex) {
-            //TODO errorhandling
+            return true;
         }
-        return null;
+        catch (SoapFault e) {
+            return false;
+        }
     }
 
     protected void onProgessUpdate(Object... values) {
     }
 
-    protected void onPostExecute(Object result) {
-        Intent i = new Intent(activity, nextActivity);
-        context.startActivity(i);
+    protected void onPostExecute(Boolean result) {
+        if(result = true){
+            Intent i = new Intent(activity, nextActivity);
+            context.startActivity(i);}
+        else{
+            Toast.makeText(activity.getApplicationContext(), "Serververbindung konnte nicht erfolgreich aufgebaut werden!", Toast.LENGTH_SHORT).show();
+        }
     }
 }

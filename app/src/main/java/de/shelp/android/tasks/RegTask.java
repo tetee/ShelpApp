@@ -11,8 +11,13 @@ import de.shelp.android.applications.ShelpApplication;
 import de.shelp.ksoap2.entities.ShelpSession;
 import de.shelp.ksoap2.exceptions.InvalidRegistrationException;
 
+
 /**
- * Created by user on 15.06.15.
+ * AsyncTask, für die Registrierung.
+ * Schickt die Anfrage an den Server und erhält einen ReturnCode zurück.
+ *
+ * @author
+ *
  */
 public class RegTask extends AsyncTask<String, Integer, ShelpSession> {
     private Context context;

@@ -19,10 +19,14 @@ import de.shelp.ksoap2.ObjectResponse;
 import de.shelp.ksoap2.entities.Friendship;
 
 /**
- * Created by user on 02.06.15.
+ * AsyncTask, für das Anzeigen bestehender Freunde, bestehender Freundesanfragen sowie
+ * die Möglichkeit neue Freunde hinzuzufügen.
+ * Die Ausgabe erfolgt dynamisch in {@link #onPostExecute(de.shelp.ksoap2.ObjectResponse)}
+ * Fragt die Daten vom Server an.
+ *
+ * @author
+ *
  */
-
-
 public class GetFriendsTask extends AsyncTask<Object, Integer, ObjectResponse<Friendship>>
 {
     private Context context;

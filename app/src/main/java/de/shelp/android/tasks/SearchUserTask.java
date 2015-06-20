@@ -20,10 +20,14 @@ import de.shelp.ksoap2.entities.User;
 import de.shelp.ksoap2.exceptions.InvalidUsersException;
 
 /**
- * Created by user on 02.06.15.
+ * AsyncTask, für das Suchen von Benutzern..
+ * Schickt die Anfrage an den Server .
+ * Der Server schickt den oder die passenden Benutzer zurück.
+ * Die Ausgabe erfolgt dynamisch in {@link #onPostExecute(de.shelp.ksoap2.ObjectResponse)}
+ *
+ * @author
+ *
  */
-
-
 public class SearchUserTask extends AsyncTask<Object, Integer, ObjectResponse<User>>
 {
     private Context context;

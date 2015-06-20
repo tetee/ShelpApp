@@ -22,10 +22,14 @@ import de.shelp.ksoap2.entities.TourStatus;
 import de.shelp.ksoap2.exceptions.InvalidRequestException;
 
 /**
- * Created by user on 02.06.15.
+ * AsyncTask, für das Anzeigen eigener Anfrage, den zugehörigen Wünschen sowie die Möglichkeit den Ersteller zu bewerten
+ * oder die Anfrage zu löschen.
+ * Die Ausgabe erfolgt dynamisch in {@link #onPostExecute(de.shelp.ksoap2.ObjectResponse)}
+ * Fragt die Daten vom Server an.
+ *
+ * @author
+ *
  */
-
-
 public class GetOwnRequestTask extends AsyncTask<Object, Integer,  ObjectResponse<Request>> {
     private Context context;
     private ShelpApplication myApp;

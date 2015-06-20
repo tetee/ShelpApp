@@ -13,7 +13,13 @@ import de.shelp.android.CreateTourActivity;
 import de.shelp.android.ShowOwnTourActivity;
 import de.shelp.android.applications.ShelpApplication;
 import de.shelp.ksoap2.entities.Tour;
-
+/**
+ * AsyncTask, für das Erstellen einer Fahrt
+ * Schickt die Anfrage an den Server und erhält einen ReturnCode zurück.
+ *
+ * @author
+ *
+ */
 public class CreateTask extends AsyncTask<Object, Integer, SoapObject>
 {
     private Context context;

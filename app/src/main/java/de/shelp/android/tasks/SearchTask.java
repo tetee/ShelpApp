@@ -20,10 +20,14 @@ import de.shelp.ksoap2.entities.Tour;
 import de.shelp.ksoap2.exceptions.InvalidTourException;
 
 /**
- * Created by user on 02.06.15.
+ * AsyncTask, für das Suchen einer Fahrt.
+ * Schickt die Anfrage an den Server und erhält einen ReturnCode zurück.
+ * Der Server schickt die passenden Fahrten zurück.
+ * Die Ausgabe erfolgt dynamisch in {@link #onPostExecute(de.shelp.ksoap2.ObjectResponse)}
+ *
+ * @author
+ *
  */
-
-
 public class SearchTask extends AsyncTask<Object, Integer, ObjectResponse<Tour>>
 {
     private Context context;

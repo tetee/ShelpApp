@@ -12,12 +12,13 @@ import de.fh_muenster.shelpapp.R;
 import de.shelp.android.ShowOwnRequestActivity;
 import de.shelp.android.applications.ShelpApplication;
 import de.shelp.ksoap2.entities.Request;
-
 /**
- * Created by user on 02.06.15.
+ * AsyncTask, für das Löschen einer Anfrage an eine fremde Fahrt.
+ * Schickt die Anfrage an den Server und erhält einen ReturnCode zurück.
+ *
+ * @author
+ *
  */
-
-
 public class DeleteRequestTask extends AsyncTask<Object, Integer, SoapObject>
 {
     private Context context;

@@ -3,7 +3,10 @@ package de.shelp.ksoap2;
 import java.util.List;
 
 /**
- * Created by Jos-Laptop on 16.06.2015.
+ * Rückgabetyp für allgemeine Objecte im Response
+ * beinhaltet eine Liste der vom Server zurück gegebenen Objekte und einer Fehlermeldung falls aufgetreten
+ *
+ * @param <T> - Typ des Objektes vom Server
  */
 public class ObjectResponse<T> {
 

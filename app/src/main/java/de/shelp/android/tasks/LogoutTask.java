@@ -9,9 +9,12 @@ import de.shelp.android.MainActivity;
 import de.shelp.android.applications.ShelpApplication;
 import de.shelp.ksoap2.exceptions.NoSessionException;
 
-
 /**
- * Logout as AsyncTask
+ * AsyncTask, für das Logout.
+ * Schickt die Anfrage an den Server und erhält einen ReturnCode zurück.
+ *
+ * @author
+ *
  */
 public class LogoutTask extends AsyncTask<Void, Integer, Boolean>  {
 

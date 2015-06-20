@@ -13,7 +13,11 @@ import de.shelp.android.applications.ShelpApplication;
 import de.shelp.ksoap2.entities.Tour;
 
 /**
- * Created by user on 14.06.15.
+ * AsyncTask, für das Ändern des Tourstatusses (CANCELLED).
+ * Schickt die Anfrage an den Server und erhält einen ReturnCode zurück.
+ *
+ * @author
+ *
  */
 public class DeleteTourTask extends AsyncTask<Object, Integer, SoapObject>
 {
