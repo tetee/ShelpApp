@@ -20,28 +20,37 @@ import de.shelp.ksoap2.exceptions.InvalidUsersException;
 import de.shelp.ksoap2.exceptions.NoSessionException;
 import de.shelp.ksoap2.services.UserService;
 
-
-
 /**
- * Diese Klasse enthaelt die Verbindung der App mit dem Xbank-Webservice.
+ * Die Klasse übergibt alle Daten die bezüglich der Benutzer erstellt werden.
+ * Die Daten werden über die Schnittstelle "UserIntegration" übertragen.
+ * {@link #login(String, String)}
+ * {@link #logout(de.shelp.android.applications.ShelpApplication)} )}
+ * {@link #searchUsers(String)}
+ * {@link #logout(de.shelp.android.applications.ShelpApplication)}
+ *
+ * @author
+ *
  */
 public class UserServiceImpl implements UserService {
 
     private static final String URL = ServiceUtils.URL + "UserIntegration";
-    private static final String URL2 = ServiceUtils.URL + "StateIntegration";
 
     private static final String TAG = UserServiceImpl.class.getName();
 
-    //Methoden Klasse User
-
-    //Login eines Benutzers / Übergabe als ShelpSession
+    /**
+     * Login eines Benutzers / Übergabe als ShelpSession
+     *
+     * @param username - Die E-Mail Adresse des Nutzers
+     * @param password - Das Passwort des Nutzers
+     * @return - Rückgabe einer ShelpSession
+     * @throws InvalidLoginException - es kann keine Verbindung zum Server aufgebaut werden
+     */
     @Override
     public ShelpSession login(String username, String password) throws InvalidLoginException {
         String METHOD_NAME = "login";
         SoapObject response = null;
         try {
             response = ServiceUtils.executeSoapAction(METHOD_NAME, URL, username, password);
-           // response = ServiceUtils.executeSoapAction("getAllLists", URL2);
             Log.d(TAG, response.toString());
             String login = (response.getPrimitivePropertySafelyAsString("returnCode"));
 
@@ -55,7 +64,14 @@ public class UserServiceImpl implements UserService {
         }
     }
 
-    //registrieren eines Benutzers / Übergabe als ShelpSession
+    /**
+     * Registrieren eines Benutzers / Übergabe als ShelpSession.
+     *
+     * @param eMail - Die E-Mail Adresse des Benutzers
+     * @param hash - Das gehashte Passwort
+     * @return - Rückgabe einer ShelpSession
+     * @throws InvalidRegistrationException - es kann keine Registrierung durchgeführt werden
+     */
     @Override
     public ShelpSession registration(String eMail, String hash) throws InvalidRegistrationException {
         String METHOD_NAME = "regUser";
@@ -75,7 +91,12 @@ public class UserServiceImpl implements UserService {
         }
     }
 
-    //ausloggen eines Benutzers
+    /**
+     * Ausloggen eines Benutzers
+     *
+     * @param shelpApplication - Das Application Objekt
+     * @throws NoSessionException - es kann keine Session gefunden werden
+     */
     @Override
     public void logout(ShelpApplication shelpApplication) throws NoSessionException {
         Log.d(TAG, "logout called.");
@@ -89,8 +110,14 @@ public class UserServiceImpl implements UserService {
         }
     }
 
-
-    //Benutzer suchen / Übergabe der Liste <User> an den Server
+    /**
+     * Benutzer suchen / Übergabe der Liste <User> an den Server
+     *
+     * @param searchText - Such Text für die Suche nach einem Benutzer
+     * @return - gibt eine Liste von Benutzern zurück
+     * @throws SoapFault - es kann keine Verbindung zum Server aufgebaut werden
+     * @throws InvalidUsersException - Benutzer ist nicht valide
+     */
     @Override
     public List<User> searchUsers(String searchText) throws SoapFault, InvalidUsersException{
         String METHOD_NAME = "searchUsers";

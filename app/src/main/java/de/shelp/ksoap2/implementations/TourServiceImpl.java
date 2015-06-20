@@ -13,16 +13,31 @@ import de.shelp.ksoap2.exceptions.InvalidTourException;
 import de.shelp.ksoap2.exceptions.NoSessionException;
 
 /**
- * Created by user on 21.05.15.
+ * Die Klasse übergibt alle Daten die bezüglich der Tour erstellt werden.
+ * Die Daten werden über die Schnittstelle "TourIntegration" übertragen.
+ * {@link #createTour(de.shelp.ksoap2.entities.Tour, int)}
+ * {@link #searchTour(int, long, int, long, long, boolean, int)}
+ * {@link #deleteTour(long, int)}
+ * {@link #getUpdatedTours(int)}
+ * {@link #searchOwnTour(int)}
+ *
+ * @author
+ *
  */
 public class TourServiceImpl {
-
 
     private static final String URL = ServiceUtils.URL + "TourIntegration";
 
     private static final String TAG = TourServiceImpl.class.getName();
 
-    //erstellen einer Fahrt / Übergabe als SoapObject
+    /**
+     *Erstellen einer Fahrt / Übergabe als SoapObject
+     *
+     * @param tour - Tour, die erstellt werden soll
+     * @param sessionId - ID der aktuellen Session
+     * @return - gibt ein SoapObject zurück
+     * @throws SoapFault - es kann keine Verbindung zum Server aufgebaut werden
+     */
     public SoapObject createTour(Tour tour, int sessionId) throws SoapFault{
         String METHOD_NAME = "createTour";
         SoapObject response = null;
@@ -33,8 +48,20 @@ public class TourServiceImpl {
         return response;
     }
 
-
-    //suchen einer Fahrt / Übergabe  der Liste <Tour> an den Server
+    /**
+     * Suchen einer Fahrt / Übergabe der Fahrtenliste an den Server
+     *
+     * @param approvalStatus - Freigabestatus der gesuchten Fahrt
+     * @param location - Zielort der gesuchten Fahrt
+     * @param capacity - Kapazität der gesuchten Fahrt
+     * @param timeStart - Startzeit für die Fahrtensuche
+     * @param timeEnd - Endzeit für die Fahrtensuche
+     * @param directSearch - Auswahl ob in der Nähe gesucht werden soll
+     * @param sessionId - ID der aktuellen Session
+     * @return - gibt eine Liste der gesuchten Fahrten zurück
+     * @throws SoapFault - es kann keine Verbindung zum Server aufgebaut werden
+     * @throws InvalidTourException - Fahrt ist nicht valide
+     */
     public List<Tour> searchTour(int approvalStatus,long location, int capacity,long timeStart,long timeEnd,boolean directSearch,int sessionId) throws SoapFault, InvalidTourException{
         String METHOD_NAME = "searchTours";
         SoapObject response = null;
@@ -51,7 +78,14 @@ public class TourServiceImpl {
         return tours;
     }
 
-    //suchen der eigenen Fahrten / Übergabe der Liste <Tour> an den Server
+    /**
+     * Suchen der eigenen Fahrten / Übergabe der Fahrtenliste an den Server
+     *
+     * @param sessionId - ID der aktuellen Session
+     * @return - gibt eine Liste derangefragten Fahrten aus
+     * @throws SoapFault - es kann keine Verbindung zum Server aufgebaut werden
+     * @throws InvalidTourException - Tour ist nicht valide
+     */
     public List<Tour> searchOwnTour(int sessionId) throws SoapFault, InvalidTourException{
         String METHOD_NAME = "getTours";
         SoapObject response = null;
@@ -68,8 +102,14 @@ public class TourServiceImpl {
         return tours;
     }
 
-
-    //löschen einer Tour / Übergabe als SoapObject
+    /**
+     * Löschen einer Fahrt / Übergabe als SoapObject
+     *
+     * @param tourId - ID der zu löschenden Fahrt
+     * @param sessionId - ID der aktuellen Session
+     * @return - Rückgabe eines SoapObjects
+     * @throws SoapFault - es kann keine Verbindung zum Server aufgebaut werden
+     */
     public SoapObject deleteTour(long tourId, int sessionId) throws SoapFault{
         String METHOD_NAME = "deleteTour";
         SoapObject response = null;
@@ -79,6 +119,14 @@ public class TourServiceImpl {
         return response;
     }
 
+    /**
+     * Abfrage ob es Änderungen bei einer Fahrt gibt
+     *
+     * @param sessionId - ID der aktuellen Session
+     * @return - Rückgabe einer Liste der angefragten Fahrten
+     * @throws SoapFault - es kann keine Verbindung zum Server aufgebaut werden
+     * @throws NoSessionException -
+     */
     public List<Tour> getUpdatedTours(int sessionId) throws  SoapFault, NoSessionException {
         String METHOD_NAME = "getUpdatedTours";
         SoapObject response = null;
