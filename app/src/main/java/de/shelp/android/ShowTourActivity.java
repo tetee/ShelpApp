@@ -21,7 +21,16 @@ import de.shelp.android.actionlistener.ShowRequestListener;
 import de.shelp.ksoap2.ServiceUtils;
 import de.shelp.ksoap2.entities.Tour;
 
-//Activity um Tour Details anzuzeigen und diese ggf. anzufragen
+
+/**
+ * Activity um Tour Details anzuzeigen und diese ggf. anzufragen
+ * {@link #showRequest(View, Tour)}
+ * {@link #request(View)}
+ * In der Methode onCreate() wird die Fahrt abgebildet, ohne das noch Änderungen gemacht werden können.
+ *
+ * @author
+ *
+ */
 public class ShowTourActivity extends ActionBarActivity {
 
     Tour tour;
@@ -88,19 +97,14 @@ public class ShowTourActivity extends ActionBarActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
         }
@@ -113,7 +117,11 @@ public class ShowTourActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    //Methode um eine Tour anzufragen.. Für Anfrage zunächst Weiterleitung zur WishlistActivity
+    /**
+     * Methode um eine Tour anzufragen. Für Anfrage zunächst Weiterleitung zur WishlistActivity.
+     * @param v - Die aktuell sichtbare View.
+     *
+     */
     public void request(View v){
         Intent i = new Intent(this, WishlistActivity.class);
         //Übergabe der entsprechenden Tour
@@ -121,7 +129,12 @@ public class ShowTourActivity extends ActionBarActivity {
         startActivity(i);
     }
 
-    //Methode um bereits gestellte Anfragen an eine bestimmte Tour anzuzeigen
+    /**
+     * Methode um bereits gestellte Anfragen an eine bestimmte Tour anzuzeigen.
+     * @param v - Die aktuell sichtbare View
+     * @param tour - Fahrt wird an eine andere Activity übergeben
+     *
+     */
     public void showRequest(View v, Tour tour){
         Intent i = new Intent(this, ShowTourRequestActivity.class);
         i.putExtra("Tour", tour);

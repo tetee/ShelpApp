@@ -24,7 +24,16 @@ import de.shelp.ksoap2.entities.Tour;
 import de.shelp.ksoap2.entities.TourStatus;
 import de.shelp.ksoap2.entities.WishlistItem;
 
-//Activity um Anfragen zu eigens erstellter Tour anzuzeigen
+/**
+ * Activity um Anfragen zu eigens erstellter Tour anzuzeigen.
+ * {@link #acceptRequest(Map, Request)}.
+ * Das annehmen der Anfragen läuft über den {@link de.shelp.android.tasks.AcceptRequestTask}.
+ * In der onCreate() Methode werden dynamisch die Anfragen zu den entsprechenden Fahrten aufgelistet.
+ * Aufgelistet wird der Anfrager, der Kurztext und die Checkbox mit dem entsprechenden Wunsch.
+ *
+ * @author
+ *
+ */
 public class ShowTourRequestActivity extends ActionBarActivity {
    private Tour tour;
 
@@ -101,6 +110,11 @@ public class ShowTourRequestActivity extends ActionBarActivity {
         }
     }
 
+    /**
+     * Methode um den Anfragen zu Fahrten anzunehmen.
+     * @param wishMap - Map die, die Checkboxen und die dazugehörigen Wünsche speichert
+     * @param request - Anfrage zu der einer Fahrt
+     */
     public void acceptRequest(Map<WishlistItem,CheckBox> wishMap, Request request) {
         AcceptRequestTask acceptRequestTask = new AcceptRequestTask((ShelpApplication) getApplication(), request, wishMap, this );
         acceptRequestTask.execute();
@@ -108,19 +122,16 @@ public class ShowTourRequestActivity extends ActionBarActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
+
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
+
         if (id == R.id.action_settings) {
             return true;
         }

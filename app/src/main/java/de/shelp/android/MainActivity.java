@@ -21,9 +21,9 @@ import de.fh_muenster.shelpapp.R;
 import de.shelp.android.tasks.LoginTask;
 
 /**
- * MainActivity ist der Startbildschirm der Anwendung
+ * MainActivity ist der Startbildschirm der Anwendung.
  * Hier besteht die Möglichkeit für einen Login{@link #login(android.view.View)}
- * und für die Registrierung {@link #registration(android.view.View)}
+ * und für die Registrierung {@link #registration(android.view.View)}.
  *
  * @author
  *
@@ -84,7 +84,7 @@ public class MainActivity extends ActionBarActivity {
     }
 
     /**
-     * Methode um zur RegActivity zu wechseln, um einen neuen Benutzer zu registrieren
+     * Methode um zur RegActivity zu wechseln, um einen neuen Benutzer zu registrieren.
      *
      * @param view - Die aktuelle sichtbare View
      */
