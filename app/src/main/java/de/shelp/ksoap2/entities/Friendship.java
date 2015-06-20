@@ -1,7 +1,13 @@
 package de.shelp.ksoap2.entities;
 
-import java.util.Calendar;
-
+/**
+ * Entität die einen Freundschaft respräsentiert. Umfasst eine Id, Ersteller (
+ * {@link User}), Empfänger ({@link User}), Status
+ * und ein Änderungsdatum.
+ *
+ * @author
+ *
+ */
 public class Friendship {
 
     private int id;

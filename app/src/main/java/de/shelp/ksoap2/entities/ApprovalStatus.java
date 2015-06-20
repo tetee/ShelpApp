@@ -3,6 +3,13 @@ package de.shelp.ksoap2.entities;
 
 import java.io.Serializable;
 
+/**
+ * Klasse, die einen Freigabestatus respräsentiert. Umfasst eine Id und eine
+ * Beschreibung.
+ *
+ * @author
+ *
+ */
 public class ApprovalStatus implements Serializable{
     private int id;
     private String description;

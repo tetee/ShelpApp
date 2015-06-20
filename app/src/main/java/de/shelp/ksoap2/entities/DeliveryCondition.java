@@ -3,6 +3,13 @@ package de.shelp.ksoap2.entities;
 
 import java.io.Serializable;
 
+/**
+ * Klasse, die eine Lieferbedingung respräsentiert. Umfasst eine Id und eine
+ * Beschreibung.
+ *
+ * @author
+ *
+ */
 public class DeliveryCondition implements Serializable{
     
     private int id;

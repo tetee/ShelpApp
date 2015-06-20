@@ -7,6 +7,14 @@ import java.io.Serializable;
 
 import de.shelp.ksoap2.entities.User;
 
+/**
+ * Klasse, die einen Bewertung respräsentiert. Umfasst eine Id, den Ersteller (
+ * {@link User}), den Empfänger ({@link User}), ein Rating (in Sternen 10 - 50)
+ * und eine Beschreibung der Bewertung.
+ *
+ * @author
+ *
+ */
 public class Rating implements Serializable{
 
     private long id;
