@@ -3,7 +3,11 @@ package de.shelp.ksoap2.entities;
 import java.io.Serializable;
 
 /**
- * Created by user on 16.05.15.
+ * Klasse, die einen Wunsch respr�sentiert. Umfasst eine Id, einen Text und ein
+ * Flag ob der Wunsch aktzeptiert wurde oder nicht.
+ *
+ * @author
+ *
  */
 public class WishlistItem implements Serializable {
 

@@ -1,7 +1,10 @@
 package de.shelp.ksoap2.entities;
 
 /**
- * Created by user on 09.06.15.
+ * Enumarations welche Fahrtstatusse es gibt.
+ *
+ * @author
+ *
  */
 public enum TourStatus {
     PLANNED, CANCELLED, CLOSED

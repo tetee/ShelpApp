@@ -13,7 +13,7 @@ import de.shelp.ksoap2.exceptions.InvalidTourException;
 import de.shelp.ksoap2.exceptions.NoSessionException;
 
 /**
- * Die Klasse übergibt alle Daten die bezüglich der Tour erstellt werden.
+ * Die Klasse übergibt alle Daten die bezüglich der Fahrten erstellt werden.
  * Die Daten werden über die Schnittstelle "TourIntegration" übertragen.
  * {@link #createTour(de.shelp.ksoap2.entities.Tour, int)}
  * {@link #searchTour(int, long, int, long, long, boolean, int)}

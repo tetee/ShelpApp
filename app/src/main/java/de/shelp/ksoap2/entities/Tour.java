@@ -1,14 +1,19 @@
 package de.shelp.ksoap2.entities;
 
-import org.ksoap2.serialization.KvmSerializable;
-import org.ksoap2.serialization.PropertyInfo;
-
 import java.io.Serializable;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.Hashtable;
 import java.util.List;
 
+/**
+ * Klasse, die eine Fahrt respr�sentiert. Umfasst eine Id, den Ersteller (
+ * {@link User}), einen Freigabestatus ({@link ApprovalStatus}), eine Kapazit�t
+ * ({@link Capacity}), eine Bezahlmethode ({@link PaymentCondition}), eine
+ * Liefermethode ({@link DeliveryCondition}), einen Status ({@link TourStatus}),
+ * eine Liste von Anfragen ({@link Request}), einen Ort ({@link Location}), ein
+ * Flag ob die Fahrt ver�ndert wurde und ein Zeitpunkt.
+ *
+ * @author
+ *
+ */
 public class Tour implements Serializable {
 
     private static final long serialVersionUID = 4333669660990735973L;

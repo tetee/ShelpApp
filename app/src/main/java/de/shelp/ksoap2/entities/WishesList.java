@@ -8,7 +8,8 @@ import java.util.Hashtable;
 import java.util.List;
 
 /**
- * Created by Jos-Laptop on 12.06.2015.
+ * Klasse, die mehrere Wünschen speichert.
+ *
  */
 public class WishesList extends ArrayList<String> implements KvmSerializable {
 

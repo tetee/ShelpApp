@@ -3,7 +3,10 @@ package de.shelp.ksoap2.entities;
 import java.io.Serializable;
 
 /**
- * Created by user on 05.05.15.
+ * Klasse, die einen Benutzer respr�sentiert. Umfasst eine E-Mailadresse (Id)
+ *
+ * @author
+ *
  */
 public class User implements Serializable{
     private String userName;
