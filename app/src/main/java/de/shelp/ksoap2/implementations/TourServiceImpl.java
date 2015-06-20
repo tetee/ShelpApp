@@ -21,7 +21,8 @@ import de.shelp.ksoap2.exceptions.NoSessionException;
  * {@link #getUpdatedTours(int)}
  * {@link #searchOwnTour(int)}
  *
- * @author
+ * @author Roman Busch
+ * @author Theresa Sollert
  *
  */
 public class TourServiceImpl {

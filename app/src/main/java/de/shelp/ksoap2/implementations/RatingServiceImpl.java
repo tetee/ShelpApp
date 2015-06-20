@@ -20,7 +20,7 @@ import de.shelp.ksoap2.exceptions.InvalidRatingException;
  * {@link #createRating(User, int, String, int)}
  * {@link #getRatings(User, Context)}
  *
- * @author
+ * @author Roman Busch
  *
  */
 public class RatingServiceImpl {

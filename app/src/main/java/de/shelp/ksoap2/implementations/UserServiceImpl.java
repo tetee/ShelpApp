@@ -28,7 +28,7 @@ import de.shelp.ksoap2.services.UserService;
  * {@link #searchUsers(String)}
  * {@link #logout(de.shelp.android.applications.ShelpApplication)}
  *
- * @author
+ * @author Roman Busch
  *
  */
 public class UserServiceImpl implements UserService {

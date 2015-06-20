@@ -12,7 +12,7 @@ import de.shelp.ksoap2.entities.AllLists;
  * Die Listen werden über die Schnittstelle "StateIntegration" übertragen.
  * {@link #getLists()}
  *
- * @author
+ * @author Theresa Sollert
  *
  */
 public class StateServiceImpl {

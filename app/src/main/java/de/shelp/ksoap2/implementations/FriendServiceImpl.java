@@ -17,7 +17,7 @@ import de.shelp.ksoap2.entities.Friendship;
  * {@link #addFriend(int, String)}
  * {@link #changeFriendship(int, Friendship, int)}
  *
- * @author
+ * @author Theresa Sollert
  *
  */
 public class FriendServiceImpl {

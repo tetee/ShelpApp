@@ -17,7 +17,7 @@ import de.shelp.ksoap2.exceptions.InvalidRequestException;
  * Die Daten werden über die Schnittstelle "RequestIntegration" übertragen.
  * {@link #getRequest(int)} (int)}
  *
- * @author
+ * @author Theresa Sollert
  *
  */
 public class OwnRequestServiceImpl {

@@ -19,7 +19,7 @@ import de.shelp.ksoap2.exceptions.NoSessionException;
  * {@link #getUpdatedRequests(int)}
  * {@link #acceptRequest(long, int, String)}
  *
- * @author
+ * @author Roman Busch
  *
  */
 public class RequestServiceImpl {

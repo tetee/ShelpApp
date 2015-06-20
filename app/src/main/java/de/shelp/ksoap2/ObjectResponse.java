@@ -7,6 +7,7 @@ import java.util.List;
  * beinhaltet eine Liste der vom Server zurück gegebenen Objekte und einer Fehlermeldung falls aufgetreten
  *
  * @param <T> - Typ des Objektes vom Server
+ *
  */
 public class ObjectResponse<T> {
 
