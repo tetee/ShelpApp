@@ -20,7 +20,13 @@ import de.shelp.android.tasks.RegTask;
 import de.shelp.ksoap2.exceptions.InvalidRegistrationException;
 import de.shelp.ksoap2.entities.ShelpSession;
 
-//Activity für das Registrieren einen neuen Benutzers
+/**
+ * Activity, für das Registrieren eines neuen Benutzers {@link #registration(android.view.View)}
+ * Das Passwort für die Registrierung wird verschlüsselt {@link #computeMD5Hash(String)}
+ *
+ * @author
+ *
+ */
 public class RegActivity extends ActionBarActivity {
 
     private String eMail, password, passwordConfirm, result;
@@ -34,19 +40,14 @@ public class RegActivity extends ActionBarActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
         }
@@ -54,7 +55,11 @@ public class RegActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    //Registration eines neuen Benutzers
+    /**
+     * Methode für die Registrierung eines neuen Benutzers über den  {@link de.shelp.android.tasks.RegTask}
+     *
+     * @param regView - Die aktuell sichtbare View
+     */
     public void registration(View regView) {
         EditText mail = (EditText) findViewById(R.id.editMailReg);
         EditText pw = (EditText) findViewById(R.id.editTextPasswordReg);
@@ -63,7 +68,7 @@ public class RegActivity extends ActionBarActivity {
         password = pw.getText().toString();
         passwordConfirm = pwConfirm.getText().toString();
         //Verschlüsselung des Passwortes
-        computeMD5Hash(password);
+        result = computeMD5Hash(password);
 
         //Format des Passwortes überprüfen
         if(password.length() < 6 && passwordConfirm.length() < 6){
@@ -81,10 +86,16 @@ public class RegActivity extends ActionBarActivity {
 
 
 
-    //Methode zur Verschlüsselung des Passwortes
-    public void computeMD5Hash(String password) {
+    /**
+     * Methode um das Passwort zu Verschlüsseln
+     *
+     * @param password - Passwort, das gehasht wird
+     * @return - Das gehashte Passwort
+     *
+     */
+    public String computeMD5Hash(String password) {
         try {
-            // Create MD5 Hash cc03e747a6afbbcbf8be7668acfebee5
+            // Erstelle MD5 Hash cc03e747a6afbbcbf8be7668acfebee5
             MessageDigest digest = java.security.MessageDigest.getInstance("MD5");
             digest.update(password.getBytes());
             byte messageDigest[] = digest.digest();
@@ -96,9 +107,10 @@ public class RegActivity extends ActionBarActivity {
                     h = "0" + h;
                 MD5Hash.append(h);
             }
-            this.result = MD5Hash.toString();
+            return MD5Hash.toString();
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
+            return "";
         }
     }
 }

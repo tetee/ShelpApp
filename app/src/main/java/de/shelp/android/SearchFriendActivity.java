@@ -18,7 +18,15 @@ import de.shelp.android.tasks.AddFriendTask;
 import de.shelp.android.tasks.SearchUserTask;
 import de.shelp.ksoap2.entities.User;
 
-//Activity für das Suchen von neuen Freunden
+/**
+ * Activity, für das Suchen nach einem neuen Freund/neuen Freunden {@link #search(android.view.View)}
+ * und das Hinzufügen eines neuen Freundes {@link #add(android.view.View, de.shelp.ksoap2.entities.User)}
+ * {@link #getSearchedElements()} Die gesuchten Freunde werden angezeigt
+ * {@link #addSearchedElement(android.widget.TextView)} und zur bestehenden View hinzugefügt.
+ *
+ * @author
+ *
+ */
 public class SearchFriendActivity extends ActionBarActivity {
 
     private List<TextView> searchedElements = new ArrayList<>();
@@ -32,19 +40,14 @@ public class SearchFriendActivity extends ActionBarActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
         }
@@ -57,8 +60,11 @@ public class SearchFriendActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    //Durch betätigen des Suchen Button erscheinen gesuchte Freunde
-    //und der Hinzufügen Button erscheint
+    /**
+     * Methode um nach Freunden zu suchen über den {@link de.shelp.android.tasks.SearchUserTask}
+     *
+     * @param view - Die aktuell sichtbare View
+     */
     public void search(View view){
 
         EditText search = (EditText) findViewById(R.id.searchFriendByName);
@@ -69,7 +75,12 @@ public class SearchFriendActivity extends ActionBarActivity {
 
     }
 
-    //Mit Klick auf Hinzufügen wird der Freund angefragt und Rückkehr zur Shelp Activity
+    /**
+     * Methode um einen neuen Freund hinzuzufügen über den {@link de.shelp.android.tasks.AddFriendTask}.
+     *
+     * @param view - Die aktuell sichtbare View.
+     * @param user - der hinzuzufügende Freund.
+     */
     public void add(View view, User user) {
         AddFriendTask addFriendTask = new AddFriendTask(view.getContext(),(ShelpApplication) this.getApplication(), user);
         addFriendTask.execute();

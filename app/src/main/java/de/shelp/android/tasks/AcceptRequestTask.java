@@ -23,7 +23,11 @@ import de.shelp.ksoap2.entities.Request;
 import de.shelp.ksoap2.entities.WishlistItem;
 
 /**
- * Created by user on 10.06.15.
+ * AsyncTask, für das (teilweise) Annehmen von Anfragen.
+ * Schickt die angenommen Anfrage anschließend an den Server.
+ *
+ * @author
+ *
  */
 public class AcceptRequestTask extends AsyncTask<Object, Integer, SoapObject> {
     private Context context;
@@ -65,7 +69,6 @@ public class AcceptRequestTask extends AsyncTask<Object, Integer, SoapObject> {
 
     protected void onPostExecute(SoapObject result) {
         if (result.getPrimitivePropertyAsString("returnCode").equals("OK")) {
-            //Toast ob das hinzufügen eines neuen Freundes erfolgreich war
             Toast.makeText(context.getApplicationContext(), "Anfrage erfolgreich versendet!", Toast.LENGTH_SHORT).show();
             Intent i = new Intent(context, ShowOwnTourActivity.class);
             i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

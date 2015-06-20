@@ -16,6 +16,13 @@ import de.shelp.android.tasks.CreateTask;
 import de.shelp.android.tasks.RatingTask;
 import de.shelp.ksoap2.entities.User;
 
+/**
+ * Activity, die die Berwetung eines Benutzers ermöglicht {@link #sendRating(android.view.View)}
+ * über den AsynsTask{@link de.shelp.android.tasks.RatingTask}
+ *
+ * @author
+ *
+ */
 public class RatingActivity extends ActionBarActivity {
 
     @Override
@@ -27,19 +34,14 @@ public class RatingActivity extends ActionBarActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
         }
@@ -52,8 +54,12 @@ public class RatingActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    //Methode um einen Benutzer zu bewerten
-    //anschließend Aufruf der ShowOwnRequestActivity um Anfragen des Benutzers anzuzeigen
+    /**
+     * Methode um einen anderen Benutzer zu bewerten über Task {@link de.shelp.android.tasks.RatingTask}
+     * anschließen Aufruf der {@link de.shelp.android.ShowOwnRequestActivity} um Anfragen des Benutzers anzuzeigen
+     *
+     * @param view - Die aktuell sichtbare View
+     */
     public void sendRating(View view) {
         RatingBar rating = (RatingBar) findViewById(R.id.rating);
         EditText ratingText = (EditText) findViewById(R.id.editTextRating);
