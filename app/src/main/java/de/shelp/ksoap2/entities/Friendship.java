@@ -1,9 +1,9 @@
 package de.shelp.ksoap2.entities;
 
 /**
- * Entität die einen Freundschaft respräsentiert. Umfasst eine Id, Ersteller (
- * {@link User}), Empfänger ({@link User}), Status
- * und ein Änderungsdatum.
+ * Klasse die einen Freundschaft respraesentiert. Umfasst eine Id, Ersteller (
+ * {@link User}), Empfaenger ({@link User}), Status
+ * und ein Aenderungsdatum.
  *
  * @author Theresa Sollert
  *

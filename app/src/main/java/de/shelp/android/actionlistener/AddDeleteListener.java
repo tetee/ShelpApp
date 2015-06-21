@@ -10,8 +10,8 @@ import de.shelp.android.tasks.GetOwnRequestTask;
 import de.shelp.ksoap2.entities.Request;
 
 /**
- * Die Klasse stellt einen Listener für den Button "löschen" bereit.
- * Mit ausführen des Buttons wird eine persönliche Anfrage gelöscht.
+ * Die Klasse stellt einen Listener fuer den Button "loeschen" bereit.
+ * Mit Ausfuehren des Buttons wird eine persoenliche Anfrage geloescht.
  *
  * @author Roman Busch
  *

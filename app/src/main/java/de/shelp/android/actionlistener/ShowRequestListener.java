@@ -8,8 +8,8 @@ import de.shelp.ksoap2.entities.Request;
 import de.shelp.ksoap2.entities.Tour;
 
 /**
- * Die Klasse stellt einen Listener für den Button "anfragen" bereit.
- * Mit ausführen des Buttons können angezeigte Fahrten angefragt werden.
+ * Die Klasse stellt einen Listener fuer den Button "anfragen" bereit.
+ * Mit Ausfuehren des Buttons koennen angezeigte Fahrten angefragt werden.
  *
  * @author Theresa Sollert
  *

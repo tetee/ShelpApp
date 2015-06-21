@@ -1,7 +1,7 @@
 package de.shelp.ksoap2.entities;
 
 /**
- * Enumarations welche Fahrtstatusse es gibt.
+ * Enumaration welche Fahrtstatusse es gibt.
  *
  * @author Roman Busch
  *

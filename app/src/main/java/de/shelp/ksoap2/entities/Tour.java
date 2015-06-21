@@ -4,12 +4,12 @@ import java.io.Serializable;
 import java.util.List;
 
 /**
- * Klasse, die eine Fahrt respr�sentiert. Umfasst eine Id, den Ersteller (
- * {@link User}), einen Freigabestatus ({@link ApprovalStatus}), eine Kapazit�t
+ * Klasse, die eine Fahrt respraesentiert. Umfasst eine Id, den Ersteller (
+ * {@link User}), einen Freigabestatus ({@link ApprovalStatus}), eine Kapazitaet
  * ({@link Capacity}), eine Bezahlmethode ({@link PaymentCondition}), eine
  * Liefermethode ({@link DeliveryCondition}), einen Status ({@link TourStatus}),
  * eine Liste von Anfragen ({@link Request}), einen Ort ({@link Location}), ein
- * Flag ob die Fahrt ver�ndert wurde und ein Zeitpunkt.
+ * Flag ob die Fahrt veraendert wurde und ein Zeitpunkt.
  *
  * @author Roman Busch
  *

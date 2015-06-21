@@ -8,7 +8,7 @@ import java.util.Hashtable;
 import java.util.List;
 
 /**
- * Klasse, die mehrere Wünsche speichert.
+ * Klasse, die mehrere Wuensche speichert.
  *
  * @author Roman Busch
  *

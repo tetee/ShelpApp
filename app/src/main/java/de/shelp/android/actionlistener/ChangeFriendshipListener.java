@@ -7,9 +7,9 @@ import de.shelp.ksoap2.entities.Friendship;
 
 /**
  * Die Klasse stellt einen Listener für die Buttons "annehmen", "ablehnen" und "löschen" bereit.
- * Mit ausführen des Buttons "annehmen" wird eine Freundschaftsanfrage angenommen.
- * Mit ausführen des Buttons "ablehnen" wird eine Freundschaftsanfrage abgelehnt.
- * Mit ausführen des Buttons "löschen" wird eine Freundschaftsanfrage gelöscht.
+ * Mit Ausführen des Buttons "annehmen" wird eine Freundschaftsanfrage angenommen.
+ * Mit Ausführen des Buttons "ablehnen" wird eine Freundschaftsanfrage abgelehnt.
+ * Mit Ausführen des Buttons "löschen" wird eine Freundschaftsanfrage gelöscht.
  *
  * @author Theresa Sollert
  *

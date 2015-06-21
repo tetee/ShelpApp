@@ -4,7 +4,7 @@ package de.shelp.ksoap2.entities;
 import java.io.Serializable;
 
 /**
- * Klasse, die eine Lieferbedingung respräsentiert. Umfasst eine Id und eine
+ * Klasse, die eine Lieferbedingung respraesentiert. Umfasst eine Id und eine
  * Beschreibung.
  *
  * @author Theresa Sollert

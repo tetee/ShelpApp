@@ -2,7 +2,7 @@ package de.shelp.ksoap2.entities;
 
 import java.io.Serializable;
 /**
- * Klasse die eine Session respr�sentiert. Umfasst eine Id und den Besitzer (
+ * Klasse die eine Session respraesentiert. Umfasst eine Id und den Besitzer (
  * {@link User})
  *
  * @author Roman Busch

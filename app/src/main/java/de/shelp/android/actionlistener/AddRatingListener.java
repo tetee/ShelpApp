@@ -10,8 +10,8 @@ import de.shelp.ksoap2.entities.Request;
 import de.shelp.ksoap2.entities.User;
 
 /**
- * Die Klasse stellt einen Listener für den Button "Bewertung" bereit.
- * Mit ausführen des Buttons wird auf die RatingActivity gewechselet.
+ * Die Klasse stellt einen Listener fuer den Button "Bewertung" bereit.
+ * Mit Ausfuehren des Buttons wird auf die RatingActivity gewechselet.
  *
  * @author Roman Busch
  *

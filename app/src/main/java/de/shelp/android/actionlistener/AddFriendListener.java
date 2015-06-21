@@ -7,8 +7,8 @@ import de.shelp.android.SearchTourActivity;
 import de.shelp.ksoap2.entities.User;
 
 /**
- * Die Klasse stellt einen Listener für den Button "hinzufügen" bereit.
- * Mit ausführen des Buttons wird ein Freund hinzugefügt.
+ * Die Klasse stellt einen Listener fuer den Button "hinzufuegen" bereit.
+ * Mit Ausfuehren des Buttons wird ein Freund hinzugefuegt.
  *
  * @author Theresa Sollert
  *

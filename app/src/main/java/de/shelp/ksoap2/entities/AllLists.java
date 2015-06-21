@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Klasse, die alle Listen respräsentiert. Umfasst eine Liste Kapazitäten, Lieferbedingungen, Zahlungsbedingungen, Freigabestatus und Orte.
+ * Klasse, die alle Listen respraesentiert. Umfasst eine Liste Kapazitaeten, Lieferbedingungen, Zahlungsbedingungen, Freigabestatus und Orte.
  *
  * @author Theresa Sollert
  *

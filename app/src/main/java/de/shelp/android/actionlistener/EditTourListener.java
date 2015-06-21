@@ -8,8 +8,8 @@ import de.shelp.ksoap2.entities.Tour;
 import de.shelp.ksoap2.entities.User;
 
 /**
- * Die Klasse stellt einen Listener für den Button "löschen" bereit.
- * Mit ausführen des Buttons wird eine selbst erstellte Fahrt gelöscht.
+ * Die Klasse stellt einen Listener fuer den Button "loeschen" bereit.
+ * Mit ausfuehren des Buttons wird eine selbst erstellte Fahrt geloescht.
  *
  * @author Theresa Sollert
  *

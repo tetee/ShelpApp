@@ -4,7 +4,7 @@ package de.shelp.ksoap2.entities;
 import java.io.Serializable;
 
 /**
- * Klasse, die einen Ort respräsentiert. Umfasst eine Id, eine Beschreibung und
+ * Klasse, die einen Ort respraesentiert. Umfasst eine Id, eine Beschreibung und
  * die PLZ.
  *
  * @author Theresa Sollert

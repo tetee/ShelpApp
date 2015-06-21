@@ -3,7 +3,7 @@ package de.shelp.ksoap2.entities;
 import java.io.Serializable;
 
 /**
- * Klasse, die einen Benutzer respr�sentiert. Umfasst eine E-Mailadresse (Id)
+ * Klasse, die einen Benutzer respraesentiert. Umfasst eine E-Mailadresse (Id)
  *
  * @author Roman Busch
  *

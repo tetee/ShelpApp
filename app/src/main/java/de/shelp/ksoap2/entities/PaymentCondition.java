@@ -4,7 +4,7 @@ package de.shelp.ksoap2.entities;
 import java.io.Serializable;
 
 /**
- * Klasse, die eine Bezahlmethode respräsentiert. Umfasst eine Id und eine
+ * Klasse, die eine Bezahlmethode respraesentiert. Umfasst eine Id und eine
  * Beschreibung.
  *
  * @author Theresa Sollert

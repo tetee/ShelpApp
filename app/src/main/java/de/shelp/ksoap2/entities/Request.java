@@ -6,9 +6,9 @@ import java.util.List;
 import de.shelp.android.WishlistActivity;
 
 /**
- * Klasse, die eine Anfrage respräsentiert. Umfasst eine Id, den Ersteller (
- * {@link User}), den Empfänger ({@link User}), eine Fahrt ({@link Tour}), eine
- * Liste mit Wünschen {@link WishlistItem}, eine Beschreibung und einen Status.
+ * Klasse, die eine Anfrage respraesentiert. Umfasst eine Id, den Ersteller (
+ * {@link User}), den Empfaenger ({@link User}), eine Fahrt ({@link Tour}), eine
+ * Liste mit Wuenschen {@link WishlistItem}, eine Beschreibung und einen Status.
  *
  * @author Roman Busch
  *

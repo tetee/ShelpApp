@@ -13,8 +13,8 @@ import de.shelp.ksoap2.entities.User;
 import de.shelp.ksoap2.entities.WishlistItem;
 
 /**
- * Die Klasse stellt einen Listener für den Button "Anfrage senden" bereit.
- * Mit ausführen des Buttons wird ein Kurztext, sowie eine Wunschliste angefragt.
+ * Die Klasse stellt einen Listener fuer den Button "Anfrage senden" bereit.
+ * Mit Ausfuehren des Buttons wird ein Kurztext, sowie eine Wunschliste angefragt.
  *
  * @author Roman Busch
  *

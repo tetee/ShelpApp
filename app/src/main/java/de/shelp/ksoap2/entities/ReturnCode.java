@@ -1,7 +1,7 @@
 package de.shelp.ksoap2.entities;
 
 /**
- * Enumartion, die vorgibt welche R�ckgabecodes es gibt.
+ * Enumartion, die vorgibt welche Rueckgabecodes es gibt.
  *
  * @author Roman Busch
  *

@@ -10,8 +10,8 @@ import de.shelp.android.tasks.OwnToursTask;
 import de.shelp.ksoap2.entities.Tour;
 
 /**
- * Die Klasse stellt einen Listener für den Button "Details" bereit.
- * Mit ausführen des Buttons können Details zu einer Fahrt angezeigt werden.
+ * Die Klasse stellt einen Listener fuer den Button "Details" bereit.
+ * Mit Ausfuehren des Buttons koennen Details zu einer Fahrt angezeigt werden.
  *
  * @author Roman Busch
  *
