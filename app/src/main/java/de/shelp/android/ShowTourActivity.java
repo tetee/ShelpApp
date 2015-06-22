@@ -16,7 +16,7 @@ import android.widget.Toast;
 import java.text.ParseException;
 import java.util.Date;
 
-import de.fh_muenster.shelpapp.R;
+import de.shelp.R;
 import de.shelp.android.actionlistener.ShowRequestListener;
 import de.shelp.ksoap2.ServiceUtils;
 import de.shelp.ksoap2.entities.Tour;

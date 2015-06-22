@@ -3,7 +3,7 @@ package de.shelp.android;
 import android.os.Bundle;
 import android.preference.PreferenceActivity;
 
-import de.fh_muenster.shelpapp.R;
+import de.shelp.R;
 
 /**
  * @author Roman Busch

@@ -17,7 +17,7 @@ import android.widget.Toast;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-import de.fh_muenster.shelpapp.R;
+import de.shelp.R;
 import de.shelp.android.tasks.LoginTask;
 
 /**

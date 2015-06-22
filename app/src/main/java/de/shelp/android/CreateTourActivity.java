@@ -13,7 +13,7 @@ import android.widget.Toast;
 
 import java.text.ParseException;
 
-import de.fh_muenster.shelpapp.R;
+import de.shelp.R;
 import de.shelp.android.applications.ShelpApplication;
 import de.shelp.android.tasks.CreateTask;
 import de.shelp.ksoap2.ServiceUtils;

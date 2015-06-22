@@ -11,7 +11,7 @@ import android.widget.Toast;
 
 import org.ksoap2.SoapFault;
 
-import de.fh_muenster.shelpapp.R;
+import de.shelp.R;
 import de.shelp.android.FriendsActivity;
 import de.shelp.android.actionlistener.ChangeFriendshipListener;
 import de.shelp.android.applications.ShelpApplication;

@@ -13,7 +13,7 @@ import org.ksoap2.SoapFault;
 
 import java.util.List;
 
-import de.fh_muenster.shelpapp.R;
+import de.shelp.R;
 import de.shelp.android.ShowOwnTourActivity;
 import de.shelp.android.actionlistener.EditTourListener;
 import de.shelp.android.actionlistener.ShowTourDetailsListener;

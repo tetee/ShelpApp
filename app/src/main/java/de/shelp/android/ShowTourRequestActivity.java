@@ -15,7 +15,7 @@ import android.widget.TextView;
 import java.util.HashMap;
 import java.util.Map;
 
-import de.fh_muenster.shelpapp.R;
+import de.shelp.R;
 import de.shelp.android.actionlistener.CheckboxListener;
 import de.shelp.android.applications.ShelpApplication;
 import de.shelp.android.tasks.AcceptRequestTask;

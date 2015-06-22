@@ -9,7 +9,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.RatingBar;
 
-import de.fh_muenster.shelpapp.R;
+import de.shelp.R;
 import de.shelp.android.applications.ShelpApplication;
 import de.shelp.android.tasks.RatingTask;
 import de.shelp.ksoap2.entities.User;

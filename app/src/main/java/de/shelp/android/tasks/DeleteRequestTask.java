@@ -8,7 +8,7 @@ import android.widget.Toast;
 import org.ksoap2.SoapFault;
 import org.ksoap2.serialization.SoapObject;
 
-import de.fh_muenster.shelpapp.R;
+import de.shelp.R;
 import de.shelp.android.ShowOwnRequestActivity;
 import de.shelp.android.applications.ShelpApplication;
 import de.shelp.ksoap2.entities.Request;

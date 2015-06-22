@@ -17,7 +17,7 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
-import de.fh_muenster.shelpapp.R;
+import de.shelp.R;
 import de.shelp.android.applications.ShelpApplication;
 import de.shelp.android.tasks.SearchTask;
 import de.shelp.ksoap2.ServiceUtils;

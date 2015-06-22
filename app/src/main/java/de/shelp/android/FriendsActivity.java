@@ -7,7 +7,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-import de.fh_muenster.shelpapp.R;
+import de.shelp.R;
 import de.shelp.android.applications.ShelpApplication;
 import de.shelp.android.tasks.ChangeFriendshipTask;
 import de.shelp.android.tasks.GetFriendsTask;

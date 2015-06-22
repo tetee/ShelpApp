@@ -10,7 +10,7 @@ import android.widget.Toast;
 
 import org.ksoap2.SoapFault;
 
-import de.fh_muenster.shelpapp.R;
+import de.shelp.R;
 import de.shelp.android.ShowRatingActivity;
 import de.shelp.android.applications.ShelpApplication;
 import de.shelp.ksoap2.ObjectResponse;
